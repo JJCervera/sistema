@@ -14,7 +14,7 @@ switch ($action)
 }
 ?>
 <?php
-$link = mysqli_connect("localhost", "root", "sistema");
+$link = mysqli_connect("localhost", "sistema", "sistemabop22");
 mysqli_select_db($link, "sistemadecontrol");
 $tildes = $link->query("SET NAMES 'utf8'"); //Para que se muestren las tildes
 $consulta = mysqli_query($link, "SELECT pase_establecimiento.Id_Pase,
