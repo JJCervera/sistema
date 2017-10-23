@@ -416,12 +416,12 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		$this->Fecha_Entrada->SetVisibility();
 		$this->Nombre_Titular->SetVisibility();
 		$this->Dni->SetVisibility();
-		$this->Usuario_que_cargo->SetVisibility();
 		$this->Descripcion_Problema->SetVisibility();
 		$this->Id_Tipo_Falla->SetVisibility();
 		$this->Id_Problema->SetVisibility();
 		$this->Id_Tipo_Sol_Problem->SetVisibility();
 		$this->Id_Estado_Atenc->SetVisibility();
+		$this->Usuario_que_cargo->SetVisibility();
 		$this->Ultima_Actualizacion->SetVisibility();
 
 		// Global Page Loading event (in userfn*.php)
@@ -772,12 +772,12 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		$sFilterList = ew_Concat($sFilterList, $this->Fecha_Entrada->AdvancedSearch->ToJSON(), ","); // Field Fecha Entrada
 		$sFilterList = ew_Concat($sFilterList, $this->Nombre_Titular->AdvancedSearch->ToJSON(), ","); // Field Nombre Titular
 		$sFilterList = ew_Concat($sFilterList, $this->Dni->AdvancedSearch->ToJSON(), ","); // Field Dni
-		$sFilterList = ew_Concat($sFilterList, $this->Usuario_que_cargo->AdvancedSearch->ToJSON(), ","); // Field Usuario que cargo
 		$sFilterList = ew_Concat($sFilterList, $this->Descripcion_Problema->AdvancedSearch->ToJSON(), ","); // Field Descripcion Problema
 		$sFilterList = ew_Concat($sFilterList, $this->Id_Tipo_Falla->AdvancedSearch->ToJSON(), ","); // Field Id_Tipo_Falla
 		$sFilterList = ew_Concat($sFilterList, $this->Id_Problema->AdvancedSearch->ToJSON(), ","); // Field Id_Problema
 		$sFilterList = ew_Concat($sFilterList, $this->Id_Tipo_Sol_Problem->AdvancedSearch->ToJSON(), ","); // Field Id_Tipo_Sol_Problem
 		$sFilterList = ew_Concat($sFilterList, $this->Id_Estado_Atenc->AdvancedSearch->ToJSON(), ","); // Field Id_Estado_Atenc
+		$sFilterList = ew_Concat($sFilterList, $this->Usuario_que_cargo->AdvancedSearch->ToJSON(), ","); // Field Usuario que cargo
 		$sFilterList = ew_Concat($sFilterList, $this->Ultima_Actualizacion->AdvancedSearch->ToJSON(), ","); // Field Ultima Actualizacion
 		if ($this->BasicSearch->Keyword <> "") {
 			$sWrk = "\"" . EW_TABLE_BASIC_SEARCH . "\":\"" . ew_JsEncode2($this->BasicSearch->Keyword) . "\",\"" . EW_TABLE_BASIC_SEARCH_TYPE . "\":\"" . ew_JsEncode2($this->BasicSearch->Type) . "\"";
@@ -856,14 +856,6 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		$this->Dni->AdvancedSearch->SearchOperator2 = @$filter["w_Dni"];
 		$this->Dni->AdvancedSearch->Save();
 
-		// Field Usuario que cargo
-		$this->Usuario_que_cargo->AdvancedSearch->SearchValue = @$filter["x_Usuario_que_cargo"];
-		$this->Usuario_que_cargo->AdvancedSearch->SearchOperator = @$filter["z_Usuario_que_cargo"];
-		$this->Usuario_que_cargo->AdvancedSearch->SearchCondition = @$filter["v_Usuario_que_cargo"];
-		$this->Usuario_que_cargo->AdvancedSearch->SearchValue2 = @$filter["y_Usuario_que_cargo"];
-		$this->Usuario_que_cargo->AdvancedSearch->SearchOperator2 = @$filter["w_Usuario_que_cargo"];
-		$this->Usuario_que_cargo->AdvancedSearch->Save();
-
 		// Field Descripcion Problema
 		$this->Descripcion_Problema->AdvancedSearch->SearchValue = @$filter["x_Descripcion_Problema"];
 		$this->Descripcion_Problema->AdvancedSearch->SearchOperator = @$filter["z_Descripcion_Problema"];
@@ -904,6 +896,14 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		$this->Id_Estado_Atenc->AdvancedSearch->SearchOperator2 = @$filter["w_Id_Estado_Atenc"];
 		$this->Id_Estado_Atenc->AdvancedSearch->Save();
 
+		// Field Usuario que cargo
+		$this->Usuario_que_cargo->AdvancedSearch->SearchValue = @$filter["x_Usuario_que_cargo"];
+		$this->Usuario_que_cargo->AdvancedSearch->SearchOperator = @$filter["z_Usuario_que_cargo"];
+		$this->Usuario_que_cargo->AdvancedSearch->SearchCondition = @$filter["v_Usuario_que_cargo"];
+		$this->Usuario_que_cargo->AdvancedSearch->SearchValue2 = @$filter["y_Usuario_que_cargo"];
+		$this->Usuario_que_cargo->AdvancedSearch->SearchOperator2 = @$filter["w_Usuario_que_cargo"];
+		$this->Usuario_que_cargo->AdvancedSearch->Save();
+
 		// Field Ultima Actualizacion
 		$this->Ultima_Actualizacion->AdvancedSearch->SearchValue = @$filter["x_Ultima_Actualizacion"];
 		$this->Ultima_Actualizacion->AdvancedSearch->SearchOperator = @$filter["z_Ultima_Actualizacion"];
@@ -925,12 +925,12 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		$this->BuildSearchSql($sWhere, $this->Fecha_Entrada, $Default, FALSE); // Fecha Entrada
 		$this->BuildSearchSql($sWhere, $this->Nombre_Titular, $Default, FALSE); // Nombre Titular
 		$this->BuildSearchSql($sWhere, $this->Dni, $Default, FALSE); // Dni
-		$this->BuildSearchSql($sWhere, $this->Usuario_que_cargo, $Default, FALSE); // Usuario que cargo
 		$this->BuildSearchSql($sWhere, $this->Descripcion_Problema, $Default, FALSE); // Descripcion Problema
 		$this->BuildSearchSql($sWhere, $this->Id_Tipo_Falla, $Default, FALSE); // Id_Tipo_Falla
 		$this->BuildSearchSql($sWhere, $this->Id_Problema, $Default, FALSE); // Id_Problema
 		$this->BuildSearchSql($sWhere, $this->Id_Tipo_Sol_Problem, $Default, FALSE); // Id_Tipo_Sol_Problem
 		$this->BuildSearchSql($sWhere, $this->Id_Estado_Atenc, $Default, FALSE); // Id_Estado_Atenc
+		$this->BuildSearchSql($sWhere, $this->Usuario_que_cargo, $Default, FALSE); // Usuario que cargo
 		$this->BuildSearchSql($sWhere, $this->Ultima_Actualizacion, $Default, FALSE); // Ultima Actualizacion
 
 		// Set up search parm
@@ -943,12 +943,12 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 			$this->Fecha_Entrada->AdvancedSearch->Save(); // Fecha Entrada
 			$this->Nombre_Titular->AdvancedSearch->Save(); // Nombre Titular
 			$this->Dni->AdvancedSearch->Save(); // Dni
-			$this->Usuario_que_cargo->AdvancedSearch->Save(); // Usuario que cargo
 			$this->Descripcion_Problema->AdvancedSearch->Save(); // Descripcion Problema
 			$this->Id_Tipo_Falla->AdvancedSearch->Save(); // Id_Tipo_Falla
 			$this->Id_Problema->AdvancedSearch->Save(); // Id_Problema
 			$this->Id_Tipo_Sol_Problem->AdvancedSearch->Save(); // Id_Tipo_Sol_Problem
 			$this->Id_Estado_Atenc->AdvancedSearch->Save(); // Id_Estado_Atenc
+			$this->Usuario_que_cargo->AdvancedSearch->Save(); // Usuario que cargo
 			$this->Ultima_Actualizacion->AdvancedSearch->Save(); // Ultima Actualizacion
 		}
 		return $sWhere;
@@ -1011,12 +1011,12 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		$this->BuildBasicSearchSQL($sWhere, $this->Fecha_Entrada, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Nombre_Titular, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Dni, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->Usuario_que_cargo, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Descripcion_Problema, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Id_Tipo_Falla, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Id_Problema, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Id_Tipo_Sol_Problem, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Id_Estado_Atenc, $arKeywords, $type);
+		$this->BuildBasicSearchSQL($sWhere, $this->Usuario_que_cargo, $arKeywords, $type);
 		return $sWhere;
 	}
 
@@ -1152,8 +1152,6 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 			return TRUE;
 		if ($this->Dni->AdvancedSearch->IssetSession())
 			return TRUE;
-		if ($this->Usuario_que_cargo->AdvancedSearch->IssetSession())
-			return TRUE;
 		if ($this->Descripcion_Problema->AdvancedSearch->IssetSession())
 			return TRUE;
 		if ($this->Id_Tipo_Falla->AdvancedSearch->IssetSession())
@@ -1163,6 +1161,8 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		if ($this->Id_Tipo_Sol_Problem->AdvancedSearch->IssetSession())
 			return TRUE;
 		if ($this->Id_Estado_Atenc->AdvancedSearch->IssetSession())
+			return TRUE;
+		if ($this->Usuario_que_cargo->AdvancedSearch->IssetSession())
 			return TRUE;
 		if ($this->Ultima_Actualizacion->AdvancedSearch->IssetSession())
 			return TRUE;
@@ -1200,12 +1200,12 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		$this->Fecha_Entrada->AdvancedSearch->UnsetSession();
 		$this->Nombre_Titular->AdvancedSearch->UnsetSession();
 		$this->Dni->AdvancedSearch->UnsetSession();
-		$this->Usuario_que_cargo->AdvancedSearch->UnsetSession();
 		$this->Descripcion_Problema->AdvancedSearch->UnsetSession();
 		$this->Id_Tipo_Falla->AdvancedSearch->UnsetSession();
 		$this->Id_Problema->AdvancedSearch->UnsetSession();
 		$this->Id_Tipo_Sol_Problem->AdvancedSearch->UnsetSession();
 		$this->Id_Estado_Atenc->AdvancedSearch->UnsetSession();
+		$this->Usuario_que_cargo->AdvancedSearch->UnsetSession();
 		$this->Ultima_Actualizacion->AdvancedSearch->UnsetSession();
 	}
 
@@ -1222,12 +1222,12 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		$this->Fecha_Entrada->AdvancedSearch->Load();
 		$this->Nombre_Titular->AdvancedSearch->Load();
 		$this->Dni->AdvancedSearch->Load();
-		$this->Usuario_que_cargo->AdvancedSearch->Load();
 		$this->Descripcion_Problema->AdvancedSearch->Load();
 		$this->Id_Tipo_Falla->AdvancedSearch->Load();
 		$this->Id_Problema->AdvancedSearch->Load();
 		$this->Id_Tipo_Sol_Problem->AdvancedSearch->Load();
 		$this->Id_Estado_Atenc->AdvancedSearch->Load();
+		$this->Usuario_que_cargo->AdvancedSearch->Load();
 		$this->Ultima_Actualizacion->AdvancedSearch->Load();
 	}
 
@@ -1243,12 +1243,12 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 			$this->UpdateSort($this->Fecha_Entrada); // Fecha Entrada
 			$this->UpdateSort($this->Nombre_Titular); // Nombre Titular
 			$this->UpdateSort($this->Dni); // Dni
-			$this->UpdateSort($this->Usuario_que_cargo); // Usuario que cargo
 			$this->UpdateSort($this->Descripcion_Problema); // Descripcion Problema
 			$this->UpdateSort($this->Id_Tipo_Falla); // Id_Tipo_Falla
 			$this->UpdateSort($this->Id_Problema); // Id_Problema
 			$this->UpdateSort($this->Id_Tipo_Sol_Problem); // Id_Tipo_Sol_Problem
 			$this->UpdateSort($this->Id_Estado_Atenc); // Id_Estado_Atenc
+			$this->UpdateSort($this->Usuario_que_cargo); // Usuario que cargo
 			$this->UpdateSort($this->Ultima_Actualizacion); // Ultima Actualizacion
 			$this->setStartRecordNumber(1); // Reset start position
 		}
@@ -1287,12 +1287,12 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 				$this->Fecha_Entrada->setSort("");
 				$this->Nombre_Titular->setSort("");
 				$this->Dni->setSort("");
-				$this->Usuario_que_cargo->setSort("");
 				$this->Descripcion_Problema->setSort("");
 				$this->Id_Tipo_Falla->setSort("");
 				$this->Id_Problema->setSort("");
 				$this->Id_Tipo_Sol_Problem->setSort("");
 				$this->Id_Estado_Atenc->setSort("");
+				$this->Usuario_que_cargo->setSort("");
 				$this->Ultima_Actualizacion->setSort("");
 			}
 
@@ -1675,11 +1675,6 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		if ($this->Dni->AdvancedSearch->SearchValue <> "") $this->Command = "search";
 		$this->Dni->AdvancedSearch->SearchOperator = @$_GET["z_Dni"];
 
-		// Usuario que cargo
-		$this->Usuario_que_cargo->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Usuario_que_cargo"]);
-		if ($this->Usuario_que_cargo->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->Usuario_que_cargo->AdvancedSearch->SearchOperator = @$_GET["z_Usuario_que_cargo"];
-
 		// Descripcion Problema
 		$this->Descripcion_Problema->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Descripcion_Problema"]);
 		if ($this->Descripcion_Problema->AdvancedSearch->SearchValue <> "") $this->Command = "search";
@@ -1704,6 +1699,11 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		$this->Id_Estado_Atenc->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Id_Estado_Atenc"]);
 		if ($this->Id_Estado_Atenc->AdvancedSearch->SearchValue <> "") $this->Command = "search";
 		$this->Id_Estado_Atenc->AdvancedSearch->SearchOperator = @$_GET["z_Id_Estado_Atenc"];
+
+		// Usuario que cargo
+		$this->Usuario_que_cargo->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Usuario_que_cargo"]);
+		if ($this->Usuario_que_cargo->AdvancedSearch->SearchValue <> "") $this->Command = "search";
+		$this->Usuario_que_cargo->AdvancedSearch->SearchOperator = @$_GET["z_Usuario_que_cargo"];
 
 		// Ultima Actualizacion
 		$this->Ultima_Actualizacion->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Ultima_Actualizacion"]);
@@ -1771,12 +1771,12 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		$this->Fecha_Entrada->setDbValue($rs->fields('Fecha Entrada'));
 		$this->Nombre_Titular->setDbValue($rs->fields('Nombre Titular'));
 		$this->Dni->setDbValue($rs->fields('Dni'));
-		$this->Usuario_que_cargo->setDbValue($rs->fields('Usuario que cargo'));
 		$this->Descripcion_Problema->setDbValue($rs->fields('Descripcion Problema'));
 		$this->Id_Tipo_Falla->setDbValue($rs->fields('Id_Tipo_Falla'));
 		$this->Id_Problema->setDbValue($rs->fields('Id_Problema'));
 		$this->Id_Tipo_Sol_Problem->setDbValue($rs->fields('Id_Tipo_Sol_Problem'));
 		$this->Id_Estado_Atenc->setDbValue($rs->fields('Id_Estado_Atenc'));
+		$this->Usuario_que_cargo->setDbValue($rs->fields('Usuario que cargo'));
 		$this->Ultima_Actualizacion->setDbValue($rs->fields('Ultima Actualizacion'));
 	}
 
@@ -1789,12 +1789,12 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		$this->Fecha_Entrada->DbValue = $row['Fecha Entrada'];
 		$this->Nombre_Titular->DbValue = $row['Nombre Titular'];
 		$this->Dni->DbValue = $row['Dni'];
-		$this->Usuario_que_cargo->DbValue = $row['Usuario que cargo'];
 		$this->Descripcion_Problema->DbValue = $row['Descripcion Problema'];
 		$this->Id_Tipo_Falla->DbValue = $row['Id_Tipo_Falla'];
 		$this->Id_Problema->DbValue = $row['Id_Problema'];
 		$this->Id_Tipo_Sol_Problem->DbValue = $row['Id_Tipo_Sol_Problem'];
 		$this->Id_Estado_Atenc->DbValue = $row['Id_Estado_Atenc'];
+		$this->Usuario_que_cargo->DbValue = $row['Usuario que cargo'];
 		$this->Ultima_Actualizacion->DbValue = $row['Ultima Actualizacion'];
 	}
 
@@ -1850,12 +1850,12 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		// Fecha Entrada
 		// Nombre Titular
 		// Dni
-		// Usuario que cargo
 		// Descripcion Problema
 		// Id_Tipo_Falla
 		// Id_Problema
 		// Id_Tipo_Sol_Problem
 		// Id_Estado_Atenc
+		// Usuario que cargo
 		// Ultima Actualizacion
 
 		if ($this->RowType == EW_ROWTYPE_VIEW) { // View row
@@ -1881,29 +1881,105 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		$this->Dni->ViewValue = $this->Dni->CurrentValue;
 		$this->Dni->ViewCustomAttributes = "";
 
-		// Usuario que cargo
-		$this->Usuario_que_cargo->ViewValue = $this->Usuario_que_cargo->CurrentValue;
-		$this->Usuario_que_cargo->ViewCustomAttributes = "";
-
 		// Descripcion Problema
 		$this->Descripcion_Problema->ViewValue = $this->Descripcion_Problema->CurrentValue;
 		$this->Descripcion_Problema->ViewCustomAttributes = "";
 
 		// Id_Tipo_Falla
-		$this->Id_Tipo_Falla->ViewValue = $this->Id_Tipo_Falla->CurrentValue;
+		if (strval($this->Id_Tipo_Falla->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Tipo_Falla`" . ew_SearchString("=", $this->Id_Tipo_Falla->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Tipo_Falla`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `tipo_falla`";
+		$sWhereWrk = "";
+		$this->Id_Tipo_Falla->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Tipo_Falla, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Tipo_Falla->ViewValue = $this->Id_Tipo_Falla->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Tipo_Falla->ViewValue = $this->Id_Tipo_Falla->CurrentValue;
+			}
+		} else {
+			$this->Id_Tipo_Falla->ViewValue = NULL;
+		}
 		$this->Id_Tipo_Falla->ViewCustomAttributes = "";
 
 		// Id_Problema
-		$this->Id_Problema->ViewValue = $this->Id_Problema->CurrentValue;
+		if (strval($this->Id_Problema->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Problema`" . ew_SearchString("=", $this->Id_Problema->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Problema`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `problema`";
+		$sWhereWrk = "";
+		$this->Id_Problema->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Problema, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Problema->ViewValue = $this->Id_Problema->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Problema->ViewValue = $this->Id_Problema->CurrentValue;
+			}
+		} else {
+			$this->Id_Problema->ViewValue = NULL;
+		}
 		$this->Id_Problema->ViewCustomAttributes = "";
 
 		// Id_Tipo_Sol_Problem
-		$this->Id_Tipo_Sol_Problem->ViewValue = $this->Id_Tipo_Sol_Problem->CurrentValue;
+		if (strval($this->Id_Tipo_Sol_Problem->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Tipo_Sol_Problem`" . ew_SearchString("=", $this->Id_Tipo_Sol_Problem->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Tipo_Sol_Problem`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `tipo_solucion_problema`";
+		$sWhereWrk = "";
+		$this->Id_Tipo_Sol_Problem->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Tipo_Sol_Problem, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Tipo_Sol_Problem->ViewValue = $this->Id_Tipo_Sol_Problem->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Tipo_Sol_Problem->ViewValue = $this->Id_Tipo_Sol_Problem->CurrentValue;
+			}
+		} else {
+			$this->Id_Tipo_Sol_Problem->ViewValue = NULL;
+		}
 		$this->Id_Tipo_Sol_Problem->ViewCustomAttributes = "";
 
 		// Id_Estado_Atenc
-		$this->Id_Estado_Atenc->ViewValue = $this->Id_Estado_Atenc->CurrentValue;
+		if (strval($this->Id_Estado_Atenc->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Estado_Atenc`" . ew_SearchString("=", $this->Id_Estado_Atenc->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Estado_Atenc`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `estado_actual_solucion_problema`";
+		$sWhereWrk = "";
+		$this->Id_Estado_Atenc->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Estado_Atenc, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Estado_Atenc->ViewValue = $this->Id_Estado_Atenc->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Estado_Atenc->ViewValue = $this->Id_Estado_Atenc->CurrentValue;
+			}
+		} else {
+			$this->Id_Estado_Atenc->ViewValue = NULL;
+		}
 		$this->Id_Estado_Atenc->ViewCustomAttributes = "";
+
+		// Usuario que cargo
+		$this->Usuario_que_cargo->ViewValue = $this->Usuario_que_cargo->CurrentValue;
+		$this->Usuario_que_cargo->ViewCustomAttributes = "";
 
 		// Ultima Actualizacion
 		$this->Ultima_Actualizacion->ViewValue = $this->Ultima_Actualizacion->CurrentValue;
@@ -1935,11 +2011,6 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 			$this->Dni->HrefValue = "";
 			$this->Dni->TooltipValue = "";
 
-			// Usuario que cargo
-			$this->Usuario_que_cargo->LinkCustomAttributes = "";
-			$this->Usuario_que_cargo->HrefValue = "";
-			$this->Usuario_que_cargo->TooltipValue = "";
-
 			// Descripcion Problema
 			$this->Descripcion_Problema->LinkCustomAttributes = "";
 			$this->Descripcion_Problema->HrefValue = "";
@@ -1964,6 +2035,11 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 			$this->Id_Estado_Atenc->LinkCustomAttributes = "";
 			$this->Id_Estado_Atenc->HrefValue = "";
 			$this->Id_Estado_Atenc->TooltipValue = "";
+
+			// Usuario que cargo
+			$this->Usuario_que_cargo->LinkCustomAttributes = "";
+			$this->Usuario_que_cargo->HrefValue = "";
+			$this->Usuario_que_cargo->TooltipValue = "";
 
 			// Ultima Actualizacion
 			$this->Ultima_Actualizacion->LinkCustomAttributes = "";
@@ -2006,12 +2082,12 @@ class ctodas_atenciones_list extends ctodas_atenciones {
 		$this->Fecha_Entrada->AdvancedSearch->Load();
 		$this->Nombre_Titular->AdvancedSearch->Load();
 		$this->Dni->AdvancedSearch->Load();
-		$this->Usuario_que_cargo->AdvancedSearch->Load();
 		$this->Descripcion_Problema->AdvancedSearch->Load();
 		$this->Id_Tipo_Falla->AdvancedSearch->Load();
 		$this->Id_Problema->AdvancedSearch->Load();
 		$this->Id_Tipo_Sol_Problem->AdvancedSearch->Load();
 		$this->Id_Estado_Atenc->AdvancedSearch->Load();
+		$this->Usuario_que_cargo->AdvancedSearch->Load();
 		$this->Ultima_Actualizacion->AdvancedSearch->Load();
 	}
 
@@ -2346,8 +2422,12 @@ ftodas_atencioneslist.ValidateRequired = false;
 <?php } ?>
 
 // Dynamic selection lists
-// Form object for search
+ftodas_atencioneslist.Lists["x_Id_Tipo_Falla"] = {"LinkField":"x_Id_Tipo_Falla","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"tipo_falla"};
+ftodas_atencioneslist.Lists["x_Id_Problema"] = {"LinkField":"x_Id_Problema","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"problema"};
+ftodas_atencioneslist.Lists["x_Id_Tipo_Sol_Problem"] = {"LinkField":"x_Id_Tipo_Sol_Problem","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"tipo_solucion_problema"};
+ftodas_atencioneslist.Lists["x_Id_Estado_Atenc"] = {"LinkField":"x_Id_Estado_Atenc","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"estado_actual_solucion_problema"};
 
+// Form object for search
 var CurrentSearchForm = ftodas_atencioneslistsrch = new ew_Form("ftodas_atencioneslistsrch");
 </script>
 <script type="text/javascript">
@@ -2563,15 +2643,6 @@ $todas_atenciones_list->ListOptions->Render("header", "left");
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
-<?php if ($todas_atenciones->Usuario_que_cargo->Visible) { // Usuario que cargo ?>
-	<?php if ($todas_atenciones->SortUrl($todas_atenciones->Usuario_que_cargo) == "") { ?>
-		<th data-name="Usuario_que_cargo"><div id="elh_todas_atenciones_Usuario_que_cargo" class="todas_atenciones_Usuario_que_cargo"><div class="ewTableHeaderCaption"><?php echo $todas_atenciones->Usuario_que_cargo->FldCaption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="Usuario_que_cargo"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $todas_atenciones->SortUrl($todas_atenciones->Usuario_que_cargo) ?>',1);"><div id="elh_todas_atenciones_Usuario_que_cargo" class="todas_atenciones_Usuario_que_cargo">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $todas_atenciones->Usuario_que_cargo->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($todas_atenciones->Usuario_que_cargo->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($todas_atenciones->Usuario_que_cargo->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
-        </div></div></th>
-	<?php } ?>
-<?php } ?>		
 <?php if ($todas_atenciones->Descripcion_Problema->Visible) { // Descripcion Problema ?>
 	<?php if ($todas_atenciones->SortUrl($todas_atenciones->Descripcion_Problema) == "") { ?>
 		<th data-name="Descripcion_Problema"><div id="elh_todas_atenciones_Descripcion_Problema" class="todas_atenciones_Descripcion_Problema"><div class="ewTableHeaderCaption"><?php echo $todas_atenciones->Descripcion_Problema->FldCaption() ?></div></div></th>
@@ -2586,7 +2657,7 @@ $todas_atenciones_list->ListOptions->Render("header", "left");
 		<th data-name="Id_Tipo_Falla"><div id="elh_todas_atenciones_Id_Tipo_Falla" class="todas_atenciones_Id_Tipo_Falla"><div class="ewTableHeaderCaption"><?php echo $todas_atenciones->Id_Tipo_Falla->FldCaption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="Id_Tipo_Falla"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $todas_atenciones->SortUrl($todas_atenciones->Id_Tipo_Falla) ?>',1);"><div id="elh_todas_atenciones_Id_Tipo_Falla" class="todas_atenciones_Id_Tipo_Falla">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $todas_atenciones->Id_Tipo_Falla->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($todas_atenciones->Id_Tipo_Falla->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($todas_atenciones->Id_Tipo_Falla->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $todas_atenciones->Id_Tipo_Falla->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($todas_atenciones->Id_Tipo_Falla->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($todas_atenciones->Id_Tipo_Falla->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
@@ -2595,7 +2666,7 @@ $todas_atenciones_list->ListOptions->Render("header", "left");
 		<th data-name="Id_Problema"><div id="elh_todas_atenciones_Id_Problema" class="todas_atenciones_Id_Problema"><div class="ewTableHeaderCaption"><?php echo $todas_atenciones->Id_Problema->FldCaption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="Id_Problema"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $todas_atenciones->SortUrl($todas_atenciones->Id_Problema) ?>',1);"><div id="elh_todas_atenciones_Id_Problema" class="todas_atenciones_Id_Problema">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $todas_atenciones->Id_Problema->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($todas_atenciones->Id_Problema->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($todas_atenciones->Id_Problema->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $todas_atenciones->Id_Problema->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($todas_atenciones->Id_Problema->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($todas_atenciones->Id_Problema->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
@@ -2604,7 +2675,7 @@ $todas_atenciones_list->ListOptions->Render("header", "left");
 		<th data-name="Id_Tipo_Sol_Problem"><div id="elh_todas_atenciones_Id_Tipo_Sol_Problem" class="todas_atenciones_Id_Tipo_Sol_Problem"><div class="ewTableHeaderCaption"><?php echo $todas_atenciones->Id_Tipo_Sol_Problem->FldCaption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="Id_Tipo_Sol_Problem"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $todas_atenciones->SortUrl($todas_atenciones->Id_Tipo_Sol_Problem) ?>',1);"><div id="elh_todas_atenciones_Id_Tipo_Sol_Problem" class="todas_atenciones_Id_Tipo_Sol_Problem">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $todas_atenciones->Id_Tipo_Sol_Problem->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($todas_atenciones->Id_Tipo_Sol_Problem->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($todas_atenciones->Id_Tipo_Sol_Problem->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $todas_atenciones->Id_Tipo_Sol_Problem->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($todas_atenciones->Id_Tipo_Sol_Problem->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($todas_atenciones->Id_Tipo_Sol_Problem->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
@@ -2613,7 +2684,16 @@ $todas_atenciones_list->ListOptions->Render("header", "left");
 		<th data-name="Id_Estado_Atenc"><div id="elh_todas_atenciones_Id_Estado_Atenc" class="todas_atenciones_Id_Estado_Atenc"><div class="ewTableHeaderCaption"><?php echo $todas_atenciones->Id_Estado_Atenc->FldCaption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="Id_Estado_Atenc"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $todas_atenciones->SortUrl($todas_atenciones->Id_Estado_Atenc) ?>',1);"><div id="elh_todas_atenciones_Id_Estado_Atenc" class="todas_atenciones_Id_Estado_Atenc">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $todas_atenciones->Id_Estado_Atenc->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($todas_atenciones->Id_Estado_Atenc->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($todas_atenciones->Id_Estado_Atenc->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $todas_atenciones->Id_Estado_Atenc->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($todas_atenciones->Id_Estado_Atenc->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($todas_atenciones->Id_Estado_Atenc->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+        </div></div></th>
+	<?php } ?>
+<?php } ?>		
+<?php if ($todas_atenciones->Usuario_que_cargo->Visible) { // Usuario que cargo ?>
+	<?php if ($todas_atenciones->SortUrl($todas_atenciones->Usuario_que_cargo) == "") { ?>
+		<th data-name="Usuario_que_cargo"><div id="elh_todas_atenciones_Usuario_que_cargo" class="todas_atenciones_Usuario_que_cargo"><div class="ewTableHeaderCaption"><?php echo $todas_atenciones->Usuario_que_cargo->FldCaption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="Usuario_que_cargo"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $todas_atenciones->SortUrl($todas_atenciones->Usuario_que_cargo) ?>',1);"><div id="elh_todas_atenciones_Usuario_que_cargo" class="todas_atenciones_Usuario_que_cargo">
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $todas_atenciones->Usuario_que_cargo->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($todas_atenciones->Usuario_que_cargo->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($todas_atenciones->Usuario_que_cargo->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
@@ -2731,14 +2811,6 @@ $todas_atenciones_list->ListOptions->Render("body", "left", $todas_atenciones_li
 </span>
 </td>
 	<?php } ?>
-	<?php if ($todas_atenciones->Usuario_que_cargo->Visible) { // Usuario que cargo ?>
-		<td data-name="Usuario_que_cargo"<?php echo $todas_atenciones->Usuario_que_cargo->CellAttributes() ?>>
-<span id="el<?php echo $todas_atenciones_list->RowCnt ?>_todas_atenciones_Usuario_que_cargo" class="todas_atenciones_Usuario_que_cargo">
-<span<?php echo $todas_atenciones->Usuario_que_cargo->ViewAttributes() ?>>
-<?php echo $todas_atenciones->Usuario_que_cargo->ListViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
 	<?php if ($todas_atenciones->Descripcion_Problema->Visible) { // Descripcion Problema ?>
 		<td data-name="Descripcion_Problema"<?php echo $todas_atenciones->Descripcion_Problema->CellAttributes() ?>>
 <span id="el<?php echo $todas_atenciones_list->RowCnt ?>_todas_atenciones_Descripcion_Problema" class="todas_atenciones_Descripcion_Problema">
@@ -2776,6 +2848,14 @@ $todas_atenciones_list->ListOptions->Render("body", "left", $todas_atenciones_li
 <span id="el<?php echo $todas_atenciones_list->RowCnt ?>_todas_atenciones_Id_Estado_Atenc" class="todas_atenciones_Id_Estado_Atenc">
 <span<?php echo $todas_atenciones->Id_Estado_Atenc->ViewAttributes() ?>>
 <?php echo $todas_atenciones->Id_Estado_Atenc->ListViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($todas_atenciones->Usuario_que_cargo->Visible) { // Usuario que cargo ?>
+		<td data-name="Usuario_que_cargo"<?php echo $todas_atenciones->Usuario_que_cargo->CellAttributes() ?>>
+<span id="el<?php echo $todas_atenciones_list->RowCnt ?>_todas_atenciones_Usuario_que_cargo" class="todas_atenciones_Usuario_que_cargo">
+<span<?php echo $todas_atenciones->Usuario_que_cargo->ViewAttributes() ?>>
+<?php echo $todas_atenciones->Usuario_que_cargo->ListViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>
