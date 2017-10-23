@@ -564,8 +564,6 @@ class cpersonas_add extends cpersonas {
 		$this->Foto->CurrentValue = $this->Foto->Upload->FileName;
 	}
 
-
-//jjc-modificaciones
 	// Load default values
 	function LoadDefaultValues() {
 		$this->Foto->Upload->DbValue = NULL;
@@ -592,19 +590,19 @@ class cpersonas_add extends cpersonas {
 		$this->Repitente->CurrentValue = '1';
 		$this->Id_Estado_Civil->CurrentValue = 1;
 		$this->Id_Provincia->CurrentValue = 1;
-		$this->Id_Departamento->CurrentValue = 10;
+		$this->Id_Departamento->CurrentValue = NULL;
 		$this->Id_Departamento->OldValue = $this->Id_Departamento->CurrentValue;
-		$this->Id_Localidad->CurrentValue = 36;
+		$this->Id_Localidad->CurrentValue = NULL;
 		$this->Id_Localidad->OldValue = $this->Id_Localidad->CurrentValue;
-		$this->Id_Sexo->CurrentValue = 3;
+		$this->Id_Sexo->CurrentValue = NULL;
 		$this->Id_Sexo->OldValue = $this->Id_Sexo->CurrentValue;
-		$this->Id_Cargo->CurrentValue = 7;
-		$this->Id_Estado->CurrentValue = 11;
+		$this->Id_Cargo->CurrentValue = 1;
+		$this->Id_Estado->CurrentValue = 1;
 		$this->Id_Curso->CurrentValue = NULL;
 		$this->Id_Curso->OldValue = $this->Id_Curso->CurrentValue;
 		$this->Id_Division->CurrentValue = NULL;
 		$this->Id_Division->OldValue = $this->Id_Division->CurrentValue;
-		$this->Id_Turno->CurrentValue = 3;
+		$this->Id_Turno->CurrentValue = NULL;
 		$this->Id_Turno->OldValue = $this->Id_Turno->CurrentValue;
 		$this->Dni_Tutor->CurrentValue = 0;
 		$this->NroSerie->CurrentValue = 0;

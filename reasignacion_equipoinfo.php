@@ -1123,8 +1123,8 @@ class creasignacion_equipo extends cTable {
 			$nuevoTitular=$rsnew["Nuevo_Titular"];
 			$sql1 = ew_Execute("UPDATE Personas SET NroSerie='$Serie', Fecha_Actualizacion='$Fecha', Usuario='$usuario' WHERE Dni=$DniNuevoTit");
 			$sql2 = ew_Execute("UPDATE Personas SET NroSerie='0', Fecha_Actualizacion='$Fecha', Usuario='$usuario' WHERE Dni=$DniTitOrig");
-			$sql3 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo actual cuyo Titutal era: $titular DNI N° $Dni ha sido reasignado al alumno: $nuevoTitular Dni N° $DniNuevoTit', '$Fecha' ,'$Serie')");
-			$sql4 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=1, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
+			$sql3 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo actual cuyo Titutal era: $titular DNI N° $Dni ha sido reasignado al alumno: $nuevoTitular Dni N° $DniNuevoTit', '$Fecha' ,'$Serie')");
+			$sql4 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=1, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 			return TRUE;
 			}else{
 				echo '<script language="javascript">alert("EL ALUMNO ACTUAL YA TIENE UN EQUIPO ASIGNADO ACTUALMENTE, REALICE LA MODIFICACIÓN ANTES DE CONTINUAR");</script>';

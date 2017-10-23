@@ -762,7 +762,7 @@ class cuserlevels extends cTable {
 	//return FALSE;
 	//}else{
 
-	$MyResult = ew_Execute("UPDATE Equipos SET Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+	$MyResult = ew_Execute("UPDATE equipos SET Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
 
 	//$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=4, Fecha_Actualizacion='$Fecha', User_Actualiz='$usuario' WHERE Dni=$Dni");
 	return TRUE;

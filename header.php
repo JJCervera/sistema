@@ -144,7 +144,7 @@ var ewVar = <?php echo json_encode($EW_CLIENT_VAR); ?>;
 <div class="ws_images"><ul>
 <?php
 
-$link = mysqli_connect("localhost", "root", "sistema");
+$link = mysqli_connect("localhost", "sistema", "sistemabop22");
 mysqli_select_db($link, "sistemadecontrol");
 $tildes = $link->query("SET NAMES 'utf8'"); //Para que se muestren las tildes correctamente
 $result = mysqli_query($link, "SELECT * FROM novedades");

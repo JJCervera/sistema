@@ -11,7 +11,7 @@ ob_start(); // Turn on output buffering
 <?php include_once "phpfn13.php";
 include ("conexion.php");
 $serie= $_POST['Serie'];
-$link = mysqli_connect("localhost", "root", "sistema");
+$link = mysqli_connect("localhost", "sistema", "sistemabop22");
 mysqli_select_db($link, "sistemadecontrol");
 $tildes = $link->query("SET NAMES 'utf8'"); //Para que se muestren las tildes
 $consulta = mysqli_query($link, "select * from atencion_para_st where NroSerie='$serie' and Id_Tipo_Retiro=1 order by Id_Atencion DESC limit 1");
@@ -30,9 +30,9 @@ $fecha=$Fecha=ew_CurrentDate();
 $usuario='Administrador';
 $consulta = mysqli_query($link, "UPDATE atencion_para_st SET Id_Tipo_Retiro=3, Fecha_Retiro='$fecha' WHERE NroSerie='$NroSerie' and Id_Atencion=$IdAtencion");
 $consulta = mysqli_query($link, "UPDATE detalle_atencion SET Id_Estado_Atenc=2, Fecha_Actualizacion='$fecha' WHERE NroSerie='$serie' and Id_Atencion=$IdAtencion");
-$consulta = mysqli_query($link, "UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=12, Fecha_Actualizacion='$fecha',Usuario='$usuario' WHERE NroSerie='$serie'");
-$consulta = mysqli_query($link, "INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra en Servicio Tecnico Externo', '$fecha' ,'$serie')");
-$consulta = mysqli_query($link, "INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('En Servicio Tecnico Externo', '$fecha' ,'$serie','$usuario',$IdAtencion)");
+$consulta = mysqli_query($link, "UPDATE equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=12, Fecha_Actualizacion='$fecha',Usuario='$usuario' WHERE NroSerie='$serie'");
+$consulta = mysqli_query($link, "INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra en Servicio Tecnico Externo', '$fecha' ,'$serie')");
+$consulta = mysqli_query($link, "INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('En Servicio Tecnico Externo', '$fecha' ,'$serie','$usuario',$IdAtencion)");
 
 
 

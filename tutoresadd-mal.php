@@ -298,20 +298,20 @@ class ctutores_add extends ctutores {
 		$this->CurrentAction = (@$_GET["a"] <> "") ? $_GET["a"] : @$_POST["a_list"]; // Set up current action
 		$this->Dni_Tutor->SetVisibility();
 		$this->Apellidos_Nombres->SetVisibility();
-		$this->Edad->SetVisibility();
+		//$this->Edad->SetVisibility();
 		$this->Domicilio->SetVisibility();
 		$this->Tel_Contacto->SetVisibility();
 		$this->Fecha_Nac->SetVisibility();
 		$this->Cuil->SetVisibility();
-		$this->MasHijos->SetVisibility();
-		$this->Id_Estado_Civil->SetVisibility();
+		//$this->MasHijos->SetVisibility();
+		//$this->Id_Estado_Civil->SetVisibility();
 		$this->Id_Sexo->SetVisibility();
 		$this->Id_Relacion->SetVisibility();
-		$this->Id_Ocupacion->SetVisibility();
-		$this->Lugar_Nacimiento->SetVisibility();
-		$this->Id_Provincia->SetVisibility();
-		$this->Id_Departamento->SetVisibility();
-		$this->Id_Localidad->SetVisibility();
+		//$this->Id_Ocupacion->SetVisibility();
+		//$this->Lugar_Nacimiento->SetVisibility();
+		//$this->Id_Provincia->SetVisibility();
+		//$this->Id_Departamento->SetVisibility();
+		//$this->Id_Localidad->SetVisibility();
 		$this->Fecha_Actualizacion->SetVisibility();
 		$this->Usuario->SetVisibility();
 
@@ -521,16 +521,14 @@ class ctutores_add extends ctutores {
 		// Get upload data
 	}
 
-
-//jjc-modificaciones
-	// Load default values  
+	// Load default values
 	function LoadDefaultValues() {
 		$this->Dni_Tutor->CurrentValue = NULL;
 		$this->Dni_Tutor->OldValue = $this->Dni_Tutor->CurrentValue;
 		$this->Apellidos_Nombres->CurrentValue = NULL;
 		$this->Apellidos_Nombres->OldValue = $this->Apellidos_Nombres->CurrentValue;
-		$this->Edad->CurrentValue = 0;
-		$this->Edad->OldValue = $this->Edad->CurrentValue;
+		//$this->Edad->CurrentValue = NULL;
+		//$this->Edad->OldValue = $this->Edad->CurrentValue;
 		$this->Domicilio->CurrentValue = NULL;
 		$this->Domicilio->OldValue = $this->Domicilio->CurrentValue;
 		$this->Tel_Contacto->CurrentValue = NULL;
@@ -539,21 +537,20 @@ class ctutores_add extends ctutores {
 		$this->Fecha_Nac->OldValue = $this->Fecha_Nac->CurrentValue;
 		$this->Cuil->CurrentValue = NULL;
 		$this->Cuil->OldValue = $this->Cuil->CurrentValue;
-		$this->MasHijos->CurrentValue = 'No';
-		$this->Id_Estado_Civil->CurrentValue = 1;
-		$this->Id_Sexo->CurrentValue = 3;
+		//$this->MasHijos->CurrentValue = 'No';
+		//$this->Id_Estado_Civil->CurrentValue = 1;
+		$this->Id_Sexo->CurrentValue = NULL;
 		$this->Id_Sexo->OldValue = $this->Id_Sexo->CurrentValue;
-		$this->Id_Relacion->CurrentValue = 4;
-		$this->Id_Relacion->OldValue = $this->Id_Relacion->CurrentValue;
-		$this->Id_Ocupacion->CurrentValue = 7;
-		$this->Id_Ocupacion->OldValue = $this->Id_Ocupacion->CurrentValue;
-		$this->Lugar_Nacimiento->CurrentValue = 'VACIO';
-		$this->Lugar_Nacimiento->OldValue = $this->Lugar_Nacimiento->CurrentValue;
-		$this->Id_Provincia->CurrentValue = 1;
-		$this->Id_Departamento->CurrentValue = 10;
-		$this->Id_Departamento->OldValue = $this->Id_Departamento->CurrentValue;
-		$this->Id_Localidad->CurrentValue = 36;
-		$this->Id_Localidad->OldValue = $this->Id_Localidad->CurrentValue;
+		$this->Id_Relacion->CurrentValue = 1;
+		//$this->Id_Ocupacion->CurrentValue = NULL;
+		//$this->Id_Ocupacion->OldValue = $this->Id_Ocupacion->CurrentValue;
+		//$this->Lugar_Nacimiento->CurrentValue = NULL;
+		//$this->Lugar_Nacimiento->OldValue = $this->Lugar_Nacimiento->CurrentValue;
+		//$this->Id_Provincia->CurrentValue = 1;
+		//$this->Id_Departamento->CurrentValue = NULL;
+		//$this->Id_Departamento->OldValue = $this->Id_Departamento->CurrentValue;
+		//$this->Id_Localidad->CurrentValue = NULL;
+		//$this->Id_Localidad->OldValue = $this->Id_Localidad->CurrentValue;
 		$this->Fecha_Actualizacion->CurrentValue = NULL;
 		$this->Fecha_Actualizacion->OldValue = $this->Fecha_Actualizacion->CurrentValue;
 		$this->Usuario->CurrentValue = NULL;
@@ -571,9 +568,9 @@ class ctutores_add extends ctutores {
 		if (!$this->Apellidos_Nombres->FldIsDetailKey) {
 			$this->Apellidos_Nombres->setFormValue($objForm->GetValue("x_Apellidos_Nombres"));
 		}
-		if (!$this->Edad->FldIsDetailKey) {
-			$this->Edad->setFormValue($objForm->GetValue("x_Edad"));
-		}
+		//if (!$this->Edad->FldIsDetailKey) {
+		//	$this->Edad->setFormValue($objForm->GetValue("x_Edad"));
+		//}
 		if (!$this->Domicilio->FldIsDetailKey) {
 			$this->Domicilio->setFormValue($objForm->GetValue("x_Domicilio"));
 		}
@@ -587,33 +584,33 @@ class ctutores_add extends ctutores {
 		if (!$this->Cuil->FldIsDetailKey) {
 			$this->Cuil->setFormValue($objForm->GetValue("x_Cuil"));
 		}
-		if (!$this->MasHijos->FldIsDetailKey) {
-			$this->MasHijos->setFormValue($objForm->GetValue("x_MasHijos"));
+		//if (!$this->MasHijos->FldIsDetailKey) {
+		//	$this->MasHijos->setFormValue($objForm->GetValue("x_MasHijos"));
 		}
-		if (!$this->Id_Estado_Civil->FldIsDetailKey) {
-			$this->Id_Estado_Civil->setFormValue($objForm->GetValue("x_Id_Estado_Civil"));
-		}
+		//if (!$this->Id_Estado_Civil->FldIsDetailKey) {
+		//	$this->Id_Estado_Civil->setFormValue($objForm->GetValue("x_Id_Estado_Civil"));
+		//}
 		if (!$this->Id_Sexo->FldIsDetailKey) {
 			$this->Id_Sexo->setFormValue($objForm->GetValue("x_Id_Sexo"));
 		}
 		if (!$this->Id_Relacion->FldIsDetailKey) {
 			$this->Id_Relacion->setFormValue($objForm->GetValue("x_Id_Relacion"));
 		}
-		if (!$this->Id_Ocupacion->FldIsDetailKey) {
-			$this->Id_Ocupacion->setFormValue($objForm->GetValue("x_Id_Ocupacion"));
-		}
-		if (!$this->Lugar_Nacimiento->FldIsDetailKey) {
-			$this->Lugar_Nacimiento->setFormValue($objForm->GetValue("x_Lugar_Nacimiento"));
-		}
-		if (!$this->Id_Provincia->FldIsDetailKey) {
-			$this->Id_Provincia->setFormValue($objForm->GetValue("x_Id_Provincia"));
-		}
-		if (!$this->Id_Departamento->FldIsDetailKey) {
-			$this->Id_Departamento->setFormValue($objForm->GetValue("x_Id_Departamento"));
-		}
-		if (!$this->Id_Localidad->FldIsDetailKey) {
-			$this->Id_Localidad->setFormValue($objForm->GetValue("x_Id_Localidad"));
-		}
+		//if (!$this->Id_Ocupacion->FldIsDetailKey) {
+		//	$this->Id_Ocupacion->setFormValue($objForm->GetValue("x_Id_Ocupacion"));
+		//}
+		//if (!$this->Lugar_Nacimiento->FldIsDetailKey) {
+		//	$this->Lugar_Nacimiento->setFormValue($objForm->GetValue("x_Lugar_Nacimiento"));
+		//}
+		//if (!$this->Id_Provincia->FldIsDetailKey) {
+		//	$this->Id_Provincia->setFormValue($objForm->GetValue("x_Id_Provincia"));
+		//}
+		//if (!$this->Id_Departamento->FldIsDetailKey) {
+		//	$this->Id_Departamento->setFormValue($objForm->GetValue("x_Id_Departamento"));
+		//}
+		//if (!$this->Id_Localidad->FldIsDetailKey) {
+		//	$this->Id_Localidad->setFormValue($objForm->GetValue("x_Id_Localidad"));
+		//}
 		if (!$this->Fecha_Actualizacion->FldIsDetailKey) {
 			$this->Fecha_Actualizacion->setFormValue($objForm->GetValue("x_Fecha_Actualizacion"));
 			$this->Fecha_Actualizacion->CurrentValue = ew_UnFormatDateTime($this->Fecha_Actualizacion->CurrentValue, 7);
@@ -629,21 +626,21 @@ class ctutores_add extends ctutores {
 		$this->LoadOldRecord();
 		$this->Dni_Tutor->CurrentValue = $this->Dni_Tutor->FormValue;
 		$this->Apellidos_Nombres->CurrentValue = $this->Apellidos_Nombres->FormValue;
-		$this->Edad->CurrentValue = $this->Edad->FormValue;
+		//$this->Edad->CurrentValue = $this->Edad->FormValue;
 		$this->Domicilio->CurrentValue = $this->Domicilio->FormValue;
 		$this->Tel_Contacto->CurrentValue = $this->Tel_Contacto->FormValue;
 		$this->Fecha_Nac->CurrentValue = $this->Fecha_Nac->FormValue;
 		$this->Fecha_Nac->CurrentValue = ew_UnFormatDateTime($this->Fecha_Nac->CurrentValue, 7);
 		$this->Cuil->CurrentValue = $this->Cuil->FormValue;
-		$this->MasHijos->CurrentValue = $this->MasHijos->FormValue;
-		$this->Id_Estado_Civil->CurrentValue = $this->Id_Estado_Civil->FormValue;
+		//$this->MasHijos->CurrentValue = $this->MasHijos->FormValue;
+		//$this->Id_Estado_Civil->CurrentValue = $this->Id_Estado_Civil->FormValue;
 		$this->Id_Sexo->CurrentValue = $this->Id_Sexo->FormValue;
 		$this->Id_Relacion->CurrentValue = $this->Id_Relacion->FormValue;
-		$this->Id_Ocupacion->CurrentValue = $this->Id_Ocupacion->FormValue;
-		$this->Lugar_Nacimiento->CurrentValue = $this->Lugar_Nacimiento->FormValue;
-		$this->Id_Provincia->CurrentValue = $this->Id_Provincia->FormValue;
-		$this->Id_Departamento->CurrentValue = $this->Id_Departamento->FormValue;
-		$this->Id_Localidad->CurrentValue = $this->Id_Localidad->FormValue;
+		//$this->Id_Ocupacion->CurrentValue = $this->Id_Ocupacion->FormValue;
+		//$this->Lugar_Nacimiento->CurrentValue = $this->Lugar_Nacimiento->FormValue;
+		//$this->Id_Provincia->CurrentValue = $this->Id_Provincia->FormValue;
+		//$this->Id_Departamento->CurrentValue = $this->Id_Departamento->FormValue;
+		//$this->Id_Localidad->CurrentValue = $this->Id_Localidad->FormValue;
 		$this->Fecha_Actualizacion->CurrentValue = $this->Fecha_Actualizacion->FormValue;
 		$this->Fecha_Actualizacion->CurrentValue = ew_UnFormatDateTime($this->Fecha_Actualizacion->CurrentValue, 7);
 		$this->Usuario->CurrentValue = $this->Usuario->FormValue;
@@ -680,20 +677,20 @@ class ctutores_add extends ctutores {
 		$this->Row_Selected($row);
 		$this->Dni_Tutor->setDbValue($rs->fields('Dni_Tutor'));
 		$this->Apellidos_Nombres->setDbValue($rs->fields('Apellidos_Nombres'));
-		$this->Edad->setDbValue($rs->fields('Edad'));
+		//$this->Edad->setDbValue($rs->fields('Edad'));
 		$this->Domicilio->setDbValue($rs->fields('Domicilio'));
 		$this->Tel_Contacto->setDbValue($rs->fields('Tel_Contacto'));
 		$this->Fecha_Nac->setDbValue($rs->fields('Fecha_Nac'));
 		$this->Cuil->setDbValue($rs->fields('Cuil'));
-		$this->MasHijos->setDbValue($rs->fields('MasHijos'));
-		$this->Id_Estado_Civil->setDbValue($rs->fields('Id_Estado_Civil'));
+		//$this->MasHijos->setDbValue($rs->fields('MasHijos'));
+		//$this->Id_Estado_Civil->setDbValue($rs->fields('Id_Estado_Civil'));
 		$this->Id_Sexo->setDbValue($rs->fields('Id_Sexo'));
 		$this->Id_Relacion->setDbValue($rs->fields('Id_Relacion'));
-		$this->Id_Ocupacion->setDbValue($rs->fields('Id_Ocupacion'));
-		$this->Lugar_Nacimiento->setDbValue($rs->fields('Lugar_Nacimiento'));
-		$this->Id_Provincia->setDbValue($rs->fields('Id_Provincia'));
-		$this->Id_Departamento->setDbValue($rs->fields('Id_Departamento'));
-		$this->Id_Localidad->setDbValue($rs->fields('Id_Localidad'));
+		//$this->Id_Ocupacion->setDbValue($rs->fields('Id_Ocupacion'));
+		//$this->Lugar_Nacimiento->setDbValue($rs->fields('Lugar_Nacimiento'));
+		//$this->Id_Provincia->setDbValue($rs->fields('Id_Provincia'));
+		//$this->Id_Departamento->setDbValue($rs->fields('Id_Departamento'));
+		//$this->Id_Localidad->setDbValue($rs->fields('Id_Localidad'));
 		$this->Fecha_Actualizacion->setDbValue($rs->fields('Fecha_Actualizacion'));
 		$this->Usuario->setDbValue($rs->fields('Usuario'));
 	}
@@ -704,20 +701,20 @@ class ctutores_add extends ctutores {
 		$row = is_array($rs) ? $rs : $rs->fields;
 		$this->Dni_Tutor->DbValue = $row['Dni_Tutor'];
 		$this->Apellidos_Nombres->DbValue = $row['Apellidos_Nombres'];
-		$this->Edad->DbValue = $row['Edad'];
+		//$this->Edad->DbValue = $row['Edad'];
 		$this->Domicilio->DbValue = $row['Domicilio'];
 		$this->Tel_Contacto->DbValue = $row['Tel_Contacto'];
 		$this->Fecha_Nac->DbValue = $row['Fecha_Nac'];
 		$this->Cuil->DbValue = $row['Cuil'];
-		$this->MasHijos->DbValue = $row['MasHijos'];
-		$this->Id_Estado_Civil->DbValue = $row['Id_Estado_Civil'];
+		//$this->MasHijos->DbValue = $row['MasHijos'];
+		//$this->Id_Estado_Civil->DbValue = $row['Id_Estado_Civil'];
 		$this->Id_Sexo->DbValue = $row['Id_Sexo'];
 		$this->Id_Relacion->DbValue = $row['Id_Relacion'];
-		$this->Id_Ocupacion->DbValue = $row['Id_Ocupacion'];
-		$this->Lugar_Nacimiento->DbValue = $row['Lugar_Nacimiento'];
-		$this->Id_Provincia->DbValue = $row['Id_Provincia'];
-		$this->Id_Departamento->DbValue = $row['Id_Departamento'];
-		$this->Id_Localidad->DbValue = $row['Id_Localidad'];
+		//$this->Id_Ocupacion->DbValue = $row['Id_Ocupacion'];
+		//$this->Lugar_Nacimiento->DbValue = $row['Lugar_Nacimiento'];
+		//$this->Id_Provincia->DbValue = $row['Id_Provincia'];
+		//$this->Id_Departamento->DbValue = $row['Id_Departamento'];
+		//$this->Id_Localidad->DbValue = $row['Id_Localidad'];
 		$this->Fecha_Actualizacion->DbValue = $row['Fecha_Actualizacion'];
 		$this->Usuario->DbValue = $row['Usuario'];
 	}
@@ -785,8 +782,8 @@ class ctutores_add extends ctutores {
 		$this->Apellidos_Nombres->ViewCustomAttributes = "";
 
 		// Edad
-		$this->Edad->ViewValue = $this->Edad->CurrentValue;
-		$this->Edad->ViewCustomAttributes = "";
+	//	$this->Edad->ViewValue = $this->Edad->CurrentValue;
+	//	$this->Edad->ViewCustomAttributes = "";
 
 		// Domicilio
 		$this->Domicilio->ViewValue = $this->Domicilio->CurrentValue;
@@ -805,16 +802,16 @@ class ctutores_add extends ctutores {
 		$this->Cuil->ViewValue = $this->Cuil->CurrentValue;
 		$this->Cuil->ViewCustomAttributes = "";
 
-		// MasHijos
+	/*	// MasHijos
 		if (strval($this->MasHijos->CurrentValue) <> "") {
 			$this->MasHijos->ViewValue = $this->MasHijos->OptionCaption($this->MasHijos->CurrentValue);
 		} else {
 			$this->MasHijos->ViewValue = NULL;
 		}
 		$this->MasHijos->ViewCustomAttributes = "";
-
+   */
 		// Id_Estado_Civil
-		if (strval($this->Id_Estado_Civil->CurrentValue) <> "") {
+	/*	if (strval($this->Id_Estado_Civil->CurrentValue) <> "") {
 			$sFilterWrk = "`Id_Estado_Civil`" . ew_SearchString("=", $this->Id_Estado_Civil->CurrentValue, EW_DATATYPE_NUMBER, "");
 		$sSqlWrk = "SELECT `Id_Estado_Civil`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `estado_civil`";
 		$sWhereWrk = "";
@@ -835,7 +832,7 @@ class ctutores_add extends ctutores {
 			$this->Id_Estado_Civil->ViewValue = NULL;
 		}
 		$this->Id_Estado_Civil->ViewCustomAttributes = "";
-
+   */
 		// Id_Sexo
 		if (strval($this->Id_Sexo->CurrentValue) <> "") {
 			$sFilterWrk = "`Id_Sexo`" . ew_SearchString("=", $this->Id_Sexo->CurrentValue, EW_DATATYPE_NUMBER, "");
@@ -883,7 +880,7 @@ class ctutores_add extends ctutores {
 		}
 		$this->Id_Relacion->ViewCustomAttributes = "";
 
-		// Id_Ocupacion
+	/*	// Id_Ocupacion
 		if (strval($this->Id_Ocupacion->CurrentValue) <> "") {
 			$sFilterWrk = "`Id_Ocupacion`" . ew_SearchString("=", $this->Id_Ocupacion->CurrentValue, EW_DATATYPE_NUMBER, "");
 		$sSqlWrk = "SELECT `Id_Ocupacion`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `ocupacion_tutor`";
@@ -981,7 +978,7 @@ class ctutores_add extends ctutores {
 			$this->Id_Localidad->ViewValue = NULL;
 		}
 		$this->Id_Localidad->ViewCustomAttributes = "";
-
+*/
 		// Fecha_Actualizacion
 		$this->Fecha_Actualizacion->ViewValue = $this->Fecha_Actualizacion->CurrentValue;
 		$this->Fecha_Actualizacion->ViewValue = ew_FormatDateTime($this->Fecha_Actualizacion->ViewValue, 7);
@@ -1002,9 +999,9 @@ class ctutores_add extends ctutores {
 			$this->Apellidos_Nombres->TooltipValue = "";
 
 			// Edad
-			$this->Edad->LinkCustomAttributes = "";
-			$this->Edad->HrefValue = "";
-			$this->Edad->TooltipValue = "";
+//			$this->Edad->LinkCustomAttributes = "";
+//			$this->Edad->HrefValue = "";
+//			$this->Edad->TooltipValue = "";
 
 			// Domicilio
 			$this->Domicilio->LinkCustomAttributes = "";
@@ -1026,7 +1023,7 @@ class ctutores_add extends ctutores {
 			$this->Cuil->HrefValue = "";
 			$this->Cuil->TooltipValue = "";
 
-			// MasHijos
+/*			// MasHijos
 			$this->MasHijos->LinkCustomAttributes = "";
 			$this->MasHijos->HrefValue = "";
 			$this->MasHijos->TooltipValue = "";
@@ -1035,7 +1032,7 @@ class ctutores_add extends ctutores {
 			$this->Id_Estado_Civil->LinkCustomAttributes = "";
 			$this->Id_Estado_Civil->HrefValue = "";
 			$this->Id_Estado_Civil->TooltipValue = "";
-
+*/
 			// Id_Sexo
 			$this->Id_Sexo->LinkCustomAttributes = "";
 			$this->Id_Sexo->HrefValue = "";
@@ -1045,7 +1042,7 @@ class ctutores_add extends ctutores {
 			$this->Id_Relacion->LinkCustomAttributes = "";
 			$this->Id_Relacion->HrefValue = "";
 			$this->Id_Relacion->TooltipValue = "";
-
+/*
 			// Id_Ocupacion
 			$this->Id_Ocupacion->LinkCustomAttributes = "";
 			$this->Id_Ocupacion->HrefValue = "";
@@ -1070,7 +1067,7 @@ class ctutores_add extends ctutores {
 			$this->Id_Localidad->LinkCustomAttributes = "";
 			$this->Id_Localidad->HrefValue = "";
 			$this->Id_Localidad->TooltipValue = "";
-
+*/
 			// Fecha_Actualizacion
 			$this->Fecha_Actualizacion->LinkCustomAttributes = "";
 			$this->Fecha_Actualizacion->HrefValue = "";
@@ -1100,12 +1097,12 @@ class ctutores_add extends ctutores {
 			$this->Apellidos_Nombres->EditValue = ew_HtmlEncode($this->Apellidos_Nombres->CurrentValue);
 			$this->Apellidos_Nombres->PlaceHolder = ew_RemoveHtml($this->Apellidos_Nombres->FldCaption());
 
-			// Edad
+/*			// Edad
 			$this->Edad->EditAttrs["class"] = "form-control";
 			$this->Edad->EditCustomAttributes = "";
 			$this->Edad->EditValue = ew_HtmlEncode($this->Edad->CurrentValue);
 			$this->Edad->PlaceHolder = ew_RemoveHtml($this->Edad->FldCaption());
-
+*/
 			// Domicilio
 			$this->Domicilio->EditAttrs["class"] = "form-control";
 			$this->Domicilio->EditCustomAttributes = "";
@@ -1129,7 +1126,7 @@ class ctutores_add extends ctutores {
 			$this->Cuil->EditCustomAttributes = "";
 			$this->Cuil->EditValue = ew_HtmlEncode($this->Cuil->CurrentValue);
 			$this->Cuil->PlaceHolder = ew_RemoveHtml($this->Cuil->FldCaption());
-
+/*
 			// MasHijos
 			$this->MasHijos->EditCustomAttributes = "";
 			$this->MasHijos->EditValue = $this->MasHijos->Options(FALSE);
@@ -1152,7 +1149,7 @@ class ctutores_add extends ctutores {
 			$arwrk = ($rswrk) ? $rswrk->GetRows() : array();
 			if ($rswrk) $rswrk->Close();
 			$this->Id_Estado_Civil->EditValue = $arwrk;
-
+*/
 			// Id_Sexo
 			$this->Id_Sexo->EditAttrs["class"] = "form-control";
 			$this->Id_Sexo->EditCustomAttributes = "";
@@ -1192,7 +1189,7 @@ class ctutores_add extends ctutores {
 			if ($rswrk) $rswrk->Close();
 			$this->Id_Relacion->EditValue = $arwrk;
 
-			// Id_Ocupacion
+/*			// Id_Ocupacion
 			$this->Id_Ocupacion->EditAttrs["class"] = "form-control";
 			$this->Id_Ocupacion->EditCustomAttributes = "";
 			if (trim(strval($this->Id_Ocupacion->CurrentValue)) == "") {
@@ -1276,7 +1273,7 @@ class ctutores_add extends ctutores {
 			$arwrk = ($rswrk) ? $rswrk->GetRows() : array();
 			if ($rswrk) $rswrk->Close();
 			$this->Id_Localidad->EditValue = $arwrk;
-
+*/
 			// Fecha_Actualizacion
 			// Usuario
 			// Add refer script
@@ -1289,10 +1286,10 @@ class ctutores_add extends ctutores {
 			$this->Apellidos_Nombres->LinkCustomAttributes = "";
 			$this->Apellidos_Nombres->HrefValue = "";
 
-			// Edad
+/*			// Edad
 			$this->Edad->LinkCustomAttributes = "";
 			$this->Edad->HrefValue = "";
-
+*/
 			// Domicilio
 			$this->Domicilio->LinkCustomAttributes = "";
 			$this->Domicilio->HrefValue = "";
@@ -1309,10 +1306,10 @@ class ctutores_add extends ctutores {
 			$this->Cuil->LinkCustomAttributes = "";
 			$this->Cuil->HrefValue = "";
 
-			// MasHijos
+/*			// MasHijos
 			$this->MasHijos->LinkCustomAttributes = "";
 			$this->MasHijos->HrefValue = "";
-
+*/
 			// Id_Estado_Civil
 			$this->Id_Estado_Civil->LinkCustomAttributes = "";
 			$this->Id_Estado_Civil->HrefValue = "";
@@ -1324,7 +1321,7 @@ class ctutores_add extends ctutores {
 			// Id_Relacion
 			$this->Id_Relacion->LinkCustomAttributes = "";
 			$this->Id_Relacion->HrefValue = "";
-
+/*
 			// Id_Ocupacion
 			$this->Id_Ocupacion->LinkCustomAttributes = "";
 			$this->Id_Ocupacion->HrefValue = "";
@@ -1344,7 +1341,7 @@ class ctutores_add extends ctutores {
 			// Id_Localidad
 			$this->Id_Localidad->LinkCustomAttributes = "";
 			$this->Id_Localidad->HrefValue = "";
-
+*/
 			// Fecha_Actualizacion
 			$this->Fecha_Actualizacion->LinkCustomAttributes = "";
 			$this->Fecha_Actualizacion->HrefValue = "";
@@ -1380,25 +1377,25 @@ class ctutores_add extends ctutores {
 		if (!ew_CheckInteger($this->Dni_Tutor->FormValue)) {
 			ew_AddMessage($gsFormError, $this->Dni_Tutor->FldErrMsg());
 		}
-		if (!ew_CheckInteger($this->Edad->FormValue)) {
+/*		if (!ew_CheckInteger($this->Edad->FormValue)) {
 			ew_AddMessage($gsFormError, $this->Edad->FldErrMsg());
 		}
-		if (!ew_CheckInteger($this->Tel_Contacto->FormValue)) {
+*/		if (!ew_CheckInteger($this->Tel_Contacto->FormValue)) {
 			ew_AddMessage($gsFormError, $this->Tel_Contacto->FldErrMsg());
 		}
 		if (!ew_CheckEuroDate($this->Fecha_Nac->FormValue)) {
 			ew_AddMessage($gsFormError, $this->Fecha_Nac->FldErrMsg());
 		}
-		if (!$this->Id_Estado_Civil->FldIsDetailKey && !is_null($this->Id_Estado_Civil->FormValue) && $this->Id_Estado_Civil->FormValue == "") {
+/*		if (!$this->Id_Estado_Civil->FldIsDetailKey && !is_null($this->Id_Estado_Civil->FormValue) && $this->Id_Estado_Civil->FormValue == "") {
 			ew_AddMessage($gsFormError, str_replace("%s", $this->Id_Estado_Civil->FldCaption(), $this->Id_Estado_Civil->ReqErrMsg));
 		}
-		if (!$this->Id_Sexo->FldIsDetailKey && !is_null($this->Id_Sexo->FormValue) && $this->Id_Sexo->FormValue == "") {
+*/		if (!$this->Id_Sexo->FldIsDetailKey && !is_null($this->Id_Sexo->FormValue) && $this->Id_Sexo->FormValue == "") {
 			ew_AddMessage($gsFormError, str_replace("%s", $this->Id_Sexo->FldCaption(), $this->Id_Sexo->ReqErrMsg));
 		}
 		if (!$this->Id_Relacion->FldIsDetailKey && !is_null($this->Id_Relacion->FormValue) && $this->Id_Relacion->FormValue == "") {
 			ew_AddMessage($gsFormError, str_replace("%s", $this->Id_Relacion->FldCaption(), $this->Id_Relacion->ReqErrMsg));
 		}
-		if (!$this->Id_Ocupacion->FldIsDetailKey && !is_null($this->Id_Ocupacion->FormValue) && $this->Id_Ocupacion->FormValue == "") {
+/*		if (!$this->Id_Ocupacion->FldIsDetailKey && !is_null($this->Id_Ocupacion->FormValue) && $this->Id_Ocupacion->FormValue == "") {
 			ew_AddMessage($gsFormError, str_replace("%s", $this->Id_Ocupacion->FldCaption(), $this->Id_Ocupacion->ReqErrMsg));
 		}
 		if (!$this->Id_Provincia->FldIsDetailKey && !is_null($this->Id_Provincia->FormValue) && $this->Id_Provincia->FormValue == "") {
@@ -1410,7 +1407,7 @@ class ctutores_add extends ctutores {
 		if (!$this->Id_Localidad->FldIsDetailKey && !is_null($this->Id_Localidad->FormValue) && $this->Id_Localidad->FormValue == "") {
 			ew_AddMessage($gsFormError, str_replace("%s", $this->Id_Localidad->FldCaption(), $this->Id_Localidad->ReqErrMsg));
 		}
-
+*/
 		// Validate detail grid
 		$DetailTblVar = explode(",", $this->getCurrentDetailTable());
 		if (in_array("observacion_tutor", $DetailTblVar) && $GLOBALS["observacion_tutor"]->DetailAdd) {
@@ -1451,9 +1448,9 @@ class ctutores_add extends ctutores {
 		// Apellidos_Nombres
 		$this->Apellidos_Nombres->SetDbValueDef($rsnew, $this->Apellidos_Nombres->CurrentValue, NULL, FALSE);
 
-		// Edad
+/*		// Edad
 		$this->Edad->SetDbValueDef($rsnew, $this->Edad->CurrentValue, NULL, FALSE);
-
+*/
 		// Domicilio
 		$this->Domicilio->SetDbValueDef($rsnew, $this->Domicilio->CurrentValue, NULL, FALSE);
 
@@ -1461,38 +1458,38 @@ class ctutores_add extends ctutores {
 		$this->Tel_Contacto->SetDbValueDef($rsnew, $this->Tel_Contacto->CurrentValue, NULL, FALSE);
 
 		// Fecha_Nac
-		$this->Fecha_Nac->SetDbValueDef($rsnew, ew_UnFormatDateTime($this->Fecha_Nac->CurrentValue, 7), 0, FALSE);
+		$this->Fecha_Nac->SetDbValueDef($rsnew, ew_UnFormatDateTime($this->Fecha_Nac->CurrentValue, 7), NULL, FALSE);
 
 		// Cuil
 		$this->Cuil->SetDbValueDef($rsnew, $this->Cuil->CurrentValue, NULL, FALSE);
 
-		// MasHijos
+/*		// MasHijos
 		$this->MasHijos->SetDbValueDef($rsnew, $this->MasHijos->CurrentValue, NULL, FALSE);
 
 		// Id_Estado_Civil
-		$this->Id_Estado_Civil->SetDbValueDef($rsnew, $this->Id_Estado_Civil->CurrentValue, NULL, FALSE);
-
+		$this->Id_Estado_Civil->SetDbValueDef($rsnew, $this->Id_Estado_Civil->CurrentValue, 0, FALSE);
+*/
 		// Id_Sexo
 		$this->Id_Sexo->SetDbValueDef($rsnew, $this->Id_Sexo->CurrentValue, 0, FALSE);
 
 		// Id_Relacion
 		$this->Id_Relacion->SetDbValueDef($rsnew, $this->Id_Relacion->CurrentValue, 0, FALSE);
 
-		// Id_Ocupacion
-		$this->Id_Ocupacion->SetDbValueDef($rsnew, $this->Id_Ocupacion->CurrentValue, NULL, FALSE);
+/*		// Id_Ocupacion
+		$this->Id_Ocupacion->SetDbValueDef($rsnew, $this->Id_Ocupacion->CurrentValue, 0, FALSE);
 
 		// Lugar_Nacimiento
 		$this->Lugar_Nacimiento->SetDbValueDef($rsnew, $this->Lugar_Nacimiento->CurrentValue, NULL, FALSE);
 
 		// Id_Provincia
-		$this->Id_Provincia->SetDbValueDef($rsnew, $this->Id_Provincia->CurrentValue, NULL, FALSE);
+		$this->Id_Provincia->SetDbValueDef($rsnew, $this->Id_Provincia->CurrentValue, 0, FALSE);
 
 		// Id_Departamento
-		$this->Id_Departamento->SetDbValueDef($rsnew, $this->Id_Departamento->CurrentValue, NULL, FALSE);
+		$this->Id_Departamento->SetDbValueDef($rsnew, $this->Id_Departamento->CurrentValue, 0, FALSE);
 
 		// Id_Localidad
-		$this->Id_Localidad->SetDbValueDef($rsnew, $this->Id_Localidad->CurrentValue, NULL, FALSE);
-
+		$this->Id_Localidad->SetDbValueDef($rsnew, $this->Id_Localidad->CurrentValue, 0, FALSE);
+*/
 		// Fecha_Actualizacion
 		$this->Fecha_Actualizacion->SetDbValueDef($rsnew, ew_CurrentDate(), NULL);
 		$rsnew['Fecha_Actualizacion'] = &$this->Fecha_Actualizacion->DbValue;
@@ -1681,7 +1678,7 @@ class ctutores_add extends ctutores {
 		global $gsLanguage;
 		$pageId = $pageId ?: $this->PageID;
 		switch ($fld->FldVar) {
-		case "x_Id_Estado_Civil":
+/*		case "x_Id_Estado_Civil":
 			$sSqlWrk = "";
 			$sSqlWrk = "SELECT `Id_Estado_Civil` AS `LinkFld`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `estado_civil`";
 			$sWhereWrk = "";
@@ -1693,7 +1690,7 @@ class ctutores_add extends ctutores {
 			if ($sSqlWrk <> "")
 				$fld->LookupFilters["s"] .= $sSqlWrk;
 			break;
-		case "x_Id_Sexo":
+*/		case "x_Id_Sexo":
 			$sSqlWrk = "";
 			$sSqlWrk = "SELECT `Id_Sexo` AS `LinkFld`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `sexo_personas`";
 			$sWhereWrk = "";
@@ -1718,7 +1715,7 @@ class ctutores_add extends ctutores {
 			if ($sSqlWrk <> "")
 				$fld->LookupFilters["s"] .= $sSqlWrk;
 			break;
-		case "x_Id_Ocupacion":
+/*		case "x_Id_Ocupacion":
 			$sSqlWrk = "";
 			$sSqlWrk = "SELECT `Id_Ocupacion` AS `LinkFld`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `ocupacion_tutor`";
 			$sWhereWrk = "";
@@ -1769,7 +1766,7 @@ class ctutores_add extends ctutores {
 			if ($sSqlWrk <> "")
 				$fld->LookupFilters["s"] .= $sSqlWrk;
 			break;
-		}
+*/		}
 	}
 
 	// Setup AutoSuggest filters of a field
@@ -1935,25 +1932,25 @@ ftutoresadd.Validate = function() {
 			elm = this.GetElements("x" + infix + "_Dni_Tutor");
 			if (elm && !ew_CheckInteger(elm.value))
 				return this.OnError(elm, "<?php echo ew_JsEncode2($tutores->Dni_Tutor->FldErrMsg()) ?>");
-			elm = this.GetElements("x" + infix + "_Edad");
+/*			elm = this.GetElements("x" + infix + "_Edad");
 			if (elm && !ew_CheckInteger(elm.value))
 				return this.OnError(elm, "<?php echo ew_JsEncode2($tutores->Edad->FldErrMsg()) ?>");
-			elm = this.GetElements("x" + infix + "_Tel_Contacto");
+*/			elm = this.GetElements("x" + infix + "_Tel_Contacto");
 			if (elm && !ew_CheckInteger(elm.value))
 				return this.OnError(elm, "<?php echo ew_JsEncode2($tutores->Tel_Contacto->FldErrMsg()) ?>");
 			elm = this.GetElements("x" + infix + "_Fecha_Nac");
 			if (elm && !ew_CheckEuroDate(elm.value))
 				return this.OnError(elm, "<?php echo ew_JsEncode2($tutores->Fecha_Nac->FldErrMsg()) ?>");
-			elm = this.GetElements("x" + infix + "_Id_Estado_Civil");
+/*			elm = this.GetElements("x" + infix + "_Id_Estado_Civil");
 			if (elm && !ew_IsHidden(elm) && !ew_HasValue(elm))
 				return this.OnError(elm, "<?php echo ew_JsEncode2(str_replace("%s", $tutores->Id_Estado_Civil->FldCaption(), $tutores->Id_Estado_Civil->ReqErrMsg)) ?>");
-			elm = this.GetElements("x" + infix + "_Id_Sexo");
+*/			elm = this.GetElements("x" + infix + "_Id_Sexo");
 			if (elm && !ew_IsHidden(elm) && !ew_HasValue(elm))
 				return this.OnError(elm, "<?php echo ew_JsEncode2(str_replace("%s", $tutores->Id_Sexo->FldCaption(), $tutores->Id_Sexo->ReqErrMsg)) ?>");
 			elm = this.GetElements("x" + infix + "_Id_Relacion");
 			if (elm && !ew_IsHidden(elm) && !ew_HasValue(elm))
 				return this.OnError(elm, "<?php echo ew_JsEncode2(str_replace("%s", $tutores->Id_Relacion->FldCaption(), $tutores->Id_Relacion->ReqErrMsg)) ?>");
-			elm = this.GetElements("x" + infix + "_Id_Ocupacion");
+/*			elm = this.GetElements("x" + infix + "_Id_Ocupacion");
 			if (elm && !ew_IsHidden(elm) && !ew_HasValue(elm))
 				return this.OnError(elm, "<?php echo ew_JsEncode2(str_replace("%s", $tutores->Id_Ocupacion->FldCaption(), $tutores->Id_Ocupacion->ReqErrMsg)) ?>");
 			elm = this.GetElements("x" + infix + "_Id_Provincia");
@@ -1965,7 +1962,7 @@ ftutoresadd.Validate = function() {
 			elm = this.GetElements("x" + infix + "_Id_Localidad");
 			if (elm && !ew_IsHidden(elm) && !ew_HasValue(elm))
 				return this.OnError(elm, "<?php echo ew_JsEncode2(str_replace("%s", $tutores->Id_Localidad->FldCaption(), $tutores->Id_Localidad->ReqErrMsg)) ?>");
-
+*/
 			// Fire Form_CustomValidate event
 			if (!this.Form_CustomValidate(fobj))
 				return false;
@@ -1998,16 +1995,16 @@ ftutoresadd.ValidateRequired = false;
 <?php } ?>
 
 // Dynamic selection lists
-ftutoresadd.Lists["x_MasHijos"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
+/*ftutoresadd.Lists["x_MasHijos"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
 ftutoresadd.Lists["x_MasHijos"].Options = <?php echo json_encode($tutores->MasHijos->Options()) ?>;
 ftutoresadd.Lists["x_Id_Estado_Civil"] = {"LinkField":"x_Id_Estado_Civil","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"estado_civil"};
-ftutoresadd.Lists["x_Id_Sexo"] = {"LinkField":"x_Id_Sexo","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"sexo_personas"};
+*/ftutoresadd.Lists["x_Id_Sexo"] = {"LinkField":"x_Id_Sexo","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"sexo_personas"};
 ftutoresadd.Lists["x_Id_Relacion"] = {"LinkField":"x_Id_Relacion","Ajax":true,"AutoFill":false,"DisplayFields":["x_Desripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"tipo_relacion_alumno_tutor"};
-ftutoresadd.Lists["x_Id_Ocupacion"] = {"LinkField":"x_Id_Ocupacion","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"ocupacion_tutor"};
+/*ftutoresadd.Lists["x_Id_Ocupacion"] = {"LinkField":"x_Id_Ocupacion","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"ocupacion_tutor"};
 ftutoresadd.Lists["x_Id_Provincia"] = {"LinkField":"x_Id_Provincia","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nombre","","",""],"ParentFields":[],"ChildFields":["x_Id_Departamento"],"FilterFields":[],"Options":[],"Template":"","LinkTable":"provincias"};
 ftutoresadd.Lists["x_Id_Departamento"] = {"LinkField":"x_Id_Departamento","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nombre","","",""],"ParentFields":["x_Id_Provincia"],"ChildFields":["x_Id_Localidad"],"FilterFields":["x_Id_Provincia"],"Options":[],"Template":"","LinkTable":"departamento"};
 ftutoresadd.Lists["x_Id_Localidad"] = {"LinkField":"x_Id_Localidad","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nombre","","",""],"ParentFields":["x_Id_Departamento"],"ChildFields":[],"FilterFields":["x_Id_Departamento"],"Options":[],"Template":"","LinkTable":"localidades"};
-
+*/
 // Form object for search
 </script>
 <script type="text/javascript">
@@ -2067,16 +2064,7 @@ $tutores_add->ShowMessage();
 <?php echo $tutores->Apellidos_Nombres->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
-<?php if ($tutores->Edad->Visible) { // Edad ?>
-	<div id="r_Edad" class="form-group">
-		<label id="elh_tutores_Edad" for="x_Edad" class="col-sm-2 control-label ewLabel"><?php echo $tutores->Edad->FldCaption() ?></label>
-		<div class="col-sm-10"><div<?php echo $tutores->Edad->CellAttributes() ?>>
-<span id="el_tutores_Edad">
-<input type="text" data-table="tutores" data-field="x_Edad" name="x_Edad" id="x_Edad" size="30" maxlength="5" placeholder="<?php echo ew_HtmlEncode($tutores->Edad->getPlaceHolder()) ?>" value="<?php echo $tutores->Edad->EditValue ?>"<?php echo $tutores->Edad->EditAttributes() ?>>
-</span>
-<?php echo $tutores->Edad->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
+
 <?php if ($tutores->Domicilio->Visible) { // Domicilio ?>
 	<div id="r_Domicilio" class="form-group">
 		<label id="elh_tutores_Domicilio" for="x_Domicilio" class="col-sm-2 control-label ewLabel"><?php echo $tutores->Domicilio->FldCaption() ?></label>
@@ -2122,32 +2110,6 @@ ew_CreateCalendar("ftutoresadd", "x_Fecha_Nac", 7);
 <?php echo $tutores->Cuil->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
-<?php if ($tutores->MasHijos->Visible) { // MasHijos ?>
-	<div id="r_MasHijos" class="form-group">
-		<label id="elh_tutores_MasHijos" class="col-sm-2 control-label ewLabel"><?php echo $tutores->MasHijos->FldCaption() ?></label>
-		<div class="col-sm-10"><div<?php echo $tutores->MasHijos->CellAttributes() ?>>
-<span id="el_tutores_MasHijos">
-<div id="tp_x_MasHijos" class="ewTemplate"><input type="radio" data-table="tutores" data-field="x_MasHijos" data-value-separator="<?php echo $tutores->MasHijos->DisplayValueSeparatorAttribute() ?>" name="x_MasHijos" id="x_MasHijos" value="{value}"<?php echo $tutores->MasHijos->EditAttributes() ?>></div>
-<div id="dsl_x_MasHijos" data-repeatcolumn="5" class="ewItemList" style="display: none;"><div>
-<?php echo $tutores->MasHijos->RadioButtonListHtml(FALSE, "x_MasHijos") ?>
-</div></div>
-</span>
-<?php echo $tutores->MasHijos->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($tutores->Id_Estado_Civil->Visible) { // Id_Estado_Civil ?>
-	<div id="r_Id_Estado_Civil" class="form-group">
-		<label id="elh_tutores_Id_Estado_Civil" for="x_Id_Estado_Civil" class="col-sm-2 control-label ewLabel"><?php echo $tutores->Id_Estado_Civil->FldCaption() ?><?php echo $Language->Phrase("FieldRequiredIndicator") ?></label>
-		<div class="col-sm-10"><div<?php echo $tutores->Id_Estado_Civil->CellAttributes() ?>>
-<span id="el_tutores_Id_Estado_Civil">
-<select data-table="tutores" data-field="x_Id_Estado_Civil" data-value-separator="<?php echo $tutores->Id_Estado_Civil->DisplayValueSeparatorAttribute() ?>" id="x_Id_Estado_Civil" name="x_Id_Estado_Civil"<?php echo $tutores->Id_Estado_Civil->EditAttributes() ?>>
-<?php echo $tutores->Id_Estado_Civil->SelectOptionListHtml("x_Id_Estado_Civil") ?>
-</select>
-<input type="hidden" name="s_x_Id_Estado_Civil" id="s_x_Id_Estado_Civil" value="<?php echo $tutores->Id_Estado_Civil->LookupFilterQuery() ?>">
-</span>
-<?php echo $tutores->Id_Estado_Civil->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
 <?php if ($tutores->Id_Sexo->Visible) { // Id_Sexo ?>
 	<div id="r_Id_Sexo" class="form-group">
 		<label id="elh_tutores_Id_Sexo" for="x_Id_Sexo" class="col-sm-2 control-label ewLabel"><?php echo $tutores->Id_Sexo->FldCaption() ?><?php echo $Language->Phrase("FieldRequiredIndicator") ?></label>
@@ -2174,71 +2136,7 @@ ew_CreateCalendar("ftutoresadd", "x_Fecha_Nac", 7);
 <?php echo $tutores->Id_Relacion->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
-<?php if ($tutores->Id_Ocupacion->Visible) { // Id_Ocupacion ?>
-	<div id="r_Id_Ocupacion" class="form-group">
-		<label id="elh_tutores_Id_Ocupacion" for="x_Id_Ocupacion" class="col-sm-2 control-label ewLabel"><?php echo $tutores->Id_Ocupacion->FldCaption() ?><?php echo $Language->Phrase("FieldRequiredIndicator") ?></label>
-		<div class="col-sm-10"><div<?php echo $tutores->Id_Ocupacion->CellAttributes() ?>>
-<span id="el_tutores_Id_Ocupacion">
-<select data-table="tutores" data-field="x_Id_Ocupacion" data-value-separator="<?php echo $tutores->Id_Ocupacion->DisplayValueSeparatorAttribute() ?>" id="x_Id_Ocupacion" name="x_Id_Ocupacion"<?php echo $tutores->Id_Ocupacion->EditAttributes() ?>>
-<?php echo $tutores->Id_Ocupacion->SelectOptionListHtml("x_Id_Ocupacion") ?>
-</select>
-<input type="hidden" name="s_x_Id_Ocupacion" id="s_x_Id_Ocupacion" value="<?php echo $tutores->Id_Ocupacion->LookupFilterQuery() ?>">
-</span>
-<?php echo $tutores->Id_Ocupacion->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($tutores->Lugar_Nacimiento->Visible) { // Lugar_Nacimiento ?>
-	<div id="r_Lugar_Nacimiento" class="form-group">
-		<label id="elh_tutores_Lugar_Nacimiento" for="x_Lugar_Nacimiento" class="col-sm-2 control-label ewLabel"><?php echo $tutores->Lugar_Nacimiento->FldCaption() ?></label>
-		<div class="col-sm-10"><div<?php echo $tutores->Lugar_Nacimiento->CellAttributes() ?>>
-<span id="el_tutores_Lugar_Nacimiento">
-<input type="text" data-table="tutores" data-field="x_Lugar_Nacimiento" name="x_Lugar_Nacimiento" id="x_Lugar_Nacimiento" size="30" maxlength="100" placeholder="<?php echo ew_HtmlEncode($tutores->Lugar_Nacimiento->getPlaceHolder()) ?>" value="<?php echo $tutores->Lugar_Nacimiento->EditValue ?>"<?php echo $tutores->Lugar_Nacimiento->EditAttributes() ?>>
-</span>
-<?php echo $tutores->Lugar_Nacimiento->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($tutores->Id_Provincia->Visible) { // Id_Provincia ?>
-	<div id="r_Id_Provincia" class="form-group">
-		<label id="elh_tutores_Id_Provincia" for="x_Id_Provincia" class="col-sm-2 control-label ewLabel"><?php echo $tutores->Id_Provincia->FldCaption() ?><?php echo $Language->Phrase("FieldRequiredIndicator") ?></label>
-		<div class="col-sm-10"><div<?php echo $tutores->Id_Provincia->CellAttributes() ?>>
-<span id="el_tutores_Id_Provincia">
-<?php $tutores->Id_Provincia->EditAttrs["onchange"] = "ew_UpdateOpt.call(this); " . @$tutores->Id_Provincia->EditAttrs["onchange"]; ?>
-<select data-table="tutores" data-field="x_Id_Provincia" data-value-separator="<?php echo $tutores->Id_Provincia->DisplayValueSeparatorAttribute() ?>" id="x_Id_Provincia" name="x_Id_Provincia"<?php echo $tutores->Id_Provincia->EditAttributes() ?>>
-<?php echo $tutores->Id_Provincia->SelectOptionListHtml("x_Id_Provincia") ?>
-</select>
-<input type="hidden" name="s_x_Id_Provincia" id="s_x_Id_Provincia" value="<?php echo $tutores->Id_Provincia->LookupFilterQuery() ?>">
-</span>
-<?php echo $tutores->Id_Provincia->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($tutores->Id_Departamento->Visible) { // Id_Departamento ?>
-	<div id="r_Id_Departamento" class="form-group">
-		<label id="elh_tutores_Id_Departamento" for="x_Id_Departamento" class="col-sm-2 control-label ewLabel"><?php echo $tutores->Id_Departamento->FldCaption() ?><?php echo $Language->Phrase("FieldRequiredIndicator") ?></label>
-		<div class="col-sm-10"><div<?php echo $tutores->Id_Departamento->CellAttributes() ?>>
-<span id="el_tutores_Id_Departamento">
-<?php $tutores->Id_Departamento->EditAttrs["onchange"] = "ew_UpdateOpt.call(this); " . @$tutores->Id_Departamento->EditAttrs["onchange"]; ?>
-<select data-table="tutores" data-field="x_Id_Departamento" data-value-separator="<?php echo $tutores->Id_Departamento->DisplayValueSeparatorAttribute() ?>" id="x_Id_Departamento" name="x_Id_Departamento"<?php echo $tutores->Id_Departamento->EditAttributes() ?>>
-<?php echo $tutores->Id_Departamento->SelectOptionListHtml("x_Id_Departamento") ?>
-</select>
-<input type="hidden" name="s_x_Id_Departamento" id="s_x_Id_Departamento" value="<?php echo $tutores->Id_Departamento->LookupFilterQuery() ?>">
-</span>
-<?php echo $tutores->Id_Departamento->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($tutores->Id_Localidad->Visible) { // Id_Localidad ?>
-	<div id="r_Id_Localidad" class="form-group">
-		<label id="elh_tutores_Id_Localidad" for="x_Id_Localidad" class="col-sm-2 control-label ewLabel"><?php echo $tutores->Id_Localidad->FldCaption() ?><?php echo $Language->Phrase("FieldRequiredIndicator") ?></label>
-		<div class="col-sm-10"><div<?php echo $tutores->Id_Localidad->CellAttributes() ?>>
-<span id="el_tutores_Id_Localidad">
-<select data-table="tutores" data-field="x_Id_Localidad" data-value-separator="<?php echo $tutores->Id_Localidad->DisplayValueSeparatorAttribute() ?>" id="x_Id_Localidad" name="x_Id_Localidad"<?php echo $tutores->Id_Localidad->EditAttributes() ?>>
-<?php echo $tutores->Id_Localidad->SelectOptionListHtml("x_Id_Localidad") ?>
-</select>
-<input type="hidden" name="s_x_Id_Localidad" id="s_x_Id_Localidad" value="<?php echo $tutores->Id_Localidad->LookupFilterQuery() ?>">
-</span>
-<?php echo $tutores->Id_Localidad->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-</div>
+
 <?php
 	if (in_array("observacion_tutor", explode(",", $tutores->getCurrentDetailTable())) && $observacion_tutor->DetailAdd) {
 ?>

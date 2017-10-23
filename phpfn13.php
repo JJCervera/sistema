@@ -4971,7 +4971,7 @@ function Database_Connecting(&$info) {
 	//var_dump($info);
 	//if ($info["id"] == "DB" && ew_CurrentUserIP() == "127.0.0.1") { // Testing on local PC
 	//	$info["host"] = "locahost";
-	//	$info["user"] = "root";
+	//	$info["user"] = "usersistema";
 	//	$info["pass"] = "";
 	//}
 

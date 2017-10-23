@@ -4127,7 +4127,7 @@ $tutores_list->Page_Init();
 // Page main
 $tutores_list->Page_Main();
 
-// Global Page Rendering event (in userfnd*.php)
+// Global Page Rendering event (in userfn*.php)
 Page_Rendering();
 
 // Page Rendering event

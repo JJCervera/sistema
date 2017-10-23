@@ -8,7 +8,7 @@ ob_start(); // Turn on output buffering
 <?php include_once "phpfn13.php";
 include ("conexion.php");
 $serie= $_POST['Serie'];
-$link = mysqli_connect("localhost", "root", "sistema");
+$link = mysqli_connect("localhost", "sistema", "sistemabop22");
 mysqli_select_db($link, "operativost");
 $tildes = $link->query("SET NAMES 'utf8'"); //Para que se muestren las tildes
 $consulta = mysqli_query($link, "select * from pedido_st where NroSerie='$serie'");

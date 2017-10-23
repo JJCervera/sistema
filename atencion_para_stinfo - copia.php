@@ -1031,10 +1031,10 @@ class catencion_para_st extends cTable {
 				}else{
 					echo '<script language="javascript">alert("tiene fecha No EXISTE UNA SOLICITUD ACTIVA");</script>';						
 						if ($Retiro==1){
-							$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-							$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
+							$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+							$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
 							$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=1, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-							$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+							$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 							return FALSE;
 						}else{
 							if ($Retiro==2){
@@ -1042,20 +1042,20 @@ class catencion_para_st extends cTable {
 							}else{
 								$QuienRetira='Retirado por el Operativo de ST';
 							}
-							$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-							$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra El Equipo fue retirado del establecimiento P/Serv. Tecnico', '$Fecha' ,'$Serie')");
+							$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+							$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra El Equipo fue retirado del establecimiento P/Serv. Tecnico', '$Fecha' ,'$Serie')");
 							$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=2, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-							$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('$QuienRetira', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+							$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('$QuienRetira', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 							return FALSE;
 						}
 					}
 				}else{
 					echo '<script language="javascript">alert("No EXISTE serie");</script>';						
 					if ($Retiro==1){
-						$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-						$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
+						$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+						$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
 						$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=1, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-						$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+						$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 						return FALSE;
 					echo '<script language="javascript">alert("retiro pendiente");</script>';						
 					}else{
@@ -1064,10 +1064,10 @@ class catencion_para_st extends cTable {
 						}else{
 							$QuienRetira='Retirado por el Operativo de ST';
 						}
-						$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-						$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra El Equipo fue retirado del establecimiento P/Serv. Tecnico', '$Fecha' ,'$Serie')");
+						$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+						$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra El Equipo fue retirado del establecimiento P/Serv. Tecnico', '$Fecha' ,'$Serie')");
 						$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=2, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-						$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('$QuienRetira', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+						$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('$QuienRetira', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 						return FALSE;
 						}
 					}
@@ -1098,18 +1098,18 @@ class catencion_para_st extends cTable {
 		echo '<script language="javascript">alert("',$ExisteFecha,'");</script>';
 	if ($ExisteFecha>0){
 		echo '<script language="javascript">alert("existe fecha");</script>';
-		$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=12, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-		$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo volvio de Servicio Técnico', '$Fecha' ,'$Serie')");
+		$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=12, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+		$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo volvio de Servicio Técnico', '$Fecha' ,'$Serie')");
 		$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=3, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-		$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Volvio de Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+		$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Volvio de Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 		return TRUE;
 	}else{
 	if ($FechaDevol!=NULL){
 		echo '<script language="javascript">alert("existe fecha");</script>';
-		$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=12, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-		$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo volvio de Servicio Técnico', '$Fecha' ,'$Serie')");
+		$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=12, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+		$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo volvio de Servicio Técnico', '$Fecha' ,'$Serie')");
 		$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=3, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-		$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Volvio de Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+		$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Volvio de Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 		return TRUE;
 	}else{
 
@@ -1125,10 +1125,10 @@ class catencion_para_st extends cTable {
 							if ($ExisteSerie>0){//sxiste pedido pendiente de devolucion
 								if ($ExisteFecha==NULL){
 									if ($Retiro==1){
-										$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-										$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
+										$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+										$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
 										$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=1, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-										$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+										$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 										return TRUE;
 									}else{
 									echo '<script language="javascript">alert("EXISTE UNA SOLICITUD ACTIVA QUE AUN NO VOLVIO DE SERVICIO TECNICO");</script>';						
@@ -1136,10 +1136,10 @@ class catencion_para_st extends cTable {
 									}
 								}else{
 									if ($Retiro==1){
-										$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-										$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
+										$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+										$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
 										$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=1, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-										$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+										$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 										return TRUE;
 									}else{
 										if ($Retiro==2){
@@ -1147,10 +1147,10 @@ class catencion_para_st extends cTable {
 										}else{
 											$QuienRetira='Retirado por el Operativo de ST';
 										}
-										$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-										$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra El Equipo fue retirado del establecimiento P/Serv. Tecnico', '$Fecha' ,'$Serie')");
+										$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+										$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra El Equipo fue retirado del establecimiento P/Serv. Tecnico', '$Fecha' ,'$Serie')");
 										$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=2, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-										$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('$QuienRetira', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+										$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('$QuienRetira', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 										return TRUE;}}
 							}
 						}else{
@@ -1166,10 +1166,10 @@ class catencion_para_st extends cTable {
 							$Fecha_Actual_Devol=$rsnew["Fecha_Devolucion"];
 								if ($Fecha_Actual_Devol==NULL){
 									if ($Retiro==1){
-										$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-										$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
+										$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+										$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
 										$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=1, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-										$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+										$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 										return TRUE;
 									}else{
 										echo '<script language="javascript">alert("EXISTE UNA SOLICITUD ACTIVA QUE AUN NO VOLVIO DE SERVICIO TECNICO");</script>';						
@@ -1177,10 +1177,10 @@ class catencion_para_st extends cTable {
 										}
 								}else{
 								if ($Retiro==1){
-									$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-									$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
+									$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+									$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
 									$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=1, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-									$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+									$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 									return TRUE;
 								}else{
 									if ($Retiro==2){
@@ -1188,19 +1188,19 @@ class catencion_para_st extends cTable {
 									}else{
 										$QuienRetira='Retirado por el Operativo de ST';
 									}
-									$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-									$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra El Equipo fue retirado del establecimiento P/Serv. Tecnico', '$Fecha' ,'$Serie')");
+									$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+									$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra El Equipo fue retirado del establecimiento P/Serv. Tecnico', '$Fecha' ,'$Serie')");
 									$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=2, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-									$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('$QuienRetira', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+									$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('$QuienRetira', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 									return TRUE;
 								}
 								}
 							}else{
 								if ($Retiro==1){
-									$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-									$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
+									$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+									$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
 									$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=1, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-									$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+									$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 									return TRUE;
 								}else{
 									if ($Retiro==2){
@@ -1208,18 +1208,18 @@ class catencion_para_st extends cTable {
 									}else{
 										$QuienRetira='Retirado por el Operativo de ST';
 									}
-									$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-									$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra El Equipo fue retirado del establecimiento P/Serv. Tecnico', '$Fecha' ,'$Serie')");
+									$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+									$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra El Equipo fue retirado del establecimiento P/Serv. Tecnico', '$Fecha' ,'$Serie')");
 									$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=2, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-									$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('$QuienRetira', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+									$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('$QuienRetira', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 									return TRUE;
 								}}
 						}else{
 								if ($Retiro==1){
-									$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-									$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
+									$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+									$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
 									$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=1, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-									$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+									$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 									return TRUE;
 								}else{
 									if ($Retiro==2){
@@ -1227,10 +1227,10 @@ class catencion_para_st extends cTable {
 									}else{
 										$QuienRetira='Retirado por el Operativo de ST';
 									}
-									$Consulta1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-									$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra El Equipo fue retirado del establecimiento P/Serv. Tecnico', '$Fecha' ,'$Serie')");
+									$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
+									$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra El Equipo fue retirado del establecimiento P/Serv. Tecnico', '$Fecha' ,'$Serie')");
 									$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=2, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
-									$Consulta4 = ew_Execute("INSERT INTO Historial_Atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('$QuienRetira', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
+									$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('$QuienRetira', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 									return TRUE;
 								}
 							}

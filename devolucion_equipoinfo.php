@@ -1197,51 +1197,51 @@ class cdevolucion_equipo extends cTable {
 	if ($Motivo == 1){
 	if ($Estado== 1){
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=3, Id_Division=11, Id_Turno=4, Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE Dni=$Dni");
-	$MyResult1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=15, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
+	$MyResult1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=15, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
 	return TRUE;
 	}else{
 	if ($Estado== 2){
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=3, Id_Curso=8, Id_Division=11, Id_Turno=4, Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE Dni=$Dni");
-	$MyResult1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=16, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
+	$MyResult1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=16, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
 	return TRUE;
 	}
 	}
 	}elseif ($Motivo == 5){
 	if ($Estado==1){
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=3, Id_Curso=9, Id_Division=11, Id_Turno=4, Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE Dni=$Dni");
-	$MyResult1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=15, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
+	$MyResult1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=15, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
 	return TRUE;
 	}else{
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=3, Id_Curso=9, Id_Division=11, Id_Turno=4, Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE Dni=$Dni");
-	$MyResult1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=16, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
+	$MyResult1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=16, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
 	return TRUE;
 	}
 	}elseif ($Motivo == 6){
 	if ($Estado==1){
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=5, Id_Curso=7, Id_Division=11, Id_Turno=4, Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE Dni=$Dni");
-	$MyResult1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=15, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
+	$MyResult1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=15, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
 	return TRUE;
 	}else{
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=5, Id_Curso=7, Id_Division=11, Id_Turno=4, Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE Dni=$Dni");
-	$MyResult1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=16, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
+	$MyResult1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=16, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
 	return TRUE;
 	}
 	}elseif ($Motivo == 7){
 	if ($Estado==1){
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=3, Id_Curso=8, Id_Division=11, Id_Turno=4, Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE Dni=$Dni");
-	$MyResult1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=15, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
+	$MyResult1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=15, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
 	return TRUE;
 	}else{
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=3, Id_Curso=8, Id_Division=11, Id_Turno=4, Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE Dni=$Dni");
-	$MyResult1 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=16, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
+	$MyResult1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=16, Tiene_Cargador='$Devuelve_Cargador', Fecha_Actualizacion='$fecha', Usuario='$Usuario' WHERE NroSerie='$Serie'");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El titular a realizado la devolución del equipo', '$fecha' ,'$Serie')");
 	return TRUE;
 	}
 	}

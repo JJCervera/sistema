@@ -2157,15 +2157,15 @@ class cpase_establecimiento extends cTable {
 	$DniRte=$consultaRte["DniRte"];
 	$Apellido_Nombre=$consultaRte["Apellido_Nombre"];
 	$Tipo_Paquete=1;
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando Paquete de Provisión', '$Fecha' ,'$Serie')");
-	$MyResult2 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=1, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando Paquete de Provisión', '$Fecha' ,'$Serie')");
+	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=1, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=1, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE Dni=$Dni");
 	$CargaPaquete = ew_Execute("INSERT INTO Paquetes_Provision (Fecha_Actualizacion, Usuario, SN, Id_Hardware, Marca_Arranque, Id_Tipo_Extraccion, Email_Solicitante, Id_Estado_Paquete, Id_Motivo, Serie_Netbook, Dni, Apellido_Nombre_Solicitante, Id_Tipo_Paquete, Serie_Server) VALUES ('$Fecha' ,'$usuario','$SN','$Id_Hardware', '$Marca_Arranque',1,'$mail',1,2,'$Serie',$DniRte, '$Apellido_Nombre', $Tipo_Paquete, '$Nro_Serie')");
 	return TRUE;
 	}else{
-	$MyResult2 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=2, Id_Estado=2, Id_Sit_Estado=8, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
+	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=2, Id_Estado=2, Id_Sit_Estado=8, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=1, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE Dni=$Dni");
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra pendiente de transferencia por pase', '$Fecha' ,'$Serie')");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra pendiente de transferencia por pase', '$Fecha' ,'$Serie')");
 	return TRUE;
 	}
 	}else{
@@ -2174,14 +2174,14 @@ class cpase_establecimiento extends cTable {
 	// NOTE: Modify your SQL here, replace the table name, field name and field values
 
 	if ($EstadoPase==3){
-	$MyResult2 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=2, Id_Estado=1, Id_Sit_Estado=9, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
+	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=2, Id_Estado=1, Id_Sit_Estado=9, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=9, Id_Curso=9, Id_Division=0, Id_Turno_0, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE Dni=$Dni");
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se fue por pase a otra escuela', '$Fecha' ,'$Serie')");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se fue por pase a otra escuela', '$Fecha' ,'$Serie')");
 	return TRUE;
 	}else
-	$MyResult2 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=8, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
+	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=8, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=10, Id_Curso=9, Id_Division=0, Id_Turno_0, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE Dni=$Dni");
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra pendiente de transferencia por pase', '$Fecha' ,'$Serie')");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra pendiente de transferencia por pase', '$Fecha' ,'$Serie')");
 	return TRUE;
 	}
 	}
@@ -2227,15 +2227,15 @@ class cpase_establecimiento extends cTable {
 	$DniRte=$consultaRte["DniRte"];
 	$Apellido_Nombre=$consultaRte["Apellido_Nombre"];
 	$Tipo_Paquete=1;
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando Paquete de Provisión', '$Fecha' ,'$Serie')");
-	$MyResult2 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=1, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando Paquete de Provisión', '$Fecha' ,'$Serie')");
+	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=1, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=1, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE Dni=$Dni");
 	$CargaPaquete = ew_Execute("INSERT INTO Paquetes_Provision (Fecha_Actualizacion, Usuario, SN, Id_Hardware, Marca_Arranque, Id_Tipo_Extraccion, Email_Solicitante, Id_Estado_Paquete, Id_Motivo, Serie_Netbook, Dni, Apellido_Nombre_Solicitante, Id_Tipo_Paquete, Serie_Server) VALUES ('$Fecha' ,'$usuario','$SN','$Id_Hardware', '$Marca_Arranque',1,'$mail',1,2,'$Serie',$DniRte, '$Apellido_Nombre', $Tipo_Paquete, '$Nro_Serie')");
 	return TRUE;
 	}else{
-	$MyResult2 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=2, Id_Estado=2, Id_Sit_Estado=8, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
+	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=2, Id_Estado=2, Id_Sit_Estado=8, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=1, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE Dni=$Dni");
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra pendiente de transferencia por pase', '$Fecha' ,'$Serie')");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra pendiente de transferencia por pase', '$Fecha' ,'$Serie')");
 	return TRUE;
 	}
 	}else{
@@ -2244,14 +2244,14 @@ class cpase_establecimiento extends cTable {
 	// NOTE: Modify your SQL here, replace the table name, field name and field values
 
 	if ($EstadoPase==3){
-	$MyResult2 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=2, Id_Estado=1, Id_Sit_Estado=9, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
+	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=2, Id_Estado=1, Id_Sit_Estado=9, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=9, Id_Curso=9, Id_Division=11, Id_Turno=4, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE Dni=$Dni");
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se fue por pase a otra escuela', '$Fecha' ,'$Serie')");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se fue por pase a otra escuela', '$Fecha' ,'$Serie')");
 	return TRUE;
 	}else
-	$MyResult2 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=8, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
+	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=8, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=10, Id_Curso=9, Id_Division=11, Id_Turno=4, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE Dni=$Dni");
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra pendiente de transferencia por pase', '$Fecha' ,'$Serie')");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra pendiente de transferencia por pase', '$Fecha' ,'$Serie')");
 	return TRUE;
 	}
 	}

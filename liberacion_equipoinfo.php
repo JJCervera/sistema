@@ -1201,9 +1201,9 @@ class cliberacion_equipo extends cTable {
 	//$Observacion=$rsnew["DetalleDenuncia"];
 	// NOTE: Modify your SQL here, replace the table name, field name and field values
 
-	$MyResult2 = ew_Execute("UPDATE Equipos SET Id_Ubicacion=2, Id_Estado=1, Id_Sit_Estado=11, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
+	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=2, Id_Estado=1, Id_Sit_Estado=11, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=4, Id_Curso=7, Id_Division=11, Id_Turno=4, Fecha_Actualizacion='$Fecha', Usuario='$usuario' WHERE Dni=$Dni");
-	$Consulta2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo ha sido liberado de forma permanente', '$Fecha' ,'$Serie')");
+	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo ha sido liberado de forma permanente', '$Fecha' ,'$Serie')");
 	return TRUE;
 	}
 	}

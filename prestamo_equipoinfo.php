@@ -1186,8 +1186,8 @@ class cprestamo_equipo extends cTable {
 	echo '<script language="javascript">alert("El beneficiario ingresado ya tiene un prestamo activo");</script>';
 	return FALSE;
 	}else{
-	$MyResult = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=13, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
-	$MyResult2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se le presto al alumno con Dni N° $Dni', '$Fecha' ,'$Serie')");
+	$MyResult = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=13, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
+	$MyResult2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se le presto al alumno con Dni N° $Dni', '$Fecha' ,'$Serie')");
 	$MyResult3 = ew_Execute("UPDATE Lista_Espera_Prestamo SET Id_Estado_Espera=2, Fecha_Actualizacion='$Fecha', Usuario='$Usuario' WHERE Dni='$Dni'");
 	return TRUE;
 	}
@@ -1217,19 +1217,19 @@ class cprestamo_equipo extends cTable {
 	//echo '<script language="javascript">alert(',$EstadoDevolucion,');</script>';
 	if ($Estado==2){
 	if ($EstadoDevolucion==1){
-	$MyResult = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=3 WHERE NroSerie='$Serie'");
-	$MyResult2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El alumno con Dni N° $Dni devolvió el equipo Funcionando', '$Fecha' ,'$Serie')");
+	$MyResult = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=3 WHERE NroSerie='$Serie'");
+	$MyResult2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El alumno con Dni N° $Dni devolvió el equipo Funcionando', '$Fecha' ,'$Serie')");
 	return TRUE;
 	}elseif ($EstadoDevolucion==3){
 	echo '<script language="javascript">alert("MODIFIQUE LOS DATOS DE LA DEVOLUCIÓN ANTES DE CONTINUAR");</script>';
 	return FALSE;
 	}else{
-	$MyResult = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=4 WHERE NroSerie='$Serie'");
-	$MyResult2 = ew_Execute("INSERT INTO Observacion_Equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El alumno con Dni N° $Dni devolvió el equipo Dañado', '$Fecha' ,'$Serie')");
+	$MyResult = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=4 WHERE NroSerie='$Serie'");
+	$MyResult2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El alumno con Dni N° $Dni devolvió el equipo Dañado', '$Fecha' ,'$Serie')");
 	return TRUE;
 	}
 	}else{
-	$MyResult = ew_Execute("UPDATE Equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=13, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
+	$MyResult = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=13, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	return TRUE;
 	}
 	}
