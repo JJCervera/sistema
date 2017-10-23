@@ -1491,6 +1491,11 @@ $reasignacion_equipo_view->ShowMessage();
 </div>
 <?php } ?>
 </form>
+
+<div class="breadcrumb ewBreadcrumbs">
+<a href="actas/Reasignacion.php?Id_Reasignacion=<?php echo $reasignacion_equipo->Id_Reasignacion->ViewValue?>" class="Estilo1">Acta de Reasignaci&oacute;n</a>
+</div>
+
 <?php if ($reasignacion_equipo->Export == "") { ?>
 <script type="text/javascript">
 freasignacion_equipoview.Init();
