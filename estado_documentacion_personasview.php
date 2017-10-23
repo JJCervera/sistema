@@ -813,7 +813,26 @@ class cestado_documentacion_personas_view extends cestado_documentacion_personas
 		$this->Id_Estado->ViewCustomAttributes = "";
 
 		// Id_Cargo
-		$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
+		if (strval($this->Id_Cargo->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Cargo`" . ew_SearchString("=", $this->Id_Cargo->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Cargo`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cargo_persona`";
+		$sWhereWrk = "";
+		$this->Id_Cargo->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Cargo->ViewValue = $this->Id_Cargo->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
+			}
+		} else {
+			$this->Id_Cargo->ViewValue = NULL;
+		}
 		$this->Id_Cargo->ViewCustomAttributes = "";
 
 		// Matricula
@@ -1231,6 +1250,7 @@ festado_documentacion_personasview.Lists["x_Id_Curso"] = {"LinkField":"x_Id_Curs
 festado_documentacion_personasview.Lists["x_Id_Division"] = {"LinkField":"x_Id_Division","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"division"};
 festado_documentacion_personasview.Lists["x_Id_Turno"] = {"LinkField":"x_Id_Turno","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"turno"};
 festado_documentacion_personasview.Lists["x_Id_Estado"] = {"LinkField":"x_Id_Estado","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"estado_persona"};
+festado_documentacion_personasview.Lists["x_Id_Cargo"] = {"LinkField":"x_Id_Cargo","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nombre","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"cargo_persona"};
 festado_documentacion_personasview.Lists["x_Matricula"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
 festado_documentacion_personasview.Lists["x_Matricula"].Options = <?php echo json_encode($estado_documentacion_personas->Matricula->Options()) ?>;
 festado_documentacion_personasview.Lists["x_Certificado_Pase"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};

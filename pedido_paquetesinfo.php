@@ -889,26 +889,6 @@ class cpedido_paquetes extends cTable {
 
 		// Apellido_Nombre_Solicitante
 		$this->Apellido_Nombre_Solicitante->ViewValue = $this->Apellido_Nombre_Solicitante->CurrentValue;
-		if (strval($this->Apellido_Nombre_Solicitante->CurrentValue) <> "") {
-			$sFilterWrk = "`Apelldio_Nombre`" . ew_SearchString("=", $this->Apellido_Nombre_Solicitante->CurrentValue, EW_DATATYPE_STRING, "");
-		$sSqlWrk = "SELECT `Apelldio_Nombre`, `Apelldio_Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `referente_tecnico`";
-		$sWhereWrk = "";
-		$this->Apellido_Nombre_Solicitante->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Apellido_Nombre_Solicitante, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Apellido_Nombre_Solicitante->ViewValue = $this->Apellido_Nombre_Solicitante->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Apellido_Nombre_Solicitante->ViewValue = $this->Apellido_Nombre_Solicitante->CurrentValue;
-			}
-		} else {
-			$this->Apellido_Nombre_Solicitante->ViewValue = NULL;
-		}
 		$this->Apellido_Nombre_Solicitante->ViewCustomAttributes = "";
 
 		// Dni
@@ -1266,29 +1246,6 @@ class cpedido_paquetes extends cTable {
 					$this->RenderEditRow();
 					$ar[] = ($this->Id_Hardware->AutoFillOriginalValue) ? $this->Id_Hardware->CurrentValue : $this->Id_Hardware->EditValue;
 					$ar[] = ($this->SN->AutoFillOriginalValue) ? $this->SN->CurrentValue : $this->SN->EditValue;
-					$rowcnt += 1;
-					$rsarr[] = $ar;
-					$rs->MoveNext();
-				}
-				$rs->Close();
-			}
-		}
-		if (preg_match('/^x(\d)*_Apellido_Nombre_Solicitante$/', $id)) {
-			$conn = &$this->Connection();
-			$sSqlWrk = "SELECT `Mail` AS FIELD0, `DniRte` AS FIELD1 FROM `referente_tecnico`";
-			$sWhereWrk = "(`Apelldio_Nombre` = " . ew_QuotedValue($val, EW_DATATYPE_STRING, $this->DBID) . ")";
-			$this->Apellido_Nombre_Solicitante->LookupFilters = array();
-			$this->Lookup_Selecting($this->Apellido_Nombre_Solicitante, $sWhereWrk); // Call Lookup selecting
-			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			if ($rs = ew_LoadRecordset($sSqlWrk, $conn)) {
-				while ($rs && !$rs->EOF) {
-					$ar = array();
-					$this->Email_Solicitante->setDbValue($rs->fields[0]);
-					$this->Dni->setDbValue($rs->fields[1]);
-					$this->RowType == EW_ROWTYPE_EDIT;
-					$this->RenderEditRow();
-					$ar[] = ($this->Email_Solicitante->AutoFillOriginalValue) ? $this->Email_Solicitante->CurrentValue : $this->Email_Solicitante->EditValue;
-					$ar[] = ($this->Dni->AutoFillOriginalValue) ? $this->Dni->CurrentValue : $this->Dni->EditValue;
 					$rowcnt += 1;
 					$rsarr[] = $ar;
 					$rs->MoveNext();

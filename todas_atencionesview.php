@@ -402,21 +402,16 @@ class ctodas_atenciones_view extends ctodas_atenciones {
 		$this->NB0_Atencion->SetVisibility();
 		$this->NB0_Atencion->Visible = !$this->IsAdd() && !$this->IsCopy() && !$this->IsGridAdd();
 		$this->Serie_Equipo->SetVisibility();
-		$this->Id_Prioridad->SetVisibility();
 		$this->Fecha_Entrada->SetVisibility();
 		$this->Nombre_Titular->SetVisibility();
 		$this->Dni->SetVisibility();
-		$this->Id_Curso->SetVisibility();
-		$this->Id_Division->SetVisibility();
-		$this->Id_Turno->SetVisibility();
-		$this->Id_Cargo->SetVisibility();
 		$this->Usuario_que_cargo->SetVisibility();
+		$this->Descripcion_Problema->SetVisibility();
 		$this->Id_Tipo_Falla->SetVisibility();
 		$this->Id_Problema->SetVisibility();
-		$this->Descripcion_Problema->SetVisibility();
 		$this->Id_Tipo_Sol_Problem->SetVisibility();
 		$this->Id_Estado_Atenc->SetVisibility();
-		$this->Fecha_Actualizacion->SetVisibility();
+		$this->Ultima_Actualizacion->SetVisibility();
 
 		// Global Page Loading event (in userfn*.php)
 		Page_Loading();
@@ -687,21 +682,16 @@ class ctodas_atenciones_view extends ctodas_atenciones {
 		$this->Row_Selected($row);
 		$this->NB0_Atencion->setDbValue($rs->fields('N° Atencion'));
 		$this->Serie_Equipo->setDbValue($rs->fields('Serie Equipo'));
-		$this->Id_Prioridad->setDbValue($rs->fields('Id_Prioridad'));
 		$this->Fecha_Entrada->setDbValue($rs->fields('Fecha Entrada'));
 		$this->Nombre_Titular->setDbValue($rs->fields('Nombre Titular'));
 		$this->Dni->setDbValue($rs->fields('Dni'));
-		$this->Id_Curso->setDbValue($rs->fields('Id_Curso'));
-		$this->Id_Division->setDbValue($rs->fields('Id_Division'));
-		$this->Id_Turno->setDbValue($rs->fields('Id_Turno'));
-		$this->Id_Cargo->setDbValue($rs->fields('Id_Cargo'));
 		$this->Usuario_que_cargo->setDbValue($rs->fields('Usuario que cargo'));
+		$this->Descripcion_Problema->setDbValue($rs->fields('Descripcion Problema'));
 		$this->Id_Tipo_Falla->setDbValue($rs->fields('Id_Tipo_Falla'));
 		$this->Id_Problema->setDbValue($rs->fields('Id_Problema'));
-		$this->Descripcion_Problema->setDbValue($rs->fields('Descripcion Problema'));
 		$this->Id_Tipo_Sol_Problem->setDbValue($rs->fields('Id_Tipo_Sol_Problem'));
 		$this->Id_Estado_Atenc->setDbValue($rs->fields('Id_Estado_Atenc'));
-		$this->Fecha_Actualizacion->setDbValue($rs->fields('Fecha_Actualizacion'));
+		$this->Ultima_Actualizacion->setDbValue($rs->fields('Ultima Actualizacion'));
 	}
 
 	// Load DbValue from recordset
@@ -710,21 +700,16 @@ class ctodas_atenciones_view extends ctodas_atenciones {
 		$row = is_array($rs) ? $rs : $rs->fields;
 		$this->NB0_Atencion->DbValue = $row['N° Atencion'];
 		$this->Serie_Equipo->DbValue = $row['Serie Equipo'];
-		$this->Id_Prioridad->DbValue = $row['Id_Prioridad'];
 		$this->Fecha_Entrada->DbValue = $row['Fecha Entrada'];
 		$this->Nombre_Titular->DbValue = $row['Nombre Titular'];
 		$this->Dni->DbValue = $row['Dni'];
-		$this->Id_Curso->DbValue = $row['Id_Curso'];
-		$this->Id_Division->DbValue = $row['Id_Division'];
-		$this->Id_Turno->DbValue = $row['Id_Turno'];
-		$this->Id_Cargo->DbValue = $row['Id_Cargo'];
 		$this->Usuario_que_cargo->DbValue = $row['Usuario que cargo'];
+		$this->Descripcion_Problema->DbValue = $row['Descripcion Problema'];
 		$this->Id_Tipo_Falla->DbValue = $row['Id_Tipo_Falla'];
 		$this->Id_Problema->DbValue = $row['Id_Problema'];
-		$this->Descripcion_Problema->DbValue = $row['Descripcion Problema'];
 		$this->Id_Tipo_Sol_Problem->DbValue = $row['Id_Tipo_Sol_Problem'];
 		$this->Id_Estado_Atenc->DbValue = $row['Id_Estado_Atenc'];
-		$this->Fecha_Actualizacion->DbValue = $row['Fecha_Actualizacion'];
+		$this->Ultima_Actualizacion->DbValue = $row['Ultima Actualizacion'];
 	}
 
 	// Render row values based on field settings
@@ -745,21 +730,16 @@ class ctodas_atenciones_view extends ctodas_atenciones {
 		// Common render codes for all row types
 		// N° Atencion
 		// Serie Equipo
-		// Id_Prioridad
 		// Fecha Entrada
 		// Nombre Titular
 		// Dni
-		// Id_Curso
-		// Id_Division
-		// Id_Turno
-		// Id_Cargo
 		// Usuario que cargo
+		// Descripcion Problema
 		// Id_Tipo_Falla
 		// Id_Problema
-		// Descripcion Problema
 		// Id_Tipo_Sol_Problem
 		// Id_Estado_Atenc
-		// Fecha_Actualizacion
+		// Ultima Actualizacion
 
 		if ($this->RowType == EW_ROWTYPE_VIEW) { // View row
 
@@ -770,29 +750,6 @@ class ctodas_atenciones_view extends ctodas_atenciones {
 		// Serie Equipo
 		$this->Serie_Equipo->ViewValue = $this->Serie_Equipo->CurrentValue;
 		$this->Serie_Equipo->ViewCustomAttributes = "";
-
-		// Id_Prioridad
-		if (strval($this->Id_Prioridad->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Prioridad`" . ew_SearchString("=", $this->Id_Prioridad->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Prioridad`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `tipo_prioridad_atencion`";
-		$sWhereWrk = "";
-		$this->Id_Prioridad->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Prioridad, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Prioridad->ViewValue = $this->Id_Prioridad->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Prioridad->ViewValue = $this->Id_Prioridad->CurrentValue;
-			}
-		} else {
-			$this->Id_Prioridad->ViewValue = NULL;
-		}
-		$this->Id_Prioridad->ViewCustomAttributes = "";
 
 		// Fecha Entrada
 		$this->Fecha_Entrada->ViewValue = $this->Fecha_Entrada->CurrentValue;
@@ -807,202 +764,34 @@ class ctodas_atenciones_view extends ctodas_atenciones {
 		$this->Dni->ViewValue = $this->Dni->CurrentValue;
 		$this->Dni->ViewCustomAttributes = "";
 
-		// Id_Curso
-		if (strval($this->Id_Curso->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Curso`" . ew_SearchString("=", $this->Id_Curso->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Curso`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cursos`";
-		$sWhereWrk = "";
-		$this->Id_Curso->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Curso, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Curso->ViewValue = $this->Id_Curso->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Curso->ViewValue = $this->Id_Curso->CurrentValue;
-			}
-		} else {
-			$this->Id_Curso->ViewValue = NULL;
-		}
-		$this->Id_Curso->ViewCustomAttributes = "";
-
-		// Id_Division
-		if (strval($this->Id_Division->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Division`" . ew_SearchString("=", $this->Id_Division->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Division`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `division`";
-		$sWhereWrk = "";
-		$this->Id_Division->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Division, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Division->ViewValue = $this->Id_Division->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Division->ViewValue = $this->Id_Division->CurrentValue;
-			}
-		} else {
-			$this->Id_Division->ViewValue = NULL;
-		}
-		$this->Id_Division->ViewCustomAttributes = "";
-
-		// Id_Turno
-		if (strval($this->Id_Turno->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Turno`" . ew_SearchString("=", $this->Id_Turno->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Turno`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `turno`";
-		$sWhereWrk = "";
-		$this->Id_Turno->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Turno, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Turno->ViewValue = $this->Id_Turno->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Turno->ViewValue = $this->Id_Turno->CurrentValue;
-			}
-		} else {
-			$this->Id_Turno->ViewValue = NULL;
-		}
-		$this->Id_Turno->ViewCustomAttributes = "";
-
-		// Id_Cargo
-		if (strval($this->Id_Cargo->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Cargo`" . ew_SearchString("=", $this->Id_Cargo->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Cargo`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cargo_persona`";
-		$sWhereWrk = "";
-		$this->Id_Cargo->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Cargo->ViewValue = $this->Id_Cargo->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
-			}
-		} else {
-			$this->Id_Cargo->ViewValue = NULL;
-		}
-		$this->Id_Cargo->ViewCustomAttributes = "";
-
 		// Usuario que cargo
 		$this->Usuario_que_cargo->ViewValue = $this->Usuario_que_cargo->CurrentValue;
 		$this->Usuario_que_cargo->ViewCustomAttributes = "";
-
-		// Id_Tipo_Falla
-		if (strval($this->Id_Tipo_Falla->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Tipo_Falla`" . ew_SearchString("=", $this->Id_Tipo_Falla->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Tipo_Falla`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `tipo_falla`";
-		$sWhereWrk = "";
-		$this->Id_Tipo_Falla->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Tipo_Falla, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Tipo_Falla->ViewValue = $this->Id_Tipo_Falla->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Tipo_Falla->ViewValue = $this->Id_Tipo_Falla->CurrentValue;
-			}
-		} else {
-			$this->Id_Tipo_Falla->ViewValue = NULL;
-		}
-		$this->Id_Tipo_Falla->ViewCustomAttributes = "";
-
-		// Id_Problema
-		if (strval($this->Id_Problema->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Problema`" . ew_SearchString("=", $this->Id_Problema->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Problema`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `problema`";
-		$sWhereWrk = "";
-		$this->Id_Problema->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Problema, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Problema->ViewValue = $this->Id_Problema->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Problema->ViewValue = $this->Id_Problema->CurrentValue;
-			}
-		} else {
-			$this->Id_Problema->ViewValue = NULL;
-		}
-		$this->Id_Problema->ViewCustomAttributes = "";
 
 		// Descripcion Problema
 		$this->Descripcion_Problema->ViewValue = $this->Descripcion_Problema->CurrentValue;
 		$this->Descripcion_Problema->ViewCustomAttributes = "";
 
+		// Id_Tipo_Falla
+		$this->Id_Tipo_Falla->ViewValue = $this->Id_Tipo_Falla->CurrentValue;
+		$this->Id_Tipo_Falla->ViewCustomAttributes = "";
+
+		// Id_Problema
+		$this->Id_Problema->ViewValue = $this->Id_Problema->CurrentValue;
+		$this->Id_Problema->ViewCustomAttributes = "";
+
 		// Id_Tipo_Sol_Problem
-		if (strval($this->Id_Tipo_Sol_Problem->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Tipo_Sol_Problem`" . ew_SearchString("=", $this->Id_Tipo_Sol_Problem->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Tipo_Sol_Problem`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `tipo_solucion_problema`";
-		$sWhereWrk = "";
-		$this->Id_Tipo_Sol_Problem->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Tipo_Sol_Problem, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Tipo_Sol_Problem->ViewValue = $this->Id_Tipo_Sol_Problem->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Tipo_Sol_Problem->ViewValue = $this->Id_Tipo_Sol_Problem->CurrentValue;
-			}
-		} else {
-			$this->Id_Tipo_Sol_Problem->ViewValue = NULL;
-		}
+		$this->Id_Tipo_Sol_Problem->ViewValue = $this->Id_Tipo_Sol_Problem->CurrentValue;
 		$this->Id_Tipo_Sol_Problem->ViewCustomAttributes = "";
 
 		// Id_Estado_Atenc
-		if (strval($this->Id_Estado_Atenc->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Estado_Atenc`" . ew_SearchString("=", $this->Id_Estado_Atenc->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Estado_Atenc`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `estado_actual_solucion_problema`";
-		$sWhereWrk = "";
-		$this->Id_Estado_Atenc->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Estado_Atenc, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Estado_Atenc->ViewValue = $this->Id_Estado_Atenc->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Estado_Atenc->ViewValue = $this->Id_Estado_Atenc->CurrentValue;
-			}
-		} else {
-			$this->Id_Estado_Atenc->ViewValue = NULL;
-		}
+		$this->Id_Estado_Atenc->ViewValue = $this->Id_Estado_Atenc->CurrentValue;
 		$this->Id_Estado_Atenc->ViewCustomAttributes = "";
 
-		// Fecha_Actualizacion
-		$this->Fecha_Actualizacion->ViewValue = $this->Fecha_Actualizacion->CurrentValue;
-		$this->Fecha_Actualizacion->ViewValue = ew_FormatDateTime($this->Fecha_Actualizacion->ViewValue, 7);
-		$this->Fecha_Actualizacion->ViewCustomAttributes = "";
+		// Ultima Actualizacion
+		$this->Ultima_Actualizacion->ViewValue = $this->Ultima_Actualizacion->CurrentValue;
+		$this->Ultima_Actualizacion->ViewValue = ew_FormatDateTime($this->Ultima_Actualizacion->ViewValue, 0);
+		$this->Ultima_Actualizacion->ViewCustomAttributes = "";
 
 			// N° Atencion
 			$this->NB0_Atencion->LinkCustomAttributes = "";
@@ -1013,11 +802,6 @@ class ctodas_atenciones_view extends ctodas_atenciones {
 			$this->Serie_Equipo->LinkCustomAttributes = "";
 			$this->Serie_Equipo->HrefValue = "";
 			$this->Serie_Equipo->TooltipValue = "";
-
-			// Id_Prioridad
-			$this->Id_Prioridad->LinkCustomAttributes = "";
-			$this->Id_Prioridad->HrefValue = "";
-			$this->Id_Prioridad->TooltipValue = "";
 
 			// Fecha Entrada
 			$this->Fecha_Entrada->LinkCustomAttributes = "";
@@ -1034,30 +818,15 @@ class ctodas_atenciones_view extends ctodas_atenciones {
 			$this->Dni->HrefValue = "";
 			$this->Dni->TooltipValue = "";
 
-			// Id_Curso
-			$this->Id_Curso->LinkCustomAttributes = "";
-			$this->Id_Curso->HrefValue = "";
-			$this->Id_Curso->TooltipValue = "";
-
-			// Id_Division
-			$this->Id_Division->LinkCustomAttributes = "";
-			$this->Id_Division->HrefValue = "";
-			$this->Id_Division->TooltipValue = "";
-
-			// Id_Turno
-			$this->Id_Turno->LinkCustomAttributes = "";
-			$this->Id_Turno->HrefValue = "";
-			$this->Id_Turno->TooltipValue = "";
-
-			// Id_Cargo
-			$this->Id_Cargo->LinkCustomAttributes = "";
-			$this->Id_Cargo->HrefValue = "";
-			$this->Id_Cargo->TooltipValue = "";
-
 			// Usuario que cargo
 			$this->Usuario_que_cargo->LinkCustomAttributes = "";
 			$this->Usuario_que_cargo->HrefValue = "";
 			$this->Usuario_que_cargo->TooltipValue = "";
+
+			// Descripcion Problema
+			$this->Descripcion_Problema->LinkCustomAttributes = "";
+			$this->Descripcion_Problema->HrefValue = "";
+			$this->Descripcion_Problema->TooltipValue = "";
 
 			// Id_Tipo_Falla
 			$this->Id_Tipo_Falla->LinkCustomAttributes = "";
@@ -1069,11 +838,6 @@ class ctodas_atenciones_view extends ctodas_atenciones {
 			$this->Id_Problema->HrefValue = "";
 			$this->Id_Problema->TooltipValue = "";
 
-			// Descripcion Problema
-			$this->Descripcion_Problema->LinkCustomAttributes = "";
-			$this->Descripcion_Problema->HrefValue = "";
-			$this->Descripcion_Problema->TooltipValue = "";
-
 			// Id_Tipo_Sol_Problem
 			$this->Id_Tipo_Sol_Problem->LinkCustomAttributes = "";
 			$this->Id_Tipo_Sol_Problem->HrefValue = "";
@@ -1084,10 +848,10 @@ class ctodas_atenciones_view extends ctodas_atenciones {
 			$this->Id_Estado_Atenc->HrefValue = "";
 			$this->Id_Estado_Atenc->TooltipValue = "";
 
-			// Fecha_Actualizacion
-			$this->Fecha_Actualizacion->LinkCustomAttributes = "";
-			$this->Fecha_Actualizacion->HrefValue = "";
-			$this->Fecha_Actualizacion->TooltipValue = "";
+			// Ultima Actualizacion
+			$this->Ultima_Actualizacion->LinkCustomAttributes = "";
+			$this->Ultima_Actualizacion->HrefValue = "";
+			$this->Ultima_Actualizacion->TooltipValue = "";
 		}
 
 		// Call Row Rendered event
@@ -1387,17 +1151,8 @@ ftodas_atencionesview.ValidateRequired = false;
 <?php } ?>
 
 // Dynamic selection lists
-ftodas_atencionesview.Lists["x_Id_Prioridad"] = {"LinkField":"x_Id_Prioridad","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"tipo_prioridad_atencion"};
-ftodas_atencionesview.Lists["x_Id_Curso"] = {"LinkField":"x_Id_Curso","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"cursos"};
-ftodas_atencionesview.Lists["x_Id_Division"] = {"LinkField":"x_Id_Division","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"division"};
-ftodas_atencionesview.Lists["x_Id_Turno"] = {"LinkField":"x_Id_Turno","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"turno"};
-ftodas_atencionesview.Lists["x_Id_Cargo"] = {"LinkField":"x_Id_Cargo","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nombre","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"cargo_persona"};
-ftodas_atencionesview.Lists["x_Id_Tipo_Falla"] = {"LinkField":"x_Id_Tipo_Falla","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"tipo_falla"};
-ftodas_atencionesview.Lists["x_Id_Problema"] = {"LinkField":"x_Id_Problema","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"problema"};
-ftodas_atencionesview.Lists["x_Id_Tipo_Sol_Problem"] = {"LinkField":"x_Id_Tipo_Sol_Problem","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"tipo_solucion_problema"};
-ftodas_atencionesview.Lists["x_Id_Estado_Atenc"] = {"LinkField":"x_Id_Estado_Atenc","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"estado_actual_solucion_problema"};
-
 // Form object for search
+
 </script>
 <script type="text/javascript">
 
@@ -1459,17 +1214,6 @@ $todas_atenciones_view->ShowMessage();
 </td>
 	</tr>
 <?php } ?>
-<?php if ($todas_atenciones->Id_Prioridad->Visible) { // Id_Prioridad ?>
-	<tr id="r_Id_Prioridad">
-		<td><span id="elh_todas_atenciones_Id_Prioridad"><?php echo $todas_atenciones->Id_Prioridad->FldCaption() ?></span></td>
-		<td data-name="Id_Prioridad"<?php echo $todas_atenciones->Id_Prioridad->CellAttributes() ?>>
-<span id="el_todas_atenciones_Id_Prioridad">
-<span<?php echo $todas_atenciones->Id_Prioridad->ViewAttributes() ?>>
-<?php echo $todas_atenciones->Id_Prioridad->ViewValue ?></span>
-</span>
-</td>
-	</tr>
-<?php } ?>
 <?php if ($todas_atenciones->Fecha_Entrada->Visible) { // Fecha Entrada ?>
 	<tr id="r_Fecha_Entrada">
 		<td><span id="elh_todas_atenciones_Fecha_Entrada"><?php echo $todas_atenciones->Fecha_Entrada->FldCaption() ?></span></td>
@@ -1503,50 +1247,6 @@ $todas_atenciones_view->ShowMessage();
 </td>
 	</tr>
 <?php } ?>
-<?php if ($todas_atenciones->Id_Curso->Visible) { // Id_Curso ?>
-	<tr id="r_Id_Curso">
-		<td><span id="elh_todas_atenciones_Id_Curso"><?php echo $todas_atenciones->Id_Curso->FldCaption() ?></span></td>
-		<td data-name="Id_Curso"<?php echo $todas_atenciones->Id_Curso->CellAttributes() ?>>
-<span id="el_todas_atenciones_Id_Curso">
-<span<?php echo $todas_atenciones->Id_Curso->ViewAttributes() ?>>
-<?php echo $todas_atenciones->Id_Curso->ViewValue ?></span>
-</span>
-</td>
-	</tr>
-<?php } ?>
-<?php if ($todas_atenciones->Id_Division->Visible) { // Id_Division ?>
-	<tr id="r_Id_Division">
-		<td><span id="elh_todas_atenciones_Id_Division"><?php echo $todas_atenciones->Id_Division->FldCaption() ?></span></td>
-		<td data-name="Id_Division"<?php echo $todas_atenciones->Id_Division->CellAttributes() ?>>
-<span id="el_todas_atenciones_Id_Division">
-<span<?php echo $todas_atenciones->Id_Division->ViewAttributes() ?>>
-<?php echo $todas_atenciones->Id_Division->ViewValue ?></span>
-</span>
-</td>
-	</tr>
-<?php } ?>
-<?php if ($todas_atenciones->Id_Turno->Visible) { // Id_Turno ?>
-	<tr id="r_Id_Turno">
-		<td><span id="elh_todas_atenciones_Id_Turno"><?php echo $todas_atenciones->Id_Turno->FldCaption() ?></span></td>
-		<td data-name="Id_Turno"<?php echo $todas_atenciones->Id_Turno->CellAttributes() ?>>
-<span id="el_todas_atenciones_Id_Turno">
-<span<?php echo $todas_atenciones->Id_Turno->ViewAttributes() ?>>
-<?php echo $todas_atenciones->Id_Turno->ViewValue ?></span>
-</span>
-</td>
-	</tr>
-<?php } ?>
-<?php if ($todas_atenciones->Id_Cargo->Visible) { // Id_Cargo ?>
-	<tr id="r_Id_Cargo">
-		<td><span id="elh_todas_atenciones_Id_Cargo"><?php echo $todas_atenciones->Id_Cargo->FldCaption() ?></span></td>
-		<td data-name="Id_Cargo"<?php echo $todas_atenciones->Id_Cargo->CellAttributes() ?>>
-<span id="el_todas_atenciones_Id_Cargo">
-<span<?php echo $todas_atenciones->Id_Cargo->ViewAttributes() ?>>
-<?php echo $todas_atenciones->Id_Cargo->ViewValue ?></span>
-</span>
-</td>
-	</tr>
-<?php } ?>
 <?php if ($todas_atenciones->Usuario_que_cargo->Visible) { // Usuario que cargo ?>
 	<tr id="r_Usuario_que_cargo">
 		<td><span id="elh_todas_atenciones_Usuario_que_cargo"><?php echo $todas_atenciones->Usuario_que_cargo->FldCaption() ?></span></td>
@@ -1554,6 +1254,17 @@ $todas_atenciones_view->ShowMessage();
 <span id="el_todas_atenciones_Usuario_que_cargo">
 <span<?php echo $todas_atenciones->Usuario_que_cargo->ViewAttributes() ?>>
 <?php echo $todas_atenciones->Usuario_que_cargo->ViewValue ?></span>
+</span>
+</td>
+	</tr>
+<?php } ?>
+<?php if ($todas_atenciones->Descripcion_Problema->Visible) { // Descripcion Problema ?>
+	<tr id="r_Descripcion_Problema">
+		<td><span id="elh_todas_atenciones_Descripcion_Problema"><?php echo $todas_atenciones->Descripcion_Problema->FldCaption() ?></span></td>
+		<td data-name="Descripcion_Problema"<?php echo $todas_atenciones->Descripcion_Problema->CellAttributes() ?>>
+<span id="el_todas_atenciones_Descripcion_Problema">
+<span<?php echo $todas_atenciones->Descripcion_Problema->ViewAttributes() ?>>
+<?php echo $todas_atenciones->Descripcion_Problema->ViewValue ?></span>
 </span>
 </td>
 	</tr>
@@ -1580,17 +1291,6 @@ $todas_atenciones_view->ShowMessage();
 </td>
 	</tr>
 <?php } ?>
-<?php if ($todas_atenciones->Descripcion_Problema->Visible) { // Descripcion Problema ?>
-	<tr id="r_Descripcion_Problema">
-		<td><span id="elh_todas_atenciones_Descripcion_Problema"><?php echo $todas_atenciones->Descripcion_Problema->FldCaption() ?></span></td>
-		<td data-name="Descripcion_Problema"<?php echo $todas_atenciones->Descripcion_Problema->CellAttributes() ?>>
-<span id="el_todas_atenciones_Descripcion_Problema">
-<span<?php echo $todas_atenciones->Descripcion_Problema->ViewAttributes() ?>>
-<?php echo $todas_atenciones->Descripcion_Problema->ViewValue ?></span>
-</span>
-</td>
-	</tr>
-<?php } ?>
 <?php if ($todas_atenciones->Id_Tipo_Sol_Problem->Visible) { // Id_Tipo_Sol_Problem ?>
 	<tr id="r_Id_Tipo_Sol_Problem">
 		<td><span id="elh_todas_atenciones_Id_Tipo_Sol_Problem"><?php echo $todas_atenciones->Id_Tipo_Sol_Problem->FldCaption() ?></span></td>
@@ -1613,13 +1313,13 @@ $todas_atenciones_view->ShowMessage();
 </td>
 	</tr>
 <?php } ?>
-<?php if ($todas_atenciones->Fecha_Actualizacion->Visible) { // Fecha_Actualizacion ?>
-	<tr id="r_Fecha_Actualizacion">
-		<td><span id="elh_todas_atenciones_Fecha_Actualizacion"><?php echo $todas_atenciones->Fecha_Actualizacion->FldCaption() ?></span></td>
-		<td data-name="Fecha_Actualizacion"<?php echo $todas_atenciones->Fecha_Actualizacion->CellAttributes() ?>>
-<span id="el_todas_atenciones_Fecha_Actualizacion">
-<span<?php echo $todas_atenciones->Fecha_Actualizacion->ViewAttributes() ?>>
-<?php echo $todas_atenciones->Fecha_Actualizacion->ViewValue ?></span>
+<?php if ($todas_atenciones->Ultima_Actualizacion->Visible) { // Ultima Actualizacion ?>
+	<tr id="r_Ultima_Actualizacion">
+		<td><span id="elh_todas_atenciones_Ultima_Actualizacion"><?php echo $todas_atenciones->Ultima_Actualizacion->FldCaption() ?></span></td>
+		<td data-name="Ultima_Actualizacion"<?php echo $todas_atenciones->Ultima_Actualizacion->CellAttributes() ?>>
+<span id="el_todas_atenciones_Ultima_Actualizacion">
+<span<?php echo $todas_atenciones->Ultima_Actualizacion->ViewAttributes() ?>>
+<?php echo $todas_atenciones->Ultima_Actualizacion->ViewValue ?></span>
 </span>
 </td>
 	</tr>

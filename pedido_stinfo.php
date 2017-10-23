@@ -8,8 +8,8 @@ $pedido_st = NULL;
 //
 class cpedido_st extends cTable {
 	var $CUE;
-	var $SIGLA;
-	var $ZONA_DE_PERTENENCIA;
+	var $Sigla;
+	var $Id_Zona;
 	var $DEPARTAMENTO;
 	var $LOCALIDAD;
 	var $SERIE_NETBOOK;
@@ -52,16 +52,18 @@ class cpedido_st extends cTable {
 		$this->CUE->Sortable = TRUE; // Allow sort
 		$this->fields['CUE'] = &$this->CUE;
 
-		// SIGLA
-		$this->SIGLA = new cField('pedido_st', 'pedido_st', 'x_SIGLA', 'SIGLA', '`SIGLA`', '`SIGLA`', 200, -1, FALSE, '`SIGLA`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->SIGLA->Sortable = TRUE; // Allow sort
-		$this->fields['SIGLA'] = &$this->SIGLA;
+		// Sigla
+		$this->Sigla = new cField('pedido_st', 'pedido_st', 'x_Sigla', 'Sigla', '`Sigla`', '`Sigla`', 200, -1, FALSE, '`Sigla`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->Sigla->Sortable = TRUE; // Allow sort
+		$this->fields['Sigla'] = &$this->Sigla;
 
-		// ZONA DE PERTENENCIA
-		$this->ZONA_DE_PERTENENCIA = new cField('pedido_st', 'pedido_st', 'x_ZONA_DE_PERTENENCIA', 'ZONA DE PERTENENCIA', '`ZONA DE PERTENENCIA`', '`ZONA DE PERTENENCIA`', 3, -1, FALSE, '`ZONA DE PERTENENCIA`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->ZONA_DE_PERTENENCIA->Sortable = TRUE; // Allow sort
-		$this->ZONA_DE_PERTENENCIA->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
-		$this->fields['ZONA DE PERTENENCIA'] = &$this->ZONA_DE_PERTENENCIA;
+		// Id_Zona
+		$this->Id_Zona = new cField('pedido_st', 'pedido_st', 'x_Id_Zona', 'Id_Zona', '`Id_Zona`', '`Id_Zona`', 3, -1, FALSE, '`Id_Zona`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->Id_Zona->Sortable = TRUE; // Allow sort
+		$this->Id_Zona->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->Id_Zona->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
+		$this->Id_Zona->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
+		$this->fields['Id_Zona'] = &$this->Id_Zona;
 
 		// DEPARTAMENTO
 		$this->DEPARTAMENTO = new cField('pedido_st', 'pedido_st', 'x_DEPARTAMENTO', 'DEPARTAMENTO', '`DEPARTAMENTO`', '`DEPARTAMENTO`', 200, -1, FALSE, '`DEPARTAMENTO`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
@@ -599,8 +601,8 @@ class cpedido_st extends cTable {
 	// Load row values from recordset
 	function LoadListRowValues(&$rs) {
 		$this->CUE->setDbValue($rs->fields('CUE'));
-		$this->SIGLA->setDbValue($rs->fields('SIGLA'));
-		$this->ZONA_DE_PERTENENCIA->setDbValue($rs->fields('ZONA DE PERTENENCIA'));
+		$this->Sigla->setDbValue($rs->fields('Sigla'));
+		$this->Id_Zona->setDbValue($rs->fields('Id_Zona'));
 		$this->DEPARTAMENTO->setDbValue($rs->fields('DEPARTAMENTO'));
 		$this->LOCALIDAD->setDbValue($rs->fields('LOCALIDAD'));
 		$this->SERIE_NETBOOK->setDbValue($rs->fields('SERIE NETBOOK'));
@@ -618,8 +620,8 @@ class cpedido_st extends cTable {
 
    // Common render codes
 		// CUE
-		// SIGLA
-		// ZONA DE PERTENENCIA
+		// Sigla
+		// Id_Zona
 		// DEPARTAMENTO
 		// LOCALIDAD
 		// SERIE NETBOOK
@@ -633,13 +635,32 @@ class cpedido_st extends cTable {
 		$this->CUE->ViewValue = $this->CUE->CurrentValue;
 		$this->CUE->ViewCustomAttributes = "";
 
-		// SIGLA
-		$this->SIGLA->ViewValue = $this->SIGLA->CurrentValue;
-		$this->SIGLA->ViewCustomAttributes = "";
+		// Sigla
+		$this->Sigla->ViewValue = $this->Sigla->CurrentValue;
+		$this->Sigla->ViewCustomAttributes = "";
 
-		// ZONA DE PERTENENCIA
-		$this->ZONA_DE_PERTENENCIA->ViewValue = $this->ZONA_DE_PERTENENCIA->CurrentValue;
-		$this->ZONA_DE_PERTENENCIA->ViewCustomAttributes = "";
+		// Id_Zona
+		if (strval($this->Id_Zona->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Zona`" . ew_SearchString("=", $this->Id_Zona->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Zona`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `zonas`";
+		$sWhereWrk = "";
+		$this->Id_Zona->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Zona, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Zona->ViewValue = $this->Id_Zona->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Zona->ViewValue = $this->Id_Zona->CurrentValue;
+			}
+		} else {
+			$this->Id_Zona->ViewValue = NULL;
+		}
+		$this->Id_Zona->ViewCustomAttributes = "";
 
 		// DEPARTAMENTO
 		if (strval($this->DEPARTAMENTO->CurrentValue) <> "") {
@@ -750,15 +771,15 @@ class cpedido_st extends cTable {
 		$this->CUE->HrefValue = "";
 		$this->CUE->TooltipValue = "";
 
-		// SIGLA
-		$this->SIGLA->LinkCustomAttributes = "";
-		$this->SIGLA->HrefValue = "";
-		$this->SIGLA->TooltipValue = "";
+		// Sigla
+		$this->Sigla->LinkCustomAttributes = "";
+		$this->Sigla->HrefValue = "";
+		$this->Sigla->TooltipValue = "";
 
-		// ZONA DE PERTENENCIA
-		$this->ZONA_DE_PERTENENCIA->LinkCustomAttributes = "";
-		$this->ZONA_DE_PERTENENCIA->HrefValue = "";
-		$this->ZONA_DE_PERTENENCIA->TooltipValue = "";
+		// Id_Zona
+		$this->Id_Zona->LinkCustomAttributes = "";
+		$this->Id_Zona->HrefValue = "";
+		$this->Id_Zona->TooltipValue = "";
 
 		// DEPARTAMENTO
 		$this->DEPARTAMENTO->LinkCustomAttributes = "";
@@ -807,17 +828,15 @@ class cpedido_st extends cTable {
 		$this->CUE->EditValue = $this->CUE->CurrentValue;
 		$this->CUE->ViewCustomAttributes = "";
 
-		// SIGLA
-		$this->SIGLA->EditAttrs["class"] = "form-control";
-		$this->SIGLA->EditCustomAttributes = "";
-		$this->SIGLA->EditValue = $this->SIGLA->CurrentValue;
-		$this->SIGLA->PlaceHolder = ew_RemoveHtml($this->SIGLA->FldCaption());
+		// Sigla
+		$this->Sigla->EditAttrs["class"] = "form-control";
+		$this->Sigla->EditCustomAttributes = "";
+		$this->Sigla->EditValue = $this->Sigla->CurrentValue;
+		$this->Sigla->PlaceHolder = ew_RemoveHtml($this->Sigla->FldCaption());
 
-		// ZONA DE PERTENENCIA
-		$this->ZONA_DE_PERTENENCIA->EditAttrs["class"] = "form-control";
-		$this->ZONA_DE_PERTENENCIA->EditCustomAttributes = "";
-		$this->ZONA_DE_PERTENENCIA->EditValue = $this->ZONA_DE_PERTENENCIA->CurrentValue;
-		$this->ZONA_DE_PERTENENCIA->PlaceHolder = ew_RemoveHtml($this->ZONA_DE_PERTENENCIA->FldCaption());
+		// Id_Zona
+		$this->Id_Zona->EditAttrs["class"] = "form-control";
+		$this->Id_Zona->EditCustomAttributes = "";
 
 		// DEPARTAMENTO
 		$this->DEPARTAMENTO->EditAttrs["class"] = "form-control";
@@ -880,8 +899,8 @@ class cpedido_st extends cTable {
 				$Doc->BeginExportRow();
 				if ($ExportPageType == "view") {
 					if ($this->CUE->Exportable) $Doc->ExportCaption($this->CUE);
-					if ($this->SIGLA->Exportable) $Doc->ExportCaption($this->SIGLA);
-					if ($this->ZONA_DE_PERTENENCIA->Exportable) $Doc->ExportCaption($this->ZONA_DE_PERTENENCIA);
+					if ($this->Sigla->Exportable) $Doc->ExportCaption($this->Sigla);
+					if ($this->Id_Zona->Exportable) $Doc->ExportCaption($this->Id_Zona);
 					if ($this->DEPARTAMENTO->Exportable) $Doc->ExportCaption($this->DEPARTAMENTO);
 					if ($this->LOCALIDAD->Exportable) $Doc->ExportCaption($this->LOCALIDAD);
 					if ($this->SERIE_NETBOOK->Exportable) $Doc->ExportCaption($this->SERIE_NETBOOK);
@@ -889,8 +908,8 @@ class cpedido_st extends cTable {
 					if ($this->PROBLEMA->Exportable) $Doc->ExportCaption($this->PROBLEMA);
 				} else {
 					if ($this->CUE->Exportable) $Doc->ExportCaption($this->CUE);
-					if ($this->SIGLA->Exportable) $Doc->ExportCaption($this->SIGLA);
-					if ($this->ZONA_DE_PERTENENCIA->Exportable) $Doc->ExportCaption($this->ZONA_DE_PERTENENCIA);
+					if ($this->Sigla->Exportable) $Doc->ExportCaption($this->Sigla);
+					if ($this->Id_Zona->Exportable) $Doc->ExportCaption($this->Id_Zona);
 					if ($this->DEPARTAMENTO->Exportable) $Doc->ExportCaption($this->DEPARTAMENTO);
 					if ($this->LOCALIDAD->Exportable) $Doc->ExportCaption($this->LOCALIDAD);
 					if ($this->SERIE_NETBOOK->Exportable) $Doc->ExportCaption($this->SERIE_NETBOOK);
@@ -928,8 +947,8 @@ class cpedido_st extends cTable {
 					$Doc->BeginExportRow($RowCnt); // Allow CSS styles if enabled
 					if ($ExportPageType == "view") {
 						if ($this->CUE->Exportable) $Doc->ExportField($this->CUE);
-						if ($this->SIGLA->Exportable) $Doc->ExportField($this->SIGLA);
-						if ($this->ZONA_DE_PERTENENCIA->Exportable) $Doc->ExportField($this->ZONA_DE_PERTENENCIA);
+						if ($this->Sigla->Exportable) $Doc->ExportField($this->Sigla);
+						if ($this->Id_Zona->Exportable) $Doc->ExportField($this->Id_Zona);
 						if ($this->DEPARTAMENTO->Exportable) $Doc->ExportField($this->DEPARTAMENTO);
 						if ($this->LOCALIDAD->Exportable) $Doc->ExportField($this->LOCALIDAD);
 						if ($this->SERIE_NETBOOK->Exportable) $Doc->ExportField($this->SERIE_NETBOOK);
@@ -937,8 +956,8 @@ class cpedido_st extends cTable {
 						if ($this->PROBLEMA->Exportable) $Doc->ExportField($this->PROBLEMA);
 					} else {
 						if ($this->CUE->Exportable) $Doc->ExportField($this->CUE);
-						if ($this->SIGLA->Exportable) $Doc->ExportField($this->SIGLA);
-						if ($this->ZONA_DE_PERTENENCIA->Exportable) $Doc->ExportField($this->ZONA_DE_PERTENENCIA);
+						if ($this->Sigla->Exportable) $Doc->ExportField($this->Sigla);
+						if ($this->Id_Zona->Exportable) $Doc->ExportField($this->Id_Zona);
 						if ($this->DEPARTAMENTO->Exportable) $Doc->ExportField($this->DEPARTAMENTO);
 						if ($this->LOCALIDAD->Exportable) $Doc->ExportField($this->LOCALIDAD);
 						if ($this->SERIE_NETBOOK->Exportable) $Doc->ExportField($this->SERIE_NETBOOK);

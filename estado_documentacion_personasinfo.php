@@ -92,8 +92,10 @@ class cestado_documentacion_personas extends cTable {
 		$this->fields['Id_Estado'] = &$this->Id_Estado;
 
 		// Id_Cargo
-		$this->Id_Cargo = new cField('estado_documentacion_personas', 'estado_documentacion_personas', 'x_Id_Cargo', 'Id_Cargo', '`Id_Cargo`', '`Id_Cargo`', 3, -1, FALSE, '`Id_Cargo`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->Id_Cargo = new cField('estado_documentacion_personas', 'estado_documentacion_personas', 'x_Id_Cargo', 'Id_Cargo', '`Id_Cargo`', '`Id_Cargo`', 3, -1, FALSE, '`Id_Cargo`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
 		$this->Id_Cargo->Sortable = TRUE; // Allow sort
+		$this->Id_Cargo->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->Id_Cargo->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
 		$this->Id_Cargo->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
 		$this->fields['Id_Cargo'] = &$this->Id_Cargo;
 
@@ -752,7 +754,26 @@ class cestado_documentacion_personas extends cTable {
 		$this->Id_Estado->ViewCustomAttributes = "";
 
 		// Id_Cargo
-		$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
+		if (strval($this->Id_Cargo->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Cargo`" . ew_SearchString("=", $this->Id_Cargo->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Cargo`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cargo_persona`";
+		$sWhereWrk = "";
+		$this->Id_Cargo->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Cargo->ViewValue = $this->Id_Cargo->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
+			}
+		} else {
+			$this->Id_Cargo->ViewValue = NULL;
+		}
 		$this->Id_Cargo->ViewCustomAttributes = "";
 
 		// Matricula
@@ -910,8 +931,6 @@ class cestado_documentacion_personas extends cTable {
 		// Id_Cargo
 		$this->Id_Cargo->EditAttrs["class"] = "form-control";
 		$this->Id_Cargo->EditCustomAttributes = "";
-		$this->Id_Cargo->EditValue = $this->Id_Cargo->CurrentValue;
-		$this->Id_Cargo->PlaceHolder = ew_RemoveHtml($this->Id_Cargo->FldCaption());
 
 		// Matricula
 		$this->Matricula->EditCustomAttributes = "";

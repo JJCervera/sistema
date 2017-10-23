@@ -9,21 +9,16 @@ $todas_atenciones = NULL;
 class ctodas_atenciones extends cTable {
 	var $NB0_Atencion;
 	var $Serie_Equipo;
-	var $Id_Prioridad;
 	var $Fecha_Entrada;
 	var $Nombre_Titular;
 	var $Dni;
-	var $Id_Curso;
-	var $Id_Division;
-	var $Id_Turno;
-	var $Id_Cargo;
 	var $Usuario_que_cargo;
+	var $Descripcion_Problema;
 	var $Id_Tipo_Falla;
 	var $Id_Problema;
-	var $Descripcion_Problema;
 	var $Id_Tipo_Sol_Problem;
 	var $Id_Estado_Atenc;
-	var $Fecha_Actualizacion;
+	var $Ultima_Actualizacion;
 
 	//
 	// Table class constructor
@@ -66,14 +61,6 @@ class ctodas_atenciones extends cTable {
 		$this->Serie_Equipo->Sortable = TRUE; // Allow sort
 		$this->fields['Serie Equipo'] = &$this->Serie_Equipo;
 
-		// Id_Prioridad
-		$this->Id_Prioridad = new cField('todas_atenciones', 'todas_atenciones', 'x_Id_Prioridad', 'Id_Prioridad', '`Id_Prioridad`', '`Id_Prioridad`', 3, -1, FALSE, '`Id_Prioridad`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->Id_Prioridad->Sortable = TRUE; // Allow sort
-		$this->Id_Prioridad->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->Id_Prioridad->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->Id_Prioridad->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
-		$this->fields['Id_Prioridad'] = &$this->Id_Prioridad;
-
 		// Fecha Entrada
 		$this->Fecha_Entrada = new cField('todas_atenciones', 'todas_atenciones', 'x_Fecha_Entrada', 'Fecha Entrada', '`Fecha Entrada`', 'DATE_FORMAT(`Fecha Entrada`, \'\')', 133, 0, FALSE, '`Fecha Entrada`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->Fecha_Entrada->Sortable = TRUE; // Allow sort
@@ -91,80 +78,41 @@ class ctodas_atenciones extends cTable {
 		$this->Dni->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
 		$this->fields['Dni'] = &$this->Dni;
 
-		// Id_Curso
-		$this->Id_Curso = new cField('todas_atenciones', 'todas_atenciones', 'x_Id_Curso', 'Id_Curso', '`Id_Curso`', '`Id_Curso`', 3, -1, FALSE, '`Id_Curso`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->Id_Curso->Sortable = TRUE; // Allow sort
-		$this->Id_Curso->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->Id_Curso->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->Id_Curso->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
-		$this->fields['Id_Curso'] = &$this->Id_Curso;
-
-		// Id_Division
-		$this->Id_Division = new cField('todas_atenciones', 'todas_atenciones', 'x_Id_Division', 'Id_Division', '`Id_Division`', '`Id_Division`', 3, -1, FALSE, '`Id_Division`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->Id_Division->Sortable = TRUE; // Allow sort
-		$this->Id_Division->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->Id_Division->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->Id_Division->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
-		$this->fields['Id_Division'] = &$this->Id_Division;
-
-		// Id_Turno
-		$this->Id_Turno = new cField('todas_atenciones', 'todas_atenciones', 'x_Id_Turno', 'Id_Turno', '`Id_Turno`', '`Id_Turno`', 3, -1, FALSE, '`Id_Turno`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->Id_Turno->Sortable = TRUE; // Allow sort
-		$this->Id_Turno->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->Id_Turno->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->Id_Turno->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
-		$this->fields['Id_Turno'] = &$this->Id_Turno;
-
-		// Id_Cargo
-		$this->Id_Cargo = new cField('todas_atenciones', 'todas_atenciones', 'x_Id_Cargo', 'Id_Cargo', '`Id_Cargo`', '`Id_Cargo`', 3, -1, FALSE, '`Id_Cargo`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->Id_Cargo->Sortable = TRUE; // Allow sort
-		$this->Id_Cargo->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->Id_Cargo->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->Id_Cargo->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
-		$this->fields['Id_Cargo'] = &$this->Id_Cargo;
-
 		// Usuario que cargo
 		$this->Usuario_que_cargo = new cField('todas_atenciones', 'todas_atenciones', 'x_Usuario_que_cargo', 'Usuario que cargo', '`Usuario que cargo`', '`Usuario que cargo`', 200, -1, FALSE, '`Usuario que cargo`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->Usuario_que_cargo->Sortable = TRUE; // Allow sort
 		$this->fields['Usuario que cargo'] = &$this->Usuario_que_cargo;
-
-		// Id_Tipo_Falla
-		$this->Id_Tipo_Falla = new cField('todas_atenciones', 'todas_atenciones', 'x_Id_Tipo_Falla', 'Id_Tipo_Falla', '`Id_Tipo_Falla`', '`Id_Tipo_Falla`', 3, -1, FALSE, '`Id_Tipo_Falla`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->Id_Tipo_Falla->Sortable = TRUE; // Allow sort
-		$this->Id_Tipo_Falla->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->Id_Tipo_Falla->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->fields['Id_Tipo_Falla'] = &$this->Id_Tipo_Falla;
-
-		// Id_Problema
-		$this->Id_Problema = new cField('todas_atenciones', 'todas_atenciones', 'x_Id_Problema', 'Id_Problema', '`Id_Problema`', '`Id_Problema`', 3, -1, FALSE, '`Id_Problema`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->Id_Problema->Sortable = TRUE; // Allow sort
-		$this->Id_Problema->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->Id_Problema->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->fields['Id_Problema'] = &$this->Id_Problema;
 
 		// Descripcion Problema
 		$this->Descripcion_Problema = new cField('todas_atenciones', 'todas_atenciones', 'x_Descripcion_Problema', 'Descripcion Problema', '`Descripcion Problema`', '`Descripcion Problema`', 201, -1, FALSE, '`Descripcion Problema`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXTAREA');
 		$this->Descripcion_Problema->Sortable = TRUE; // Allow sort
 		$this->fields['Descripcion Problema'] = &$this->Descripcion_Problema;
 
+		// Id_Tipo_Falla
+		$this->Id_Tipo_Falla = new cField('todas_atenciones', 'todas_atenciones', 'x_Id_Tipo_Falla', 'Id_Tipo_Falla', '`Id_Tipo_Falla`', '`Id_Tipo_Falla`', 3, -1, FALSE, '`Id_Tipo_Falla`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->Id_Tipo_Falla->Sortable = TRUE; // Allow sort
+		$this->fields['Id_Tipo_Falla'] = &$this->Id_Tipo_Falla;
+
+		// Id_Problema
+		$this->Id_Problema = new cField('todas_atenciones', 'todas_atenciones', 'x_Id_Problema', 'Id_Problema', '`Id_Problema`', '`Id_Problema`', 3, -1, FALSE, '`Id_Problema`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->Id_Problema->Sortable = TRUE; // Allow sort
+		$this->fields['Id_Problema'] = &$this->Id_Problema;
+
 		// Id_Tipo_Sol_Problem
-		$this->Id_Tipo_Sol_Problem = new cField('todas_atenciones', 'todas_atenciones', 'x_Id_Tipo_Sol_Problem', 'Id_Tipo_Sol_Problem', '`Id_Tipo_Sol_Problem`', '`Id_Tipo_Sol_Problem`', 3, -1, FALSE, '`Id_Tipo_Sol_Problem`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->Id_Tipo_Sol_Problem = new cField('todas_atenciones', 'todas_atenciones', 'x_Id_Tipo_Sol_Problem', 'Id_Tipo_Sol_Problem', '`Id_Tipo_Sol_Problem`', '`Id_Tipo_Sol_Problem`', 3, -1, FALSE, '`Id_Tipo_Sol_Problem`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->Id_Tipo_Sol_Problem->Sortable = TRUE; // Allow sort
-		$this->Id_Tipo_Sol_Problem->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->Id_Tipo_Sol_Problem->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
 		$this->fields['Id_Tipo_Sol_Problem'] = &$this->Id_Tipo_Sol_Problem;
 
 		// Id_Estado_Atenc
-		$this->Id_Estado_Atenc = new cField('todas_atenciones', 'todas_atenciones', 'x_Id_Estado_Atenc', 'Id_Estado_Atenc', '`Id_Estado_Atenc`', '`Id_Estado_Atenc`', 3, -1, FALSE, '`Id_Estado_Atenc`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->Id_Estado_Atenc = new cField('todas_atenciones', 'todas_atenciones', 'x_Id_Estado_Atenc', 'Id_Estado_Atenc', '`Id_Estado_Atenc`', '`Id_Estado_Atenc`', 3, -1, FALSE, '`Id_Estado_Atenc`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->Id_Estado_Atenc->Sortable = TRUE; // Allow sort
-		$this->Id_Estado_Atenc->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->Id_Estado_Atenc->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
 		$this->fields['Id_Estado_Atenc'] = &$this->Id_Estado_Atenc;
 
-		// Fecha_Actualizacion
-		$this->Fecha_Actualizacion = new cField('todas_atenciones', 'todas_atenciones', 'x_Fecha_Actualizacion', 'Fecha_Actualizacion', '`Fecha_Actualizacion`', 'DATE_FORMAT(`Fecha_Actualizacion`, \'\')', 133, 7, FALSE, '`Fecha_Actualizacion`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->Fecha_Actualizacion->Sortable = TRUE; // Allow sort
-		$this->fields['Fecha_Actualizacion'] = &$this->Fecha_Actualizacion;
+		// Ultima Actualizacion
+		$this->Ultima_Actualizacion = new cField('todas_atenciones', 'todas_atenciones', 'x_Ultima_Actualizacion', 'Ultima Actualizacion', '`Ultima Actualizacion`', 'DATE_FORMAT(`Ultima Actualizacion`, \'\')', 133, 0, FALSE, '`Ultima Actualizacion`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->Ultima_Actualizacion->Sortable = TRUE; // Allow sort
+		$this->Ultima_Actualizacion->FldDefaultErrMsg = str_replace("%s", $GLOBALS["EW_DATE_FORMAT"], $Language->Phrase("IncorrectDate"));
+		$this->fields['Ultima Actualizacion'] = &$this->Ultima_Actualizacion;
 	}
 
 	// Set Field Visibility
@@ -692,21 +640,16 @@ class ctodas_atenciones extends cTable {
 	function LoadListRowValues(&$rs) {
 		$this->NB0_Atencion->setDbValue($rs->fields('N° Atencion'));
 		$this->Serie_Equipo->setDbValue($rs->fields('Serie Equipo'));
-		$this->Id_Prioridad->setDbValue($rs->fields('Id_Prioridad'));
 		$this->Fecha_Entrada->setDbValue($rs->fields('Fecha Entrada'));
 		$this->Nombre_Titular->setDbValue($rs->fields('Nombre Titular'));
 		$this->Dni->setDbValue($rs->fields('Dni'));
-		$this->Id_Curso->setDbValue($rs->fields('Id_Curso'));
-		$this->Id_Division->setDbValue($rs->fields('Id_Division'));
-		$this->Id_Turno->setDbValue($rs->fields('Id_Turno'));
-		$this->Id_Cargo->setDbValue($rs->fields('Id_Cargo'));
 		$this->Usuario_que_cargo->setDbValue($rs->fields('Usuario que cargo'));
+		$this->Descripcion_Problema->setDbValue($rs->fields('Descripcion Problema'));
 		$this->Id_Tipo_Falla->setDbValue($rs->fields('Id_Tipo_Falla'));
 		$this->Id_Problema->setDbValue($rs->fields('Id_Problema'));
-		$this->Descripcion_Problema->setDbValue($rs->fields('Descripcion Problema'));
 		$this->Id_Tipo_Sol_Problem->setDbValue($rs->fields('Id_Tipo_Sol_Problem'));
 		$this->Id_Estado_Atenc->setDbValue($rs->fields('Id_Estado_Atenc'));
-		$this->Fecha_Actualizacion->setDbValue($rs->fields('Fecha_Actualizacion'));
+		$this->Ultima_Actualizacion->setDbValue($rs->fields('Ultima Actualizacion'));
 	}
 
 	// Render list row values
@@ -719,21 +662,16 @@ class ctodas_atenciones extends cTable {
    // Common render codes
 		// N° Atencion
 		// Serie Equipo
-		// Id_Prioridad
 		// Fecha Entrada
 		// Nombre Titular
 		// Dni
-		// Id_Curso
-		// Id_Division
-		// Id_Turno
-		// Id_Cargo
 		// Usuario que cargo
+		// Descripcion Problema
 		// Id_Tipo_Falla
 		// Id_Problema
-		// Descripcion Problema
 		// Id_Tipo_Sol_Problem
 		// Id_Estado_Atenc
-		// Fecha_Actualizacion
+		// Ultima Actualizacion
 		// N° Atencion
 
 		$this->NB0_Atencion->ViewValue = $this->NB0_Atencion->CurrentValue;
@@ -742,29 +680,6 @@ class ctodas_atenciones extends cTable {
 		// Serie Equipo
 		$this->Serie_Equipo->ViewValue = $this->Serie_Equipo->CurrentValue;
 		$this->Serie_Equipo->ViewCustomAttributes = "";
-
-		// Id_Prioridad
-		if (strval($this->Id_Prioridad->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Prioridad`" . ew_SearchString("=", $this->Id_Prioridad->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Prioridad`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `tipo_prioridad_atencion`";
-		$sWhereWrk = "";
-		$this->Id_Prioridad->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Prioridad, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Prioridad->ViewValue = $this->Id_Prioridad->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Prioridad->ViewValue = $this->Id_Prioridad->CurrentValue;
-			}
-		} else {
-			$this->Id_Prioridad->ViewValue = NULL;
-		}
-		$this->Id_Prioridad->ViewCustomAttributes = "";
 
 		// Fecha Entrada
 		$this->Fecha_Entrada->ViewValue = $this->Fecha_Entrada->CurrentValue;
@@ -779,202 +694,34 @@ class ctodas_atenciones extends cTable {
 		$this->Dni->ViewValue = $this->Dni->CurrentValue;
 		$this->Dni->ViewCustomAttributes = "";
 
-		// Id_Curso
-		if (strval($this->Id_Curso->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Curso`" . ew_SearchString("=", $this->Id_Curso->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Curso`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cursos`";
-		$sWhereWrk = "";
-		$this->Id_Curso->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Curso, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Curso->ViewValue = $this->Id_Curso->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Curso->ViewValue = $this->Id_Curso->CurrentValue;
-			}
-		} else {
-			$this->Id_Curso->ViewValue = NULL;
-		}
-		$this->Id_Curso->ViewCustomAttributes = "";
-
-		// Id_Division
-		if (strval($this->Id_Division->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Division`" . ew_SearchString("=", $this->Id_Division->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Division`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `division`";
-		$sWhereWrk = "";
-		$this->Id_Division->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Division, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Division->ViewValue = $this->Id_Division->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Division->ViewValue = $this->Id_Division->CurrentValue;
-			}
-		} else {
-			$this->Id_Division->ViewValue = NULL;
-		}
-		$this->Id_Division->ViewCustomAttributes = "";
-
-		// Id_Turno
-		if (strval($this->Id_Turno->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Turno`" . ew_SearchString("=", $this->Id_Turno->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Turno`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `turno`";
-		$sWhereWrk = "";
-		$this->Id_Turno->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Turno, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Turno->ViewValue = $this->Id_Turno->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Turno->ViewValue = $this->Id_Turno->CurrentValue;
-			}
-		} else {
-			$this->Id_Turno->ViewValue = NULL;
-		}
-		$this->Id_Turno->ViewCustomAttributes = "";
-
-		// Id_Cargo
-		if (strval($this->Id_Cargo->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Cargo`" . ew_SearchString("=", $this->Id_Cargo->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Cargo`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cargo_persona`";
-		$sWhereWrk = "";
-		$this->Id_Cargo->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Cargo->ViewValue = $this->Id_Cargo->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
-			}
-		} else {
-			$this->Id_Cargo->ViewValue = NULL;
-		}
-		$this->Id_Cargo->ViewCustomAttributes = "";
-
 		// Usuario que cargo
 		$this->Usuario_que_cargo->ViewValue = $this->Usuario_que_cargo->CurrentValue;
 		$this->Usuario_que_cargo->ViewCustomAttributes = "";
-
-		// Id_Tipo_Falla
-		if (strval($this->Id_Tipo_Falla->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Tipo_Falla`" . ew_SearchString("=", $this->Id_Tipo_Falla->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Tipo_Falla`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `tipo_falla`";
-		$sWhereWrk = "";
-		$this->Id_Tipo_Falla->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Tipo_Falla, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Tipo_Falla->ViewValue = $this->Id_Tipo_Falla->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Tipo_Falla->ViewValue = $this->Id_Tipo_Falla->CurrentValue;
-			}
-		} else {
-			$this->Id_Tipo_Falla->ViewValue = NULL;
-		}
-		$this->Id_Tipo_Falla->ViewCustomAttributes = "";
-
-		// Id_Problema
-		if (strval($this->Id_Problema->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Problema`" . ew_SearchString("=", $this->Id_Problema->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Problema`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `problema`";
-		$sWhereWrk = "";
-		$this->Id_Problema->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Problema, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Problema->ViewValue = $this->Id_Problema->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Problema->ViewValue = $this->Id_Problema->CurrentValue;
-			}
-		} else {
-			$this->Id_Problema->ViewValue = NULL;
-		}
-		$this->Id_Problema->ViewCustomAttributes = "";
 
 		// Descripcion Problema
 		$this->Descripcion_Problema->ViewValue = $this->Descripcion_Problema->CurrentValue;
 		$this->Descripcion_Problema->ViewCustomAttributes = "";
 
+		// Id_Tipo_Falla
+		$this->Id_Tipo_Falla->ViewValue = $this->Id_Tipo_Falla->CurrentValue;
+		$this->Id_Tipo_Falla->ViewCustomAttributes = "";
+
+		// Id_Problema
+		$this->Id_Problema->ViewValue = $this->Id_Problema->CurrentValue;
+		$this->Id_Problema->ViewCustomAttributes = "";
+
 		// Id_Tipo_Sol_Problem
-		if (strval($this->Id_Tipo_Sol_Problem->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Tipo_Sol_Problem`" . ew_SearchString("=", $this->Id_Tipo_Sol_Problem->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Tipo_Sol_Problem`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `tipo_solucion_problema`";
-		$sWhereWrk = "";
-		$this->Id_Tipo_Sol_Problem->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Tipo_Sol_Problem, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Tipo_Sol_Problem->ViewValue = $this->Id_Tipo_Sol_Problem->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Tipo_Sol_Problem->ViewValue = $this->Id_Tipo_Sol_Problem->CurrentValue;
-			}
-		} else {
-			$this->Id_Tipo_Sol_Problem->ViewValue = NULL;
-		}
+		$this->Id_Tipo_Sol_Problem->ViewValue = $this->Id_Tipo_Sol_Problem->CurrentValue;
 		$this->Id_Tipo_Sol_Problem->ViewCustomAttributes = "";
 
 		// Id_Estado_Atenc
-		if (strval($this->Id_Estado_Atenc->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Estado_Atenc`" . ew_SearchString("=", $this->Id_Estado_Atenc->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Estado_Atenc`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `estado_actual_solucion_problema`";
-		$sWhereWrk = "";
-		$this->Id_Estado_Atenc->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Estado_Atenc, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Estado_Atenc->ViewValue = $this->Id_Estado_Atenc->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Estado_Atenc->ViewValue = $this->Id_Estado_Atenc->CurrentValue;
-			}
-		} else {
-			$this->Id_Estado_Atenc->ViewValue = NULL;
-		}
+		$this->Id_Estado_Atenc->ViewValue = $this->Id_Estado_Atenc->CurrentValue;
 		$this->Id_Estado_Atenc->ViewCustomAttributes = "";
 
-		// Fecha_Actualizacion
-		$this->Fecha_Actualizacion->ViewValue = $this->Fecha_Actualizacion->CurrentValue;
-		$this->Fecha_Actualizacion->ViewValue = ew_FormatDateTime($this->Fecha_Actualizacion->ViewValue, 7);
-		$this->Fecha_Actualizacion->ViewCustomAttributes = "";
+		// Ultima Actualizacion
+		$this->Ultima_Actualizacion->ViewValue = $this->Ultima_Actualizacion->CurrentValue;
+		$this->Ultima_Actualizacion->ViewValue = ew_FormatDateTime($this->Ultima_Actualizacion->ViewValue, 0);
+		$this->Ultima_Actualizacion->ViewCustomAttributes = "";
 
 		// N° Atencion
 		$this->NB0_Atencion->LinkCustomAttributes = "";
@@ -985,11 +732,6 @@ class ctodas_atenciones extends cTable {
 		$this->Serie_Equipo->LinkCustomAttributes = "";
 		$this->Serie_Equipo->HrefValue = "";
 		$this->Serie_Equipo->TooltipValue = "";
-
-		// Id_Prioridad
-		$this->Id_Prioridad->LinkCustomAttributes = "";
-		$this->Id_Prioridad->HrefValue = "";
-		$this->Id_Prioridad->TooltipValue = "";
 
 		// Fecha Entrada
 		$this->Fecha_Entrada->LinkCustomAttributes = "";
@@ -1006,30 +748,15 @@ class ctodas_atenciones extends cTable {
 		$this->Dni->HrefValue = "";
 		$this->Dni->TooltipValue = "";
 
-		// Id_Curso
-		$this->Id_Curso->LinkCustomAttributes = "";
-		$this->Id_Curso->HrefValue = "";
-		$this->Id_Curso->TooltipValue = "";
-
-		// Id_Division
-		$this->Id_Division->LinkCustomAttributes = "";
-		$this->Id_Division->HrefValue = "";
-		$this->Id_Division->TooltipValue = "";
-
-		// Id_Turno
-		$this->Id_Turno->LinkCustomAttributes = "";
-		$this->Id_Turno->HrefValue = "";
-		$this->Id_Turno->TooltipValue = "";
-
-		// Id_Cargo
-		$this->Id_Cargo->LinkCustomAttributes = "";
-		$this->Id_Cargo->HrefValue = "";
-		$this->Id_Cargo->TooltipValue = "";
-
 		// Usuario que cargo
 		$this->Usuario_que_cargo->LinkCustomAttributes = "";
 		$this->Usuario_que_cargo->HrefValue = "";
 		$this->Usuario_que_cargo->TooltipValue = "";
+
+		// Descripcion Problema
+		$this->Descripcion_Problema->LinkCustomAttributes = "";
+		$this->Descripcion_Problema->HrefValue = "";
+		$this->Descripcion_Problema->TooltipValue = "";
 
 		// Id_Tipo_Falla
 		$this->Id_Tipo_Falla->LinkCustomAttributes = "";
@@ -1041,11 +768,6 @@ class ctodas_atenciones extends cTable {
 		$this->Id_Problema->HrefValue = "";
 		$this->Id_Problema->TooltipValue = "";
 
-		// Descripcion Problema
-		$this->Descripcion_Problema->LinkCustomAttributes = "";
-		$this->Descripcion_Problema->HrefValue = "";
-		$this->Descripcion_Problema->TooltipValue = "";
-
 		// Id_Tipo_Sol_Problem
 		$this->Id_Tipo_Sol_Problem->LinkCustomAttributes = "";
 		$this->Id_Tipo_Sol_Problem->HrefValue = "";
@@ -1056,10 +778,10 @@ class ctodas_atenciones extends cTable {
 		$this->Id_Estado_Atenc->HrefValue = "";
 		$this->Id_Estado_Atenc->TooltipValue = "";
 
-		// Fecha_Actualizacion
-		$this->Fecha_Actualizacion->LinkCustomAttributes = "";
-		$this->Fecha_Actualizacion->HrefValue = "";
-		$this->Fecha_Actualizacion->TooltipValue = "";
+		// Ultima Actualizacion
+		$this->Ultima_Actualizacion->LinkCustomAttributes = "";
+		$this->Ultima_Actualizacion->HrefValue = "";
+		$this->Ultima_Actualizacion->TooltipValue = "";
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -1084,10 +806,6 @@ class ctodas_atenciones extends cTable {
 		$this->Serie_Equipo->EditValue = $this->Serie_Equipo->CurrentValue;
 		$this->Serie_Equipo->ViewCustomAttributes = "";
 
-		// Id_Prioridad
-		$this->Id_Prioridad->EditAttrs["class"] = "form-control";
-		$this->Id_Prioridad->EditCustomAttributes = "";
-
 		// Fecha Entrada
 		$this->Fecha_Entrada->EditAttrs["class"] = "form-control";
 		$this->Fecha_Entrada->EditCustomAttributes = "";
@@ -1106,35 +824,11 @@ class ctodas_atenciones extends cTable {
 		$this->Dni->EditValue = $this->Dni->CurrentValue;
 		$this->Dni->ViewCustomAttributes = "";
 
-		// Id_Curso
-		$this->Id_Curso->EditAttrs["class"] = "form-control";
-		$this->Id_Curso->EditCustomAttributes = "";
-
-		// Id_Division
-		$this->Id_Division->EditAttrs["class"] = "form-control";
-		$this->Id_Division->EditCustomAttributes = "";
-
-		// Id_Turno
-		$this->Id_Turno->EditAttrs["class"] = "form-control";
-		$this->Id_Turno->EditCustomAttributes = "";
-
-		// Id_Cargo
-		$this->Id_Cargo->EditAttrs["class"] = "form-control";
-		$this->Id_Cargo->EditCustomAttributes = "";
-
 		// Usuario que cargo
 		$this->Usuario_que_cargo->EditAttrs["class"] = "form-control";
 		$this->Usuario_que_cargo->EditCustomAttributes = "";
 		$this->Usuario_que_cargo->EditValue = $this->Usuario_que_cargo->CurrentValue;
 		$this->Usuario_que_cargo->PlaceHolder = ew_RemoveHtml($this->Usuario_que_cargo->FldCaption());
-
-		// Id_Tipo_Falla
-		$this->Id_Tipo_Falla->EditAttrs["class"] = "form-control";
-		$this->Id_Tipo_Falla->EditCustomAttributes = "";
-
-		// Id_Problema
-		$this->Id_Problema->EditAttrs["class"] = "form-control";
-		$this->Id_Problema->EditCustomAttributes = "";
 
 		// Descripcion Problema
 		$this->Descripcion_Problema->EditAttrs["class"] = "form-control";
@@ -1142,19 +836,35 @@ class ctodas_atenciones extends cTable {
 		$this->Descripcion_Problema->EditValue = $this->Descripcion_Problema->CurrentValue;
 		$this->Descripcion_Problema->PlaceHolder = ew_RemoveHtml($this->Descripcion_Problema->FldCaption());
 
+		// Id_Tipo_Falla
+		$this->Id_Tipo_Falla->EditAttrs["class"] = "form-control";
+		$this->Id_Tipo_Falla->EditCustomAttributes = "";
+		$this->Id_Tipo_Falla->EditValue = $this->Id_Tipo_Falla->CurrentValue;
+		$this->Id_Tipo_Falla->PlaceHolder = ew_RemoveHtml($this->Id_Tipo_Falla->FldCaption());
+
+		// Id_Problema
+		$this->Id_Problema->EditAttrs["class"] = "form-control";
+		$this->Id_Problema->EditCustomAttributes = "";
+		$this->Id_Problema->EditValue = $this->Id_Problema->CurrentValue;
+		$this->Id_Problema->PlaceHolder = ew_RemoveHtml($this->Id_Problema->FldCaption());
+
 		// Id_Tipo_Sol_Problem
 		$this->Id_Tipo_Sol_Problem->EditAttrs["class"] = "form-control";
 		$this->Id_Tipo_Sol_Problem->EditCustomAttributes = "";
+		$this->Id_Tipo_Sol_Problem->EditValue = $this->Id_Tipo_Sol_Problem->CurrentValue;
+		$this->Id_Tipo_Sol_Problem->PlaceHolder = ew_RemoveHtml($this->Id_Tipo_Sol_Problem->FldCaption());
 
 		// Id_Estado_Atenc
 		$this->Id_Estado_Atenc->EditAttrs["class"] = "form-control";
 		$this->Id_Estado_Atenc->EditCustomAttributes = "";
+		$this->Id_Estado_Atenc->EditValue = $this->Id_Estado_Atenc->CurrentValue;
+		$this->Id_Estado_Atenc->PlaceHolder = ew_RemoveHtml($this->Id_Estado_Atenc->FldCaption());
 
-		// Fecha_Actualizacion
-		$this->Fecha_Actualizacion->EditAttrs["class"] = "form-control";
-		$this->Fecha_Actualizacion->EditCustomAttributes = "";
-		$this->Fecha_Actualizacion->EditValue = ew_FormatDateTime($this->Fecha_Actualizacion->CurrentValue, 7);
-		$this->Fecha_Actualizacion->PlaceHolder = ew_RemoveHtml($this->Fecha_Actualizacion->FldCaption());
+		// Ultima Actualizacion
+		$this->Ultima_Actualizacion->EditAttrs["class"] = "form-control";
+		$this->Ultima_Actualizacion->EditCustomAttributes = "";
+		$this->Ultima_Actualizacion->EditValue = ew_FormatDateTime($this->Ultima_Actualizacion->CurrentValue, 8);
+		$this->Ultima_Actualizacion->PlaceHolder = ew_RemoveHtml($this->Ultima_Actualizacion->FldCaption());
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -1185,39 +895,29 @@ class ctodas_atenciones extends cTable {
 				if ($ExportPageType == "view") {
 					if ($this->NB0_Atencion->Exportable) $Doc->ExportCaption($this->NB0_Atencion);
 					if ($this->Serie_Equipo->Exportable) $Doc->ExportCaption($this->Serie_Equipo);
-					if ($this->Id_Prioridad->Exportable) $Doc->ExportCaption($this->Id_Prioridad);
 					if ($this->Fecha_Entrada->Exportable) $Doc->ExportCaption($this->Fecha_Entrada);
 					if ($this->Nombre_Titular->Exportable) $Doc->ExportCaption($this->Nombre_Titular);
 					if ($this->Dni->Exportable) $Doc->ExportCaption($this->Dni);
-					if ($this->Id_Curso->Exportable) $Doc->ExportCaption($this->Id_Curso);
-					if ($this->Id_Division->Exportable) $Doc->ExportCaption($this->Id_Division);
-					if ($this->Id_Turno->Exportable) $Doc->ExportCaption($this->Id_Turno);
-					if ($this->Id_Cargo->Exportable) $Doc->ExportCaption($this->Id_Cargo);
 					if ($this->Usuario_que_cargo->Exportable) $Doc->ExportCaption($this->Usuario_que_cargo);
+					if ($this->Descripcion_Problema->Exportable) $Doc->ExportCaption($this->Descripcion_Problema);
 					if ($this->Id_Tipo_Falla->Exportable) $Doc->ExportCaption($this->Id_Tipo_Falla);
 					if ($this->Id_Problema->Exportable) $Doc->ExportCaption($this->Id_Problema);
-					if ($this->Descripcion_Problema->Exportable) $Doc->ExportCaption($this->Descripcion_Problema);
 					if ($this->Id_Tipo_Sol_Problem->Exportable) $Doc->ExportCaption($this->Id_Tipo_Sol_Problem);
 					if ($this->Id_Estado_Atenc->Exportable) $Doc->ExportCaption($this->Id_Estado_Atenc);
-					if ($this->Fecha_Actualizacion->Exportable) $Doc->ExportCaption($this->Fecha_Actualizacion);
+					if ($this->Ultima_Actualizacion->Exportable) $Doc->ExportCaption($this->Ultima_Actualizacion);
 				} else {
 					if ($this->NB0_Atencion->Exportable) $Doc->ExportCaption($this->NB0_Atencion);
 					if ($this->Serie_Equipo->Exportable) $Doc->ExportCaption($this->Serie_Equipo);
-					if ($this->Id_Prioridad->Exportable) $Doc->ExportCaption($this->Id_Prioridad);
 					if ($this->Fecha_Entrada->Exportable) $Doc->ExportCaption($this->Fecha_Entrada);
 					if ($this->Nombre_Titular->Exportable) $Doc->ExportCaption($this->Nombre_Titular);
 					if ($this->Dni->Exportable) $Doc->ExportCaption($this->Dni);
-					if ($this->Id_Curso->Exportable) $Doc->ExportCaption($this->Id_Curso);
-					if ($this->Id_Division->Exportable) $Doc->ExportCaption($this->Id_Division);
-					if ($this->Id_Turno->Exportable) $Doc->ExportCaption($this->Id_Turno);
-					if ($this->Id_Cargo->Exportable) $Doc->ExportCaption($this->Id_Cargo);
 					if ($this->Usuario_que_cargo->Exportable) $Doc->ExportCaption($this->Usuario_que_cargo);
+					if ($this->Descripcion_Problema->Exportable) $Doc->ExportCaption($this->Descripcion_Problema);
 					if ($this->Id_Tipo_Falla->Exportable) $Doc->ExportCaption($this->Id_Tipo_Falla);
 					if ($this->Id_Problema->Exportable) $Doc->ExportCaption($this->Id_Problema);
-					if ($this->Descripcion_Problema->Exportable) $Doc->ExportCaption($this->Descripcion_Problema);
 					if ($this->Id_Tipo_Sol_Problem->Exportable) $Doc->ExportCaption($this->Id_Tipo_Sol_Problem);
 					if ($this->Id_Estado_Atenc->Exportable) $Doc->ExportCaption($this->Id_Estado_Atenc);
-					if ($this->Fecha_Actualizacion->Exportable) $Doc->ExportCaption($this->Fecha_Actualizacion);
+					if ($this->Ultima_Actualizacion->Exportable) $Doc->ExportCaption($this->Ultima_Actualizacion);
 				}
 				$Doc->EndExportRow();
 			}
@@ -1251,39 +951,29 @@ class ctodas_atenciones extends cTable {
 					if ($ExportPageType == "view") {
 						if ($this->NB0_Atencion->Exportable) $Doc->ExportField($this->NB0_Atencion);
 						if ($this->Serie_Equipo->Exportable) $Doc->ExportField($this->Serie_Equipo);
-						if ($this->Id_Prioridad->Exportable) $Doc->ExportField($this->Id_Prioridad);
 						if ($this->Fecha_Entrada->Exportable) $Doc->ExportField($this->Fecha_Entrada);
 						if ($this->Nombre_Titular->Exportable) $Doc->ExportField($this->Nombre_Titular);
 						if ($this->Dni->Exportable) $Doc->ExportField($this->Dni);
-						if ($this->Id_Curso->Exportable) $Doc->ExportField($this->Id_Curso);
-						if ($this->Id_Division->Exportable) $Doc->ExportField($this->Id_Division);
-						if ($this->Id_Turno->Exportable) $Doc->ExportField($this->Id_Turno);
-						if ($this->Id_Cargo->Exportable) $Doc->ExportField($this->Id_Cargo);
 						if ($this->Usuario_que_cargo->Exportable) $Doc->ExportField($this->Usuario_que_cargo);
+						if ($this->Descripcion_Problema->Exportable) $Doc->ExportField($this->Descripcion_Problema);
 						if ($this->Id_Tipo_Falla->Exportable) $Doc->ExportField($this->Id_Tipo_Falla);
 						if ($this->Id_Problema->Exportable) $Doc->ExportField($this->Id_Problema);
-						if ($this->Descripcion_Problema->Exportable) $Doc->ExportField($this->Descripcion_Problema);
 						if ($this->Id_Tipo_Sol_Problem->Exportable) $Doc->ExportField($this->Id_Tipo_Sol_Problem);
 						if ($this->Id_Estado_Atenc->Exportable) $Doc->ExportField($this->Id_Estado_Atenc);
-						if ($this->Fecha_Actualizacion->Exportable) $Doc->ExportField($this->Fecha_Actualizacion);
+						if ($this->Ultima_Actualizacion->Exportable) $Doc->ExportField($this->Ultima_Actualizacion);
 					} else {
 						if ($this->NB0_Atencion->Exportable) $Doc->ExportField($this->NB0_Atencion);
 						if ($this->Serie_Equipo->Exportable) $Doc->ExportField($this->Serie_Equipo);
-						if ($this->Id_Prioridad->Exportable) $Doc->ExportField($this->Id_Prioridad);
 						if ($this->Fecha_Entrada->Exportable) $Doc->ExportField($this->Fecha_Entrada);
 						if ($this->Nombre_Titular->Exportable) $Doc->ExportField($this->Nombre_Titular);
 						if ($this->Dni->Exportable) $Doc->ExportField($this->Dni);
-						if ($this->Id_Curso->Exportable) $Doc->ExportField($this->Id_Curso);
-						if ($this->Id_Division->Exportable) $Doc->ExportField($this->Id_Division);
-						if ($this->Id_Turno->Exportable) $Doc->ExportField($this->Id_Turno);
-						if ($this->Id_Cargo->Exportable) $Doc->ExportField($this->Id_Cargo);
 						if ($this->Usuario_que_cargo->Exportable) $Doc->ExportField($this->Usuario_que_cargo);
+						if ($this->Descripcion_Problema->Exportable) $Doc->ExportField($this->Descripcion_Problema);
 						if ($this->Id_Tipo_Falla->Exportable) $Doc->ExportField($this->Id_Tipo_Falla);
 						if ($this->Id_Problema->Exportable) $Doc->ExportField($this->Id_Problema);
-						if ($this->Descripcion_Problema->Exportable) $Doc->ExportField($this->Descripcion_Problema);
 						if ($this->Id_Tipo_Sol_Problem->Exportable) $Doc->ExportField($this->Id_Tipo_Sol_Problem);
 						if ($this->Id_Estado_Atenc->Exportable) $Doc->ExportField($this->Id_Estado_Atenc);
-						if ($this->Fecha_Actualizacion->Exportable) $Doc->ExportField($this->Fecha_Actualizacion);
+						if ($this->Ultima_Actualizacion->Exportable) $Doc->ExportField($this->Ultima_Actualizacion);
 					}
 					$Doc->EndExportRow();
 				}

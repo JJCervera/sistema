@@ -10,11 +10,6 @@ class ctitulares2Dequipos2Dtutores extends cTable {
 	var $Apelldio_y_Nombre_Titular;
 	var $Dni;
 	var $Cuil;
-	var $Id_Curso;
-	var $Id_Division;
-	var $Id_Turno;
-	var $Id_Cargo;
-	var $Id_Estado;
 	var $Equipo_Asignado;
 	var $Apellido_y_Nombre_Tutor;
 	var $Dni_Tutor;
@@ -65,46 +60,6 @@ class ctitulares2Dequipos2Dtutores extends cTable {
 		$this->Cuil = new cField('titulares2Dequipos2Dtutores', 'titulares-equipos-tutores', 'x_Cuil', 'Cuil', '`Cuil`', '`Cuil`', 200, -1, FALSE, '`Cuil`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->Cuil->Sortable = TRUE; // Allow sort
 		$this->fields['Cuil'] = &$this->Cuil;
-
-		// Id_Curso
-		$this->Id_Curso = new cField('titulares2Dequipos2Dtutores', 'titulares-equipos-tutores', 'x_Id_Curso', 'Id_Curso', '`Id_Curso`', '`Id_Curso`', 3, -1, FALSE, '`Id_Curso`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->Id_Curso->Sortable = TRUE; // Allow sort
-		$this->Id_Curso->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->Id_Curso->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->Id_Curso->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
-		$this->fields['Id_Curso'] = &$this->Id_Curso;
-
-		// Id_Division
-		$this->Id_Division = new cField('titulares2Dequipos2Dtutores', 'titulares-equipos-tutores', 'x_Id_Division', 'Id_Division', '`Id_Division`', '`Id_Division`', 3, -1, FALSE, '`Id_Division`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->Id_Division->Sortable = TRUE; // Allow sort
-		$this->Id_Division->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->Id_Division->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->Id_Division->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
-		$this->fields['Id_Division'] = &$this->Id_Division;
-
-		// Id_Turno
-		$this->Id_Turno = new cField('titulares2Dequipos2Dtutores', 'titulares-equipos-tutores', 'x_Id_Turno', 'Id_Turno', '`Id_Turno`', '`Id_Turno`', 3, -1, FALSE, '`Id_Turno`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->Id_Turno->Sortable = TRUE; // Allow sort
-		$this->Id_Turno->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->Id_Turno->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->Id_Turno->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
-		$this->fields['Id_Turno'] = &$this->Id_Turno;
-
-		// Id_Cargo
-		$this->Id_Cargo = new cField('titulares2Dequipos2Dtutores', 'titulares-equipos-tutores', 'x_Id_Cargo', 'Id_Cargo', '`Id_Cargo`', '`Id_Cargo`', 3, -1, FALSE, '`Id_Cargo`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->Id_Cargo->Sortable = TRUE; // Allow sort
-		$this->Id_Cargo->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->Id_Cargo->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->Id_Cargo->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
-		$this->fields['Id_Cargo'] = &$this->Id_Cargo;
-
-		// Id_Estado
-		$this->Id_Estado = new cField('titulares2Dequipos2Dtutores', 'titulares-equipos-tutores', 'x_Id_Estado', 'Id_Estado', '`Id_Estado`', '`Id_Estado`', 3, -1, FALSE, '`Id_Estado`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->Id_Estado->Sortable = TRUE; // Allow sort
-		$this->Id_Estado->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->Id_Estado->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->Id_Estado->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
-		$this->fields['Id_Estado'] = &$this->Id_Estado;
 
 		// Equipo Asignado
 		$this->Equipo_Asignado = new cField('titulares2Dequipos2Dtutores', 'titulares-equipos-tutores', 'x_Equipo_Asignado', 'Equipo Asignado', '`Equipo Asignado`', '`Equipo Asignado`', 200, -1, FALSE, '`Equipo Asignado`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
@@ -638,11 +593,6 @@ class ctitulares2Dequipos2Dtutores extends cTable {
 		$this->Apelldio_y_Nombre_Titular->setDbValue($rs->fields('Apelldio y Nombre Titular'));
 		$this->Dni->setDbValue($rs->fields('Dni'));
 		$this->Cuil->setDbValue($rs->fields('Cuil'));
-		$this->Id_Curso->setDbValue($rs->fields('Id_Curso'));
-		$this->Id_Division->setDbValue($rs->fields('Id_Division'));
-		$this->Id_Turno->setDbValue($rs->fields('Id_Turno'));
-		$this->Id_Cargo->setDbValue($rs->fields('Id_Cargo'));
-		$this->Id_Estado->setDbValue($rs->fields('Id_Estado'));
 		$this->Equipo_Asignado->setDbValue($rs->fields('Equipo Asignado'));
 		$this->Apellido_y_Nombre_Tutor->setDbValue($rs->fields('Apellido y Nombre Tutor'));
 		$this->Dni_Tutor->setDbValue($rs->fields('Dni Tutor'));
@@ -660,11 +610,6 @@ class ctitulares2Dequipos2Dtutores extends cTable {
 		// Apelldio y Nombre Titular
 		// Dni
 		// Cuil
-		// Id_Curso
-		// Id_Division
-		// Id_Turno
-		// Id_Cargo
-		// Id_Estado
 		// Equipo Asignado
 		// Apellido y Nombre Tutor
 		// Dni Tutor
@@ -681,121 +626,6 @@ class ctitulares2Dequipos2Dtutores extends cTable {
 		// Cuil
 		$this->Cuil->ViewValue = $this->Cuil->CurrentValue;
 		$this->Cuil->ViewCustomAttributes = "";
-
-		// Id_Curso
-		if (strval($this->Id_Curso->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Curso`" . ew_SearchString("=", $this->Id_Curso->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Curso`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cursos`";
-		$sWhereWrk = "";
-		$this->Id_Curso->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Curso, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Curso->ViewValue = $this->Id_Curso->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Curso->ViewValue = $this->Id_Curso->CurrentValue;
-			}
-		} else {
-			$this->Id_Curso->ViewValue = NULL;
-		}
-		$this->Id_Curso->ViewCustomAttributes = "";
-
-		// Id_Division
-		if (strval($this->Id_Division->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Division`" . ew_SearchString("=", $this->Id_Division->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Division`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `division`";
-		$sWhereWrk = "";
-		$this->Id_Division->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Division, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Division->ViewValue = $this->Id_Division->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Division->ViewValue = $this->Id_Division->CurrentValue;
-			}
-		} else {
-			$this->Id_Division->ViewValue = NULL;
-		}
-		$this->Id_Division->ViewCustomAttributes = "";
-
-		// Id_Turno
-		if (strval($this->Id_Turno->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Turno`" . ew_SearchString("=", $this->Id_Turno->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Turno`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `turno`";
-		$sWhereWrk = "";
-		$this->Id_Turno->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Turno, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Turno->ViewValue = $this->Id_Turno->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Turno->ViewValue = $this->Id_Turno->CurrentValue;
-			}
-		} else {
-			$this->Id_Turno->ViewValue = NULL;
-		}
-		$this->Id_Turno->ViewCustomAttributes = "";
-
-		// Id_Cargo
-		if (strval($this->Id_Cargo->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Cargo`" . ew_SearchString("=", $this->Id_Cargo->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Cargo`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cargo_persona`";
-		$sWhereWrk = "";
-		$this->Id_Cargo->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Cargo->ViewValue = $this->Id_Cargo->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
-			}
-		} else {
-			$this->Id_Cargo->ViewValue = NULL;
-		}
-		$this->Id_Cargo->ViewCustomAttributes = "";
-
-		// Id_Estado
-		if (strval($this->Id_Estado->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Estado`" . ew_SearchString("=", $this->Id_Estado->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Estado`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `estado_persona`";
-		$sWhereWrk = "";
-		$this->Id_Estado->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Estado, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Estado->ViewValue = $this->Id_Estado->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Estado->ViewValue = $this->Id_Estado->CurrentValue;
-			}
-		} else {
-			$this->Id_Estado->ViewValue = NULL;
-		}
-		$this->Id_Estado->ViewCustomAttributes = "";
 
 		// Equipo Asignado
 		$this->Equipo_Asignado->ViewValue = $this->Equipo_Asignado->CurrentValue;
@@ -848,31 +678,6 @@ class ctitulares2Dequipos2Dtutores extends cTable {
 		$this->Cuil->HrefValue = "";
 		$this->Cuil->TooltipValue = "";
 
-		// Id_Curso
-		$this->Id_Curso->LinkCustomAttributes = "";
-		$this->Id_Curso->HrefValue = "";
-		$this->Id_Curso->TooltipValue = "";
-
-		// Id_Division
-		$this->Id_Division->LinkCustomAttributes = "";
-		$this->Id_Division->HrefValue = "";
-		$this->Id_Division->TooltipValue = "";
-
-		// Id_Turno
-		$this->Id_Turno->LinkCustomAttributes = "";
-		$this->Id_Turno->HrefValue = "";
-		$this->Id_Turno->TooltipValue = "";
-
-		// Id_Cargo
-		$this->Id_Cargo->LinkCustomAttributes = "";
-		$this->Id_Cargo->HrefValue = "";
-		$this->Id_Cargo->TooltipValue = "";
-
-		// Id_Estado
-		$this->Id_Estado->LinkCustomAttributes = "";
-		$this->Id_Estado->HrefValue = "";
-		$this->Id_Estado->TooltipValue = "";
-
 		// Equipo Asignado
 		$this->Equipo_Asignado->LinkCustomAttributes = "";
 		$this->Equipo_Asignado->HrefValue = "";
@@ -921,26 +726,6 @@ class ctitulares2Dequipos2Dtutores extends cTable {
 		$this->Cuil->EditCustomAttributes = "";
 		$this->Cuil->EditValue = $this->Cuil->CurrentValue;
 		$this->Cuil->PlaceHolder = ew_RemoveHtml($this->Cuil->FldCaption());
-
-		// Id_Curso
-		$this->Id_Curso->EditAttrs["class"] = "form-control";
-		$this->Id_Curso->EditCustomAttributes = "";
-
-		// Id_Division
-		$this->Id_Division->EditAttrs["class"] = "form-control";
-		$this->Id_Division->EditCustomAttributes = "";
-
-		// Id_Turno
-		$this->Id_Turno->EditAttrs["class"] = "form-control";
-		$this->Id_Turno->EditCustomAttributes = "";
-
-		// Id_Cargo
-		$this->Id_Cargo->EditAttrs["class"] = "form-control";
-		$this->Id_Cargo->EditCustomAttributes = "";
-
-		// Id_Estado
-		$this->Id_Estado->EditAttrs["class"] = "form-control";
-		$this->Id_Estado->EditCustomAttributes = "";
 
 		// Equipo Asignado
 		$this->Equipo_Asignado->EditAttrs["class"] = "form-control";
@@ -996,11 +781,6 @@ class ctitulares2Dequipos2Dtutores extends cTable {
 					if ($this->Apelldio_y_Nombre_Titular->Exportable) $Doc->ExportCaption($this->Apelldio_y_Nombre_Titular);
 					if ($this->Dni->Exportable) $Doc->ExportCaption($this->Dni);
 					if ($this->Cuil->Exportable) $Doc->ExportCaption($this->Cuil);
-					if ($this->Id_Curso->Exportable) $Doc->ExportCaption($this->Id_Curso);
-					if ($this->Id_Division->Exportable) $Doc->ExportCaption($this->Id_Division);
-					if ($this->Id_Turno->Exportable) $Doc->ExportCaption($this->Id_Turno);
-					if ($this->Id_Cargo->Exportable) $Doc->ExportCaption($this->Id_Cargo);
-					if ($this->Id_Estado->Exportable) $Doc->ExportCaption($this->Id_Estado);
 					if ($this->Equipo_Asignado->Exportable) $Doc->ExportCaption($this->Equipo_Asignado);
 					if ($this->Apellido_y_Nombre_Tutor->Exportable) $Doc->ExportCaption($this->Apellido_y_Nombre_Tutor);
 					if ($this->Dni_Tutor->Exportable) $Doc->ExportCaption($this->Dni_Tutor);
@@ -1009,11 +789,6 @@ class ctitulares2Dequipos2Dtutores extends cTable {
 					if ($this->Apelldio_y_Nombre_Titular->Exportable) $Doc->ExportCaption($this->Apelldio_y_Nombre_Titular);
 					if ($this->Dni->Exportable) $Doc->ExportCaption($this->Dni);
 					if ($this->Cuil->Exportable) $Doc->ExportCaption($this->Cuil);
-					if ($this->Id_Curso->Exportable) $Doc->ExportCaption($this->Id_Curso);
-					if ($this->Id_Division->Exportable) $Doc->ExportCaption($this->Id_Division);
-					if ($this->Id_Turno->Exportable) $Doc->ExportCaption($this->Id_Turno);
-					if ($this->Id_Cargo->Exportable) $Doc->ExportCaption($this->Id_Cargo);
-					if ($this->Id_Estado->Exportable) $Doc->ExportCaption($this->Id_Estado);
 					if ($this->Equipo_Asignado->Exportable) $Doc->ExportCaption($this->Equipo_Asignado);
 					if ($this->Apellido_y_Nombre_Tutor->Exportable) $Doc->ExportCaption($this->Apellido_y_Nombre_Tutor);
 					if ($this->Dni_Tutor->Exportable) $Doc->ExportCaption($this->Dni_Tutor);
@@ -1052,11 +827,6 @@ class ctitulares2Dequipos2Dtutores extends cTable {
 						if ($this->Apelldio_y_Nombre_Titular->Exportable) $Doc->ExportField($this->Apelldio_y_Nombre_Titular);
 						if ($this->Dni->Exportable) $Doc->ExportField($this->Dni);
 						if ($this->Cuil->Exportable) $Doc->ExportField($this->Cuil);
-						if ($this->Id_Curso->Exportable) $Doc->ExportField($this->Id_Curso);
-						if ($this->Id_Division->Exportable) $Doc->ExportField($this->Id_Division);
-						if ($this->Id_Turno->Exportable) $Doc->ExportField($this->Id_Turno);
-						if ($this->Id_Cargo->Exportable) $Doc->ExportField($this->Id_Cargo);
-						if ($this->Id_Estado->Exportable) $Doc->ExportField($this->Id_Estado);
 						if ($this->Equipo_Asignado->Exportable) $Doc->ExportField($this->Equipo_Asignado);
 						if ($this->Apellido_y_Nombre_Tutor->Exportable) $Doc->ExportField($this->Apellido_y_Nombre_Tutor);
 						if ($this->Dni_Tutor->Exportable) $Doc->ExportField($this->Dni_Tutor);
@@ -1065,11 +835,6 @@ class ctitulares2Dequipos2Dtutores extends cTable {
 						if ($this->Apelldio_y_Nombre_Titular->Exportable) $Doc->ExportField($this->Apelldio_y_Nombre_Titular);
 						if ($this->Dni->Exportable) $Doc->ExportField($this->Dni);
 						if ($this->Cuil->Exportable) $Doc->ExportField($this->Cuil);
-						if ($this->Id_Curso->Exportable) $Doc->ExportField($this->Id_Curso);
-						if ($this->Id_Division->Exportable) $Doc->ExportField($this->Id_Division);
-						if ($this->Id_Turno->Exportable) $Doc->ExportField($this->Id_Turno);
-						if ($this->Id_Cargo->Exportable) $Doc->ExportField($this->Id_Cargo);
-						if ($this->Id_Estado->Exportable) $Doc->ExportField($this->Id_Estado);
 						if ($this->Equipo_Asignado->Exportable) $Doc->ExportField($this->Equipo_Asignado);
 						if ($this->Apellido_y_Nombre_Tutor->Exportable) $Doc->ExportField($this->Apellido_y_Nombre_Tutor);
 						if ($this->Dni_Tutor->Exportable) $Doc->ExportField($this->Dni_Tutor);

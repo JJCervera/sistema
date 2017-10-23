@@ -7,14 +7,16 @@ $estado_equipos_porcurso = NULL;
 // Table class for estado_equipos_porcurso
 //
 class cestado_equipos_porcurso extends cTable {
-	var $Nombre_Titular;
+	var $Apellidos_Nombres;
 	var $Dni;
-	var $curso;
-	var $division;
-	var $turno;
-	var $Equipo;
-	var $Estado;
-	var $ultima_actualiz_;
+	var $Id_Curso;
+	var $Id_Division;
+	var $Id_Turno;
+	var $Id_Cargo;
+	var $Id_Estado;
+	var $NroSerie;
+	var $Id_Sit_Estado;
+	var $Fecha_Actualizacion;
 
 	//
 	// Table class constructor
@@ -46,10 +48,10 @@ class cestado_equipos_porcurso extends cTable {
 		$this->UserIDAllowSecurity = 0; // User ID Allow
 		$this->BasicSearch = new cBasicSearch($this->TableVar);
 
-		// Nombre Titular
-		$this->Nombre_Titular = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_Nombre_Titular', 'Nombre Titular', '`Nombre Titular`', '`Nombre Titular`', 201, -1, FALSE, '`Nombre Titular`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->Nombre_Titular->Sortable = TRUE; // Allow sort
-		$this->fields['Nombre Titular'] = &$this->Nombre_Titular;
+		// Apellidos_Nombres
+		$this->Apellidos_Nombres = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_Apellidos_Nombres', 'Apellidos_Nombres', '`Apellidos_Nombres`', '`Apellidos_Nombres`', 201, -1, FALSE, '`Apellidos_Nombres`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXTAREA');
+		$this->Apellidos_Nombres->Sortable = TRUE; // Allow sort
+		$this->fields['Apellidos_Nombres'] = &$this->Apellidos_Nombres;
 
 		// Dni
 		$this->Dni = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_Dni', 'Dni', '`Dni`', '`Dni`', 3, -1, FALSE, '`Dni`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
@@ -57,43 +59,64 @@ class cestado_equipos_porcurso extends cTable {
 		$this->Dni->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
 		$this->fields['Dni'] = &$this->Dni;
 
-		// curso
-		$this->curso = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_curso', 'curso', '`curso`', '`curso`', 200, -1, FALSE, '`curso`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->curso->Sortable = TRUE; // Allow sort
-		$this->curso->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->curso->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->fields['curso'] = &$this->curso;
+		// Id_Curso
+		$this->Id_Curso = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_Id_Curso', 'Id_Curso', '`Id_Curso`', '`Id_Curso`', 3, -1, FALSE, '`Id_Curso`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->Id_Curso->Sortable = TRUE; // Allow sort
+		$this->Id_Curso->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->Id_Curso->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
+		$this->Id_Curso->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
+		$this->fields['Id_Curso'] = &$this->Id_Curso;
 
-		// division
-		$this->division = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_division', 'division', '`division`', '`division`', 200, -1, FALSE, '`division`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->division->Sortable = TRUE; // Allow sort
-		$this->division->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->division->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->fields['division'] = &$this->division;
+		// Id_Division
+		$this->Id_Division = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_Id_Division', 'Id_Division', '`Id_Division`', '`Id_Division`', 3, -1, FALSE, '`Id_Division`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->Id_Division->Sortable = TRUE; // Allow sort
+		$this->Id_Division->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->Id_Division->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
+		$this->Id_Division->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
+		$this->fields['Id_Division'] = &$this->Id_Division;
 
-		// turno
-		$this->turno = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_turno', 'turno', '`turno`', '`turno`', 200, -1, FALSE, '`turno`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->turno->Sortable = TRUE; // Allow sort
-		$this->turno->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->turno->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->fields['turno'] = &$this->turno;
+		// Id_Turno
+		$this->Id_Turno = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_Id_Turno', 'Id_Turno', '`Id_Turno`', '`Id_Turno`', 3, -1, FALSE, '`Id_Turno`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->Id_Turno->Sortable = TRUE; // Allow sort
+		$this->Id_Turno->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->Id_Turno->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
+		$this->Id_Turno->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
+		$this->fields['Id_Turno'] = &$this->Id_Turno;
 
-		// Equipo
-		$this->Equipo = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_Equipo', 'Equipo', '`Equipo`', '`Equipo`', 200, -1, FALSE, '`Equipo`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->Equipo->Sortable = TRUE; // Allow sort
-		$this->fields['Equipo'] = &$this->Equipo;
+		// Id_Cargo
+		$this->Id_Cargo = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_Id_Cargo', 'Id_Cargo', '`Id_Cargo`', '`Id_Cargo`', 3, -1, FALSE, '`Id_Cargo`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->Id_Cargo->Sortable = TRUE; // Allow sort
+		$this->Id_Cargo->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->Id_Cargo->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
+		$this->Id_Cargo->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
+		$this->fields['Id_Cargo'] = &$this->Id_Cargo;
 
-		// Estado
-		$this->Estado = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_Estado', 'Estado', '`Estado`', '`Estado`', 200, -1, FALSE, '`Estado`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->Estado->Sortable = TRUE; // Allow sort
-		$this->Estado->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->Estado->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
-		$this->fields['Estado'] = &$this->Estado;
+		// Id_Estado
+		$this->Id_Estado = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_Id_Estado', 'Id_Estado', '`Id_Estado`', '`Id_Estado`', 3, -1, FALSE, '`Id_Estado`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->Id_Estado->Sortable = TRUE; // Allow sort
+		$this->Id_Estado->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->Id_Estado->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
+		$this->Id_Estado->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
+		$this->fields['Id_Estado'] = &$this->Id_Estado;
 
-		// ultima actualiz.
-		$this->ultima_actualiz_ = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_ultima_actualiz_', 'ultima actualiz.', '`ultima actualiz.`', '`ultima actualiz.`', 200, -1, FALSE, '`ultima actualiz.`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->ultima_actualiz_->Sortable = TRUE; // Allow sort
-		$this->fields['ultima actualiz.'] = &$this->ultima_actualiz_;
+		// NroSerie
+		$this->NroSerie = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_NroSerie', 'NroSerie', '`NroSerie`', '`NroSerie`', 200, -1, FALSE, '`NroSerie`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->NroSerie->Sortable = TRUE; // Allow sort
+		$this->fields['NroSerie'] = &$this->NroSerie;
+
+		// Id_Sit_Estado
+		$this->Id_Sit_Estado = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_Id_Sit_Estado', 'Id_Sit_Estado', '`Id_Sit_Estado`', '`Id_Sit_Estado`', 3, -1, FALSE, '`Id_Sit_Estado`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->Id_Sit_Estado->Sortable = TRUE; // Allow sort
+		$this->Id_Sit_Estado->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->Id_Sit_Estado->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
+		$this->Id_Sit_Estado->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
+		$this->fields['Id_Sit_Estado'] = &$this->Id_Sit_Estado;
+
+		// Fecha_Actualizacion
+		$this->Fecha_Actualizacion = new cField('estado_equipos_porcurso', 'estado_equipos_porcurso', 'x_Fecha_Actualizacion', 'Fecha_Actualizacion', '`Fecha_Actualizacion`', 'DATE_FORMAT(`Fecha_Actualizacion`, \'\')', 133, 0, FALSE, '`Fecha_Actualizacion`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->Fecha_Actualizacion->Sortable = TRUE; // Allow sort
+		$this->Fecha_Actualizacion->FldDefaultErrMsg = str_replace("%s", $GLOBALS["EW_DATE_FORMAT"], $Language->Phrase("IncorrectDate"));
+		$this->fields['Fecha_Actualizacion'] = &$this->Fecha_Actualizacion;
 	}
 
 	// Set Field Visibility
@@ -191,7 +214,7 @@ class cestado_equipos_porcurso extends cTable {
 	var $_SqlOrderBy = "";
 
 	function getSqlOrderBy() { // Order By
-		return ($this->_SqlOrderBy <> "") ? $this->_SqlOrderBy : "`Nombre Titular` ASC";
+		return ($this->_SqlOrderBy <> "") ? $this->_SqlOrderBy : "";
 	}
 
 	function SqlOrderBy() { // For backward compatibility
@@ -378,8 +401,8 @@ class cestado_equipos_porcurso extends cTable {
 		if ($rs) {
 			if (array_key_exists('Dni', $rs))
 				ew_AddFilter($where, ew_QuotedName('Dni', $this->DBID) . '=' . ew_QuotedValue($rs['Dni'], $this->Dni->FldDataType, $this->DBID));
-			if (array_key_exists('Equipo', $rs))
-				ew_AddFilter($where, ew_QuotedName('Equipo', $this->DBID) . '=' . ew_QuotedValue($rs['Equipo'], $this->Equipo->FldDataType, $this->DBID));
+			if (array_key_exists('NroSerie', $rs))
+				ew_AddFilter($where, ew_QuotedName('NroSerie', $this->DBID) . '=' . ew_QuotedValue($rs['NroSerie'], $this->NroSerie->FldDataType, $this->DBID));
 		}
 		$filter = ($curfilter) ? $this->CurrentFilter : "";
 		ew_AddFilter($filter, $where);
@@ -398,7 +421,7 @@ class cestado_equipos_porcurso extends cTable {
 
 	// Key filter WHERE clause
 	function SqlKeyFilter() {
-		return "`Dni` = @Dni@ AND `Equipo` = '@Equipo@'";
+		return "`Dni` = @Dni@ AND `NroSerie` = '@NroSerie@'";
 	}
 
 	// Key filter
@@ -407,7 +430,7 @@ class cestado_equipos_porcurso extends cTable {
 		if (!is_numeric($this->Dni->CurrentValue))
 			$sKeyFilter = "0=1"; // Invalid key
 		$sKeyFilter = str_replace("@Dni@", ew_AdjustSql($this->Dni->CurrentValue, $this->DBID), $sKeyFilter); // Replace key value
-		$sKeyFilter = str_replace("@Equipo@", ew_AdjustSql($this->Equipo->CurrentValue, $this->DBID), $sKeyFilter); // Replace key value
+		$sKeyFilter = str_replace("@NroSerie@", ew_AdjustSql($this->NroSerie->CurrentValue, $this->DBID), $sKeyFilter); // Replace key value
 		return $sKeyFilter;
 	}
 
@@ -489,7 +512,7 @@ class cestado_equipos_porcurso extends cTable {
 	function KeyToJson() {
 		$json = "";
 		$json .= "Dni:" . ew_VarToJson($this->Dni->CurrentValue, "number", "'");
-		$json .= ",Equipo:" . ew_VarToJson($this->Equipo->CurrentValue, "string", "'");
+		$json .= ",NroSerie:" . ew_VarToJson($this->NroSerie->CurrentValue, "string", "'");
 		return "{" . $json . "}";
 	}
 
@@ -502,8 +525,8 @@ class cestado_equipos_porcurso extends cTable {
 		} else {
 			return "javascript:ew_Alert(ewLanguage.Phrase('InvalidRecord'));";
 		}
-		if (!is_null($this->Equipo->CurrentValue)) {
-			$sUrl .= "&Equipo=" . urlencode($this->Equipo->CurrentValue);
+		if (!is_null($this->NroSerie->CurrentValue)) {
+			$sUrl .= "&NroSerie=" . urlencode($this->NroSerie->CurrentValue);
 		} else {
 			return "javascript:ew_Alert(ewLanguage.Phrase('InvalidRecord'));";
 		}
@@ -546,10 +569,10 @@ class cestado_equipos_porcurso extends cTable {
 				$arKey[] = ew_StripSlashes($_GET["Dni"]);
 			else
 				$arKeys = NULL; // Do not setup
-			if ($isPost && isset($_POST["Equipo"]))
-				$arKey[] = ew_StripSlashes($_POST["Equipo"]);
-			elseif (isset($_GET["Equipo"]))
-				$arKey[] = ew_StripSlashes($_GET["Equipo"]);
+			if ($isPost && isset($_POST["NroSerie"]))
+				$arKey[] = ew_StripSlashes($_POST["NroSerie"]);
+			elseif (isset($_GET["NroSerie"]))
+				$arKey[] = ew_StripSlashes($_GET["NroSerie"]);
 			else
 				$arKeys = NULL; // Do not setup
 			if (is_array($arKeys)) $arKeys[] = $arKey;
@@ -578,7 +601,7 @@ class cestado_equipos_porcurso extends cTable {
 		foreach ($arKeys as $key) {
 			if ($sKeyFilter <> "") $sKeyFilter .= " OR ";
 			$this->Dni->CurrentValue = $key[0];
-			$this->Equipo->CurrentValue = $key[1];
+			$this->NroSerie->CurrentValue = $key[1];
 			$sKeyFilter .= "(" . $this->KeyFilter() . ")";
 		}
 		return $sKeyFilter;
@@ -599,14 +622,16 @@ class cestado_equipos_porcurso extends cTable {
 
 	// Load row values from recordset
 	function LoadListRowValues(&$rs) {
-		$this->Nombre_Titular->setDbValue($rs->fields('Nombre Titular'));
+		$this->Apellidos_Nombres->setDbValue($rs->fields('Apellidos_Nombres'));
 		$this->Dni->setDbValue($rs->fields('Dni'));
-		$this->curso->setDbValue($rs->fields('curso'));
-		$this->division->setDbValue($rs->fields('division'));
-		$this->turno->setDbValue($rs->fields('turno'));
-		$this->Equipo->setDbValue($rs->fields('Equipo'));
-		$this->Estado->setDbValue($rs->fields('Estado'));
-		$this->ultima_actualiz_->setDbValue($rs->fields('ultima actualiz.'));
+		$this->Id_Curso->setDbValue($rs->fields('Id_Curso'));
+		$this->Id_Division->setDbValue($rs->fields('Id_Division'));
+		$this->Id_Turno->setDbValue($rs->fields('Id_Turno'));
+		$this->Id_Cargo->setDbValue($rs->fields('Id_Cargo'));
+		$this->Id_Estado->setDbValue($rs->fields('Id_Estado'));
+		$this->NroSerie->setDbValue($rs->fields('NroSerie'));
+		$this->Id_Sit_Estado->setDbValue($rs->fields('Id_Sit_Estado'));
+		$this->Fecha_Actualizacion->setDbValue($rs->fields('Fecha_Actualizacion'));
 	}
 
 	// Render list row values
@@ -617,162 +642,221 @@ class cestado_equipos_porcurso extends cTable {
 		$this->Row_Rendering();
 
    // Common render codes
-		// Nombre Titular
+		// Apellidos_Nombres
 		// Dni
-		// curso
-		// division
-		// turno
-		// Equipo
-		// Estado
-		// ultima actualiz.
-		// Nombre Titular
+		// Id_Curso
+		// Id_Division
+		// Id_Turno
+		// Id_Cargo
+		// Id_Estado
+		// NroSerie
+		// Id_Sit_Estado
+		// Fecha_Actualizacion
+		// Apellidos_Nombres
 
-		$this->Nombre_Titular->ViewValue = $this->Nombre_Titular->CurrentValue;
-		$this->Nombre_Titular->ViewCustomAttributes = "";
+		$this->Apellidos_Nombres->ViewValue = $this->Apellidos_Nombres->CurrentValue;
+		$this->Apellidos_Nombres->ViewCustomAttributes = "";
 
 		// Dni
 		$this->Dni->ViewValue = $this->Dni->CurrentValue;
 		$this->Dni->ViewCustomAttributes = "";
 
-		// curso
-		if (strval($this->curso->CurrentValue) <> "") {
-			$sFilterWrk = "`Descripcion`" . ew_SearchString("=", $this->curso->CurrentValue, EW_DATATYPE_STRING, "");
-		$sSqlWrk = "SELECT `Descripcion`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cursos`";
+		// Id_Curso
+		if (strval($this->Id_Curso->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Curso`" . ew_SearchString("=", $this->Id_Curso->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Curso`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cursos`";
 		$sWhereWrk = "";
-		$this->curso->LookupFilters = array();
+		$this->Id_Curso->LookupFilters = array();
 		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->curso, $sWhereWrk); // Call Lookup selecting
+		$this->Lookup_Selecting($this->Id_Curso, $sWhereWrk); // Call Lookup selecting
 		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
 			$rswrk = Conn()->Execute($sSqlWrk);
 			if ($rswrk && !$rswrk->EOF) { // Lookup values found
 				$arwrk = array();
 				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->curso->ViewValue = $this->curso->DisplayValue($arwrk);
+				$this->Id_Curso->ViewValue = $this->Id_Curso->DisplayValue($arwrk);
 				$rswrk->Close();
 			} else {
-				$this->curso->ViewValue = $this->curso->CurrentValue;
+				$this->Id_Curso->ViewValue = $this->Id_Curso->CurrentValue;
 			}
 		} else {
-			$this->curso->ViewValue = NULL;
+			$this->Id_Curso->ViewValue = NULL;
 		}
-		$this->curso->ViewCustomAttributes = "";
+		$this->Id_Curso->ViewCustomAttributes = "";
 
-		// division
-		if (strval($this->division->CurrentValue) <> "") {
-			$sFilterWrk = "`Descripcion`" . ew_SearchString("=", $this->division->CurrentValue, EW_DATATYPE_STRING, "");
-		$sSqlWrk = "SELECT `Descripcion`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `division`";
+		// Id_Division
+		if (strval($this->Id_Division->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Division`" . ew_SearchString("=", $this->Id_Division->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Division`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `division`";
 		$sWhereWrk = "";
-		$this->division->LookupFilters = array();
+		$this->Id_Division->LookupFilters = array();
 		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->division, $sWhereWrk); // Call Lookup selecting
+		$this->Lookup_Selecting($this->Id_Division, $sWhereWrk); // Call Lookup selecting
 		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
 			$rswrk = Conn()->Execute($sSqlWrk);
 			if ($rswrk && !$rswrk->EOF) { // Lookup values found
 				$arwrk = array();
 				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->division->ViewValue = $this->division->DisplayValue($arwrk);
+				$this->Id_Division->ViewValue = $this->Id_Division->DisplayValue($arwrk);
 				$rswrk->Close();
 			} else {
-				$this->division->ViewValue = $this->division->CurrentValue;
+				$this->Id_Division->ViewValue = $this->Id_Division->CurrentValue;
 			}
 		} else {
-			$this->division->ViewValue = NULL;
+			$this->Id_Division->ViewValue = NULL;
 		}
-		$this->division->ViewCustomAttributes = "";
+		$this->Id_Division->ViewCustomAttributes = "";
 
-		// turno
-		if (strval($this->turno->CurrentValue) <> "") {
-			$sFilterWrk = "`Descripcion`" . ew_SearchString("=", $this->turno->CurrentValue, EW_DATATYPE_STRING, "");
-		$sSqlWrk = "SELECT `Descripcion`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `turno`";
+		// Id_Turno
+		if (strval($this->Id_Turno->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Turno`" . ew_SearchString("=", $this->Id_Turno->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Turno`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `turno`";
 		$sWhereWrk = "";
-		$this->turno->LookupFilters = array();
+		$this->Id_Turno->LookupFilters = array();
 		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->turno, $sWhereWrk); // Call Lookup selecting
+		$this->Lookup_Selecting($this->Id_Turno, $sWhereWrk); // Call Lookup selecting
 		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
 			$rswrk = Conn()->Execute($sSqlWrk);
 			if ($rswrk && !$rswrk->EOF) { // Lookup values found
 				$arwrk = array();
 				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->turno->ViewValue = $this->turno->DisplayValue($arwrk);
+				$this->Id_Turno->ViewValue = $this->Id_Turno->DisplayValue($arwrk);
 				$rswrk->Close();
 			} else {
-				$this->turno->ViewValue = $this->turno->CurrentValue;
+				$this->Id_Turno->ViewValue = $this->Id_Turno->CurrentValue;
 			}
 		} else {
-			$this->turno->ViewValue = NULL;
+			$this->Id_Turno->ViewValue = NULL;
 		}
-		$this->turno->ViewCustomAttributes = "";
+		$this->Id_Turno->ViewCustomAttributes = "";
 
-		// Equipo
-		$this->Equipo->ViewValue = $this->Equipo->CurrentValue;
-		$this->Equipo->ViewCustomAttributes = "";
-
-		// Estado
-		if (strval($this->Estado->CurrentValue) <> "") {
-			$sFilterWrk = "`Descripcion`" . ew_SearchString("=", $this->Estado->CurrentValue, EW_DATATYPE_STRING, "");
-		$sSqlWrk = "SELECT `Descripcion`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `situacion_estado`";
+		// Id_Cargo
+		if (strval($this->Id_Cargo->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Cargo`" . ew_SearchString("=", $this->Id_Cargo->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Cargo`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cargo_persona`";
 		$sWhereWrk = "";
-		$this->Estado->LookupFilters = array();
+		$this->Id_Cargo->LookupFilters = array();
 		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Estado, $sWhereWrk); // Call Lookup selecting
+		$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
 		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
 			$rswrk = Conn()->Execute($sSqlWrk);
 			if ($rswrk && !$rswrk->EOF) { // Lookup values found
 				$arwrk = array();
 				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Estado->ViewValue = $this->Estado->DisplayValue($arwrk);
+				$this->Id_Cargo->ViewValue = $this->Id_Cargo->DisplayValue($arwrk);
 				$rswrk->Close();
 			} else {
-				$this->Estado->ViewValue = $this->Estado->CurrentValue;
+				$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
 			}
 		} else {
-			$this->Estado->ViewValue = NULL;
+			$this->Id_Cargo->ViewValue = NULL;
 		}
-		$this->Estado->ViewCustomAttributes = "";
+		$this->Id_Cargo->ViewCustomAttributes = "";
 
-		// ultima actualiz.
-		$this->ultima_actualiz_->ViewValue = $this->ultima_actualiz_->CurrentValue;
-		$this->ultima_actualiz_->ViewCustomAttributes = "";
+		// Id_Estado
+		if (strval($this->Id_Estado->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Estado`" . ew_SearchString("=", $this->Id_Estado->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Estado`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `estado_persona`";
+		$sWhereWrk = "";
+		$this->Id_Estado->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Estado, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Estado->ViewValue = $this->Id_Estado->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Estado->ViewValue = $this->Id_Estado->CurrentValue;
+			}
+		} else {
+			$this->Id_Estado->ViewValue = NULL;
+		}
+		$this->Id_Estado->ViewCustomAttributes = "";
 
-		// Nombre Titular
-		$this->Nombre_Titular->LinkCustomAttributes = "";
-		$this->Nombre_Titular->HrefValue = "";
-		$this->Nombre_Titular->TooltipValue = "";
+		// NroSerie
+		$this->NroSerie->ViewValue = $this->NroSerie->CurrentValue;
+		$this->NroSerie->ViewCustomAttributes = "";
+
+		// Id_Sit_Estado
+		if (strval($this->Id_Sit_Estado->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Sit_Estado`" . ew_SearchString("=", $this->Id_Sit_Estado->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Sit_Estado`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `situacion_estado`";
+		$sWhereWrk = "";
+		$this->Id_Sit_Estado->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Sit_Estado, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Sit_Estado->ViewValue = $this->Id_Sit_Estado->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Sit_Estado->ViewValue = $this->Id_Sit_Estado->CurrentValue;
+			}
+		} else {
+			$this->Id_Sit_Estado->ViewValue = NULL;
+		}
+		$this->Id_Sit_Estado->ViewCustomAttributes = "";
+
+		// Fecha_Actualizacion
+		$this->Fecha_Actualizacion->ViewValue = $this->Fecha_Actualizacion->CurrentValue;
+		$this->Fecha_Actualizacion->ViewValue = ew_FormatDateTime($this->Fecha_Actualizacion->ViewValue, 0);
+		$this->Fecha_Actualizacion->ViewCustomAttributes = "";
+
+		// Apellidos_Nombres
+		$this->Apellidos_Nombres->LinkCustomAttributes = "";
+		$this->Apellidos_Nombres->HrefValue = "";
+		$this->Apellidos_Nombres->TooltipValue = "";
 
 		// Dni
 		$this->Dni->LinkCustomAttributes = "";
 		$this->Dni->HrefValue = "";
 		$this->Dni->TooltipValue = "";
 
-		// curso
-		$this->curso->LinkCustomAttributes = "";
-		$this->curso->HrefValue = "";
-		$this->curso->TooltipValue = "";
+		// Id_Curso
+		$this->Id_Curso->LinkCustomAttributes = "";
+		$this->Id_Curso->HrefValue = "";
+		$this->Id_Curso->TooltipValue = "";
 
-		// division
-		$this->division->LinkCustomAttributes = "";
-		$this->division->HrefValue = "";
-		$this->division->TooltipValue = "";
+		// Id_Division
+		$this->Id_Division->LinkCustomAttributes = "";
+		$this->Id_Division->HrefValue = "";
+		$this->Id_Division->TooltipValue = "";
 
-		// turno
-		$this->turno->LinkCustomAttributes = "";
-		$this->turno->HrefValue = "";
-		$this->turno->TooltipValue = "";
+		// Id_Turno
+		$this->Id_Turno->LinkCustomAttributes = "";
+		$this->Id_Turno->HrefValue = "";
+		$this->Id_Turno->TooltipValue = "";
 
-		// Equipo
-		$this->Equipo->LinkCustomAttributes = "";
-		$this->Equipo->HrefValue = "";
-		$this->Equipo->TooltipValue = "";
+		// Id_Cargo
+		$this->Id_Cargo->LinkCustomAttributes = "";
+		$this->Id_Cargo->HrefValue = "";
+		$this->Id_Cargo->TooltipValue = "";
 
-		// Estado
-		$this->Estado->LinkCustomAttributes = "";
-		$this->Estado->HrefValue = "";
-		$this->Estado->TooltipValue = "";
+		// Id_Estado
+		$this->Id_Estado->LinkCustomAttributes = "";
+		$this->Id_Estado->HrefValue = "";
+		$this->Id_Estado->TooltipValue = "";
 
-		// ultima actualiz.
-		$this->ultima_actualiz_->LinkCustomAttributes = "";
-		$this->ultima_actualiz_->HrefValue = "";
-		$this->ultima_actualiz_->TooltipValue = "";
+		// NroSerie
+		$this->NroSerie->LinkCustomAttributes = "";
+		$this->NroSerie->HrefValue = "";
+		$this->NroSerie->TooltipValue = "";
+
+		// Id_Sit_Estado
+		$this->Id_Sit_Estado->LinkCustomAttributes = "";
+		$this->Id_Sit_Estado->HrefValue = "";
+		$this->Id_Sit_Estado->TooltipValue = "";
+
+		// Fecha_Actualizacion
+		$this->Fecha_Actualizacion->LinkCustomAttributes = "";
+		$this->Fecha_Actualizacion->HrefValue = "";
+		$this->Fecha_Actualizacion->TooltipValue = "";
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -785,11 +869,11 @@ class cestado_equipos_porcurso extends cTable {
 		// Call Row Rendering event
 		$this->Row_Rendering();
 
-		// Nombre Titular
-		$this->Nombre_Titular->EditAttrs["class"] = "form-control";
-		$this->Nombre_Titular->EditCustomAttributes = "";
-		$this->Nombre_Titular->EditValue = $this->Nombre_Titular->CurrentValue;
-		$this->Nombre_Titular->PlaceHolder = ew_RemoveHtml($this->Nombre_Titular->FldCaption());
+		// Apellidos_Nombres
+		$this->Apellidos_Nombres->EditAttrs["class"] = "form-control";
+		$this->Apellidos_Nombres->EditCustomAttributes = "";
+		$this->Apellidos_Nombres->EditValue = $this->Apellidos_Nombres->CurrentValue;
+		$this->Apellidos_Nombres->PlaceHolder = ew_RemoveHtml($this->Apellidos_Nombres->FldCaption());
 
 		// Dni
 		$this->Dni->EditAttrs["class"] = "form-control";
@@ -797,31 +881,43 @@ class cestado_equipos_porcurso extends cTable {
 		$this->Dni->EditValue = $this->Dni->CurrentValue;
 		$this->Dni->ViewCustomAttributes = "";
 
-		// curso
-		$this->curso->EditAttrs["class"] = "form-control";
-		$this->curso->EditCustomAttributes = "";
+		// Id_Curso
+		$this->Id_Curso->EditAttrs["class"] = "form-control";
+		$this->Id_Curso->EditCustomAttributes = "";
 
-		// division
-		$this->division->EditAttrs["class"] = "form-control";
-		$this->division->EditCustomAttributes = "";
+		// Id_Division
+		$this->Id_Division->EditAttrs["class"] = "form-control";
+		$this->Id_Division->EditCustomAttributes = "";
 
-		// turno
-		$this->turno->EditAttrs["class"] = "form-control";
-		$this->turno->EditCustomAttributes = "";
+		// Id_Turno
+		$this->Id_Turno->EditAttrs["class"] = "form-control";
+		$this->Id_Turno->EditCustomAttributes = "";
 
-		// Equipo
-		$this->Equipo->EditAttrs["class"] = "form-control";
-		$this->Equipo->EditCustomAttributes = "";
-		$this->Equipo->EditValue = $this->Equipo->CurrentValue;
-		$this->Equipo->ViewCustomAttributes = "";
+		// Id_Cargo
+		$this->Id_Cargo->EditAttrs["class"] = "form-control";
+		$this->Id_Cargo->EditCustomAttributes = "";
 
-		// Estado
-		$this->Estado->EditAttrs["class"] = "form-control";
-		$this->Estado->EditCustomAttributes = "";
+		// Id_Estado
+		$this->Id_Estado->EditAttrs["class"] = "form-control";
+		$this->Id_Estado->EditCustomAttributes = "";
 
-		// ultima actualiz.
+		// NroSerie
+		$this->NroSerie->EditAttrs["class"] = "form-control";
+		$this->NroSerie->EditCustomAttributes = "";
+		$this->NroSerie->EditValue = $this->NroSerie->CurrentValue;
+		$this->NroSerie->ViewCustomAttributes = "";
+
+		// Id_Sit_Estado
+		$this->Id_Sit_Estado->EditAttrs["class"] = "form-control";
+		$this->Id_Sit_Estado->EditCustomAttributes = "";
+
+		// Fecha_Actualizacion
+		$this->Fecha_Actualizacion->EditAttrs["class"] = "form-control";
+		$this->Fecha_Actualizacion->EditCustomAttributes = "";
+		$this->Fecha_Actualizacion->EditValue = ew_FormatDateTime($this->Fecha_Actualizacion->CurrentValue, 8);
+		$this->Fecha_Actualizacion->PlaceHolder = ew_RemoveHtml($this->Fecha_Actualizacion->FldCaption());
+
 		// Call Row Rendered event
-
 		$this->Row_Rendered();
 	}
 
@@ -848,23 +944,26 @@ class cestado_equipos_porcurso extends cTable {
 			if ($Doc->Horizontal) { // Horizontal format, write header
 				$Doc->BeginExportRow();
 				if ($ExportPageType == "view") {
-					if ($this->Nombre_Titular->Exportable) $Doc->ExportCaption($this->Nombre_Titular);
+					if ($this->Apellidos_Nombres->Exportable) $Doc->ExportCaption($this->Apellidos_Nombres);
 					if ($this->Dni->Exportable) $Doc->ExportCaption($this->Dni);
-					if ($this->curso->Exportable) $Doc->ExportCaption($this->curso);
-					if ($this->division->Exportable) $Doc->ExportCaption($this->division);
-					if ($this->turno->Exportable) $Doc->ExportCaption($this->turno);
-					if ($this->Equipo->Exportable) $Doc->ExportCaption($this->Equipo);
-					if ($this->Estado->Exportable) $Doc->ExportCaption($this->Estado);
-					if ($this->ultima_actualiz_->Exportable) $Doc->ExportCaption($this->ultima_actualiz_);
+					if ($this->Id_Curso->Exportable) $Doc->ExportCaption($this->Id_Curso);
+					if ($this->Id_Division->Exportable) $Doc->ExportCaption($this->Id_Division);
+					if ($this->Id_Turno->Exportable) $Doc->ExportCaption($this->Id_Turno);
+					if ($this->Id_Cargo->Exportable) $Doc->ExportCaption($this->Id_Cargo);
+					if ($this->Id_Estado->Exportable) $Doc->ExportCaption($this->Id_Estado);
+					if ($this->NroSerie->Exportable) $Doc->ExportCaption($this->NroSerie);
+					if ($this->Id_Sit_Estado->Exportable) $Doc->ExportCaption($this->Id_Sit_Estado);
+					if ($this->Fecha_Actualizacion->Exportable) $Doc->ExportCaption($this->Fecha_Actualizacion);
 				} else {
-					if ($this->Nombre_Titular->Exportable) $Doc->ExportCaption($this->Nombre_Titular);
 					if ($this->Dni->Exportable) $Doc->ExportCaption($this->Dni);
-					if ($this->curso->Exportable) $Doc->ExportCaption($this->curso);
-					if ($this->division->Exportable) $Doc->ExportCaption($this->division);
-					if ($this->turno->Exportable) $Doc->ExportCaption($this->turno);
-					if ($this->Equipo->Exportable) $Doc->ExportCaption($this->Equipo);
-					if ($this->Estado->Exportable) $Doc->ExportCaption($this->Estado);
-					if ($this->ultima_actualiz_->Exportable) $Doc->ExportCaption($this->ultima_actualiz_);
+					if ($this->Id_Curso->Exportable) $Doc->ExportCaption($this->Id_Curso);
+					if ($this->Id_Division->Exportable) $Doc->ExportCaption($this->Id_Division);
+					if ($this->Id_Turno->Exportable) $Doc->ExportCaption($this->Id_Turno);
+					if ($this->Id_Cargo->Exportable) $Doc->ExportCaption($this->Id_Cargo);
+					if ($this->Id_Estado->Exportable) $Doc->ExportCaption($this->Id_Estado);
+					if ($this->NroSerie->Exportable) $Doc->ExportCaption($this->NroSerie);
+					if ($this->Id_Sit_Estado->Exportable) $Doc->ExportCaption($this->Id_Sit_Estado);
+					if ($this->Fecha_Actualizacion->Exportable) $Doc->ExportCaption($this->Fecha_Actualizacion);
 				}
 				$Doc->EndExportRow();
 			}
@@ -896,23 +995,26 @@ class cestado_equipos_porcurso extends cTable {
 				if (!$Doc->ExportCustom) {
 					$Doc->BeginExportRow($RowCnt); // Allow CSS styles if enabled
 					if ($ExportPageType == "view") {
-						if ($this->Nombre_Titular->Exportable) $Doc->ExportField($this->Nombre_Titular);
+						if ($this->Apellidos_Nombres->Exportable) $Doc->ExportField($this->Apellidos_Nombres);
 						if ($this->Dni->Exportable) $Doc->ExportField($this->Dni);
-						if ($this->curso->Exportable) $Doc->ExportField($this->curso);
-						if ($this->division->Exportable) $Doc->ExportField($this->division);
-						if ($this->turno->Exportable) $Doc->ExportField($this->turno);
-						if ($this->Equipo->Exportable) $Doc->ExportField($this->Equipo);
-						if ($this->Estado->Exportable) $Doc->ExportField($this->Estado);
-						if ($this->ultima_actualiz_->Exportable) $Doc->ExportField($this->ultima_actualiz_);
+						if ($this->Id_Curso->Exportable) $Doc->ExportField($this->Id_Curso);
+						if ($this->Id_Division->Exportable) $Doc->ExportField($this->Id_Division);
+						if ($this->Id_Turno->Exportable) $Doc->ExportField($this->Id_Turno);
+						if ($this->Id_Cargo->Exportable) $Doc->ExportField($this->Id_Cargo);
+						if ($this->Id_Estado->Exportable) $Doc->ExportField($this->Id_Estado);
+						if ($this->NroSerie->Exportable) $Doc->ExportField($this->NroSerie);
+						if ($this->Id_Sit_Estado->Exportable) $Doc->ExportField($this->Id_Sit_Estado);
+						if ($this->Fecha_Actualizacion->Exportable) $Doc->ExportField($this->Fecha_Actualizacion);
 					} else {
-						if ($this->Nombre_Titular->Exportable) $Doc->ExportField($this->Nombre_Titular);
 						if ($this->Dni->Exportable) $Doc->ExportField($this->Dni);
-						if ($this->curso->Exportable) $Doc->ExportField($this->curso);
-						if ($this->division->Exportable) $Doc->ExportField($this->division);
-						if ($this->turno->Exportable) $Doc->ExportField($this->turno);
-						if ($this->Equipo->Exportable) $Doc->ExportField($this->Equipo);
-						if ($this->Estado->Exportable) $Doc->ExportField($this->Estado);
-						if ($this->ultima_actualiz_->Exportable) $Doc->ExportField($this->ultima_actualiz_);
+						if ($this->Id_Curso->Exportable) $Doc->ExportField($this->Id_Curso);
+						if ($this->Id_Division->Exportable) $Doc->ExportField($this->Id_Division);
+						if ($this->Id_Turno->Exportable) $Doc->ExportField($this->Id_Turno);
+						if ($this->Id_Cargo->Exportable) $Doc->ExportField($this->Id_Cargo);
+						if ($this->Id_Estado->Exportable) $Doc->ExportField($this->Id_Estado);
+						if ($this->NroSerie->Exportable) $Doc->ExportField($this->NroSerie);
+						if ($this->Id_Sit_Estado->Exportable) $Doc->ExportField($this->Id_Sit_Estado);
+						if ($this->Fecha_Actualizacion->Exportable) $Doc->ExportField($this->Fecha_Actualizacion);
 					}
 					$Doc->EndExportRow();
 				}

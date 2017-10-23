@@ -412,7 +412,7 @@ class cdatosextrasescuela_list extends cdatosextrasescuela {
 		$this->SetupExportOptions();
 		$this->Cue->SetVisibility();
 		$this->Sigla->SetVisibility();
-		$this->Tipo_Zona->SetVisibility();
+		$this->Id_Zona->SetVisibility();
 		$this->Usuario_Conig->SetVisibility();
 		$this->Password_Conig->SetVisibility();
 		$this->Tiene_Internet->SetVisibility();
@@ -744,7 +744,7 @@ class cdatosextrasescuela_list extends cdatosextrasescuela {
 		$sFilterList = "";
 		$sFilterList = ew_Concat($sFilterList, $this->Cue->AdvancedSearch->ToJSON(), ","); // Field Cue
 		$sFilterList = ew_Concat($sFilterList, $this->Sigla->AdvancedSearch->ToJSON(), ","); // Field Sigla
-		$sFilterList = ew_Concat($sFilterList, $this->Tipo_Zona->AdvancedSearch->ToJSON(), ","); // Field Tipo_Zona
+		$sFilterList = ew_Concat($sFilterList, $this->Id_Zona->AdvancedSearch->ToJSON(), ","); // Field Id_Zona
 		$sFilterList = ew_Concat($sFilterList, $this->Usuario_Conig->AdvancedSearch->ToJSON(), ","); // Field Usuario_Conig
 		$sFilterList = ew_Concat($sFilterList, $this->Password_Conig->AdvancedSearch->ToJSON(), ","); // Field Password_Conig
 		$sFilterList = ew_Concat($sFilterList, $this->Tiene_Internet->AdvancedSearch->ToJSON(), ","); // Field Tiene_Internet
@@ -804,13 +804,13 @@ class cdatosextrasescuela_list extends cdatosextrasescuela {
 		$this->Sigla->AdvancedSearch->SearchOperator2 = @$filter["w_Sigla"];
 		$this->Sigla->AdvancedSearch->Save();
 
-		// Field Tipo_Zona
-		$this->Tipo_Zona->AdvancedSearch->SearchValue = @$filter["x_Tipo_Zona"];
-		$this->Tipo_Zona->AdvancedSearch->SearchOperator = @$filter["z_Tipo_Zona"];
-		$this->Tipo_Zona->AdvancedSearch->SearchCondition = @$filter["v_Tipo_Zona"];
-		$this->Tipo_Zona->AdvancedSearch->SearchValue2 = @$filter["y_Tipo_Zona"];
-		$this->Tipo_Zona->AdvancedSearch->SearchOperator2 = @$filter["w_Tipo_Zona"];
-		$this->Tipo_Zona->AdvancedSearch->Save();
+		// Field Id_Zona
+		$this->Id_Zona->AdvancedSearch->SearchValue = @$filter["x_Id_Zona"];
+		$this->Id_Zona->AdvancedSearch->SearchOperator = @$filter["z_Id_Zona"];
+		$this->Id_Zona->AdvancedSearch->SearchCondition = @$filter["v_Id_Zona"];
+		$this->Id_Zona->AdvancedSearch->SearchValue2 = @$filter["y_Id_Zona"];
+		$this->Id_Zona->AdvancedSearch->SearchOperator2 = @$filter["w_Id_Zona"];
+		$this->Id_Zona->AdvancedSearch->Save();
 
 		// Field Usuario_Conig
 		$this->Usuario_Conig->AdvancedSearch->SearchValue = @$filter["x_Usuario_Conig"];
@@ -868,7 +868,7 @@ class cdatosextrasescuela_list extends cdatosextrasescuela {
 		$sWhere = "";
 		$this->BuildBasicSearchSQL($sWhere, $this->Cue, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Sigla, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->Tipo_Zona, $arKeywords, $type);
+		$this->BuildBasicSearchSQL($sWhere, $this->Id_Zona, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Usuario_Conig, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Password_Conig, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Tiene_Internet, $arKeywords, $type);
@@ -1041,7 +1041,7 @@ class cdatosextrasescuela_list extends cdatosextrasescuela {
 			$this->CurrentOrderType = @$_GET["ordertype"];
 			$this->UpdateSort($this->Cue); // Cue
 			$this->UpdateSort($this->Sigla); // Sigla
-			$this->UpdateSort($this->Tipo_Zona); // Tipo_Zona
+			$this->UpdateSort($this->Id_Zona); // Id_Zona
 			$this->UpdateSort($this->Usuario_Conig); // Usuario_Conig
 			$this->UpdateSort($this->Password_Conig); // Password_Conig
 			$this->UpdateSort($this->Tiene_Internet); // Tiene_Internet
@@ -1082,7 +1082,7 @@ class cdatosextrasescuela_list extends cdatosextrasescuela {
 				$this->setSessionOrderBy($sOrderBy);
 				$this->Cue->setSort("");
 				$this->Sigla->setSort("");
-				$this->Tipo_Zona->setSort("");
+				$this->Id_Zona->setSort("");
 				$this->Usuario_Conig->setSort("");
 				$this->Password_Conig->setSort("");
 				$this->Tiene_Internet->setSort("");
@@ -1473,7 +1473,7 @@ class cdatosextrasescuela_list extends cdatosextrasescuela {
 		$this->Row_Selected($row);
 		$this->Cue->setDbValue($rs->fields('Cue'));
 		$this->Sigla->setDbValue($rs->fields('Sigla'));
-		$this->Tipo_Zona->setDbValue($rs->fields('Tipo_Zona'));
+		$this->Id_Zona->setDbValue($rs->fields('Id_Zona'));
 		$this->Usuario_Conig->setDbValue($rs->fields('Usuario_Conig'));
 		$this->Password_Conig->setDbValue($rs->fields('Password_Conig'));
 		$this->Tiene_Internet->setDbValue($rs->fields('Tiene_Internet'));
@@ -1488,7 +1488,7 @@ class cdatosextrasescuela_list extends cdatosextrasescuela {
 		$row = is_array($rs) ? $rs : $rs->fields;
 		$this->Cue->DbValue = $row['Cue'];
 		$this->Sigla->DbValue = $row['Sigla'];
-		$this->Tipo_Zona->DbValue = $row['Tipo_Zona'];
+		$this->Id_Zona->DbValue = $row['Id_Zona'];
 		$this->Usuario_Conig->DbValue = $row['Usuario_Conig'];
 		$this->Password_Conig->DbValue = $row['Password_Conig'];
 		$this->Tiene_Internet->DbValue = $row['Tiene_Internet'];
@@ -1538,7 +1538,7 @@ class cdatosextrasescuela_list extends cdatosextrasescuela {
 		// Common render codes for all row types
 		// Cue
 		// Sigla
-		// Tipo_Zona
+		// Id_Zona
 		// Usuario_Conig
 		// Password_Conig
 		// Tiene_Internet
@@ -1556,9 +1556,28 @@ class cdatosextrasescuela_list extends cdatosextrasescuela {
 		$this->Sigla->ViewValue = $this->Sigla->CurrentValue;
 		$this->Sigla->ViewCustomAttributes = "";
 
-		// Tipo_Zona
-		$this->Tipo_Zona->ViewValue = $this->Tipo_Zona->CurrentValue;
-		$this->Tipo_Zona->ViewCustomAttributes = "";
+		// Id_Zona
+		if (strval($this->Id_Zona->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Zona`" . ew_SearchString("=", $this->Id_Zona->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Zona`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `zonas`";
+		$sWhereWrk = "";
+		$this->Id_Zona->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Zona, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Zona->ViewValue = $this->Id_Zona->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Zona->ViewValue = $this->Id_Zona->CurrentValue;
+			}
+		} else {
+			$this->Id_Zona->ViewValue = NULL;
+		}
+		$this->Id_Zona->ViewCustomAttributes = "";
 
 		// Usuario_Conig
 		$this->Usuario_Conig->ViewValue = $this->Usuario_Conig->CurrentValue;
@@ -1598,10 +1617,10 @@ class cdatosextrasescuela_list extends cdatosextrasescuela {
 			$this->Sigla->HrefValue = "";
 			$this->Sigla->TooltipValue = "";
 
-			// Tipo_Zona
-			$this->Tipo_Zona->LinkCustomAttributes = "";
-			$this->Tipo_Zona->HrefValue = "";
-			$this->Tipo_Zona->TooltipValue = "";
+			// Id_Zona
+			$this->Id_Zona->LinkCustomAttributes = "";
+			$this->Id_Zona->HrefValue = "";
+			$this->Id_Zona->TooltipValue = "";
 
 			// Usuario_Conig
 			$this->Usuario_Conig->LinkCustomAttributes = "";
@@ -1970,6 +1989,7 @@ fdatosextrasescuelalist.ValidateRequired = false;
 <?php } ?>
 
 // Dynamic selection lists
+fdatosextrasescuelalist.Lists["x_Id_Zona"] = {"LinkField":"x_Id_Zona","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"zonas"};
 fdatosextrasescuelalist.Lists["x_Estado_Internet"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
 fdatosextrasescuelalist.Lists["x_Estado_Internet"].Options = <?php echo json_encode($datosextrasescuela->Estado_Internet->Options()) ?>;
 
@@ -2162,12 +2182,12 @@ $datosextrasescuela_list->ListOptions->Render("header", "left");
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
-<?php if ($datosextrasescuela->Tipo_Zona->Visible) { // Tipo_Zona ?>
-	<?php if ($datosextrasescuela->SortUrl($datosextrasescuela->Tipo_Zona) == "") { ?>
-		<th data-name="Tipo_Zona"><div id="elh_datosextrasescuela_Tipo_Zona" class="datosextrasescuela_Tipo_Zona"><div class="ewTableHeaderCaption"><?php echo $datosextrasescuela->Tipo_Zona->FldCaption() ?></div></div></th>
+<?php if ($datosextrasescuela->Id_Zona->Visible) { // Id_Zona ?>
+	<?php if ($datosextrasescuela->SortUrl($datosextrasescuela->Id_Zona) == "") { ?>
+		<th data-name="Id_Zona"><div id="elh_datosextrasescuela_Id_Zona" class="datosextrasescuela_Id_Zona"><div class="ewTableHeaderCaption"><?php echo $datosextrasescuela->Id_Zona->FldCaption() ?></div></div></th>
 	<?php } else { ?>
-		<th data-name="Tipo_Zona"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $datosextrasescuela->SortUrl($datosextrasescuela->Tipo_Zona) ?>',1);"><div id="elh_datosextrasescuela_Tipo_Zona" class="datosextrasescuela_Tipo_Zona">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $datosextrasescuela->Tipo_Zona->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($datosextrasescuela->Tipo_Zona->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($datosextrasescuela->Tipo_Zona->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+		<th data-name="Id_Zona"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $datosextrasescuela->SortUrl($datosextrasescuela->Id_Zona) ?>',1);"><div id="elh_datosextrasescuela_Id_Zona" class="datosextrasescuela_Id_Zona">
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $datosextrasescuela->Id_Zona->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($datosextrasescuela->Id_Zona->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($datosextrasescuela->Id_Zona->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
@@ -2306,11 +2326,11 @@ $datosextrasescuela_list->ListOptions->Render("body", "left", $datosextrasescuel
 </span>
 </td>
 	<?php } ?>
-	<?php if ($datosextrasescuela->Tipo_Zona->Visible) { // Tipo_Zona ?>
-		<td data-name="Tipo_Zona"<?php echo $datosextrasescuela->Tipo_Zona->CellAttributes() ?>>
-<span id="el<?php echo $datosextrasescuela_list->RowCnt ?>_datosextrasescuela_Tipo_Zona" class="datosextrasescuela_Tipo_Zona">
-<span<?php echo $datosextrasescuela->Tipo_Zona->ViewAttributes() ?>>
-<?php echo $datosextrasescuela->Tipo_Zona->ListViewValue() ?></span>
+	<?php if ($datosextrasescuela->Id_Zona->Visible) { // Id_Zona ?>
+		<td data-name="Id_Zona"<?php echo $datosextrasescuela->Id_Zona->CellAttributes() ?>>
+<span id="el<?php echo $datosextrasescuela_list->RowCnt ?>_datosextrasescuela_Id_Zona" class="datosextrasescuela_Id_Zona">
+<span<?php echo $datosextrasescuela->Id_Zona->ViewAttributes() ?>>
+<?php echo $datosextrasescuela->Id_Zona->ListViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

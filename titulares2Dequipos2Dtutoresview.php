@@ -394,11 +394,6 @@ class ctitulares2Dequipos2Dtutores_view extends ctitulares2Dequipos2Dtutores {
 		$this->Apelldio_y_Nombre_Titular->SetVisibility();
 		$this->Dni->SetVisibility();
 		$this->Cuil->SetVisibility();
-		$this->Id_Curso->SetVisibility();
-		$this->Id_Division->SetVisibility();
-		$this->Id_Turno->SetVisibility();
-		$this->Id_Cargo->SetVisibility();
-		$this->Id_Estado->SetVisibility();
 		$this->Equipo_Asignado->SetVisibility();
 		$this->Apellido_y_Nombre_Tutor->SetVisibility();
 		$this->Dni_Tutor->SetVisibility();
@@ -669,11 +664,6 @@ class ctitulares2Dequipos2Dtutores_view extends ctitulares2Dequipos2Dtutores {
 		$this->Apelldio_y_Nombre_Titular->setDbValue($rs->fields('Apelldio y Nombre Titular'));
 		$this->Dni->setDbValue($rs->fields('Dni'));
 		$this->Cuil->setDbValue($rs->fields('Cuil'));
-		$this->Id_Curso->setDbValue($rs->fields('Id_Curso'));
-		$this->Id_Division->setDbValue($rs->fields('Id_Division'));
-		$this->Id_Turno->setDbValue($rs->fields('Id_Turno'));
-		$this->Id_Cargo->setDbValue($rs->fields('Id_Cargo'));
-		$this->Id_Estado->setDbValue($rs->fields('Id_Estado'));
 		$this->Equipo_Asignado->setDbValue($rs->fields('Equipo Asignado'));
 		$this->Apellido_y_Nombre_Tutor->setDbValue($rs->fields('Apellido y Nombre Tutor'));
 		$this->Dni_Tutor->setDbValue($rs->fields('Dni Tutor'));
@@ -687,11 +677,6 @@ class ctitulares2Dequipos2Dtutores_view extends ctitulares2Dequipos2Dtutores {
 		$this->Apelldio_y_Nombre_Titular->DbValue = $row['Apelldio y Nombre Titular'];
 		$this->Dni->DbValue = $row['Dni'];
 		$this->Cuil->DbValue = $row['Cuil'];
-		$this->Id_Curso->DbValue = $row['Id_Curso'];
-		$this->Id_Division->DbValue = $row['Id_Division'];
-		$this->Id_Turno->DbValue = $row['Id_Turno'];
-		$this->Id_Cargo->DbValue = $row['Id_Cargo'];
-		$this->Id_Estado->DbValue = $row['Id_Estado'];
 		$this->Equipo_Asignado->DbValue = $row['Equipo Asignado'];
 		$this->Apellido_y_Nombre_Tutor->DbValue = $row['Apellido y Nombre Tutor'];
 		$this->Dni_Tutor->DbValue = $row['Dni Tutor'];
@@ -717,11 +702,6 @@ class ctitulares2Dequipos2Dtutores_view extends ctitulares2Dequipos2Dtutores {
 		// Apelldio y Nombre Titular
 		// Dni
 		// Cuil
-		// Id_Curso
-		// Id_Division
-		// Id_Turno
-		// Id_Cargo
-		// Id_Estado
 		// Equipo Asignado
 		// Apellido y Nombre Tutor
 		// Dni Tutor
@@ -740,121 +720,6 @@ class ctitulares2Dequipos2Dtutores_view extends ctitulares2Dequipos2Dtutores {
 		// Cuil
 		$this->Cuil->ViewValue = $this->Cuil->CurrentValue;
 		$this->Cuil->ViewCustomAttributes = "";
-
-		// Id_Curso
-		if (strval($this->Id_Curso->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Curso`" . ew_SearchString("=", $this->Id_Curso->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Curso`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cursos`";
-		$sWhereWrk = "";
-		$this->Id_Curso->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Curso, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Curso->ViewValue = $this->Id_Curso->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Curso->ViewValue = $this->Id_Curso->CurrentValue;
-			}
-		} else {
-			$this->Id_Curso->ViewValue = NULL;
-		}
-		$this->Id_Curso->ViewCustomAttributes = "";
-
-		// Id_Division
-		if (strval($this->Id_Division->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Division`" . ew_SearchString("=", $this->Id_Division->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Division`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `division`";
-		$sWhereWrk = "";
-		$this->Id_Division->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Division, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Division->ViewValue = $this->Id_Division->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Division->ViewValue = $this->Id_Division->CurrentValue;
-			}
-		} else {
-			$this->Id_Division->ViewValue = NULL;
-		}
-		$this->Id_Division->ViewCustomAttributes = "";
-
-		// Id_Turno
-		if (strval($this->Id_Turno->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Turno`" . ew_SearchString("=", $this->Id_Turno->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Turno`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `turno`";
-		$sWhereWrk = "";
-		$this->Id_Turno->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Turno, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Turno->ViewValue = $this->Id_Turno->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Turno->ViewValue = $this->Id_Turno->CurrentValue;
-			}
-		} else {
-			$this->Id_Turno->ViewValue = NULL;
-		}
-		$this->Id_Turno->ViewCustomAttributes = "";
-
-		// Id_Cargo
-		if (strval($this->Id_Cargo->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Cargo`" . ew_SearchString("=", $this->Id_Cargo->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Cargo`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cargo_persona`";
-		$sWhereWrk = "";
-		$this->Id_Cargo->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Cargo->ViewValue = $this->Id_Cargo->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
-			}
-		} else {
-			$this->Id_Cargo->ViewValue = NULL;
-		}
-		$this->Id_Cargo->ViewCustomAttributes = "";
-
-		// Id_Estado
-		if (strval($this->Id_Estado->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Estado`" . ew_SearchString("=", $this->Id_Estado->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Estado`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `estado_persona`";
-		$sWhereWrk = "";
-		$this->Id_Estado->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Estado, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Estado->ViewValue = $this->Id_Estado->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Estado->ViewValue = $this->Id_Estado->CurrentValue;
-			}
-		} else {
-			$this->Id_Estado->ViewValue = NULL;
-		}
-		$this->Id_Estado->ViewCustomAttributes = "";
 
 		// Equipo Asignado
 		$this->Equipo_Asignado->ViewValue = $this->Equipo_Asignado->CurrentValue;
@@ -906,31 +771,6 @@ class ctitulares2Dequipos2Dtutores_view extends ctitulares2Dequipos2Dtutores {
 			$this->Cuil->LinkCustomAttributes = "";
 			$this->Cuil->HrefValue = "";
 			$this->Cuil->TooltipValue = "";
-
-			// Id_Curso
-			$this->Id_Curso->LinkCustomAttributes = "";
-			$this->Id_Curso->HrefValue = "";
-			$this->Id_Curso->TooltipValue = "";
-
-			// Id_Division
-			$this->Id_Division->LinkCustomAttributes = "";
-			$this->Id_Division->HrefValue = "";
-			$this->Id_Division->TooltipValue = "";
-
-			// Id_Turno
-			$this->Id_Turno->LinkCustomAttributes = "";
-			$this->Id_Turno->HrefValue = "";
-			$this->Id_Turno->TooltipValue = "";
-
-			// Id_Cargo
-			$this->Id_Cargo->LinkCustomAttributes = "";
-			$this->Id_Cargo->HrefValue = "";
-			$this->Id_Cargo->TooltipValue = "";
-
-			// Id_Estado
-			$this->Id_Estado->LinkCustomAttributes = "";
-			$this->Id_Estado->HrefValue = "";
-			$this->Id_Estado->TooltipValue = "";
 
 			// Equipo Asignado
 			$this->Equipo_Asignado->LinkCustomAttributes = "";
@@ -1263,11 +1103,6 @@ ftitulares2Dequipos2Dtutoresview.ValidateRequired = false;
 ftitulares2Dequipos2Dtutoresview.MultiPage = new ew_MultiPage("ftitulares2Dequipos2Dtutoresview");
 
 // Dynamic selection lists
-ftitulares2Dequipos2Dtutoresview.Lists["x_Id_Curso"] = {"LinkField":"x_Id_Curso","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"cursos"};
-ftitulares2Dequipos2Dtutoresview.Lists["x_Id_Division"] = {"LinkField":"x_Id_Division","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"division"};
-ftitulares2Dequipos2Dtutoresview.Lists["x_Id_Turno"] = {"LinkField":"x_Id_Turno","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"turno"};
-ftitulares2Dequipos2Dtutoresview.Lists["x_Id_Cargo"] = {"LinkField":"x_Id_Cargo","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nombre","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"cargo_persona"};
-ftitulares2Dequipos2Dtutoresview.Lists["x_Id_Estado"] = {"LinkField":"x_Id_Estado","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"estado_persona"};
 ftitulares2Dequipos2Dtutoresview.Lists["x_Equipo_Asignado"] = {"LinkField":"x_NroSerie","Ajax":true,"AutoFill":false,"DisplayFields":["x_NroSerie","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"equipos"};
 
 // Form object for search
@@ -1353,61 +1188,6 @@ $titulares2Dequipos2Dtutores_view->ShowMessage();
 <span id="el_titulares2Dequipos2Dtutores_Cuil" data-page="1">
 <span<?php echo $titulares2Dequipos2Dtutores->Cuil->ViewAttributes() ?>>
 <?php echo $titulares2Dequipos2Dtutores->Cuil->ViewValue ?></span>
-</span>
-</td>
-	</tr>
-<?php } ?>
-<?php if ($titulares2Dequipos2Dtutores->Id_Curso->Visible) { // Id_Curso ?>
-	<tr id="r_Id_Curso">
-		<td><span id="elh_titulares2Dequipos2Dtutores_Id_Curso"><?php echo $titulares2Dequipos2Dtutores->Id_Curso->FldCaption() ?></span></td>
-		<td data-name="Id_Curso"<?php echo $titulares2Dequipos2Dtutores->Id_Curso->CellAttributes() ?>>
-<span id="el_titulares2Dequipos2Dtutores_Id_Curso" data-page="1">
-<span<?php echo $titulares2Dequipos2Dtutores->Id_Curso->ViewAttributes() ?>>
-<?php echo $titulares2Dequipos2Dtutores->Id_Curso->ViewValue ?></span>
-</span>
-</td>
-	</tr>
-<?php } ?>
-<?php if ($titulares2Dequipos2Dtutores->Id_Division->Visible) { // Id_Division ?>
-	<tr id="r_Id_Division">
-		<td><span id="elh_titulares2Dequipos2Dtutores_Id_Division"><?php echo $titulares2Dequipos2Dtutores->Id_Division->FldCaption() ?></span></td>
-		<td data-name="Id_Division"<?php echo $titulares2Dequipos2Dtutores->Id_Division->CellAttributes() ?>>
-<span id="el_titulares2Dequipos2Dtutores_Id_Division" data-page="1">
-<span<?php echo $titulares2Dequipos2Dtutores->Id_Division->ViewAttributes() ?>>
-<?php echo $titulares2Dequipos2Dtutores->Id_Division->ViewValue ?></span>
-</span>
-</td>
-	</tr>
-<?php } ?>
-<?php if ($titulares2Dequipos2Dtutores->Id_Turno->Visible) { // Id_Turno ?>
-	<tr id="r_Id_Turno">
-		<td><span id="elh_titulares2Dequipos2Dtutores_Id_Turno"><?php echo $titulares2Dequipos2Dtutores->Id_Turno->FldCaption() ?></span></td>
-		<td data-name="Id_Turno"<?php echo $titulares2Dequipos2Dtutores->Id_Turno->CellAttributes() ?>>
-<span id="el_titulares2Dequipos2Dtutores_Id_Turno" data-page="1">
-<span<?php echo $titulares2Dequipos2Dtutores->Id_Turno->ViewAttributes() ?>>
-<?php echo $titulares2Dequipos2Dtutores->Id_Turno->ViewValue ?></span>
-</span>
-</td>
-	</tr>
-<?php } ?>
-<?php if ($titulares2Dequipos2Dtutores->Id_Cargo->Visible) { // Id_Cargo ?>
-	<tr id="r_Id_Cargo">
-		<td><span id="elh_titulares2Dequipos2Dtutores_Id_Cargo"><?php echo $titulares2Dequipos2Dtutores->Id_Cargo->FldCaption() ?></span></td>
-		<td data-name="Id_Cargo"<?php echo $titulares2Dequipos2Dtutores->Id_Cargo->CellAttributes() ?>>
-<span id="el_titulares2Dequipos2Dtutores_Id_Cargo" data-page="1">
-<span<?php echo $titulares2Dequipos2Dtutores->Id_Cargo->ViewAttributes() ?>>
-<?php echo $titulares2Dequipos2Dtutores->Id_Cargo->ViewValue ?></span>
-</span>
-</td>
-	</tr>
-<?php } ?>
-<?php if ($titulares2Dequipos2Dtutores->Id_Estado->Visible) { // Id_Estado ?>
-	<tr id="r_Id_Estado">
-		<td><span id="elh_titulares2Dequipos2Dtutores_Id_Estado"><?php echo $titulares2Dequipos2Dtutores->Id_Estado->FldCaption() ?></span></td>
-		<td data-name="Id_Estado"<?php echo $titulares2Dequipos2Dtutores->Id_Estado->CellAttributes() ?>>
-<span id="el_titulares2Dequipos2Dtutores_Id_Estado" data-page="1">
-<span<?php echo $titulares2Dequipos2Dtutores->Id_Estado->ViewAttributes() ?>>
-<?php echo $titulares2Dequipos2Dtutores->Id_Estado->ViewValue ?></span>
 </span>
 </td>
 	</tr>

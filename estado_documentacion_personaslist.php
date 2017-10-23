@@ -1969,7 +1969,26 @@ class cestado_documentacion_personas_list extends cestado_documentacion_personas
 		$this->Id_Estado->ViewCustomAttributes = "";
 
 		// Id_Cargo
-		$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
+		if (strval($this->Id_Cargo->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Cargo`" . ew_SearchString("=", $this->Id_Cargo->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Cargo`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cargo_persona`";
+		$sWhereWrk = "";
+		$this->Id_Cargo->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Cargo->ViewValue = $this->Id_Cargo->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
+			}
+		} else {
+			$this->Id_Cargo->ViewValue = NULL;
+		}
 		$this->Id_Cargo->ViewCustomAttributes = "";
 
 		// Matricula

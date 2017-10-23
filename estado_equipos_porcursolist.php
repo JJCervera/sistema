@@ -410,13 +410,15 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 
 		// Setup export options
 		$this->SetupExportOptions();
-		$this->Nombre_Titular->SetVisibility();
 		$this->Dni->SetVisibility();
-		$this->curso->SetVisibility();
-		$this->division->SetVisibility();
-		$this->turno->SetVisibility();
-		$this->Equipo->SetVisibility();
-		$this->Estado->SetVisibility();
+		$this->Id_Curso->SetVisibility();
+		$this->Id_Division->SetVisibility();
+		$this->Id_Turno->SetVisibility();
+		$this->Id_Cargo->SetVisibility();
+		$this->Id_Estado->SetVisibility();
+		$this->NroSerie->SetVisibility();
+		$this->Id_Sit_Estado->SetVisibility();
+		$this->Fecha_Actualizacion->SetVisibility();
 
 		// Global Page Loading event (in userfn*.php)
 		Page_Loading();
@@ -601,18 +603,12 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 
 			// Get default search criteria
 			ew_AddFilter($this->DefaultSearchWhere, $this->BasicSearchWhere(TRUE));
-			ew_AddFilter($this->DefaultSearchWhere, $this->AdvancedSearchWhere(TRUE));
 
 			// Get basic search values
 			$this->LoadBasicSearchValues();
 
-			// Get and validate search values for advanced search
-			$this->LoadSearchValues(); // Get search values
-
 			// Process filter list
 			$this->ProcessFilterList();
-			if (!$this->ValidateSearch())
-				$this->setFailureMessage($gsSearchError);
 
 			// Restore search parms from Session if not searching / reset / export
 			if (($this->Export <> "" || $this->Command <> "search" && $this->Command <> "reset" && $this->Command <> "resetall") && $this->CheckSearchParms())
@@ -627,10 +623,6 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 			// Get basic search criteria
 			if ($gsSearchError == "")
 				$sSrchBasic = $this->BasicSearchWhere();
-
-			// Get search criteria for advanced search
-			if ($gsSearchError == "")
-				$sSrchAdvanced = $this->AdvancedSearchWhere();
 		}
 
 		// Restore display records
@@ -650,11 +642,6 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 			$this->BasicSearch->LoadDefault();
 			if ($this->BasicSearch->Keyword != "")
 				$sSrchBasic = $this->BasicSearchWhere();
-
-			// Load advanced search from default
-			if ($this->LoadAdvancedSearchDefault()) {
-				$sSrchAdvanced = $this->AdvancedSearchWhere();
-			}
 		}
 
 		// Build search criteria
@@ -740,7 +727,7 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 			$this->Dni->setFormValue($arrKeyFlds[0]);
 			if (!is_numeric($this->Dni->FormValue))
 				return FALSE;
-			$this->Equipo->setFormValue($arrKeyFlds[1]);
+			$this->NroSerie->setFormValue($arrKeyFlds[1]);
 		}
 		return TRUE;
 	}
@@ -758,14 +745,16 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 
 		// Initialize
 		$sFilterList = "";
-		$sFilterList = ew_Concat($sFilterList, $this->Nombre_Titular->AdvancedSearch->ToJSON(), ","); // Field Nombre Titular
+		$sFilterList = ew_Concat($sFilterList, $this->Apellidos_Nombres->AdvancedSearch->ToJSON(), ","); // Field Apellidos_Nombres
 		$sFilterList = ew_Concat($sFilterList, $this->Dni->AdvancedSearch->ToJSON(), ","); // Field Dni
-		$sFilterList = ew_Concat($sFilterList, $this->curso->AdvancedSearch->ToJSON(), ","); // Field curso
-		$sFilterList = ew_Concat($sFilterList, $this->division->AdvancedSearch->ToJSON(), ","); // Field division
-		$sFilterList = ew_Concat($sFilterList, $this->turno->AdvancedSearch->ToJSON(), ","); // Field turno
-		$sFilterList = ew_Concat($sFilterList, $this->Equipo->AdvancedSearch->ToJSON(), ","); // Field Equipo
-		$sFilterList = ew_Concat($sFilterList, $this->Estado->AdvancedSearch->ToJSON(), ","); // Field Estado
-		$sFilterList = ew_Concat($sFilterList, $this->ultima_actualiz_->AdvancedSearch->ToJSON(), ","); // Field ultima actualiz.
+		$sFilterList = ew_Concat($sFilterList, $this->Id_Curso->AdvancedSearch->ToJSON(), ","); // Field Id_Curso
+		$sFilterList = ew_Concat($sFilterList, $this->Id_Division->AdvancedSearch->ToJSON(), ","); // Field Id_Division
+		$sFilterList = ew_Concat($sFilterList, $this->Id_Turno->AdvancedSearch->ToJSON(), ","); // Field Id_Turno
+		$sFilterList = ew_Concat($sFilterList, $this->Id_Cargo->AdvancedSearch->ToJSON(), ","); // Field Id_Cargo
+		$sFilterList = ew_Concat($sFilterList, $this->Id_Estado->AdvancedSearch->ToJSON(), ","); // Field Id_Estado
+		$sFilterList = ew_Concat($sFilterList, $this->NroSerie->AdvancedSearch->ToJSON(), ","); // Field NroSerie
+		$sFilterList = ew_Concat($sFilterList, $this->Id_Sit_Estado->AdvancedSearch->ToJSON(), ","); // Field Id_Sit_Estado
+		$sFilterList = ew_Concat($sFilterList, $this->Fecha_Actualizacion->AdvancedSearch->ToJSON(), ","); // Field Fecha_Actualizacion
 		if ($this->BasicSearch->Keyword <> "") {
 			$sWrk = "\"" . EW_TABLE_BASIC_SEARCH . "\":\"" . ew_JsEncode2($this->BasicSearch->Keyword) . "\",\"" . EW_TABLE_BASIC_SEARCH_TYPE . "\":\"" . ew_JsEncode2($this->BasicSearch->Type) . "\"";
 			$sFilterList = ew_Concat($sFilterList, $sWrk, ",");
@@ -803,13 +792,13 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 		$filter = json_decode(ew_StripSlashes(@$_POST["filter"]), TRUE);
 		$this->Command = "search";
 
-		// Field Nombre Titular
-		$this->Nombre_Titular->AdvancedSearch->SearchValue = @$filter["x_Nombre_Titular"];
-		$this->Nombre_Titular->AdvancedSearch->SearchOperator = @$filter["z_Nombre_Titular"];
-		$this->Nombre_Titular->AdvancedSearch->SearchCondition = @$filter["v_Nombre_Titular"];
-		$this->Nombre_Titular->AdvancedSearch->SearchValue2 = @$filter["y_Nombre_Titular"];
-		$this->Nombre_Titular->AdvancedSearch->SearchOperator2 = @$filter["w_Nombre_Titular"];
-		$this->Nombre_Titular->AdvancedSearch->Save();
+		// Field Apellidos_Nombres
+		$this->Apellidos_Nombres->AdvancedSearch->SearchValue = @$filter["x_Apellidos_Nombres"];
+		$this->Apellidos_Nombres->AdvancedSearch->SearchOperator = @$filter["z_Apellidos_Nombres"];
+		$this->Apellidos_Nombres->AdvancedSearch->SearchCondition = @$filter["v_Apellidos_Nombres"];
+		$this->Apellidos_Nombres->AdvancedSearch->SearchValue2 = @$filter["y_Apellidos_Nombres"];
+		$this->Apellidos_Nombres->AdvancedSearch->SearchOperator2 = @$filter["w_Apellidos_Nombres"];
+		$this->Apellidos_Nombres->AdvancedSearch->Save();
 
 		// Field Dni
 		$this->Dni->AdvancedSearch->SearchValue = @$filter["x_Dni"];
@@ -819,147 +808,78 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 		$this->Dni->AdvancedSearch->SearchOperator2 = @$filter["w_Dni"];
 		$this->Dni->AdvancedSearch->Save();
 
-		// Field curso
-		$this->curso->AdvancedSearch->SearchValue = @$filter["x_curso"];
-		$this->curso->AdvancedSearch->SearchOperator = @$filter["z_curso"];
-		$this->curso->AdvancedSearch->SearchCondition = @$filter["v_curso"];
-		$this->curso->AdvancedSearch->SearchValue2 = @$filter["y_curso"];
-		$this->curso->AdvancedSearch->SearchOperator2 = @$filter["w_curso"];
-		$this->curso->AdvancedSearch->Save();
+		// Field Id_Curso
+		$this->Id_Curso->AdvancedSearch->SearchValue = @$filter["x_Id_Curso"];
+		$this->Id_Curso->AdvancedSearch->SearchOperator = @$filter["z_Id_Curso"];
+		$this->Id_Curso->AdvancedSearch->SearchCondition = @$filter["v_Id_Curso"];
+		$this->Id_Curso->AdvancedSearch->SearchValue2 = @$filter["y_Id_Curso"];
+		$this->Id_Curso->AdvancedSearch->SearchOperator2 = @$filter["w_Id_Curso"];
+		$this->Id_Curso->AdvancedSearch->Save();
 
-		// Field division
-		$this->division->AdvancedSearch->SearchValue = @$filter["x_division"];
-		$this->division->AdvancedSearch->SearchOperator = @$filter["z_division"];
-		$this->division->AdvancedSearch->SearchCondition = @$filter["v_division"];
-		$this->division->AdvancedSearch->SearchValue2 = @$filter["y_division"];
-		$this->division->AdvancedSearch->SearchOperator2 = @$filter["w_division"];
-		$this->division->AdvancedSearch->Save();
+		// Field Id_Division
+		$this->Id_Division->AdvancedSearch->SearchValue = @$filter["x_Id_Division"];
+		$this->Id_Division->AdvancedSearch->SearchOperator = @$filter["z_Id_Division"];
+		$this->Id_Division->AdvancedSearch->SearchCondition = @$filter["v_Id_Division"];
+		$this->Id_Division->AdvancedSearch->SearchValue2 = @$filter["y_Id_Division"];
+		$this->Id_Division->AdvancedSearch->SearchOperator2 = @$filter["w_Id_Division"];
+		$this->Id_Division->AdvancedSearch->Save();
 
-		// Field turno
-		$this->turno->AdvancedSearch->SearchValue = @$filter["x_turno"];
-		$this->turno->AdvancedSearch->SearchOperator = @$filter["z_turno"];
-		$this->turno->AdvancedSearch->SearchCondition = @$filter["v_turno"];
-		$this->turno->AdvancedSearch->SearchValue2 = @$filter["y_turno"];
-		$this->turno->AdvancedSearch->SearchOperator2 = @$filter["w_turno"];
-		$this->turno->AdvancedSearch->Save();
+		// Field Id_Turno
+		$this->Id_Turno->AdvancedSearch->SearchValue = @$filter["x_Id_Turno"];
+		$this->Id_Turno->AdvancedSearch->SearchOperator = @$filter["z_Id_Turno"];
+		$this->Id_Turno->AdvancedSearch->SearchCondition = @$filter["v_Id_Turno"];
+		$this->Id_Turno->AdvancedSearch->SearchValue2 = @$filter["y_Id_Turno"];
+		$this->Id_Turno->AdvancedSearch->SearchOperator2 = @$filter["w_Id_Turno"];
+		$this->Id_Turno->AdvancedSearch->Save();
 
-		// Field Equipo
-		$this->Equipo->AdvancedSearch->SearchValue = @$filter["x_Equipo"];
-		$this->Equipo->AdvancedSearch->SearchOperator = @$filter["z_Equipo"];
-		$this->Equipo->AdvancedSearch->SearchCondition = @$filter["v_Equipo"];
-		$this->Equipo->AdvancedSearch->SearchValue2 = @$filter["y_Equipo"];
-		$this->Equipo->AdvancedSearch->SearchOperator2 = @$filter["w_Equipo"];
-		$this->Equipo->AdvancedSearch->Save();
+		// Field Id_Cargo
+		$this->Id_Cargo->AdvancedSearch->SearchValue = @$filter["x_Id_Cargo"];
+		$this->Id_Cargo->AdvancedSearch->SearchOperator = @$filter["z_Id_Cargo"];
+		$this->Id_Cargo->AdvancedSearch->SearchCondition = @$filter["v_Id_Cargo"];
+		$this->Id_Cargo->AdvancedSearch->SearchValue2 = @$filter["y_Id_Cargo"];
+		$this->Id_Cargo->AdvancedSearch->SearchOperator2 = @$filter["w_Id_Cargo"];
+		$this->Id_Cargo->AdvancedSearch->Save();
 
-		// Field Estado
-		$this->Estado->AdvancedSearch->SearchValue = @$filter["x_Estado"];
-		$this->Estado->AdvancedSearch->SearchOperator = @$filter["z_Estado"];
-		$this->Estado->AdvancedSearch->SearchCondition = @$filter["v_Estado"];
-		$this->Estado->AdvancedSearch->SearchValue2 = @$filter["y_Estado"];
-		$this->Estado->AdvancedSearch->SearchOperator2 = @$filter["w_Estado"];
-		$this->Estado->AdvancedSearch->Save();
+		// Field Id_Estado
+		$this->Id_Estado->AdvancedSearch->SearchValue = @$filter["x_Id_Estado"];
+		$this->Id_Estado->AdvancedSearch->SearchOperator = @$filter["z_Id_Estado"];
+		$this->Id_Estado->AdvancedSearch->SearchCondition = @$filter["v_Id_Estado"];
+		$this->Id_Estado->AdvancedSearch->SearchValue2 = @$filter["y_Id_Estado"];
+		$this->Id_Estado->AdvancedSearch->SearchOperator2 = @$filter["w_Id_Estado"];
+		$this->Id_Estado->AdvancedSearch->Save();
 
-		// Field ultima actualiz.
-		$this->ultima_actualiz_->AdvancedSearch->SearchValue = @$filter["x_ultima_actualiz_"];
-		$this->ultima_actualiz_->AdvancedSearch->SearchOperator = @$filter["z_ultima_actualiz_"];
-		$this->ultima_actualiz_->AdvancedSearch->SearchCondition = @$filter["v_ultima_actualiz_"];
-		$this->ultima_actualiz_->AdvancedSearch->SearchValue2 = @$filter["y_ultima_actualiz_"];
-		$this->ultima_actualiz_->AdvancedSearch->SearchOperator2 = @$filter["w_ultima_actualiz_"];
-		$this->ultima_actualiz_->AdvancedSearch->Save();
+		// Field NroSerie
+		$this->NroSerie->AdvancedSearch->SearchValue = @$filter["x_NroSerie"];
+		$this->NroSerie->AdvancedSearch->SearchOperator = @$filter["z_NroSerie"];
+		$this->NroSerie->AdvancedSearch->SearchCondition = @$filter["v_NroSerie"];
+		$this->NroSerie->AdvancedSearch->SearchValue2 = @$filter["y_NroSerie"];
+		$this->NroSerie->AdvancedSearch->SearchOperator2 = @$filter["w_NroSerie"];
+		$this->NroSerie->AdvancedSearch->Save();
+
+		// Field Id_Sit_Estado
+		$this->Id_Sit_Estado->AdvancedSearch->SearchValue = @$filter["x_Id_Sit_Estado"];
+		$this->Id_Sit_Estado->AdvancedSearch->SearchOperator = @$filter["z_Id_Sit_Estado"];
+		$this->Id_Sit_Estado->AdvancedSearch->SearchCondition = @$filter["v_Id_Sit_Estado"];
+		$this->Id_Sit_Estado->AdvancedSearch->SearchValue2 = @$filter["y_Id_Sit_Estado"];
+		$this->Id_Sit_Estado->AdvancedSearch->SearchOperator2 = @$filter["w_Id_Sit_Estado"];
+		$this->Id_Sit_Estado->AdvancedSearch->Save();
+
+		// Field Fecha_Actualizacion
+		$this->Fecha_Actualizacion->AdvancedSearch->SearchValue = @$filter["x_Fecha_Actualizacion"];
+		$this->Fecha_Actualizacion->AdvancedSearch->SearchOperator = @$filter["z_Fecha_Actualizacion"];
+		$this->Fecha_Actualizacion->AdvancedSearch->SearchCondition = @$filter["v_Fecha_Actualizacion"];
+		$this->Fecha_Actualizacion->AdvancedSearch->SearchValue2 = @$filter["y_Fecha_Actualizacion"];
+		$this->Fecha_Actualizacion->AdvancedSearch->SearchOperator2 = @$filter["w_Fecha_Actualizacion"];
+		$this->Fecha_Actualizacion->AdvancedSearch->Save();
 		$this->BasicSearch->setKeyword(@$filter[EW_TABLE_BASIC_SEARCH]);
 		$this->BasicSearch->setType(@$filter[EW_TABLE_BASIC_SEARCH_TYPE]);
-	}
-
-	// Advanced search WHERE clause based on QueryString
-	function AdvancedSearchWhere($Default = FALSE) {
-		global $Security;
-		$sWhere = "";
-		if (!$Security->CanSearch()) return "";
-		$this->BuildSearchSql($sWhere, $this->Nombre_Titular, $Default, FALSE); // Nombre Titular
-		$this->BuildSearchSql($sWhere, $this->Dni, $Default, FALSE); // Dni
-		$this->BuildSearchSql($sWhere, $this->curso, $Default, FALSE); // curso
-		$this->BuildSearchSql($sWhere, $this->division, $Default, FALSE); // division
-		$this->BuildSearchSql($sWhere, $this->turno, $Default, FALSE); // turno
-		$this->BuildSearchSql($sWhere, $this->Equipo, $Default, FALSE); // Equipo
-		$this->BuildSearchSql($sWhere, $this->Estado, $Default, FALSE); // Estado
-		$this->BuildSearchSql($sWhere, $this->ultima_actualiz_, $Default, FALSE); // ultima actualiz.
-
-		// Set up search parm
-		if (!$Default && $sWhere <> "") {
-			$this->Command = "search";
-		}
-		if (!$Default && $this->Command == "search") {
-			$this->Nombre_Titular->AdvancedSearch->Save(); // Nombre Titular
-			$this->Dni->AdvancedSearch->Save(); // Dni
-			$this->curso->AdvancedSearch->Save(); // curso
-			$this->division->AdvancedSearch->Save(); // division
-			$this->turno->AdvancedSearch->Save(); // turno
-			$this->Equipo->AdvancedSearch->Save(); // Equipo
-			$this->Estado->AdvancedSearch->Save(); // Estado
-			$this->ultima_actualiz_->AdvancedSearch->Save(); // ultima actualiz.
-		}
-		return $sWhere;
-	}
-
-	// Build search SQL
-	function BuildSearchSql(&$Where, &$Fld, $Default, $MultiValue) {
-		$FldParm = substr($Fld->FldVar, 2);
-		$FldVal = ($Default) ? $Fld->AdvancedSearch->SearchValueDefault : $Fld->AdvancedSearch->SearchValue; // @$_GET["x_$FldParm"]
-		$FldOpr = ($Default) ? $Fld->AdvancedSearch->SearchOperatorDefault : $Fld->AdvancedSearch->SearchOperator; // @$_GET["z_$FldParm"]
-		$FldCond = ($Default) ? $Fld->AdvancedSearch->SearchConditionDefault : $Fld->AdvancedSearch->SearchCondition; // @$_GET["v_$FldParm"]
-		$FldVal2 = ($Default) ? $Fld->AdvancedSearch->SearchValue2Default : $Fld->AdvancedSearch->SearchValue2; // @$_GET["y_$FldParm"]
-		$FldOpr2 = ($Default) ? $Fld->AdvancedSearch->SearchOperator2Default : $Fld->AdvancedSearch->SearchOperator2; // @$_GET["w_$FldParm"]
-		$sWrk = "";
-
-		//$FldVal = ew_StripSlashes($FldVal);
-		if (is_array($FldVal)) $FldVal = implode(",", $FldVal);
-
-		//$FldVal2 = ew_StripSlashes($FldVal2);
-		if (is_array($FldVal2)) $FldVal2 = implode(",", $FldVal2);
-		$FldOpr = strtoupper(trim($FldOpr));
-		if ($FldOpr == "") $FldOpr = "=";
-		$FldOpr2 = strtoupper(trim($FldOpr2));
-		if ($FldOpr2 == "") $FldOpr2 = "=";
-		if (EW_SEARCH_MULTI_VALUE_OPTION == 1 || $FldOpr <> "LIKE" ||
-			($FldOpr2 <> "LIKE" && $FldVal2 <> ""))
-			$MultiValue = FALSE;
-		if ($MultiValue) {
-			$sWrk1 = ($FldVal <> "") ? ew_GetMultiSearchSql($Fld, $FldOpr, $FldVal, $this->DBID) : ""; // Field value 1
-			$sWrk2 = ($FldVal2 <> "") ? ew_GetMultiSearchSql($Fld, $FldOpr2, $FldVal2, $this->DBID) : ""; // Field value 2
-			$sWrk = $sWrk1; // Build final SQL
-			if ($sWrk2 <> "")
-				$sWrk = ($sWrk <> "") ? "($sWrk) $FldCond ($sWrk2)" : $sWrk2;
-		} else {
-			$FldVal = $this->ConvertSearchValue($Fld, $FldVal);
-			$FldVal2 = $this->ConvertSearchValue($Fld, $FldVal2);
-			$sWrk = ew_GetSearchSql($Fld, $FldVal, $FldOpr, $FldCond, $FldVal2, $FldOpr2, $this->DBID);
-		}
-		ew_AddFilter($Where, $sWrk);
-	}
-
-	// Convert search value
-	function ConvertSearchValue(&$Fld, $FldVal) {
-		if ($FldVal == EW_NULL_VALUE || $FldVal == EW_NOT_NULL_VALUE)
-			return $FldVal;
-		$Value = $FldVal;
-		if ($Fld->FldDataType == EW_DATATYPE_BOOLEAN) {
-			if ($FldVal <> "") $Value = ($FldVal == "1" || strtolower(strval($FldVal)) == "y" || strtolower(strval($FldVal)) == "t") ? $Fld->TrueValue : $Fld->FalseValue;
-		} elseif ($Fld->FldDataType == EW_DATATYPE_DATE || $Fld->FldDataType == EW_DATATYPE_TIME) {
-			if ($FldVal <> "") $Value = ew_UnFormatDateTime($FldVal, $Fld->FldDateTimeFormat);
-		}
-		return $Value;
 	}
 
 	// Return basic search SQL
 	function BasicSearchSQL($arKeywords, $type) {
 		$sWhere = "";
-		$this->BuildBasicSearchSQL($sWhere, $this->Nombre_Titular, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->Dni, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->curso, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->division, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->turno, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->Equipo, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->Estado, $arKeywords, $type);
+		$this->BuildBasicSearchSQL($sWhere, $this->Apellidos_Nombres, $arKeywords, $type);
+		$this->BuildBasicSearchSQL($sWhere, $this->NroSerie, $arKeywords, $type);
 		return $sWhere;
 	}
 
@@ -1085,22 +1005,6 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 		// Check basic search
 		if ($this->BasicSearch->IssetSession())
 			return TRUE;
-		if ($this->Nombre_Titular->AdvancedSearch->IssetSession())
-			return TRUE;
-		if ($this->Dni->AdvancedSearch->IssetSession())
-			return TRUE;
-		if ($this->curso->AdvancedSearch->IssetSession())
-			return TRUE;
-		if ($this->division->AdvancedSearch->IssetSession())
-			return TRUE;
-		if ($this->turno->AdvancedSearch->IssetSession())
-			return TRUE;
-		if ($this->Equipo->AdvancedSearch->IssetSession())
-			return TRUE;
-		if ($this->Estado->AdvancedSearch->IssetSession())
-			return TRUE;
-		if ($this->ultima_actualiz_->AdvancedSearch->IssetSession())
-			return TRUE;
 		return FALSE;
 	}
 
@@ -1113,9 +1017,6 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 
 		// Clear basic search parameters
 		$this->ResetBasicSearchParms();
-
-		// Clear advanced search parameters
-		$this->ResetAdvancedSearchParms();
 	}
 
 	// Load advanced search default values
@@ -1128,34 +1029,12 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 		$this->BasicSearch->UnsetSession();
 	}
 
-	// Clear all advanced search parameters
-	function ResetAdvancedSearchParms() {
-		$this->Nombre_Titular->AdvancedSearch->UnsetSession();
-		$this->Dni->AdvancedSearch->UnsetSession();
-		$this->curso->AdvancedSearch->UnsetSession();
-		$this->division->AdvancedSearch->UnsetSession();
-		$this->turno->AdvancedSearch->UnsetSession();
-		$this->Equipo->AdvancedSearch->UnsetSession();
-		$this->Estado->AdvancedSearch->UnsetSession();
-		$this->ultima_actualiz_->AdvancedSearch->UnsetSession();
-	}
-
 	// Restore all search parameters
 	function RestoreSearchParms() {
 		$this->RestoreSearch = TRUE;
 
 		// Restore basic search values
 		$this->BasicSearch->Load();
-
-		// Restore advanced search values
-		$this->Nombre_Titular->AdvancedSearch->Load();
-		$this->Dni->AdvancedSearch->Load();
-		$this->curso->AdvancedSearch->Load();
-		$this->division->AdvancedSearch->Load();
-		$this->turno->AdvancedSearch->Load();
-		$this->Equipo->AdvancedSearch->Load();
-		$this->Estado->AdvancedSearch->Load();
-		$this->ultima_actualiz_->AdvancedSearch->Load();
 	}
 
 	// Set up sort parameters
@@ -1165,13 +1044,15 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 		if (@$_GET["order"] <> "") {
 			$this->CurrentOrder = ew_StripSlashes(@$_GET["order"]);
 			$this->CurrentOrderType = @$_GET["ordertype"];
-			$this->UpdateSort($this->Nombre_Titular); // Nombre Titular
 			$this->UpdateSort($this->Dni); // Dni
-			$this->UpdateSort($this->curso); // curso
-			$this->UpdateSort($this->division); // division
-			$this->UpdateSort($this->turno); // turno
-			$this->UpdateSort($this->Equipo); // Equipo
-			$this->UpdateSort($this->Estado); // Estado
+			$this->UpdateSort($this->Id_Curso); // Id_Curso
+			$this->UpdateSort($this->Id_Division); // Id_Division
+			$this->UpdateSort($this->Id_Turno); // Id_Turno
+			$this->UpdateSort($this->Id_Cargo); // Id_Cargo
+			$this->UpdateSort($this->Id_Estado); // Id_Estado
+			$this->UpdateSort($this->NroSerie); // NroSerie
+			$this->UpdateSort($this->Id_Sit_Estado); // Id_Sit_Estado
+			$this->UpdateSort($this->Fecha_Actualizacion); // Fecha_Actualizacion
 			$this->setStartRecordNumber(1); // Reset start position
 		}
 	}
@@ -1183,7 +1064,6 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 			if ($this->getSqlOrderBy() <> "") {
 				$sOrderBy = $this->getSqlOrderBy();
 				$this->setSessionOrderBy($sOrderBy);
-				$this->Nombre_Titular->setSort("ASC");
 			}
 		}
 	}
@@ -1205,13 +1085,15 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 			if ($this->Command == "resetsort") {
 				$sOrderBy = "";
 				$this->setSessionOrderBy($sOrderBy);
-				$this->Nombre_Titular->setSort("");
 				$this->Dni->setSort("");
-				$this->curso->setSort("");
-				$this->division->setSort("");
-				$this->turno->setSort("");
-				$this->Equipo->setSort("");
-				$this->Estado->setSort("");
+				$this->Id_Curso->setSort("");
+				$this->Id_Division->setSort("");
+				$this->Id_Turno->setSort("");
+				$this->Id_Cargo->setSort("");
+				$this->Id_Estado->setSort("");
+				$this->NroSerie->setSort("");
+				$this->Id_Sit_Estado->setSort("");
+				$this->Fecha_Actualizacion->setSort("");
 			}
 
 			// Reset start position
@@ -1229,12 +1111,6 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 		$item->Body = "";
 		$item->OnLeft = TRUE;
 		$item->Visible = FALSE;
-
-		// "view"
-		$item = &$this->ListOptions->Add("view");
-		$item->CssStyle = "white-space: nowrap;";
-		$item->Visible = $Security->CanView();
-		$item->OnLeft = TRUE;
 
 		// List actions
 		$item = &$this->ListOptions->Add("listactions");
@@ -1274,18 +1150,6 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 		global $Security, $Language, $objForm;
 		$this->ListOptions->LoadDefault();
 
-		// "view"
-		$oListOpt = &$this->ListOptions->Items["view"];
-		$viewcaption = ew_HtmlTitle($Language->Phrase("ViewLink"));
-		if ($Security->CanView()) {
-			if (ew_IsMobile())
-				$oListOpt->Body = "<a class=\"ewRowLink ewView\" title=\"" . $viewcaption . "\" data-caption=\"" . $viewcaption . "\" href=\"" . ew_HtmlEncode($this->ViewUrl) . "\">" . $Language->Phrase("ViewLink") . "</a>";
-			else
-				$oListOpt->Body = "<a class=\"ewRowLink ewView\" title=\"" . $viewcaption . "\" data-table=\"estado_equipos_porcurso\" data-caption=\"" . $viewcaption . "\" href=\"javascript:void(0);\" onclick=\"ew_ModalDialogShow({lnk:this,url:'" . ew_HtmlEncode($this->ViewUrl) . "'});\">" . $Language->Phrase("ViewLink") . "</a>";
-		} else {
-			$oListOpt->Body = "";
-		}
-
 		// Set up list action buttons
 		$oListOpt = &$this->ListOptions->GetItem("listactions");
 		if ($oListOpt && $this->Export == "" && $this->CurrentAction == "") {
@@ -1317,7 +1181,7 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 
 		// "checkbox"
 		$oListOpt = &$this->ListOptions->Items["checkbox"];
-		$oListOpt->Body = "<input type=\"checkbox\" name=\"key_m[]\" value=\"" . ew_HtmlEncode($this->Dni->CurrentValue . $GLOBALS["EW_COMPOSITE_KEY_SEPARATOR"] . $this->Equipo->CurrentValue) . "\" onclick='ew_ClickMultiCheckbox(event);'>";
+		$oListOpt->Body = "<input type=\"checkbox\" name=\"key_m[]\" value=\"" . ew_HtmlEncode($this->Dni->CurrentValue . $GLOBALS["EW_COMPOSITE_KEY_SEPARATOR"] . $this->NroSerie->CurrentValue) . "\" onclick='ew_ClickMultiCheckbox(event);'>";
 		$this->RenderListOptionsExt();
 
 		// Call ListOptions_Rendered event
@@ -1485,11 +1349,6 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 		$item->Body = "<a class=\"btn btn-default ewShowAll\" title=\"" . $Language->Phrase("ShowAll") . "\" data-caption=\"" . $Language->Phrase("ShowAll") . "\" href=\"" . $this->PageUrl() . "cmd=reset\">" . $Language->Phrase("ShowAllBtn") . "</a>";
 		$item->Visible = ($this->SearchWhere <> $this->DefaultSearchWhere && $this->SearchWhere <> "0=101");
 
-		// Advanced search button
-		$item = &$this->SearchOptions->Add("advancedsearch");
-		$item->Body = "<a class=\"btn btn-default ewAdvancedSearch\" title=\"" . $Language->Phrase("AdvancedSearch") . "\" data-caption=\"" . $Language->Phrase("AdvancedSearch") . "\" href=\"estado_equipos_porcursosrch.php\">" . $Language->Phrase("AdvancedSearchBtn") . "</a>";
-		$item->Visible = TRUE;
-
 		// Button group for search
 		$this->SearchOptions->UseDropDownButton = FALSE;
 		$this->SearchOptions->UseImageAndText = TRUE;
@@ -1562,53 +1421,6 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 		$this->BasicSearch->Type = @$_GET[EW_TABLE_BASIC_SEARCH_TYPE];
 	}
 
-	// Load search values for validation
-	function LoadSearchValues() {
-		global $objForm;
-
-		// Load search values
-		// Nombre Titular
-
-		$this->Nombre_Titular->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Nombre_Titular"]);
-		if ($this->Nombre_Titular->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->Nombre_Titular->AdvancedSearch->SearchOperator = @$_GET["z_Nombre_Titular"];
-
-		// Dni
-		$this->Dni->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Dni"]);
-		if ($this->Dni->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->Dni->AdvancedSearch->SearchOperator = @$_GET["z_Dni"];
-
-		// curso
-		$this->curso->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_curso"]);
-		if ($this->curso->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->curso->AdvancedSearch->SearchOperator = @$_GET["z_curso"];
-
-		// division
-		$this->division->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_division"]);
-		if ($this->division->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->division->AdvancedSearch->SearchOperator = @$_GET["z_division"];
-
-		// turno
-		$this->turno->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_turno"]);
-		if ($this->turno->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->turno->AdvancedSearch->SearchOperator = @$_GET["z_turno"];
-
-		// Equipo
-		$this->Equipo->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Equipo"]);
-		if ($this->Equipo->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->Equipo->AdvancedSearch->SearchOperator = @$_GET["z_Equipo"];
-
-		// Estado
-		$this->Estado->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Estado"]);
-		if ($this->Estado->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->Estado->AdvancedSearch->SearchOperator = @$_GET["z_Estado"];
-
-		// ultima actualiz.
-		$this->ultima_actualiz_->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_ultima_actualiz_"]);
-		if ($this->ultima_actualiz_->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->ultima_actualiz_->AdvancedSearch->SearchOperator = @$_GET["z_ultima_actualiz_"];
-	}
-
 	// Load recordset
 	function LoadRecordset($offset = -1, $rowcnt = -1) {
 
@@ -1664,28 +1476,32 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 		// Call Row Selected event
 		$row = &$rs->fields;
 		$this->Row_Selected($row);
-		$this->Nombre_Titular->setDbValue($rs->fields('Nombre Titular'));
+		$this->Apellidos_Nombres->setDbValue($rs->fields('Apellidos_Nombres'));
 		$this->Dni->setDbValue($rs->fields('Dni'));
-		$this->curso->setDbValue($rs->fields('curso'));
-		$this->division->setDbValue($rs->fields('division'));
-		$this->turno->setDbValue($rs->fields('turno'));
-		$this->Equipo->setDbValue($rs->fields('Equipo'));
-		$this->Estado->setDbValue($rs->fields('Estado'));
-		$this->ultima_actualiz_->setDbValue($rs->fields('ultima actualiz.'));
+		$this->Id_Curso->setDbValue($rs->fields('Id_Curso'));
+		$this->Id_Division->setDbValue($rs->fields('Id_Division'));
+		$this->Id_Turno->setDbValue($rs->fields('Id_Turno'));
+		$this->Id_Cargo->setDbValue($rs->fields('Id_Cargo'));
+		$this->Id_Estado->setDbValue($rs->fields('Id_Estado'));
+		$this->NroSerie->setDbValue($rs->fields('NroSerie'));
+		$this->Id_Sit_Estado->setDbValue($rs->fields('Id_Sit_Estado'));
+		$this->Fecha_Actualizacion->setDbValue($rs->fields('Fecha_Actualizacion'));
 	}
 
 	// Load DbValue from recordset
 	function LoadDbValues(&$rs) {
 		if (!$rs || !is_array($rs) && $rs->EOF) return;
 		$row = is_array($rs) ? $rs : $rs->fields;
-		$this->Nombre_Titular->DbValue = $row['Nombre Titular'];
+		$this->Apellidos_Nombres->DbValue = $row['Apellidos_Nombres'];
 		$this->Dni->DbValue = $row['Dni'];
-		$this->curso->DbValue = $row['curso'];
-		$this->division->DbValue = $row['division'];
-		$this->turno->DbValue = $row['turno'];
-		$this->Equipo->DbValue = $row['Equipo'];
-		$this->Estado->DbValue = $row['Estado'];
-		$this->ultima_actualiz_->DbValue = $row['ultima actualiz.'];
+		$this->Id_Curso->DbValue = $row['Id_Curso'];
+		$this->Id_Division->DbValue = $row['Id_Division'];
+		$this->Id_Turno->DbValue = $row['Id_Turno'];
+		$this->Id_Cargo->DbValue = $row['Id_Cargo'];
+		$this->Id_Estado->DbValue = $row['Id_Estado'];
+		$this->NroSerie->DbValue = $row['NroSerie'];
+		$this->Id_Sit_Estado->DbValue = $row['Id_Sit_Estado'];
+		$this->Fecha_Actualizacion->DbValue = $row['Fecha_Actualizacion'];
 	}
 
 	// Load old record
@@ -1697,8 +1513,8 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 			$this->Dni->CurrentValue = $this->getKey("Dni"); // Dni
 		else
 			$bValidKey = FALSE;
-		if (strval($this->getKey("Equipo")) <> "")
-			$this->Equipo->CurrentValue = $this->getKey("Equipo"); // Equipo
+		if (strval($this->getKey("NroSerie")) <> "")
+			$this->NroSerie->CurrentValue = $this->getKey("NroSerie"); // NroSerie
 		else
 			$bValidKey = FALSE;
 
@@ -1731,199 +1547,219 @@ class cestado_equipos_porcurso_list extends cestado_equipos_porcurso {
 		$this->Row_Rendering();
 
 		// Common render codes for all row types
-		// Nombre Titular
+		// Apellidos_Nombres
 		// Dni
-		// curso
-		// division
-		// turno
-		// Equipo
-		// Estado
-		// ultima actualiz.
+		// Id_Curso
+		// Id_Division
+		// Id_Turno
+		// Id_Cargo
+		// Id_Estado
+		// NroSerie
+		// Id_Sit_Estado
+		// Fecha_Actualizacion
 
 		if ($this->RowType == EW_ROWTYPE_VIEW) { // View row
-
-		// Nombre Titular
-		$this->Nombre_Titular->ViewValue = $this->Nombre_Titular->CurrentValue;
-		$this->Nombre_Titular->ViewCustomAttributes = "";
 
 		// Dni
 		$this->Dni->ViewValue = $this->Dni->CurrentValue;
 		$this->Dni->ViewCustomAttributes = "";
 
-		// curso
-		if (strval($this->curso->CurrentValue) <> "") {
-			$sFilterWrk = "`Descripcion`" . ew_SearchString("=", $this->curso->CurrentValue, EW_DATATYPE_STRING, "");
-		$sSqlWrk = "SELECT `Descripcion`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cursos`";
+		// Id_Curso
+		if (strval($this->Id_Curso->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Curso`" . ew_SearchString("=", $this->Id_Curso->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Curso`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cursos`";
 		$sWhereWrk = "";
-		$this->curso->LookupFilters = array();
+		$this->Id_Curso->LookupFilters = array();
 		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->curso, $sWhereWrk); // Call Lookup selecting
+		$this->Lookup_Selecting($this->Id_Curso, $sWhereWrk); // Call Lookup selecting
 		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
 			$rswrk = Conn()->Execute($sSqlWrk);
 			if ($rswrk && !$rswrk->EOF) { // Lookup values found
 				$arwrk = array();
 				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->curso->ViewValue = $this->curso->DisplayValue($arwrk);
+				$this->Id_Curso->ViewValue = $this->Id_Curso->DisplayValue($arwrk);
 				$rswrk->Close();
 			} else {
-				$this->curso->ViewValue = $this->curso->CurrentValue;
+				$this->Id_Curso->ViewValue = $this->Id_Curso->CurrentValue;
 			}
 		} else {
-			$this->curso->ViewValue = NULL;
+			$this->Id_Curso->ViewValue = NULL;
 		}
-		$this->curso->ViewCustomAttributes = "";
+		$this->Id_Curso->ViewCustomAttributes = "";
 
-		// division
-		if (strval($this->division->CurrentValue) <> "") {
-			$sFilterWrk = "`Descripcion`" . ew_SearchString("=", $this->division->CurrentValue, EW_DATATYPE_STRING, "");
-		$sSqlWrk = "SELECT `Descripcion`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `division`";
+		// Id_Division
+		if (strval($this->Id_Division->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Division`" . ew_SearchString("=", $this->Id_Division->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Division`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `division`";
 		$sWhereWrk = "";
-		$this->division->LookupFilters = array();
+		$this->Id_Division->LookupFilters = array();
 		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->division, $sWhereWrk); // Call Lookup selecting
+		$this->Lookup_Selecting($this->Id_Division, $sWhereWrk); // Call Lookup selecting
 		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
 			$rswrk = Conn()->Execute($sSqlWrk);
 			if ($rswrk && !$rswrk->EOF) { // Lookup values found
 				$arwrk = array();
 				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->division->ViewValue = $this->division->DisplayValue($arwrk);
+				$this->Id_Division->ViewValue = $this->Id_Division->DisplayValue($arwrk);
 				$rswrk->Close();
 			} else {
-				$this->division->ViewValue = $this->division->CurrentValue;
+				$this->Id_Division->ViewValue = $this->Id_Division->CurrentValue;
 			}
 		} else {
-			$this->division->ViewValue = NULL;
+			$this->Id_Division->ViewValue = NULL;
 		}
-		$this->division->ViewCustomAttributes = "";
+		$this->Id_Division->ViewCustomAttributes = "";
 
-		// turno
-		if (strval($this->turno->CurrentValue) <> "") {
-			$sFilterWrk = "`Descripcion`" . ew_SearchString("=", $this->turno->CurrentValue, EW_DATATYPE_STRING, "");
-		$sSqlWrk = "SELECT `Descripcion`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `turno`";
+		// Id_Turno
+		if (strval($this->Id_Turno->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Turno`" . ew_SearchString("=", $this->Id_Turno->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Turno`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `turno`";
 		$sWhereWrk = "";
-		$this->turno->LookupFilters = array();
+		$this->Id_Turno->LookupFilters = array();
 		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->turno, $sWhereWrk); // Call Lookup selecting
+		$this->Lookup_Selecting($this->Id_Turno, $sWhereWrk); // Call Lookup selecting
 		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
 			$rswrk = Conn()->Execute($sSqlWrk);
 			if ($rswrk && !$rswrk->EOF) { // Lookup values found
 				$arwrk = array();
 				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->turno->ViewValue = $this->turno->DisplayValue($arwrk);
+				$this->Id_Turno->ViewValue = $this->Id_Turno->DisplayValue($arwrk);
 				$rswrk->Close();
 			} else {
-				$this->turno->ViewValue = $this->turno->CurrentValue;
+				$this->Id_Turno->ViewValue = $this->Id_Turno->CurrentValue;
 			}
 		} else {
-			$this->turno->ViewValue = NULL;
+			$this->Id_Turno->ViewValue = NULL;
 		}
-		$this->turno->ViewCustomAttributes = "";
+		$this->Id_Turno->ViewCustomAttributes = "";
 
-		// Equipo
-		$this->Equipo->ViewValue = $this->Equipo->CurrentValue;
-		$this->Equipo->ViewCustomAttributes = "";
-
-		// Estado
-		if (strval($this->Estado->CurrentValue) <> "") {
-			$sFilterWrk = "`Descripcion`" . ew_SearchString("=", $this->Estado->CurrentValue, EW_DATATYPE_STRING, "");
-		$sSqlWrk = "SELECT `Descripcion`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `situacion_estado`";
+		// Id_Cargo
+		if (strval($this->Id_Cargo->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Cargo`" . ew_SearchString("=", $this->Id_Cargo->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Cargo`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cargo_persona`";
 		$sWhereWrk = "";
-		$this->Estado->LookupFilters = array();
+		$this->Id_Cargo->LookupFilters = array();
 		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Estado, $sWhereWrk); // Call Lookup selecting
+		$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
 		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
 			$rswrk = Conn()->Execute($sSqlWrk);
 			if ($rswrk && !$rswrk->EOF) { // Lookup values found
 				$arwrk = array();
 				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Estado->ViewValue = $this->Estado->DisplayValue($arwrk);
+				$this->Id_Cargo->ViewValue = $this->Id_Cargo->DisplayValue($arwrk);
 				$rswrk->Close();
 			} else {
-				$this->Estado->ViewValue = $this->Estado->CurrentValue;
+				$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
 			}
 		} else {
-			$this->Estado->ViewValue = NULL;
+			$this->Id_Cargo->ViewValue = NULL;
 		}
-		$this->Estado->ViewCustomAttributes = "";
+		$this->Id_Cargo->ViewCustomAttributes = "";
 
-		// ultima actualiz.
-		$this->ultima_actualiz_->ViewValue = $this->ultima_actualiz_->CurrentValue;
-		$this->ultima_actualiz_->ViewCustomAttributes = "";
+		// Id_Estado
+		if (strval($this->Id_Estado->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Estado`" . ew_SearchString("=", $this->Id_Estado->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Estado`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `estado_persona`";
+		$sWhereWrk = "";
+		$this->Id_Estado->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Estado, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Estado->ViewValue = $this->Id_Estado->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Estado->ViewValue = $this->Id_Estado->CurrentValue;
+			}
+		} else {
+			$this->Id_Estado->ViewValue = NULL;
+		}
+		$this->Id_Estado->ViewCustomAttributes = "";
 
-			// Nombre Titular
-			$this->Nombre_Titular->LinkCustomAttributes = "";
-			$this->Nombre_Titular->HrefValue = "";
-			$this->Nombre_Titular->TooltipValue = "";
+		// NroSerie
+		$this->NroSerie->ViewValue = $this->NroSerie->CurrentValue;
+		$this->NroSerie->ViewCustomAttributes = "";
+
+		// Id_Sit_Estado
+		if (strval($this->Id_Sit_Estado->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Sit_Estado`" . ew_SearchString("=", $this->Id_Sit_Estado->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Sit_Estado`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `situacion_estado`";
+		$sWhereWrk = "";
+		$this->Id_Sit_Estado->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Sit_Estado, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Sit_Estado->ViewValue = $this->Id_Sit_Estado->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Sit_Estado->ViewValue = $this->Id_Sit_Estado->CurrentValue;
+			}
+		} else {
+			$this->Id_Sit_Estado->ViewValue = NULL;
+		}
+		$this->Id_Sit_Estado->ViewCustomAttributes = "";
+
+		// Fecha_Actualizacion
+		$this->Fecha_Actualizacion->ViewValue = $this->Fecha_Actualizacion->CurrentValue;
+		$this->Fecha_Actualizacion->ViewValue = ew_FormatDateTime($this->Fecha_Actualizacion->ViewValue, 0);
+		$this->Fecha_Actualizacion->ViewCustomAttributes = "";
 
 			// Dni
 			$this->Dni->LinkCustomAttributes = "";
 			$this->Dni->HrefValue = "";
 			$this->Dni->TooltipValue = "";
 
-			// curso
-			$this->curso->LinkCustomAttributes = "";
-			$this->curso->HrefValue = "";
-			$this->curso->TooltipValue = "";
+			// Id_Curso
+			$this->Id_Curso->LinkCustomAttributes = "";
+			$this->Id_Curso->HrefValue = "";
+			$this->Id_Curso->TooltipValue = "";
 
-			// division
-			$this->division->LinkCustomAttributes = "";
-			$this->division->HrefValue = "";
-			$this->division->TooltipValue = "";
+			// Id_Division
+			$this->Id_Division->LinkCustomAttributes = "";
+			$this->Id_Division->HrefValue = "";
+			$this->Id_Division->TooltipValue = "";
 
-			// turno
-			$this->turno->LinkCustomAttributes = "";
-			$this->turno->HrefValue = "";
-			$this->turno->TooltipValue = "";
+			// Id_Turno
+			$this->Id_Turno->LinkCustomAttributes = "";
+			$this->Id_Turno->HrefValue = "";
+			$this->Id_Turno->TooltipValue = "";
 
-			// Equipo
-			$this->Equipo->LinkCustomAttributes = "";
-			$this->Equipo->HrefValue = "";
-			$this->Equipo->TooltipValue = "";
+			// Id_Cargo
+			$this->Id_Cargo->LinkCustomAttributes = "";
+			$this->Id_Cargo->HrefValue = "";
+			$this->Id_Cargo->TooltipValue = "";
 
-			// Estado
-			$this->Estado->LinkCustomAttributes = "";
-			$this->Estado->HrefValue = "";
-			$this->Estado->TooltipValue = "";
+			// Id_Estado
+			$this->Id_Estado->LinkCustomAttributes = "";
+			$this->Id_Estado->HrefValue = "";
+			$this->Id_Estado->TooltipValue = "";
+
+			// NroSerie
+			$this->NroSerie->LinkCustomAttributes = "";
+			$this->NroSerie->HrefValue = "";
+			$this->NroSerie->TooltipValue = "";
+
+			// Id_Sit_Estado
+			$this->Id_Sit_Estado->LinkCustomAttributes = "";
+			$this->Id_Sit_Estado->HrefValue = "";
+			$this->Id_Sit_Estado->TooltipValue = "";
+
+			// Fecha_Actualizacion
+			$this->Fecha_Actualizacion->LinkCustomAttributes = "";
+			$this->Fecha_Actualizacion->HrefValue = "";
+			$this->Fecha_Actualizacion->TooltipValue = "";
 		}
 
 		// Call Row Rendered event
 		if ($this->RowType <> EW_ROWTYPE_AGGREGATEINIT)
 			$this->Row_Rendered();
-	}
-
-	// Validate search
-	function ValidateSearch() {
-		global $gsSearchError;
-
-		// Initialize
-		$gsSearchError = "";
-
-		// Check if validation required
-		if (!EW_SERVER_VALIDATE)
-			return TRUE;
-
-		// Return validate result
-		$ValidateSearch = ($gsSearchError == "");
-
-		// Call Form_CustomValidate event
-		$sFormCustomError = "";
-		$ValidateSearch = $ValidateSearch && $this->Form_CustomValidate($sFormCustomError);
-		if ($sFormCustomError <> "") {
-			ew_AddMessage($gsSearchError, $sFormCustomError);
-		}
-		return $ValidateSearch;
-	}
-
-	// Load advanced search
-	function LoadAdvancedSearch() {
-		$this->Nombre_Titular->AdvancedSearch->Load();
-		$this->Dni->AdvancedSearch->Load();
-		$this->curso->AdvancedSearch->Load();
-		$this->division->AdvancedSearch->Load();
-		$this->turno->AdvancedSearch->Load();
-		$this->Equipo->AdvancedSearch->Load();
-		$this->Estado->AdvancedSearch->Load();
-		$this->ultima_actualiz_->AdvancedSearch->Load();
 	}
 
 	// Set up export options
@@ -2257,10 +2093,12 @@ festado_equipos_porcursolist.ValidateRequired = false;
 <?php } ?>
 
 // Dynamic selection lists
-festado_equipos_porcursolist.Lists["x_curso"] = {"LinkField":"x_Descripcion","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"cursos"};
-festado_equipos_porcursolist.Lists["x_division"] = {"LinkField":"x_Descripcion","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"division"};
-festado_equipos_porcursolist.Lists["x_turno"] = {"LinkField":"x_Descripcion","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"turno"};
-festado_equipos_porcursolist.Lists["x_Estado"] = {"LinkField":"x_Descripcion","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"situacion_estado"};
+festado_equipos_porcursolist.Lists["x_Id_Curso"] = {"LinkField":"x_Id_Curso","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"cursos"};
+festado_equipos_porcursolist.Lists["x_Id_Division"] = {"LinkField":"x_Id_Division","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"division"};
+festado_equipos_porcursolist.Lists["x_Id_Turno"] = {"LinkField":"x_Id_Turno","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"turno"};
+festado_equipos_porcursolist.Lists["x_Id_Cargo"] = {"LinkField":"x_Id_Cargo","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nombre","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"cargo_persona"};
+festado_equipos_porcursolist.Lists["x_Id_Estado"] = {"LinkField":"x_Id_Estado","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"estado_persona"};
+festado_equipos_porcursolist.Lists["x_Id_Sit_Estado"] = {"LinkField":"x_Id_Sit_Estado","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"situacion_estado"};
 
 // Form object for search
 var CurrentSearchForm = festado_equipos_porcursolistsrch = new ew_Form("festado_equipos_porcursolistsrch");
@@ -2433,66 +2271,84 @@ $estado_equipos_porcurso_list->RenderListOptions();
 // Render list options (header, left)
 $estado_equipos_porcurso_list->ListOptions->Render("header", "left");
 ?>
-<?php if ($estado_equipos_porcurso->Nombre_Titular->Visible) { // Nombre Titular ?>
-	<?php if ($estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Nombre_Titular) == "") { ?>
-		<th data-name="Nombre_Titular"><div id="elh_estado_equipos_porcurso_Nombre_Titular" class="estado_equipos_porcurso_Nombre_Titular"><div class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Nombre_Titular->FldCaption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="Nombre_Titular"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Nombre_Titular) ?>',1);"><div id="elh_estado_equipos_porcurso_Nombre_Titular" class="estado_equipos_porcurso_Nombre_Titular">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Nombre_Titular->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->Nombre_Titular->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->Nombre_Titular->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
-        </div></div></th>
-	<?php } ?>
-<?php } ?>		
 <?php if ($estado_equipos_porcurso->Dni->Visible) { // Dni ?>
 	<?php if ($estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Dni) == "") { ?>
 		<th data-name="Dni"><div id="elh_estado_equipos_porcurso_Dni" class="estado_equipos_porcurso_Dni"><div class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Dni->FldCaption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="Dni"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Dni) ?>',1);"><div id="elh_estado_equipos_porcurso_Dni" class="estado_equipos_porcurso_Dni">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Dni->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->Dni->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->Dni->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Dni->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->Dni->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->Dni->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
-<?php if ($estado_equipos_porcurso->curso->Visible) { // curso ?>
-	<?php if ($estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->curso) == "") { ?>
-		<th data-name="curso"><div id="elh_estado_equipos_porcurso_curso" class="estado_equipos_porcurso_curso"><div class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->curso->FldCaption() ?></div></div></th>
+<?php if ($estado_equipos_porcurso->Id_Curso->Visible) { // Id_Curso ?>
+	<?php if ($estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Id_Curso) == "") { ?>
+		<th data-name="Id_Curso"><div id="elh_estado_equipos_porcurso_Id_Curso" class="estado_equipos_porcurso_Id_Curso"><div class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Id_Curso->FldCaption() ?></div></div></th>
 	<?php } else { ?>
-		<th data-name="curso"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->curso) ?>',1);"><div id="elh_estado_equipos_porcurso_curso" class="estado_equipos_porcurso_curso">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->curso->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->curso->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->curso->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+		<th data-name="Id_Curso"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Id_Curso) ?>',1);"><div id="elh_estado_equipos_porcurso_Id_Curso" class="estado_equipos_porcurso_Id_Curso">
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Id_Curso->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->Id_Curso->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->Id_Curso->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
-<?php if ($estado_equipos_porcurso->division->Visible) { // division ?>
-	<?php if ($estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->division) == "") { ?>
-		<th data-name="division"><div id="elh_estado_equipos_porcurso_division" class="estado_equipos_porcurso_division"><div class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->division->FldCaption() ?></div></div></th>
+<?php if ($estado_equipos_porcurso->Id_Division->Visible) { // Id_Division ?>
+	<?php if ($estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Id_Division) == "") { ?>
+		<th data-name="Id_Division"><div id="elh_estado_equipos_porcurso_Id_Division" class="estado_equipos_porcurso_Id_Division"><div class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Id_Division->FldCaption() ?></div></div></th>
 	<?php } else { ?>
-		<th data-name="division"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->division) ?>',1);"><div id="elh_estado_equipos_porcurso_division" class="estado_equipos_porcurso_division">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->division->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->division->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->division->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+		<th data-name="Id_Division"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Id_Division) ?>',1);"><div id="elh_estado_equipos_porcurso_Id_Division" class="estado_equipos_porcurso_Id_Division">
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Id_Division->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->Id_Division->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->Id_Division->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
-<?php if ($estado_equipos_porcurso->turno->Visible) { // turno ?>
-	<?php if ($estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->turno) == "") { ?>
-		<th data-name="turno"><div id="elh_estado_equipos_porcurso_turno" class="estado_equipos_porcurso_turno"><div class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->turno->FldCaption() ?></div></div></th>
+<?php if ($estado_equipos_porcurso->Id_Turno->Visible) { // Id_Turno ?>
+	<?php if ($estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Id_Turno) == "") { ?>
+		<th data-name="Id_Turno"><div id="elh_estado_equipos_porcurso_Id_Turno" class="estado_equipos_porcurso_Id_Turno"><div class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Id_Turno->FldCaption() ?></div></div></th>
 	<?php } else { ?>
-		<th data-name="turno"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->turno) ?>',1);"><div id="elh_estado_equipos_porcurso_turno" class="estado_equipos_porcurso_turno">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->turno->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->turno->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->turno->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+		<th data-name="Id_Turno"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Id_Turno) ?>',1);"><div id="elh_estado_equipos_porcurso_Id_Turno" class="estado_equipos_porcurso_Id_Turno">
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Id_Turno->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->Id_Turno->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->Id_Turno->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
-<?php if ($estado_equipos_porcurso->Equipo->Visible) { // Equipo ?>
-	<?php if ($estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Equipo) == "") { ?>
-		<th data-name="Equipo"><div id="elh_estado_equipos_porcurso_Equipo" class="estado_equipos_porcurso_Equipo"><div class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Equipo->FldCaption() ?></div></div></th>
+<?php if ($estado_equipos_porcurso->Id_Cargo->Visible) { // Id_Cargo ?>
+	<?php if ($estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Id_Cargo) == "") { ?>
+		<th data-name="Id_Cargo"><div id="elh_estado_equipos_porcurso_Id_Cargo" class="estado_equipos_porcurso_Id_Cargo"><div class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Id_Cargo->FldCaption() ?></div></div></th>
 	<?php } else { ?>
-		<th data-name="Equipo"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Equipo) ?>',1);"><div id="elh_estado_equipos_porcurso_Equipo" class="estado_equipos_porcurso_Equipo">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Equipo->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->Equipo->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->Equipo->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+		<th data-name="Id_Cargo"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Id_Cargo) ?>',1);"><div id="elh_estado_equipos_porcurso_Id_Cargo" class="estado_equipos_porcurso_Id_Cargo">
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Id_Cargo->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->Id_Cargo->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->Id_Cargo->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
-<?php if ($estado_equipos_porcurso->Estado->Visible) { // Estado ?>
-	<?php if ($estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Estado) == "") { ?>
-		<th data-name="Estado"><div id="elh_estado_equipos_porcurso_Estado" class="estado_equipos_porcurso_Estado"><div class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Estado->FldCaption() ?></div></div></th>
+<?php if ($estado_equipos_porcurso->Id_Estado->Visible) { // Id_Estado ?>
+	<?php if ($estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Id_Estado) == "") { ?>
+		<th data-name="Id_Estado"><div id="elh_estado_equipos_porcurso_Id_Estado" class="estado_equipos_porcurso_Id_Estado"><div class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Id_Estado->FldCaption() ?></div></div></th>
 	<?php } else { ?>
-		<th data-name="Estado"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Estado) ?>',1);"><div id="elh_estado_equipos_porcurso_Estado" class="estado_equipos_porcurso_Estado">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Estado->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->Estado->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->Estado->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+		<th data-name="Id_Estado"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Id_Estado) ?>',1);"><div id="elh_estado_equipos_porcurso_Id_Estado" class="estado_equipos_porcurso_Id_Estado">
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Id_Estado->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->Id_Estado->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->Id_Estado->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+        </div></div></th>
+	<?php } ?>
+<?php } ?>		
+<?php if ($estado_equipos_porcurso->NroSerie->Visible) { // NroSerie ?>
+	<?php if ($estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->NroSerie) == "") { ?>
+		<th data-name="NroSerie"><div id="elh_estado_equipos_porcurso_NroSerie" class="estado_equipos_porcurso_NroSerie"><div class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->NroSerie->FldCaption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="NroSerie"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->NroSerie) ?>',1);"><div id="elh_estado_equipos_porcurso_NroSerie" class="estado_equipos_porcurso_NroSerie">
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->NroSerie->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->NroSerie->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->NroSerie->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+        </div></div></th>
+	<?php } ?>
+<?php } ?>		
+<?php if ($estado_equipos_porcurso->Id_Sit_Estado->Visible) { // Id_Sit_Estado ?>
+	<?php if ($estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Id_Sit_Estado) == "") { ?>
+		<th data-name="Id_Sit_Estado"><div id="elh_estado_equipos_porcurso_Id_Sit_Estado" class="estado_equipos_porcurso_Id_Sit_Estado"><div class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Id_Sit_Estado->FldCaption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="Id_Sit_Estado"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Id_Sit_Estado) ?>',1);"><div id="elh_estado_equipos_porcurso_Id_Sit_Estado" class="estado_equipos_porcurso_Id_Sit_Estado">
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Id_Sit_Estado->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->Id_Sit_Estado->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->Id_Sit_Estado->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+        </div></div></th>
+	<?php } ?>
+<?php } ?>		
+<?php if ($estado_equipos_porcurso->Fecha_Actualizacion->Visible) { // Fecha_Actualizacion ?>
+	<?php if ($estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Fecha_Actualizacion) == "") { ?>
+		<th data-name="Fecha_Actualizacion"><div id="elh_estado_equipos_porcurso_Fecha_Actualizacion" class="estado_equipos_porcurso_Fecha_Actualizacion"><div class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Fecha_Actualizacion->FldCaption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="Fecha_Actualizacion"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $estado_equipos_porcurso->SortUrl($estado_equipos_porcurso->Fecha_Actualizacion) ?>',1);"><div id="elh_estado_equipos_porcurso_Fecha_Actualizacion" class="estado_equipos_porcurso_Fecha_Actualizacion">
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $estado_equipos_porcurso->Fecha_Actualizacion->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($estado_equipos_porcurso->Fecha_Actualizacion->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($estado_equipos_porcurso->Fecha_Actualizacion->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
@@ -2561,59 +2417,75 @@ while ($estado_equipos_porcurso_list->RecCnt < $estado_equipos_porcurso_list->St
 // Render list options (body, left)
 $estado_equipos_porcurso_list->ListOptions->Render("body", "left", $estado_equipos_porcurso_list->RowCnt);
 ?>
-	<?php if ($estado_equipos_porcurso->Nombre_Titular->Visible) { // Nombre Titular ?>
-		<td data-name="Nombre_Titular"<?php echo $estado_equipos_porcurso->Nombre_Titular->CellAttributes() ?>>
-<span id="el<?php echo $estado_equipos_porcurso_list->RowCnt ?>_estado_equipos_porcurso_Nombre_Titular" class="estado_equipos_porcurso_Nombre_Titular">
-<span<?php echo $estado_equipos_porcurso->Nombre_Titular->ViewAttributes() ?>>
-<?php echo $estado_equipos_porcurso->Nombre_Titular->ListViewValue() ?></span>
-</span>
-<a id="<?php echo $estado_equipos_porcurso_list->PageObjName . "_row_" . $estado_equipos_porcurso_list->RowCnt ?>"></a></td>
-	<?php } ?>
 	<?php if ($estado_equipos_porcurso->Dni->Visible) { // Dni ?>
 		<td data-name="Dni"<?php echo $estado_equipos_porcurso->Dni->CellAttributes() ?>>
 <span id="el<?php echo $estado_equipos_porcurso_list->RowCnt ?>_estado_equipos_porcurso_Dni" class="estado_equipos_porcurso_Dni">
 <span<?php echo $estado_equipos_porcurso->Dni->ViewAttributes() ?>>
 <?php echo $estado_equipos_porcurso->Dni->ListViewValue() ?></span>
 </span>
-</td>
+<a id="<?php echo $estado_equipos_porcurso_list->PageObjName . "_row_" . $estado_equipos_porcurso_list->RowCnt ?>"></a></td>
 	<?php } ?>
-	<?php if ($estado_equipos_porcurso->curso->Visible) { // curso ?>
-		<td data-name="curso"<?php echo $estado_equipos_porcurso->curso->CellAttributes() ?>>
-<span id="el<?php echo $estado_equipos_porcurso_list->RowCnt ?>_estado_equipos_porcurso_curso" class="estado_equipos_porcurso_curso">
-<span<?php echo $estado_equipos_porcurso->curso->ViewAttributes() ?>>
-<?php echo $estado_equipos_porcurso->curso->ListViewValue() ?></span>
+	<?php if ($estado_equipos_porcurso->Id_Curso->Visible) { // Id_Curso ?>
+		<td data-name="Id_Curso"<?php echo $estado_equipos_porcurso->Id_Curso->CellAttributes() ?>>
+<span id="el<?php echo $estado_equipos_porcurso_list->RowCnt ?>_estado_equipos_porcurso_Id_Curso" class="estado_equipos_porcurso_Id_Curso">
+<span<?php echo $estado_equipos_porcurso->Id_Curso->ViewAttributes() ?>>
+<?php echo $estado_equipos_porcurso->Id_Curso->ListViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>
-	<?php if ($estado_equipos_porcurso->division->Visible) { // division ?>
-		<td data-name="division"<?php echo $estado_equipos_porcurso->division->CellAttributes() ?>>
-<span id="el<?php echo $estado_equipos_porcurso_list->RowCnt ?>_estado_equipos_porcurso_division" class="estado_equipos_porcurso_division">
-<span<?php echo $estado_equipos_porcurso->division->ViewAttributes() ?>>
-<?php echo $estado_equipos_porcurso->division->ListViewValue() ?></span>
+	<?php if ($estado_equipos_porcurso->Id_Division->Visible) { // Id_Division ?>
+		<td data-name="Id_Division"<?php echo $estado_equipos_porcurso->Id_Division->CellAttributes() ?>>
+<span id="el<?php echo $estado_equipos_porcurso_list->RowCnt ?>_estado_equipos_porcurso_Id_Division" class="estado_equipos_porcurso_Id_Division">
+<span<?php echo $estado_equipos_porcurso->Id_Division->ViewAttributes() ?>>
+<?php echo $estado_equipos_porcurso->Id_Division->ListViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>
-	<?php if ($estado_equipos_porcurso->turno->Visible) { // turno ?>
-		<td data-name="turno"<?php echo $estado_equipos_porcurso->turno->CellAttributes() ?>>
-<span id="el<?php echo $estado_equipos_porcurso_list->RowCnt ?>_estado_equipos_porcurso_turno" class="estado_equipos_porcurso_turno">
-<span<?php echo $estado_equipos_porcurso->turno->ViewAttributes() ?>>
-<?php echo $estado_equipos_porcurso->turno->ListViewValue() ?></span>
+	<?php if ($estado_equipos_porcurso->Id_Turno->Visible) { // Id_Turno ?>
+		<td data-name="Id_Turno"<?php echo $estado_equipos_porcurso->Id_Turno->CellAttributes() ?>>
+<span id="el<?php echo $estado_equipos_porcurso_list->RowCnt ?>_estado_equipos_porcurso_Id_Turno" class="estado_equipos_porcurso_Id_Turno">
+<span<?php echo $estado_equipos_porcurso->Id_Turno->ViewAttributes() ?>>
+<?php echo $estado_equipos_porcurso->Id_Turno->ListViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>
-	<?php if ($estado_equipos_porcurso->Equipo->Visible) { // Equipo ?>
-		<td data-name="Equipo"<?php echo $estado_equipos_porcurso->Equipo->CellAttributes() ?>>
-<span id="el<?php echo $estado_equipos_porcurso_list->RowCnt ?>_estado_equipos_porcurso_Equipo" class="estado_equipos_porcurso_Equipo">
-<span<?php echo $estado_equipos_porcurso->Equipo->ViewAttributes() ?>>
-<?php echo $estado_equipos_porcurso->Equipo->ListViewValue() ?></span>
+	<?php if ($estado_equipos_porcurso->Id_Cargo->Visible) { // Id_Cargo ?>
+		<td data-name="Id_Cargo"<?php echo $estado_equipos_porcurso->Id_Cargo->CellAttributes() ?>>
+<span id="el<?php echo $estado_equipos_porcurso_list->RowCnt ?>_estado_equipos_porcurso_Id_Cargo" class="estado_equipos_porcurso_Id_Cargo">
+<span<?php echo $estado_equipos_porcurso->Id_Cargo->ViewAttributes() ?>>
+<?php echo $estado_equipos_porcurso->Id_Cargo->ListViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>
-	<?php if ($estado_equipos_porcurso->Estado->Visible) { // Estado ?>
-		<td data-name="Estado"<?php echo $estado_equipos_porcurso->Estado->CellAttributes() ?>>
-<span id="el<?php echo $estado_equipos_porcurso_list->RowCnt ?>_estado_equipos_porcurso_Estado" class="estado_equipos_porcurso_Estado">
-<span<?php echo $estado_equipos_porcurso->Estado->ViewAttributes() ?>>
-<?php echo $estado_equipos_porcurso->Estado->ListViewValue() ?></span>
+	<?php if ($estado_equipos_porcurso->Id_Estado->Visible) { // Id_Estado ?>
+		<td data-name="Id_Estado"<?php echo $estado_equipos_porcurso->Id_Estado->CellAttributes() ?>>
+<span id="el<?php echo $estado_equipos_porcurso_list->RowCnt ?>_estado_equipos_porcurso_Id_Estado" class="estado_equipos_porcurso_Id_Estado">
+<span<?php echo $estado_equipos_porcurso->Id_Estado->ViewAttributes() ?>>
+<?php echo $estado_equipos_porcurso->Id_Estado->ListViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($estado_equipos_porcurso->NroSerie->Visible) { // NroSerie ?>
+		<td data-name="NroSerie"<?php echo $estado_equipos_porcurso->NroSerie->CellAttributes() ?>>
+<span id="el<?php echo $estado_equipos_porcurso_list->RowCnt ?>_estado_equipos_porcurso_NroSerie" class="estado_equipos_porcurso_NroSerie">
+<span<?php echo $estado_equipos_porcurso->NroSerie->ViewAttributes() ?>>
+<?php echo $estado_equipos_porcurso->NroSerie->ListViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($estado_equipos_porcurso->Id_Sit_Estado->Visible) { // Id_Sit_Estado ?>
+		<td data-name="Id_Sit_Estado"<?php echo $estado_equipos_porcurso->Id_Sit_Estado->CellAttributes() ?>>
+<span id="el<?php echo $estado_equipos_porcurso_list->RowCnt ?>_estado_equipos_porcurso_Id_Sit_Estado" class="estado_equipos_porcurso_Id_Sit_Estado">
+<span<?php echo $estado_equipos_porcurso->Id_Sit_Estado->ViewAttributes() ?>>
+<?php echo $estado_equipos_porcurso->Id_Sit_Estado->ListViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($estado_equipos_porcurso->Fecha_Actualizacion->Visible) { // Fecha_Actualizacion ?>
+		<td data-name="Fecha_Actualizacion"<?php echo $estado_equipos_porcurso->Fecha_Actualizacion->CellAttributes() ?>>
+<span id="el<?php echo $estado_equipos_porcurso_list->RowCnt ?>_estado_equipos_porcurso_Fecha_Actualizacion" class="estado_equipos_porcurso_Fecha_Actualizacion">
+<span<?php echo $estado_equipos_porcurso->Fecha_Actualizacion->ViewAttributes() ?>>
+<?php echo $estado_equipos_porcurso->Fecha_Actualizacion->ListViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

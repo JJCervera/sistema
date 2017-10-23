@@ -411,8 +411,8 @@ class cpedido_st_list extends cpedido_st {
 		// Setup export options
 		$this->SetupExportOptions();
 		$this->CUE->SetVisibility();
-		$this->SIGLA->SetVisibility();
-		$this->ZONA_DE_PERTENENCIA->SetVisibility();
+		$this->Sigla->SetVisibility();
+		$this->Id_Zona->SetVisibility();
 		$this->DEPARTAMENTO->SetVisibility();
 		$this->LOCALIDAD->SetVisibility();
 		$this->SERIE_NETBOOK->SetVisibility();
@@ -758,8 +758,8 @@ class cpedido_st_list extends cpedido_st {
 		// Initialize
 		$sFilterList = "";
 		$sFilterList = ew_Concat($sFilterList, $this->CUE->AdvancedSearch->ToJSON(), ","); // Field CUE
-		$sFilterList = ew_Concat($sFilterList, $this->SIGLA->AdvancedSearch->ToJSON(), ","); // Field SIGLA
-		$sFilterList = ew_Concat($sFilterList, $this->ZONA_DE_PERTENENCIA->AdvancedSearch->ToJSON(), ","); // Field ZONA DE PERTENENCIA
+		$sFilterList = ew_Concat($sFilterList, $this->Sigla->AdvancedSearch->ToJSON(), ","); // Field Sigla
+		$sFilterList = ew_Concat($sFilterList, $this->Id_Zona->AdvancedSearch->ToJSON(), ","); // Field Id_Zona
 		$sFilterList = ew_Concat($sFilterList, $this->DEPARTAMENTO->AdvancedSearch->ToJSON(), ","); // Field DEPARTAMENTO
 		$sFilterList = ew_Concat($sFilterList, $this->LOCALIDAD->AdvancedSearch->ToJSON(), ","); // Field LOCALIDAD
 		$sFilterList = ew_Concat($sFilterList, $this->SERIE_NETBOOK->AdvancedSearch->ToJSON(), ","); // Field SERIE NETBOOK
@@ -811,21 +811,21 @@ class cpedido_st_list extends cpedido_st {
 		$this->CUE->AdvancedSearch->SearchOperator2 = @$filter["w_CUE"];
 		$this->CUE->AdvancedSearch->Save();
 
-		// Field SIGLA
-		$this->SIGLA->AdvancedSearch->SearchValue = @$filter["x_SIGLA"];
-		$this->SIGLA->AdvancedSearch->SearchOperator = @$filter["z_SIGLA"];
-		$this->SIGLA->AdvancedSearch->SearchCondition = @$filter["v_SIGLA"];
-		$this->SIGLA->AdvancedSearch->SearchValue2 = @$filter["y_SIGLA"];
-		$this->SIGLA->AdvancedSearch->SearchOperator2 = @$filter["w_SIGLA"];
-		$this->SIGLA->AdvancedSearch->Save();
+		// Field Sigla
+		$this->Sigla->AdvancedSearch->SearchValue = @$filter["x_Sigla"];
+		$this->Sigla->AdvancedSearch->SearchOperator = @$filter["z_Sigla"];
+		$this->Sigla->AdvancedSearch->SearchCondition = @$filter["v_Sigla"];
+		$this->Sigla->AdvancedSearch->SearchValue2 = @$filter["y_Sigla"];
+		$this->Sigla->AdvancedSearch->SearchOperator2 = @$filter["w_Sigla"];
+		$this->Sigla->AdvancedSearch->Save();
 
-		// Field ZONA DE PERTENENCIA
-		$this->ZONA_DE_PERTENENCIA->AdvancedSearch->SearchValue = @$filter["x_ZONA_DE_PERTENENCIA"];
-		$this->ZONA_DE_PERTENENCIA->AdvancedSearch->SearchOperator = @$filter["z_ZONA_DE_PERTENENCIA"];
-		$this->ZONA_DE_PERTENENCIA->AdvancedSearch->SearchCondition = @$filter["v_ZONA_DE_PERTENENCIA"];
-		$this->ZONA_DE_PERTENENCIA->AdvancedSearch->SearchValue2 = @$filter["y_ZONA_DE_PERTENENCIA"];
-		$this->ZONA_DE_PERTENENCIA->AdvancedSearch->SearchOperator2 = @$filter["w_ZONA_DE_PERTENENCIA"];
-		$this->ZONA_DE_PERTENENCIA->AdvancedSearch->Save();
+		// Field Id_Zona
+		$this->Id_Zona->AdvancedSearch->SearchValue = @$filter["x_Id_Zona"];
+		$this->Id_Zona->AdvancedSearch->SearchOperator = @$filter["z_Id_Zona"];
+		$this->Id_Zona->AdvancedSearch->SearchCondition = @$filter["v_Id_Zona"];
+		$this->Id_Zona->AdvancedSearch->SearchValue2 = @$filter["y_Id_Zona"];
+		$this->Id_Zona->AdvancedSearch->SearchOperator2 = @$filter["w_Id_Zona"];
+		$this->Id_Zona->AdvancedSearch->Save();
 
 		// Field DEPARTAMENTO
 		$this->DEPARTAMENTO->AdvancedSearch->SearchValue = @$filter["x_DEPARTAMENTO"];
@@ -884,8 +884,8 @@ class cpedido_st_list extends cpedido_st {
 		$sWhere = "";
 		if (!$Security->CanSearch()) return "";
 		$this->BuildSearchSql($sWhere, $this->CUE, $Default, FALSE); // CUE
-		$this->BuildSearchSql($sWhere, $this->SIGLA, $Default, FALSE); // SIGLA
-		$this->BuildSearchSql($sWhere, $this->ZONA_DE_PERTENENCIA, $Default, FALSE); // ZONA DE PERTENENCIA
+		$this->BuildSearchSql($sWhere, $this->Sigla, $Default, FALSE); // Sigla
+		$this->BuildSearchSql($sWhere, $this->Id_Zona, $Default, FALSE); // Id_Zona
 		$this->BuildSearchSql($sWhere, $this->DEPARTAMENTO, $Default, FALSE); // DEPARTAMENTO
 		$this->BuildSearchSql($sWhere, $this->LOCALIDAD, $Default, FALSE); // LOCALIDAD
 		$this->BuildSearchSql($sWhere, $this->SERIE_NETBOOK, $Default, FALSE); // SERIE NETBOOK
@@ -899,8 +899,8 @@ class cpedido_st_list extends cpedido_st {
 		}
 		if (!$Default && $this->Command == "search") {
 			$this->CUE->AdvancedSearch->Save(); // CUE
-			$this->SIGLA->AdvancedSearch->Save(); // SIGLA
-			$this->ZONA_DE_PERTENENCIA->AdvancedSearch->Save(); // ZONA DE PERTENENCIA
+			$this->Sigla->AdvancedSearch->Save(); // Sigla
+			$this->Id_Zona->AdvancedSearch->Save(); // Id_Zona
 			$this->DEPARTAMENTO->AdvancedSearch->Save(); // DEPARTAMENTO
 			$this->LOCALIDAD->AdvancedSearch->Save(); // LOCALIDAD
 			$this->SERIE_NETBOOK->AdvancedSearch->Save(); // SERIE NETBOOK
@@ -964,7 +964,7 @@ class cpedido_st_list extends cpedido_st {
 	function BasicSearchSQL($arKeywords, $type) {
 		$sWhere = "";
 		$this->BuildBasicSearchSQL($sWhere, $this->CUE, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->SIGLA, $arKeywords, $type);
+		$this->BuildBasicSearchSQL($sWhere, $this->Sigla, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->DEPARTAMENTO, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->LOCALIDAD, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->SERIE_NETBOOK, $arKeywords, $type);
@@ -1097,9 +1097,9 @@ class cpedido_st_list extends cpedido_st {
 			return TRUE;
 		if ($this->CUE->AdvancedSearch->IssetSession())
 			return TRUE;
-		if ($this->SIGLA->AdvancedSearch->IssetSession())
+		if ($this->Sigla->AdvancedSearch->IssetSession())
 			return TRUE;
-		if ($this->ZONA_DE_PERTENENCIA->AdvancedSearch->IssetSession())
+		if ($this->Id_Zona->AdvancedSearch->IssetSession())
 			return TRUE;
 		if ($this->DEPARTAMENTO->AdvancedSearch->IssetSession())
 			return TRUE;
@@ -1143,8 +1143,8 @@ class cpedido_st_list extends cpedido_st {
 	// Clear all advanced search parameters
 	function ResetAdvancedSearchParms() {
 		$this->CUE->AdvancedSearch->UnsetSession();
-		$this->SIGLA->AdvancedSearch->UnsetSession();
-		$this->ZONA_DE_PERTENENCIA->AdvancedSearch->UnsetSession();
+		$this->Sigla->AdvancedSearch->UnsetSession();
+		$this->Id_Zona->AdvancedSearch->UnsetSession();
 		$this->DEPARTAMENTO->AdvancedSearch->UnsetSession();
 		$this->LOCALIDAD->AdvancedSearch->UnsetSession();
 		$this->SERIE_NETBOOK->AdvancedSearch->UnsetSession();
@@ -1162,8 +1162,8 @@ class cpedido_st_list extends cpedido_st {
 
 		// Restore advanced search values
 		$this->CUE->AdvancedSearch->Load();
-		$this->SIGLA->AdvancedSearch->Load();
-		$this->ZONA_DE_PERTENENCIA->AdvancedSearch->Load();
+		$this->Sigla->AdvancedSearch->Load();
+		$this->Id_Zona->AdvancedSearch->Load();
 		$this->DEPARTAMENTO->AdvancedSearch->Load();
 		$this->LOCALIDAD->AdvancedSearch->Load();
 		$this->SERIE_NETBOOK->AdvancedSearch->Load();
@@ -1180,8 +1180,8 @@ class cpedido_st_list extends cpedido_st {
 			$this->CurrentOrder = ew_StripSlashes(@$_GET["order"]);
 			$this->CurrentOrderType = @$_GET["ordertype"];
 			$this->UpdateSort($this->CUE); // CUE
-			$this->UpdateSort($this->SIGLA); // SIGLA
-			$this->UpdateSort($this->ZONA_DE_PERTENENCIA); // ZONA DE PERTENENCIA
+			$this->UpdateSort($this->Sigla); // Sigla
+			$this->UpdateSort($this->Id_Zona); // Id_Zona
 			$this->UpdateSort($this->DEPARTAMENTO); // DEPARTAMENTO
 			$this->UpdateSort($this->LOCALIDAD); // LOCALIDAD
 			$this->UpdateSort($this->SERIE_NETBOOK); // SERIE NETBOOK
@@ -1220,8 +1220,8 @@ class cpedido_st_list extends cpedido_st {
 				$sOrderBy = "";
 				$this->setSessionOrderBy($sOrderBy);
 				$this->CUE->setSort("");
-				$this->SIGLA->setSort("");
-				$this->ZONA_DE_PERTENENCIA->setSort("");
+				$this->Sigla->setSort("");
+				$this->Id_Zona->setSort("");
 				$this->DEPARTAMENTO->setSort("");
 				$this->LOCALIDAD->setSort("");
 				$this->SERIE_NETBOOK->setSort("");
@@ -1588,15 +1588,15 @@ class cpedido_st_list extends cpedido_st {
 		if ($this->CUE->AdvancedSearch->SearchValue <> "") $this->Command = "search";
 		$this->CUE->AdvancedSearch->SearchOperator = @$_GET["z_CUE"];
 
-		// SIGLA
-		$this->SIGLA->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_SIGLA"]);
-		if ($this->SIGLA->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->SIGLA->AdvancedSearch->SearchOperator = @$_GET["z_SIGLA"];
+		// Sigla
+		$this->Sigla->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Sigla"]);
+		if ($this->Sigla->AdvancedSearch->SearchValue <> "") $this->Command = "search";
+		$this->Sigla->AdvancedSearch->SearchOperator = @$_GET["z_Sigla"];
 
-		// ZONA DE PERTENENCIA
-		$this->ZONA_DE_PERTENENCIA->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_ZONA_DE_PERTENENCIA"]);
-		if ($this->ZONA_DE_PERTENENCIA->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->ZONA_DE_PERTENENCIA->AdvancedSearch->SearchOperator = @$_GET["z_ZONA_DE_PERTENENCIA"];
+		// Id_Zona
+		$this->Id_Zona->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Id_Zona"]);
+		if ($this->Id_Zona->AdvancedSearch->SearchValue <> "") $this->Command = "search";
+		$this->Id_Zona->AdvancedSearch->SearchOperator = @$_GET["z_Id_Zona"];
 
 		// DEPARTAMENTO
 		$this->DEPARTAMENTO->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_DEPARTAMENTO"]);
@@ -1685,8 +1685,8 @@ class cpedido_st_list extends cpedido_st {
 		$row = &$rs->fields;
 		$this->Row_Selected($row);
 		$this->CUE->setDbValue($rs->fields('CUE'));
-		$this->SIGLA->setDbValue($rs->fields('SIGLA'));
-		$this->ZONA_DE_PERTENENCIA->setDbValue($rs->fields('ZONA DE PERTENENCIA'));
+		$this->Sigla->setDbValue($rs->fields('Sigla'));
+		$this->Id_Zona->setDbValue($rs->fields('Id_Zona'));
 		$this->DEPARTAMENTO->setDbValue($rs->fields('DEPARTAMENTO'));
 		$this->LOCALIDAD->setDbValue($rs->fields('LOCALIDAD'));
 		$this->SERIE_NETBOOK->setDbValue($rs->fields('SERIE NETBOOK'));
@@ -1700,8 +1700,8 @@ class cpedido_st_list extends cpedido_st {
 		if (!$rs || !is_array($rs) && $rs->EOF) return;
 		$row = is_array($rs) ? $rs : $rs->fields;
 		$this->CUE->DbValue = $row['CUE'];
-		$this->SIGLA->DbValue = $row['SIGLA'];
-		$this->ZONA_DE_PERTENENCIA->DbValue = $row['ZONA DE PERTENENCIA'];
+		$this->Sigla->DbValue = $row['Sigla'];
+		$this->Id_Zona->DbValue = $row['Id_Zona'];
 		$this->DEPARTAMENTO->DbValue = $row['DEPARTAMENTO'];
 		$this->LOCALIDAD->DbValue = $row['LOCALIDAD'];
 		$this->SERIE_NETBOOK->DbValue = $row['SERIE NETBOOK'];
@@ -1754,8 +1754,8 @@ class cpedido_st_list extends cpedido_st {
 
 		// Common render codes for all row types
 		// CUE
-		// SIGLA
-		// ZONA DE PERTENENCIA
+		// Sigla
+		// Id_Zona
 		// DEPARTAMENTO
 		// LOCALIDAD
 		// SERIE NETBOOK
@@ -1770,13 +1770,32 @@ class cpedido_st_list extends cpedido_st {
 		$this->CUE->ViewValue = $this->CUE->CurrentValue;
 		$this->CUE->ViewCustomAttributes = "";
 
-		// SIGLA
-		$this->SIGLA->ViewValue = $this->SIGLA->CurrentValue;
-		$this->SIGLA->ViewCustomAttributes = "";
+		// Sigla
+		$this->Sigla->ViewValue = $this->Sigla->CurrentValue;
+		$this->Sigla->ViewCustomAttributes = "";
 
-		// ZONA DE PERTENENCIA
-		$this->ZONA_DE_PERTENENCIA->ViewValue = $this->ZONA_DE_PERTENENCIA->CurrentValue;
-		$this->ZONA_DE_PERTENENCIA->ViewCustomAttributes = "";
+		// Id_Zona
+		if (strval($this->Id_Zona->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Zona`" . ew_SearchString("=", $this->Id_Zona->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Zona`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `zonas`";
+		$sWhereWrk = "";
+		$this->Id_Zona->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Zona, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Zona->ViewValue = $this->Id_Zona->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Zona->ViewValue = $this->Id_Zona->CurrentValue;
+			}
+		} else {
+			$this->Id_Zona->ViewValue = NULL;
+		}
+		$this->Id_Zona->ViewCustomAttributes = "";
 
 		// DEPARTAMENTO
 		if (strval($this->DEPARTAMENTO->CurrentValue) <> "") {
@@ -1864,15 +1883,15 @@ class cpedido_st_list extends cpedido_st {
 			$this->CUE->HrefValue = "";
 			$this->CUE->TooltipValue = "";
 
-			// SIGLA
-			$this->SIGLA->LinkCustomAttributes = "";
-			$this->SIGLA->HrefValue = "";
-			$this->SIGLA->TooltipValue = "";
+			// Sigla
+			$this->Sigla->LinkCustomAttributes = "";
+			$this->Sigla->HrefValue = "";
+			$this->Sigla->TooltipValue = "";
 
-			// ZONA DE PERTENENCIA
-			$this->ZONA_DE_PERTENENCIA->LinkCustomAttributes = "";
-			$this->ZONA_DE_PERTENENCIA->HrefValue = "";
-			$this->ZONA_DE_PERTENENCIA->TooltipValue = "";
+			// Id_Zona
+			$this->Id_Zona->LinkCustomAttributes = "";
+			$this->Id_Zona->HrefValue = "";
+			$this->Id_Zona->TooltipValue = "";
 
 			// DEPARTAMENTO
 			$this->DEPARTAMENTO->LinkCustomAttributes = "";
@@ -1931,8 +1950,8 @@ class cpedido_st_list extends cpedido_st {
 	// Load advanced search
 	function LoadAdvancedSearch() {
 		$this->CUE->AdvancedSearch->Load();
-		$this->SIGLA->AdvancedSearch->Load();
-		$this->ZONA_DE_PERTENENCIA->AdvancedSearch->Load();
+		$this->Sigla->AdvancedSearch->Load();
+		$this->Id_Zona->AdvancedSearch->Load();
 		$this->DEPARTAMENTO->AdvancedSearch->Load();
 		$this->LOCALIDAD->AdvancedSearch->Load();
 		$this->SERIE_NETBOOK->AdvancedSearch->Load();
@@ -2272,6 +2291,7 @@ fpedido_stlist.ValidateRequired = false;
 <?php } ?>
 
 // Dynamic selection lists
+fpedido_stlist.Lists["x_Id_Zona"] = {"LinkField":"x_Id_Zona","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"zonas"};
 fpedido_stlist.Lists["x_DEPARTAMENTO"] = {"LinkField":"x_Nombre","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nombre","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"departamento"};
 fpedido_stlist.Lists["x_LOCALIDAD"] = {"LinkField":"x_Nombre","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nombre","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"localidades"};
 fpedido_stlist.Lists["x_PROBLEMA"] = {"LinkField":"x_Descripcion","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"problema"};
@@ -2456,21 +2476,21 @@ $pedido_st_list->ListOptions->Render("header", "left");
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
-<?php if ($pedido_st->SIGLA->Visible) { // SIGLA ?>
-	<?php if ($pedido_st->SortUrl($pedido_st->SIGLA) == "") { ?>
-		<th data-name="SIGLA"><div id="elh_pedido_st_SIGLA" class="pedido_st_SIGLA"><div class="ewTableHeaderCaption"><?php echo $pedido_st->SIGLA->FldCaption() ?></div></div></th>
+<?php if ($pedido_st->Sigla->Visible) { // Sigla ?>
+	<?php if ($pedido_st->SortUrl($pedido_st->Sigla) == "") { ?>
+		<th data-name="Sigla"><div id="elh_pedido_st_Sigla" class="pedido_st_Sigla"><div class="ewTableHeaderCaption"><?php echo $pedido_st->Sigla->FldCaption() ?></div></div></th>
 	<?php } else { ?>
-		<th data-name="SIGLA"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $pedido_st->SortUrl($pedido_st->SIGLA) ?>',1);"><div id="elh_pedido_st_SIGLA" class="pedido_st_SIGLA">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $pedido_st->SIGLA->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($pedido_st->SIGLA->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($pedido_st->SIGLA->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+		<th data-name="Sigla"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $pedido_st->SortUrl($pedido_st->Sigla) ?>',1);"><div id="elh_pedido_st_Sigla" class="pedido_st_Sigla">
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $pedido_st->Sigla->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($pedido_st->Sigla->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($pedido_st->Sigla->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
-<?php if ($pedido_st->ZONA_DE_PERTENENCIA->Visible) { // ZONA DE PERTENENCIA ?>
-	<?php if ($pedido_st->SortUrl($pedido_st->ZONA_DE_PERTENENCIA) == "") { ?>
-		<th data-name="ZONA_DE_PERTENENCIA"><div id="elh_pedido_st_ZONA_DE_PERTENENCIA" class="pedido_st_ZONA_DE_PERTENENCIA"><div class="ewTableHeaderCaption"><?php echo $pedido_st->ZONA_DE_PERTENENCIA->FldCaption() ?></div></div></th>
+<?php if ($pedido_st->Id_Zona->Visible) { // Id_Zona ?>
+	<?php if ($pedido_st->SortUrl($pedido_st->Id_Zona) == "") { ?>
+		<th data-name="Id_Zona"><div id="elh_pedido_st_Id_Zona" class="pedido_st_Id_Zona"><div class="ewTableHeaderCaption"><?php echo $pedido_st->Id_Zona->FldCaption() ?></div></div></th>
 	<?php } else { ?>
-		<th data-name="ZONA_DE_PERTENENCIA"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $pedido_st->SortUrl($pedido_st->ZONA_DE_PERTENENCIA) ?>',1);"><div id="elh_pedido_st_ZONA_DE_PERTENENCIA" class="pedido_st_ZONA_DE_PERTENENCIA">
-			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $pedido_st->ZONA_DE_PERTENENCIA->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($pedido_st->ZONA_DE_PERTENENCIA->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($pedido_st->ZONA_DE_PERTENENCIA->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+		<th data-name="Id_Zona"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $pedido_st->SortUrl($pedido_st->Id_Zona) ?>',1);"><div id="elh_pedido_st_Id_Zona" class="pedido_st_Id_Zona">
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $pedido_st->Id_Zona->FldCaption() ?></span><span class="ewTableHeaderSort"><?php if ($pedido_st->Id_Zona->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($pedido_st->Id_Zona->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
         </div></div></th>
 	<?php } ?>
 <?php } ?>		
@@ -2592,19 +2612,19 @@ $pedido_st_list->ListOptions->Render("body", "left", $pedido_st_list->RowCnt);
 </span>
 <a id="<?php echo $pedido_st_list->PageObjName . "_row_" . $pedido_st_list->RowCnt ?>"></a></td>
 	<?php } ?>
-	<?php if ($pedido_st->SIGLA->Visible) { // SIGLA ?>
-		<td data-name="SIGLA"<?php echo $pedido_st->SIGLA->CellAttributes() ?>>
-<span id="el<?php echo $pedido_st_list->RowCnt ?>_pedido_st_SIGLA" class="pedido_st_SIGLA">
-<span<?php echo $pedido_st->SIGLA->ViewAttributes() ?>>
-<?php echo $pedido_st->SIGLA->ListViewValue() ?></span>
+	<?php if ($pedido_st->Sigla->Visible) { // Sigla ?>
+		<td data-name="Sigla"<?php echo $pedido_st->Sigla->CellAttributes() ?>>
+<span id="el<?php echo $pedido_st_list->RowCnt ?>_pedido_st_Sigla" class="pedido_st_Sigla">
+<span<?php echo $pedido_st->Sigla->ViewAttributes() ?>>
+<?php echo $pedido_st->Sigla->ListViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>
-	<?php if ($pedido_st->ZONA_DE_PERTENENCIA->Visible) { // ZONA DE PERTENENCIA ?>
-		<td data-name="ZONA_DE_PERTENENCIA"<?php echo $pedido_st->ZONA_DE_PERTENENCIA->CellAttributes() ?>>
-<span id="el<?php echo $pedido_st_list->RowCnt ?>_pedido_st_ZONA_DE_PERTENENCIA" class="pedido_st_ZONA_DE_PERTENENCIA">
-<span<?php echo $pedido_st->ZONA_DE_PERTENENCIA->ViewAttributes() ?>>
-<?php echo $pedido_st->ZONA_DE_PERTENENCIA->ListViewValue() ?></span>
+	<?php if ($pedido_st->Id_Zona->Visible) { // Id_Zona ?>
+		<td data-name="Id_Zona"<?php echo $pedido_st->Id_Zona->CellAttributes() ?>>
+<span id="el<?php echo $pedido_st_list->RowCnt ?>_pedido_st_Id_Zona" class="pedido_st_Id_Zona">
+<span<?php echo $pedido_st->Id_Zona->ViewAttributes() ?>>
+<?php echo $pedido_st->Id_Zona->ListViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

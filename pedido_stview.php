@@ -392,8 +392,8 @@ class cpedido_st_view extends cpedido_st {
 		// Setup export options
 		$this->SetupExportOptions();
 		$this->CUE->SetVisibility();
-		$this->SIGLA->SetVisibility();
-		$this->ZONA_DE_PERTENENCIA->SetVisibility();
+		$this->Sigla->SetVisibility();
+		$this->Id_Zona->SetVisibility();
 		$this->DEPARTAMENTO->SetVisibility();
 		$this->LOCALIDAD->SetVisibility();
 		$this->SERIE_NETBOOK->SetVisibility();
@@ -659,8 +659,8 @@ class cpedido_st_view extends cpedido_st {
 		$row = &$rs->fields;
 		$this->Row_Selected($row);
 		$this->CUE->setDbValue($rs->fields('CUE'));
-		$this->SIGLA->setDbValue($rs->fields('SIGLA'));
-		$this->ZONA_DE_PERTENENCIA->setDbValue($rs->fields('ZONA DE PERTENENCIA'));
+		$this->Sigla->setDbValue($rs->fields('Sigla'));
+		$this->Id_Zona->setDbValue($rs->fields('Id_Zona'));
 		$this->DEPARTAMENTO->setDbValue($rs->fields('DEPARTAMENTO'));
 		$this->LOCALIDAD->setDbValue($rs->fields('LOCALIDAD'));
 		$this->SERIE_NETBOOK->setDbValue($rs->fields('SERIE NETBOOK'));
@@ -674,8 +674,8 @@ class cpedido_st_view extends cpedido_st {
 		if (!$rs || !is_array($rs) && $rs->EOF) return;
 		$row = is_array($rs) ? $rs : $rs->fields;
 		$this->CUE->DbValue = $row['CUE'];
-		$this->SIGLA->DbValue = $row['SIGLA'];
-		$this->ZONA_DE_PERTENENCIA->DbValue = $row['ZONA DE PERTENENCIA'];
+		$this->Sigla->DbValue = $row['Sigla'];
+		$this->Id_Zona->DbValue = $row['Id_Zona'];
 		$this->DEPARTAMENTO->DbValue = $row['DEPARTAMENTO'];
 		$this->LOCALIDAD->DbValue = $row['LOCALIDAD'];
 		$this->SERIE_NETBOOK->DbValue = $row['SERIE NETBOOK'];
@@ -701,8 +701,8 @@ class cpedido_st_view extends cpedido_st {
 
 		// Common render codes for all row types
 		// CUE
-		// SIGLA
-		// ZONA DE PERTENENCIA
+		// Sigla
+		// Id_Zona
 		// DEPARTAMENTO
 		// LOCALIDAD
 		// SERIE NETBOOK
@@ -716,13 +716,32 @@ class cpedido_st_view extends cpedido_st {
 		$this->CUE->ViewValue = $this->CUE->CurrentValue;
 		$this->CUE->ViewCustomAttributes = "";
 
-		// SIGLA
-		$this->SIGLA->ViewValue = $this->SIGLA->CurrentValue;
-		$this->SIGLA->ViewCustomAttributes = "";
+		// Sigla
+		$this->Sigla->ViewValue = $this->Sigla->CurrentValue;
+		$this->Sigla->ViewCustomAttributes = "";
 
-		// ZONA DE PERTENENCIA
-		$this->ZONA_DE_PERTENENCIA->ViewValue = $this->ZONA_DE_PERTENENCIA->CurrentValue;
-		$this->ZONA_DE_PERTENENCIA->ViewCustomAttributes = "";
+		// Id_Zona
+		if (strval($this->Id_Zona->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Zona`" . ew_SearchString("=", $this->Id_Zona->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Zona`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `zonas`";
+		$sWhereWrk = "";
+		$this->Id_Zona->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Zona, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Zona->ViewValue = $this->Id_Zona->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Zona->ViewValue = $this->Id_Zona->CurrentValue;
+			}
+		} else {
+			$this->Id_Zona->ViewValue = NULL;
+		}
+		$this->Id_Zona->ViewCustomAttributes = "";
 
 		// DEPARTAMENTO
 		if (strval($this->DEPARTAMENTO->CurrentValue) <> "") {
@@ -810,15 +829,15 @@ class cpedido_st_view extends cpedido_st {
 			$this->CUE->HrefValue = "";
 			$this->CUE->TooltipValue = "";
 
-			// SIGLA
-			$this->SIGLA->LinkCustomAttributes = "";
-			$this->SIGLA->HrefValue = "";
-			$this->SIGLA->TooltipValue = "";
+			// Sigla
+			$this->Sigla->LinkCustomAttributes = "";
+			$this->Sigla->HrefValue = "";
+			$this->Sigla->TooltipValue = "";
 
-			// ZONA DE PERTENENCIA
-			$this->ZONA_DE_PERTENENCIA->LinkCustomAttributes = "";
-			$this->ZONA_DE_PERTENENCIA->HrefValue = "";
-			$this->ZONA_DE_PERTENENCIA->TooltipValue = "";
+			// Id_Zona
+			$this->Id_Zona->LinkCustomAttributes = "";
+			$this->Id_Zona->HrefValue = "";
+			$this->Id_Zona->TooltipValue = "";
 
 			// DEPARTAMENTO
 			$this->DEPARTAMENTO->LinkCustomAttributes = "";
@@ -1143,6 +1162,7 @@ fpedido_stview.ValidateRequired = false;
 <?php } ?>
 
 // Dynamic selection lists
+fpedido_stview.Lists["x_Id_Zona"] = {"LinkField":"x_Id_Zona","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"zonas"};
 fpedido_stview.Lists["x_DEPARTAMENTO"] = {"LinkField":"x_Nombre","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nombre","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"departamento"};
 fpedido_stview.Lists["x_LOCALIDAD"] = {"LinkField":"x_Nombre","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nombre","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"localidades"};
 fpedido_stview.Lists["x_PROBLEMA"] = {"LinkField":"x_Descripcion","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"problema"};
@@ -1198,24 +1218,24 @@ $pedido_st_view->ShowMessage();
 </td>
 	</tr>
 <?php } ?>
-<?php if ($pedido_st->SIGLA->Visible) { // SIGLA ?>
-	<tr id="r_SIGLA">
-		<td><span id="elh_pedido_st_SIGLA"><?php echo $pedido_st->SIGLA->FldCaption() ?></span></td>
-		<td data-name="SIGLA"<?php echo $pedido_st->SIGLA->CellAttributes() ?>>
-<span id="el_pedido_st_SIGLA" data-page="1">
-<span<?php echo $pedido_st->SIGLA->ViewAttributes() ?>>
-<?php echo $pedido_st->SIGLA->ViewValue ?></span>
+<?php if ($pedido_st->Sigla->Visible) { // Sigla ?>
+	<tr id="r_Sigla">
+		<td><span id="elh_pedido_st_Sigla"><?php echo $pedido_st->Sigla->FldCaption() ?></span></td>
+		<td data-name="Sigla"<?php echo $pedido_st->Sigla->CellAttributes() ?>>
+<span id="el_pedido_st_Sigla" data-page="1">
+<span<?php echo $pedido_st->Sigla->ViewAttributes() ?>>
+<?php echo $pedido_st->Sigla->ViewValue ?></span>
 </span>
 </td>
 	</tr>
 <?php } ?>
-<?php if ($pedido_st->ZONA_DE_PERTENENCIA->Visible) { // ZONA DE PERTENENCIA ?>
-	<tr id="r_ZONA_DE_PERTENENCIA">
-		<td><span id="elh_pedido_st_ZONA_DE_PERTENENCIA"><?php echo $pedido_st->ZONA_DE_PERTENENCIA->FldCaption() ?></span></td>
-		<td data-name="ZONA_DE_PERTENENCIA"<?php echo $pedido_st->ZONA_DE_PERTENENCIA->CellAttributes() ?>>
-<span id="el_pedido_st_ZONA_DE_PERTENENCIA" data-page="1">
-<span<?php echo $pedido_st->ZONA_DE_PERTENENCIA->ViewAttributes() ?>>
-<?php echo $pedido_st->ZONA_DE_PERTENENCIA->ViewValue ?></span>
+<?php if ($pedido_st->Id_Zona->Visible) { // Id_Zona ?>
+	<tr id="r_Id_Zona">
+		<td><span id="elh_pedido_st_Id_Zona"><?php echo $pedido_st->Id_Zona->FldCaption() ?></span></td>
+		<td data-name="Id_Zona"<?php echo $pedido_st->Id_Zona->CellAttributes() ?>>
+<span id="el_pedido_st_Id_Zona" data-page="1">
+<span<?php echo $pedido_st->Id_Zona->ViewAttributes() ?>>
+<?php echo $pedido_st->Id_Zona->ViewValue ?></span>
 </span>
 </td>
 	</tr>

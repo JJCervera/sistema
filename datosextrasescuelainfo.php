@@ -9,7 +9,7 @@ $datosextrasescuela = NULL;
 class cdatosextrasescuela extends cTable {
 	var $Cue;
 	var $Sigla;
-	var $Tipo_Zona;
+	var $Id_Zona;
 	var $Usuario_Conig;
 	var $Password_Conig;
 	var $Tiene_Internet;
@@ -57,10 +57,12 @@ class cdatosextrasescuela extends cTable {
 		$this->Sigla->Sortable = TRUE; // Allow sort
 		$this->fields['Sigla'] = &$this->Sigla;
 
-		// Tipo_Zona
-		$this->Tipo_Zona = new cField('datosextrasescuela', 'datosextrasescuela', 'x_Tipo_Zona', 'Tipo_Zona', '`Tipo_Zona`', '`Tipo_Zona`', 200, -1, FALSE, '`Tipo_Zona`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->Tipo_Zona->Sortable = TRUE; // Allow sort
-		$this->fields['Tipo_Zona'] = &$this->Tipo_Zona;
+		// Id_Zona
+		$this->Id_Zona = new cField('datosextrasescuela', 'datosextrasescuela', 'x_Id_Zona', 'Id_Zona', '`Id_Zona`', '`Id_Zona`', 3, -1, FALSE, '`Id_Zona`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->Id_Zona->Sortable = TRUE; // Allow sort
+		$this->Id_Zona->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->Id_Zona->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
+		$this->fields['Id_Zona'] = &$this->Id_Zona;
 
 		// Usuario_Conig
 		$this->Usuario_Conig = new cField('datosextrasescuela', 'datosextrasescuela', 'x_Usuario_Conig', 'Usuario_Conig', '`Usuario_Conig`', '`Usuario_Conig`', 200, -1, FALSE, '`Usuario_Conig`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
@@ -574,7 +576,7 @@ class cdatosextrasescuela extends cTable {
 	function LoadListRowValues(&$rs) {
 		$this->Cue->setDbValue($rs->fields('Cue'));
 		$this->Sigla->setDbValue($rs->fields('Sigla'));
-		$this->Tipo_Zona->setDbValue($rs->fields('Tipo_Zona'));
+		$this->Id_Zona->setDbValue($rs->fields('Id_Zona'));
 		$this->Usuario_Conig->setDbValue($rs->fields('Usuario_Conig'));
 		$this->Password_Conig->setDbValue($rs->fields('Password_Conig'));
 		$this->Tiene_Internet->setDbValue($rs->fields('Tiene_Internet'));
@@ -593,7 +595,7 @@ class cdatosextrasescuela extends cTable {
    // Common render codes
 		// Cue
 		// Sigla
-		// Tipo_Zona
+		// Id_Zona
 		// Usuario_Conig
 		// Password_Conig
 		// Tiene_Internet
@@ -609,9 +611,28 @@ class cdatosextrasescuela extends cTable {
 		$this->Sigla->ViewValue = $this->Sigla->CurrentValue;
 		$this->Sigla->ViewCustomAttributes = "";
 
-		// Tipo_Zona
-		$this->Tipo_Zona->ViewValue = $this->Tipo_Zona->CurrentValue;
-		$this->Tipo_Zona->ViewCustomAttributes = "";
+		// Id_Zona
+		if (strval($this->Id_Zona->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Zona`" . ew_SearchString("=", $this->Id_Zona->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Zona`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `zonas`";
+		$sWhereWrk = "";
+		$this->Id_Zona->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Zona, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Zona->ViewValue = $this->Id_Zona->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Zona->ViewValue = $this->Id_Zona->CurrentValue;
+			}
+		} else {
+			$this->Id_Zona->ViewValue = NULL;
+		}
+		$this->Id_Zona->ViewCustomAttributes = "";
 
 		// Usuario_Conig
 		$this->Usuario_Conig->ViewValue = $this->Usuario_Conig->CurrentValue;
@@ -651,10 +672,10 @@ class cdatosextrasescuela extends cTable {
 		$this->Sigla->HrefValue = "";
 		$this->Sigla->TooltipValue = "";
 
-		// Tipo_Zona
-		$this->Tipo_Zona->LinkCustomAttributes = "";
-		$this->Tipo_Zona->HrefValue = "";
-		$this->Tipo_Zona->TooltipValue = "";
+		// Id_Zona
+		$this->Id_Zona->LinkCustomAttributes = "";
+		$this->Id_Zona->HrefValue = "";
+		$this->Id_Zona->TooltipValue = "";
 
 		// Usuario_Conig
 		$this->Usuario_Conig->LinkCustomAttributes = "";
@@ -707,11 +728,9 @@ class cdatosextrasescuela extends cTable {
 		$this->Sigla->EditValue = $this->Sigla->CurrentValue;
 		$this->Sigla->PlaceHolder = ew_RemoveHtml($this->Sigla->FldCaption());
 
-		// Tipo_Zona
-		$this->Tipo_Zona->EditAttrs["class"] = "form-control";
-		$this->Tipo_Zona->EditCustomAttributes = "";
-		$this->Tipo_Zona->EditValue = $this->Tipo_Zona->CurrentValue;
-		$this->Tipo_Zona->PlaceHolder = ew_RemoveHtml($this->Tipo_Zona->FldCaption());
+		// Id_Zona
+		$this->Id_Zona->EditAttrs["class"] = "form-control";
+		$this->Id_Zona->EditCustomAttributes = "";
 
 		// Usuario_Conig
 		$this->Usuario_Conig->EditAttrs["class"] = "form-control";
@@ -777,7 +796,7 @@ class cdatosextrasescuela extends cTable {
 				if ($ExportPageType == "view") {
 					if ($this->Cue->Exportable) $Doc->ExportCaption($this->Cue);
 					if ($this->Sigla->Exportable) $Doc->ExportCaption($this->Sigla);
-					if ($this->Tipo_Zona->Exportable) $Doc->ExportCaption($this->Tipo_Zona);
+					if ($this->Id_Zona->Exportable) $Doc->ExportCaption($this->Id_Zona);
 					if ($this->Usuario_Conig->Exportable) $Doc->ExportCaption($this->Usuario_Conig);
 					if ($this->Password_Conig->Exportable) $Doc->ExportCaption($this->Password_Conig);
 					if ($this->Tiene_Internet->Exportable) $Doc->ExportCaption($this->Tiene_Internet);
@@ -787,7 +806,7 @@ class cdatosextrasescuela extends cTable {
 				} else {
 					if ($this->Cue->Exportable) $Doc->ExportCaption($this->Cue);
 					if ($this->Sigla->Exportable) $Doc->ExportCaption($this->Sigla);
-					if ($this->Tipo_Zona->Exportable) $Doc->ExportCaption($this->Tipo_Zona);
+					if ($this->Id_Zona->Exportable) $Doc->ExportCaption($this->Id_Zona);
 					if ($this->Usuario_Conig->Exportable) $Doc->ExportCaption($this->Usuario_Conig);
 					if ($this->Password_Conig->Exportable) $Doc->ExportCaption($this->Password_Conig);
 					if ($this->Tiene_Internet->Exportable) $Doc->ExportCaption($this->Tiene_Internet);
@@ -827,7 +846,7 @@ class cdatosextrasescuela extends cTable {
 					if ($ExportPageType == "view") {
 						if ($this->Cue->Exportable) $Doc->ExportField($this->Cue);
 						if ($this->Sigla->Exportable) $Doc->ExportField($this->Sigla);
-						if ($this->Tipo_Zona->Exportable) $Doc->ExportField($this->Tipo_Zona);
+						if ($this->Id_Zona->Exportable) $Doc->ExportField($this->Id_Zona);
 						if ($this->Usuario_Conig->Exportable) $Doc->ExportField($this->Usuario_Conig);
 						if ($this->Password_Conig->Exportable) $Doc->ExportField($this->Password_Conig);
 						if ($this->Tiene_Internet->Exportable) $Doc->ExportField($this->Tiene_Internet);
@@ -837,7 +856,7 @@ class cdatosextrasescuela extends cTable {
 					} else {
 						if ($this->Cue->Exportable) $Doc->ExportField($this->Cue);
 						if ($this->Sigla->Exportable) $Doc->ExportField($this->Sigla);
-						if ($this->Tipo_Zona->Exportable) $Doc->ExportField($this->Tipo_Zona);
+						if ($this->Id_Zona->Exportable) $Doc->ExportField($this->Id_Zona);
 						if ($this->Usuario_Conig->Exportable) $Doc->ExportField($this->Usuario_Conig);
 						if ($this->Password_Conig->Exportable) $Doc->ExportField($this->Password_Conig);
 						if ($this->Tiene_Internet->Exportable) $Doc->ExportField($this->Tiene_Internet);

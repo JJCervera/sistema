@@ -209,7 +209,7 @@ class cdatosestablecimiento extends cTable {
 		$this->fields['Cantidad_Netbook_Actuales'] = &$this->Cantidad_Netbook_Actuales;
 
 		// Fecha_Actualizacion
-		$this->Fecha_Actualizacion = new cField('datosestablecimiento', 'datosestablecimiento', 'x_Fecha_Actualizacion', 'Fecha_Actualizacion', '`Fecha_Actualizacion`', 'DATE_FORMAT(`Fecha_Actualizacion`, \'\')', 133, 7, FALSE, '`Fecha_Actualizacion`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'HIDDEN');
+		$this->Fecha_Actualizacion = new cField('datosestablecimiento', 'datosestablecimiento', 'x_Fecha_Actualizacion', 'Fecha_Actualizacion', '`Fecha_Actualizacion`', 'DATE_FORMAT(`Fecha_Actualizacion`, \'\')', 133, 7, FALSE, '`Fecha_Actualizacion`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->Fecha_Actualizacion->Sortable = TRUE; // Allow sort
 		$this->Fecha_Actualizacion->FldDefaultErrMsg = str_replace("%s", $GLOBALS["EW_DATE_SEPARATOR"], $Language->Phrase("IncorrectDateDMY"));
 		$this->fields['Fecha_Actualizacion'] = &$this->Fecha_Actualizacion;
@@ -1323,7 +1323,8 @@ class cdatosestablecimiento extends cTable {
 		// Fecha_Actualizacion
 		$this->Fecha_Actualizacion->EditAttrs["class"] = "form-control";
 		$this->Fecha_Actualizacion->EditCustomAttributes = "";
-		$this->Fecha_Actualizacion->CurrentValue = ew_FormatDateTime($this->Fecha_Actualizacion->CurrentValue, 7);
+		$this->Fecha_Actualizacion->EditValue = ew_FormatDateTime($this->Fecha_Actualizacion->CurrentValue, 7);
+		$this->Fecha_Actualizacion->PlaceHolder = ew_RemoveHtml($this->Fecha_Actualizacion->FldCaption());
 
 		// Usuario
 		$this->Usuario->EditAttrs["class"] = "form-control";

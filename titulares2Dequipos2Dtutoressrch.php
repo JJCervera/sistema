@@ -288,11 +288,6 @@ class ctitulares2Dequipos2Dtutores_search extends ctitulares2Dequipos2Dtutores {
 		$this->Apelldio_y_Nombre_Titular->SetVisibility();
 		$this->Dni->SetVisibility();
 		$this->Cuil->SetVisibility();
-		$this->Id_Curso->SetVisibility();
-		$this->Id_Division->SetVisibility();
-		$this->Id_Turno->SetVisibility();
-		$this->Id_Cargo->SetVisibility();
-		$this->Id_Estado->SetVisibility();
 		$this->Equipo_Asignado->SetVisibility();
 		$this->Apellido_y_Nombre_Tutor->SetVisibility();
 		$this->Dni_Tutor->SetVisibility();
@@ -423,11 +418,6 @@ class ctitulares2Dequipos2Dtutores_search extends ctitulares2Dequipos2Dtutores {
 		$this->BuildSearchUrl($sSrchUrl, $this->Apelldio_y_Nombre_Titular); // Apelldio y Nombre Titular
 		$this->BuildSearchUrl($sSrchUrl, $this->Dni); // Dni
 		$this->BuildSearchUrl($sSrchUrl, $this->Cuil); // Cuil
-		$this->BuildSearchUrl($sSrchUrl, $this->Id_Curso); // Id_Curso
-		$this->BuildSearchUrl($sSrchUrl, $this->Id_Division); // Id_Division
-		$this->BuildSearchUrl($sSrchUrl, $this->Id_Turno); // Id_Turno
-		$this->BuildSearchUrl($sSrchUrl, $this->Id_Cargo); // Id_Cargo
-		$this->BuildSearchUrl($sSrchUrl, $this->Id_Estado); // Id_Estado
 		$this->BuildSearchUrl($sSrchUrl, $this->Equipo_Asignado); // Equipo Asignado
 		$this->BuildSearchUrl($sSrchUrl, $this->Apellido_y_Nombre_Tutor); // Apellido y Nombre Tutor
 		$this->BuildSearchUrl($sSrchUrl, $this->Dni_Tutor); // Dni Tutor
@@ -510,26 +500,6 @@ class ctitulares2Dequipos2Dtutores_search extends ctitulares2Dequipos2Dtutores {
 		$this->Cuil->AdvancedSearch->SearchValue = ew_StripSlashes($objForm->GetValue("x_Cuil"));
 		$this->Cuil->AdvancedSearch->SearchOperator = $objForm->GetValue("z_Cuil");
 
-		// Id_Curso
-		$this->Id_Curso->AdvancedSearch->SearchValue = ew_StripSlashes($objForm->GetValue("x_Id_Curso"));
-		$this->Id_Curso->AdvancedSearch->SearchOperator = $objForm->GetValue("z_Id_Curso");
-
-		// Id_Division
-		$this->Id_Division->AdvancedSearch->SearchValue = ew_StripSlashes($objForm->GetValue("x_Id_Division"));
-		$this->Id_Division->AdvancedSearch->SearchOperator = $objForm->GetValue("z_Id_Division");
-
-		// Id_Turno
-		$this->Id_Turno->AdvancedSearch->SearchValue = ew_StripSlashes($objForm->GetValue("x_Id_Turno"));
-		$this->Id_Turno->AdvancedSearch->SearchOperator = $objForm->GetValue("z_Id_Turno");
-
-		// Id_Cargo
-		$this->Id_Cargo->AdvancedSearch->SearchValue = ew_StripSlashes($objForm->GetValue("x_Id_Cargo"));
-		$this->Id_Cargo->AdvancedSearch->SearchOperator = $objForm->GetValue("z_Id_Cargo");
-
-		// Id_Estado
-		$this->Id_Estado->AdvancedSearch->SearchValue = ew_StripSlashes($objForm->GetValue("x_Id_Estado"));
-		$this->Id_Estado->AdvancedSearch->SearchOperator = $objForm->GetValue("z_Id_Estado");
-
 		// Equipo Asignado
 		$this->Equipo_Asignado->AdvancedSearch->SearchValue = ew_StripSlashes($objForm->GetValue("x_Equipo_Asignado"));
 		$this->Equipo_Asignado->AdvancedSearch->SearchOperator = $objForm->GetValue("z_Equipo_Asignado");
@@ -560,11 +530,6 @@ class ctitulares2Dequipos2Dtutores_search extends ctitulares2Dequipos2Dtutores {
 		// Apelldio y Nombre Titular
 		// Dni
 		// Cuil
-		// Id_Curso
-		// Id_Division
-		// Id_Turno
-		// Id_Cargo
-		// Id_Estado
 		// Equipo Asignado
 		// Apellido y Nombre Tutor
 		// Dni Tutor
@@ -583,121 +548,6 @@ class ctitulares2Dequipos2Dtutores_search extends ctitulares2Dequipos2Dtutores {
 		// Cuil
 		$this->Cuil->ViewValue = $this->Cuil->CurrentValue;
 		$this->Cuil->ViewCustomAttributes = "";
-
-		// Id_Curso
-		if (strval($this->Id_Curso->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Curso`" . ew_SearchString("=", $this->Id_Curso->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Curso`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cursos`";
-		$sWhereWrk = "";
-		$this->Id_Curso->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Curso, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Curso->ViewValue = $this->Id_Curso->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Curso->ViewValue = $this->Id_Curso->CurrentValue;
-			}
-		} else {
-			$this->Id_Curso->ViewValue = NULL;
-		}
-		$this->Id_Curso->ViewCustomAttributes = "";
-
-		// Id_Division
-		if (strval($this->Id_Division->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Division`" . ew_SearchString("=", $this->Id_Division->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Division`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `division`";
-		$sWhereWrk = "";
-		$this->Id_Division->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Division, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Division->ViewValue = $this->Id_Division->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Division->ViewValue = $this->Id_Division->CurrentValue;
-			}
-		} else {
-			$this->Id_Division->ViewValue = NULL;
-		}
-		$this->Id_Division->ViewCustomAttributes = "";
-
-		// Id_Turno
-		if (strval($this->Id_Turno->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Turno`" . ew_SearchString("=", $this->Id_Turno->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Turno`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `turno`";
-		$sWhereWrk = "";
-		$this->Id_Turno->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Turno, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Turno->ViewValue = $this->Id_Turno->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Turno->ViewValue = $this->Id_Turno->CurrentValue;
-			}
-		} else {
-			$this->Id_Turno->ViewValue = NULL;
-		}
-		$this->Id_Turno->ViewCustomAttributes = "";
-
-		// Id_Cargo
-		if (strval($this->Id_Cargo->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Cargo`" . ew_SearchString("=", $this->Id_Cargo->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Cargo`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cargo_persona`";
-		$sWhereWrk = "";
-		$this->Id_Cargo->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Cargo->ViewValue = $this->Id_Cargo->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
-			}
-		} else {
-			$this->Id_Cargo->ViewValue = NULL;
-		}
-		$this->Id_Cargo->ViewCustomAttributes = "";
-
-		// Id_Estado
-		if (strval($this->Id_Estado->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Estado`" . ew_SearchString("=", $this->Id_Estado->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Estado`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `estado_persona`";
-		$sWhereWrk = "";
-		$this->Id_Estado->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Estado, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Estado->ViewValue = $this->Id_Estado->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Estado->ViewValue = $this->Id_Estado->CurrentValue;
-			}
-		} else {
-			$this->Id_Estado->ViewValue = NULL;
-		}
-		$this->Id_Estado->ViewCustomAttributes = "";
 
 		// Equipo Asignado
 		$this->Equipo_Asignado->ViewValue = $this->Equipo_Asignado->CurrentValue;
@@ -750,31 +600,6 @@ class ctitulares2Dequipos2Dtutores_search extends ctitulares2Dequipos2Dtutores {
 			$this->Cuil->HrefValue = "";
 			$this->Cuil->TooltipValue = "";
 
-			// Id_Curso
-			$this->Id_Curso->LinkCustomAttributes = "";
-			$this->Id_Curso->HrefValue = "";
-			$this->Id_Curso->TooltipValue = "";
-
-			// Id_Division
-			$this->Id_Division->LinkCustomAttributes = "";
-			$this->Id_Division->HrefValue = "";
-			$this->Id_Division->TooltipValue = "";
-
-			// Id_Turno
-			$this->Id_Turno->LinkCustomAttributes = "";
-			$this->Id_Turno->HrefValue = "";
-			$this->Id_Turno->TooltipValue = "";
-
-			// Id_Cargo
-			$this->Id_Cargo->LinkCustomAttributes = "";
-			$this->Id_Cargo->HrefValue = "";
-			$this->Id_Cargo->TooltipValue = "";
-
-			// Id_Estado
-			$this->Id_Estado->LinkCustomAttributes = "";
-			$this->Id_Estado->HrefValue = "";
-			$this->Id_Estado->TooltipValue = "";
-
 			// Equipo Asignado
 			$this->Equipo_Asignado->LinkCustomAttributes = "";
 			$this->Equipo_Asignado->HrefValue = "";
@@ -813,101 +638,6 @@ class ctitulares2Dequipos2Dtutores_search extends ctitulares2Dequipos2Dtutores {
 			$this->Cuil->EditCustomAttributes = "";
 			$this->Cuil->EditValue = ew_HtmlEncode($this->Cuil->AdvancedSearch->SearchValue);
 			$this->Cuil->PlaceHolder = ew_RemoveHtml($this->Cuil->FldCaption());
-
-			// Id_Curso
-			$this->Id_Curso->EditAttrs["class"] = "form-control";
-			$this->Id_Curso->EditCustomAttributes = "";
-			if (trim(strval($this->Id_Curso->AdvancedSearch->SearchValue)) == "") {
-				$sFilterWrk = "0=1";
-			} else {
-				$sFilterWrk = "`Id_Curso`" . ew_SearchString("=", $this->Id_Curso->AdvancedSearch->SearchValue, EW_DATATYPE_NUMBER, "");
-			}
-			$sSqlWrk = "SELECT `Id_Curso`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld`, '' AS `SelectFilterFld`, '' AS `SelectFilterFld2`, '' AS `SelectFilterFld3`, '' AS `SelectFilterFld4` FROM `cursos`";
-			$sWhereWrk = "";
-			$this->Id_Curso->LookupFilters = array();
-			ew_AddFilter($sWhereWrk, $sFilterWrk);
-			$this->Lookup_Selecting($this->Id_Curso, $sWhereWrk); // Call Lookup selecting
-			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			$arwrk = ($rswrk) ? $rswrk->GetRows() : array();
-			if ($rswrk) $rswrk->Close();
-			$this->Id_Curso->EditValue = $arwrk;
-
-			// Id_Division
-			$this->Id_Division->EditAttrs["class"] = "form-control";
-			$this->Id_Division->EditCustomAttributes = "";
-			if (trim(strval($this->Id_Division->AdvancedSearch->SearchValue)) == "") {
-				$sFilterWrk = "0=1";
-			} else {
-				$sFilterWrk = "`Id_Division`" . ew_SearchString("=", $this->Id_Division->AdvancedSearch->SearchValue, EW_DATATYPE_NUMBER, "");
-			}
-			$sSqlWrk = "SELECT `Id_Division`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld`, '' AS `SelectFilterFld`, '' AS `SelectFilterFld2`, '' AS `SelectFilterFld3`, '' AS `SelectFilterFld4` FROM `division`";
-			$sWhereWrk = "";
-			$this->Id_Division->LookupFilters = array();
-			ew_AddFilter($sWhereWrk, $sFilterWrk);
-			$this->Lookup_Selecting($this->Id_Division, $sWhereWrk); // Call Lookup selecting
-			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			$arwrk = ($rswrk) ? $rswrk->GetRows() : array();
-			if ($rswrk) $rswrk->Close();
-			$this->Id_Division->EditValue = $arwrk;
-
-			// Id_Turno
-			$this->Id_Turno->EditAttrs["class"] = "form-control";
-			$this->Id_Turno->EditCustomAttributes = "";
-			if (trim(strval($this->Id_Turno->AdvancedSearch->SearchValue)) == "") {
-				$sFilterWrk = "0=1";
-			} else {
-				$sFilterWrk = "`Id_Turno`" . ew_SearchString("=", $this->Id_Turno->AdvancedSearch->SearchValue, EW_DATATYPE_NUMBER, "");
-			}
-			$sSqlWrk = "SELECT `Id_Turno`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld`, '' AS `SelectFilterFld`, '' AS `SelectFilterFld2`, '' AS `SelectFilterFld3`, '' AS `SelectFilterFld4` FROM `turno`";
-			$sWhereWrk = "";
-			$this->Id_Turno->LookupFilters = array();
-			ew_AddFilter($sWhereWrk, $sFilterWrk);
-			$this->Lookup_Selecting($this->Id_Turno, $sWhereWrk); // Call Lookup selecting
-			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			$arwrk = ($rswrk) ? $rswrk->GetRows() : array();
-			if ($rswrk) $rswrk->Close();
-			$this->Id_Turno->EditValue = $arwrk;
-
-			// Id_Cargo
-			$this->Id_Cargo->EditAttrs["class"] = "form-control";
-			$this->Id_Cargo->EditCustomAttributes = "";
-			if (trim(strval($this->Id_Cargo->AdvancedSearch->SearchValue)) == "") {
-				$sFilterWrk = "0=1";
-			} else {
-				$sFilterWrk = "`Id_Cargo`" . ew_SearchString("=", $this->Id_Cargo->AdvancedSearch->SearchValue, EW_DATATYPE_NUMBER, "");
-			}
-			$sSqlWrk = "SELECT `Id_Cargo`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld`, '' AS `SelectFilterFld`, '' AS `SelectFilterFld2`, '' AS `SelectFilterFld3`, '' AS `SelectFilterFld4` FROM `cargo_persona`";
-			$sWhereWrk = "";
-			$this->Id_Cargo->LookupFilters = array();
-			ew_AddFilter($sWhereWrk, $sFilterWrk);
-			$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
-			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			$arwrk = ($rswrk) ? $rswrk->GetRows() : array();
-			if ($rswrk) $rswrk->Close();
-			$this->Id_Cargo->EditValue = $arwrk;
-
-			// Id_Estado
-			$this->Id_Estado->EditAttrs["class"] = "form-control";
-			$this->Id_Estado->EditCustomAttributes = "";
-			if (trim(strval($this->Id_Estado->AdvancedSearch->SearchValue)) == "") {
-				$sFilterWrk = "0=1";
-			} else {
-				$sFilterWrk = "`Id_Estado`" . ew_SearchString("=", $this->Id_Estado->AdvancedSearch->SearchValue, EW_DATATYPE_NUMBER, "");
-			}
-			$sSqlWrk = "SELECT `Id_Estado`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld`, '' AS `SelectFilterFld`, '' AS `SelectFilterFld2`, '' AS `SelectFilterFld3`, '' AS `SelectFilterFld4` FROM `estado_persona`";
-			$sWhereWrk = "";
-			$this->Id_Estado->LookupFilters = array();
-			ew_AddFilter($sWhereWrk, $sFilterWrk);
-			$this->Lookup_Selecting($this->Id_Estado, $sWhereWrk); // Call Lookup selecting
-			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			$arwrk = ($rswrk) ? $rswrk->GetRows() : array();
-			if ($rswrk) $rswrk->Close();
-			$this->Id_Estado->EditValue = $arwrk;
 
 			// Equipo Asignado
 			$this->Equipo_Asignado->EditAttrs["class"] = "form-control";
@@ -998,11 +728,6 @@ class ctitulares2Dequipos2Dtutores_search extends ctitulares2Dequipos2Dtutores {
 		$this->Apelldio_y_Nombre_Titular->AdvancedSearch->Load();
 		$this->Dni->AdvancedSearch->Load();
 		$this->Cuil->AdvancedSearch->Load();
-		$this->Id_Curso->AdvancedSearch->Load();
-		$this->Id_Division->AdvancedSearch->Load();
-		$this->Id_Turno->AdvancedSearch->Load();
-		$this->Id_Cargo->AdvancedSearch->Load();
-		$this->Id_Estado->AdvancedSearch->Load();
 		$this->Equipo_Asignado->AdvancedSearch->Load();
 		$this->Apellido_y_Nombre_Tutor->AdvancedSearch->Load();
 		$this->Dni_Tutor->AdvancedSearch->Load();
@@ -1024,66 +749,6 @@ class ctitulares2Dequipos2Dtutores_search extends ctitulares2Dequipos2Dtutores {
 		global $gsLanguage;
 		$pageId = $pageId ?: $this->PageID;
 		switch ($fld->FldVar) {
-		case "x_Id_Curso":
-			$sSqlWrk = "";
-			$sSqlWrk = "SELECT `Id_Curso` AS `LinkFld`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cursos`";
-			$sWhereWrk = "";
-			$this->Id_Curso->LookupFilters = array();
-			$fld->LookupFilters += array("s" => $sSqlWrk, "d" => "", "f0" => "`Id_Curso` = {filter_value}", "t0" => "3", "fn0" => "");
-			$sSqlWrk = "";
-			$this->Lookup_Selecting($this->Id_Curso, $sWhereWrk); // Call Lookup selecting
-			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			if ($sSqlWrk <> "")
-				$fld->LookupFilters["s"] .= $sSqlWrk;
-			break;
-		case "x_Id_Division":
-			$sSqlWrk = "";
-			$sSqlWrk = "SELECT `Id_Division` AS `LinkFld`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `division`";
-			$sWhereWrk = "";
-			$this->Id_Division->LookupFilters = array();
-			$fld->LookupFilters += array("s" => $sSqlWrk, "d" => "", "f0" => "`Id_Division` = {filter_value}", "t0" => "3", "fn0" => "");
-			$sSqlWrk = "";
-			$this->Lookup_Selecting($this->Id_Division, $sWhereWrk); // Call Lookup selecting
-			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			if ($sSqlWrk <> "")
-				$fld->LookupFilters["s"] .= $sSqlWrk;
-			break;
-		case "x_Id_Turno":
-			$sSqlWrk = "";
-			$sSqlWrk = "SELECT `Id_Turno` AS `LinkFld`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `turno`";
-			$sWhereWrk = "";
-			$this->Id_Turno->LookupFilters = array();
-			$fld->LookupFilters += array("s" => $sSqlWrk, "d" => "", "f0" => "`Id_Turno` = {filter_value}", "t0" => "3", "fn0" => "");
-			$sSqlWrk = "";
-			$this->Lookup_Selecting($this->Id_Turno, $sWhereWrk); // Call Lookup selecting
-			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			if ($sSqlWrk <> "")
-				$fld->LookupFilters["s"] .= $sSqlWrk;
-			break;
-		case "x_Id_Cargo":
-			$sSqlWrk = "";
-			$sSqlWrk = "SELECT `Id_Cargo` AS `LinkFld`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cargo_persona`";
-			$sWhereWrk = "";
-			$this->Id_Cargo->LookupFilters = array();
-			$fld->LookupFilters += array("s" => $sSqlWrk, "d" => "", "f0" => "`Id_Cargo` = {filter_value}", "t0" => "3", "fn0" => "");
-			$sSqlWrk = "";
-			$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
-			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			if ($sSqlWrk <> "")
-				$fld->LookupFilters["s"] .= $sSqlWrk;
-			break;
-		case "x_Id_Estado":
-			$sSqlWrk = "";
-			$sSqlWrk = "SELECT `Id_Estado` AS `LinkFld`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `estado_persona`";
-			$sWhereWrk = "";
-			$this->Id_Estado->LookupFilters = array();
-			$fld->LookupFilters += array("s" => $sSqlWrk, "d" => "", "f0" => "`Id_Estado` = {filter_value}", "t0" => "3", "fn0" => "");
-			$sSqlWrk = "";
-			$this->Lookup_Selecting($this->Id_Estado, $sWhereWrk); // Call Lookup selecting
-			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			if ($sSqlWrk <> "")
-				$fld->LookupFilters["s"] .= $sSqlWrk;
-			break;
 		case "x_Equipo_Asignado":
 			$sSqlWrk = "";
 			$sSqlWrk = "SELECT `NroSerie` AS `LinkFld`, `NroSerie` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `equipos`";
@@ -1233,11 +898,6 @@ ftitulares2Dequipos2Dtutoressearch.ValidateRequired = false;
 <?php } ?>
 
 // Dynamic selection lists
-ftitulares2Dequipos2Dtutoressearch.Lists["x_Id_Curso"] = {"LinkField":"x_Id_Curso","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"cursos"};
-ftitulares2Dequipos2Dtutoressearch.Lists["x_Id_Division"] = {"LinkField":"x_Id_Division","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"division"};
-ftitulares2Dequipos2Dtutoressearch.Lists["x_Id_Turno"] = {"LinkField":"x_Id_Turno","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"turno"};
-ftitulares2Dequipos2Dtutoressearch.Lists["x_Id_Cargo"] = {"LinkField":"x_Id_Cargo","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nombre","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"cargo_persona"};
-ftitulares2Dequipos2Dtutoressearch.Lists["x_Id_Estado"] = {"LinkField":"x_Id_Estado","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"estado_persona"};
 ftitulares2Dequipos2Dtutoressearch.Lists["x_Equipo_Asignado"] = {"LinkField":"x_NroSerie","Ajax":true,"AutoFill":false,"DisplayFields":["x_NroSerie","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"equipos"};
 
 // Form object for search
@@ -1318,81 +978,6 @@ $titulares2Dequipos2Dtutores_search->ShowMessage();
 		<div class="<?php echo $titulares2Dequipos2Dtutores_search->SearchRightColumnClass ?>"><div<?php echo $titulares2Dequipos2Dtutores->Cuil->CellAttributes() ?>>
 			<span id="el_titulares2Dequipos2Dtutores_Cuil">
 <input type="text" data-table="titulares2Dequipos2Dtutores" data-field="x_Cuil" name="x_Cuil" id="x_Cuil" size="30" maxlength="25" placeholder="<?php echo ew_HtmlEncode($titulares2Dequipos2Dtutores->Cuil->getPlaceHolder()) ?>" value="<?php echo $titulares2Dequipos2Dtutores->Cuil->EditValue ?>"<?php echo $titulares2Dequipos2Dtutores->Cuil->EditAttributes() ?>>
-</span>
-		</div></div>
-	</div>
-<?php } ?>
-<?php if ($titulares2Dequipos2Dtutores->Id_Curso->Visible) { // Id_Curso ?>
-	<div id="r_Id_Curso" class="form-group">
-		<label for="x_Id_Curso" class="<?php echo $titulares2Dequipos2Dtutores_search->SearchLabelClass ?>"><span id="elh_titulares2Dequipos2Dtutores_Id_Curso"><?php echo $titulares2Dequipos2Dtutores->Id_Curso->FldCaption() ?></span>	
-		<p class="form-control-static ewSearchOperator"><?php echo $Language->Phrase("=") ?><input type="hidden" name="z_Id_Curso" id="z_Id_Curso" value="="></p>
-		</label>
-		<div class="<?php echo $titulares2Dequipos2Dtutores_search->SearchRightColumnClass ?>"><div<?php echo $titulares2Dequipos2Dtutores->Id_Curso->CellAttributes() ?>>
-			<span id="el_titulares2Dequipos2Dtutores_Id_Curso">
-<select data-table="titulares2Dequipos2Dtutores" data-field="x_Id_Curso" data-value-separator="<?php echo $titulares2Dequipos2Dtutores->Id_Curso->DisplayValueSeparatorAttribute() ?>" id="x_Id_Curso" name="x_Id_Curso"<?php echo $titulares2Dequipos2Dtutores->Id_Curso->EditAttributes() ?>>
-<?php echo $titulares2Dequipos2Dtutores->Id_Curso->SelectOptionListHtml("x_Id_Curso") ?>
-</select>
-<input type="hidden" name="s_x_Id_Curso" id="s_x_Id_Curso" value="<?php echo $titulares2Dequipos2Dtutores->Id_Curso->LookupFilterQuery() ?>">
-</span>
-		</div></div>
-	</div>
-<?php } ?>
-<?php if ($titulares2Dequipos2Dtutores->Id_Division->Visible) { // Id_Division ?>
-	<div id="r_Id_Division" class="form-group">
-		<label for="x_Id_Division" class="<?php echo $titulares2Dequipos2Dtutores_search->SearchLabelClass ?>"><span id="elh_titulares2Dequipos2Dtutores_Id_Division"><?php echo $titulares2Dequipos2Dtutores->Id_Division->FldCaption() ?></span>	
-		<p class="form-control-static ewSearchOperator"><?php echo $Language->Phrase("=") ?><input type="hidden" name="z_Id_Division" id="z_Id_Division" value="="></p>
-		</label>
-		<div class="<?php echo $titulares2Dequipos2Dtutores_search->SearchRightColumnClass ?>"><div<?php echo $titulares2Dequipos2Dtutores->Id_Division->CellAttributes() ?>>
-			<span id="el_titulares2Dequipos2Dtutores_Id_Division">
-<select data-table="titulares2Dequipos2Dtutores" data-field="x_Id_Division" data-value-separator="<?php echo $titulares2Dequipos2Dtutores->Id_Division->DisplayValueSeparatorAttribute() ?>" id="x_Id_Division" name="x_Id_Division"<?php echo $titulares2Dequipos2Dtutores->Id_Division->EditAttributes() ?>>
-<?php echo $titulares2Dequipos2Dtutores->Id_Division->SelectOptionListHtml("x_Id_Division") ?>
-</select>
-<input type="hidden" name="s_x_Id_Division" id="s_x_Id_Division" value="<?php echo $titulares2Dequipos2Dtutores->Id_Division->LookupFilterQuery() ?>">
-</span>
-		</div></div>
-	</div>
-<?php } ?>
-<?php if ($titulares2Dequipos2Dtutores->Id_Turno->Visible) { // Id_Turno ?>
-	<div id="r_Id_Turno" class="form-group">
-		<label for="x_Id_Turno" class="<?php echo $titulares2Dequipos2Dtutores_search->SearchLabelClass ?>"><span id="elh_titulares2Dequipos2Dtutores_Id_Turno"><?php echo $titulares2Dequipos2Dtutores->Id_Turno->FldCaption() ?></span>	
-		<p class="form-control-static ewSearchOperator"><?php echo $Language->Phrase("=") ?><input type="hidden" name="z_Id_Turno" id="z_Id_Turno" value="="></p>
-		</label>
-		<div class="<?php echo $titulares2Dequipos2Dtutores_search->SearchRightColumnClass ?>"><div<?php echo $titulares2Dequipos2Dtutores->Id_Turno->CellAttributes() ?>>
-			<span id="el_titulares2Dequipos2Dtutores_Id_Turno">
-<select data-table="titulares2Dequipos2Dtutores" data-field="x_Id_Turno" data-value-separator="<?php echo $titulares2Dequipos2Dtutores->Id_Turno->DisplayValueSeparatorAttribute() ?>" id="x_Id_Turno" name="x_Id_Turno"<?php echo $titulares2Dequipos2Dtutores->Id_Turno->EditAttributes() ?>>
-<?php echo $titulares2Dequipos2Dtutores->Id_Turno->SelectOptionListHtml("x_Id_Turno") ?>
-</select>
-<input type="hidden" name="s_x_Id_Turno" id="s_x_Id_Turno" value="<?php echo $titulares2Dequipos2Dtutores->Id_Turno->LookupFilterQuery() ?>">
-</span>
-		</div></div>
-	</div>
-<?php } ?>
-<?php if ($titulares2Dequipos2Dtutores->Id_Cargo->Visible) { // Id_Cargo ?>
-	<div id="r_Id_Cargo" class="form-group">
-		<label for="x_Id_Cargo" class="<?php echo $titulares2Dequipos2Dtutores_search->SearchLabelClass ?>"><span id="elh_titulares2Dequipos2Dtutores_Id_Cargo"><?php echo $titulares2Dequipos2Dtutores->Id_Cargo->FldCaption() ?></span>	
-		<p class="form-control-static ewSearchOperator"><?php echo $Language->Phrase("=") ?><input type="hidden" name="z_Id_Cargo" id="z_Id_Cargo" value="="></p>
-		</label>
-		<div class="<?php echo $titulares2Dequipos2Dtutores_search->SearchRightColumnClass ?>"><div<?php echo $titulares2Dequipos2Dtutores->Id_Cargo->CellAttributes() ?>>
-			<span id="el_titulares2Dequipos2Dtutores_Id_Cargo">
-<select data-table="titulares2Dequipos2Dtutores" data-field="x_Id_Cargo" data-value-separator="<?php echo $titulares2Dequipos2Dtutores->Id_Cargo->DisplayValueSeparatorAttribute() ?>" id="x_Id_Cargo" name="x_Id_Cargo"<?php echo $titulares2Dequipos2Dtutores->Id_Cargo->EditAttributes() ?>>
-<?php echo $titulares2Dequipos2Dtutores->Id_Cargo->SelectOptionListHtml("x_Id_Cargo") ?>
-</select>
-<input type="hidden" name="s_x_Id_Cargo" id="s_x_Id_Cargo" value="<?php echo $titulares2Dequipos2Dtutores->Id_Cargo->LookupFilterQuery() ?>">
-</span>
-		</div></div>
-	</div>
-<?php } ?>
-<?php if ($titulares2Dequipos2Dtutores->Id_Estado->Visible) { // Id_Estado ?>
-	<div id="r_Id_Estado" class="form-group">
-		<label for="x_Id_Estado" class="<?php echo $titulares2Dequipos2Dtutores_search->SearchLabelClass ?>"><span id="elh_titulares2Dequipos2Dtutores_Id_Estado"><?php echo $titulares2Dequipos2Dtutores->Id_Estado->FldCaption() ?></span>	
-		<p class="form-control-static ewSearchOperator"><?php echo $Language->Phrase("=") ?><input type="hidden" name="z_Id_Estado" id="z_Id_Estado" value="="></p>
-		</label>
-		<div class="<?php echo $titulares2Dequipos2Dtutores_search->SearchRightColumnClass ?>"><div<?php echo $titulares2Dequipos2Dtutores->Id_Estado->CellAttributes() ?>>
-			<span id="el_titulares2Dequipos2Dtutores_Id_Estado">
-<select data-table="titulares2Dequipos2Dtutores" data-field="x_Id_Estado" data-value-separator="<?php echo $titulares2Dequipos2Dtutores->Id_Estado->DisplayValueSeparatorAttribute() ?>" id="x_Id_Estado" name="x_Id_Estado"<?php echo $titulares2Dequipos2Dtutores->Id_Estado->EditAttributes() ?>>
-<?php echo $titulares2Dequipos2Dtutores->Id_Estado->SelectOptionListHtml("x_Id_Estado") ?>
-</select>
-<input type="hidden" name="s_x_Id_Estado" id="s_x_Id_Estado" value="<?php echo $titulares2Dequipos2Dtutores->Id_Estado->LookupFilterQuery() ?>">
 </span>
 		</div></div>
 	</div>

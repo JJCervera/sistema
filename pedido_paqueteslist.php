@@ -1881,26 +1881,6 @@ class cpedido_paquetes_list extends cpedido_paquetes {
 
 		// Apellido_Nombre_Solicitante
 		$this->Apellido_Nombre_Solicitante->ViewValue = $this->Apellido_Nombre_Solicitante->CurrentValue;
-		if (strval($this->Apellido_Nombre_Solicitante->CurrentValue) <> "") {
-			$sFilterWrk = "`Apelldio_Nombre`" . ew_SearchString("=", $this->Apellido_Nombre_Solicitante->CurrentValue, EW_DATATYPE_STRING, "");
-		$sSqlWrk = "SELECT `Apelldio_Nombre`, `Apelldio_Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `referente_tecnico`";
-		$sWhereWrk = "";
-		$this->Apellido_Nombre_Solicitante->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Apellido_Nombre_Solicitante, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Apellido_Nombre_Solicitante->ViewValue = $this->Apellido_Nombre_Solicitante->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Apellido_Nombre_Solicitante->ViewValue = $this->Apellido_Nombre_Solicitante->CurrentValue;
-			}
-		} else {
-			$this->Apellido_Nombre_Solicitante->ViewValue = NULL;
-		}
 		$this->Apellido_Nombre_Solicitante->ViewCustomAttributes = "";
 
 		// Dni
@@ -2346,7 +2326,6 @@ fpedido_paqueteslist.Lists["x_Id_Motivo"] = {"LinkField":"x_Id_Motivo","Ajax":tr
 fpedido_paqueteslist.Lists["x_Serie_Server"] = {"LinkField":"x_Nro_Serie","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nro_Serie","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"servidor_escolar"};
 fpedido_paqueteslist.Lists["x_Id_Tipo_Paquete"] = {"LinkField":"x_Id_Tipo_Paquete","Ajax":true,"AutoFill":false,"DisplayFields":["x_Detalle","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"tipo_paquete"};
 fpedido_paqueteslist.Lists["x_Serie_Netbook"] = {"LinkField":"x_NroSerie","Ajax":true,"AutoFill":false,"DisplayFields":["x_NroSerie","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"equipos"};
-fpedido_paqueteslist.Lists["x_Apellido_Nombre_Solicitante"] = {"LinkField":"x_Apelldio_Nombre","Ajax":true,"AutoFill":false,"DisplayFields":["x_Apelldio_Nombre","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"referente_tecnico"};
 
 // Form object for search
 var CurrentSearchForm = fpedido_paqueteslistsrch = new ew_Form("fpedido_paqueteslistsrch");

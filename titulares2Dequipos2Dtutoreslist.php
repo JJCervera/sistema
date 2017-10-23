@@ -763,11 +763,6 @@ class ctitulares2Dequipos2Dtutores_list extends ctitulares2Dequipos2Dtutores {
 		$sFilterList = ew_Concat($sFilterList, $this->Apelldio_y_Nombre_Titular->AdvancedSearch->ToJSON(), ","); // Field Apelldio y Nombre Titular
 		$sFilterList = ew_Concat($sFilterList, $this->Dni->AdvancedSearch->ToJSON(), ","); // Field Dni
 		$sFilterList = ew_Concat($sFilterList, $this->Cuil->AdvancedSearch->ToJSON(), ","); // Field Cuil
-		$sFilterList = ew_Concat($sFilterList, $this->Id_Curso->AdvancedSearch->ToJSON(), ","); // Field Id_Curso
-		$sFilterList = ew_Concat($sFilterList, $this->Id_Division->AdvancedSearch->ToJSON(), ","); // Field Id_Division
-		$sFilterList = ew_Concat($sFilterList, $this->Id_Turno->AdvancedSearch->ToJSON(), ","); // Field Id_Turno
-		$sFilterList = ew_Concat($sFilterList, $this->Id_Cargo->AdvancedSearch->ToJSON(), ","); // Field Id_Cargo
-		$sFilterList = ew_Concat($sFilterList, $this->Id_Estado->AdvancedSearch->ToJSON(), ","); // Field Id_Estado
 		$sFilterList = ew_Concat($sFilterList, $this->Equipo_Asignado->AdvancedSearch->ToJSON(), ","); // Field Equipo Asignado
 		$sFilterList = ew_Concat($sFilterList, $this->Apellido_y_Nombre_Tutor->AdvancedSearch->ToJSON(), ","); // Field Apellido y Nombre Tutor
 		$sFilterList = ew_Concat($sFilterList, $this->Dni_Tutor->AdvancedSearch->ToJSON(), ","); // Field Dni Tutor
@@ -833,46 +828,6 @@ class ctitulares2Dequipos2Dtutores_list extends ctitulares2Dequipos2Dtutores {
 		$this->Cuil->AdvancedSearch->SearchOperator2 = @$filter["w_Cuil"];
 		$this->Cuil->AdvancedSearch->Save();
 
-		// Field Id_Curso
-		$this->Id_Curso->AdvancedSearch->SearchValue = @$filter["x_Id_Curso"];
-		$this->Id_Curso->AdvancedSearch->SearchOperator = @$filter["z_Id_Curso"];
-		$this->Id_Curso->AdvancedSearch->SearchCondition = @$filter["v_Id_Curso"];
-		$this->Id_Curso->AdvancedSearch->SearchValue2 = @$filter["y_Id_Curso"];
-		$this->Id_Curso->AdvancedSearch->SearchOperator2 = @$filter["w_Id_Curso"];
-		$this->Id_Curso->AdvancedSearch->Save();
-
-		// Field Id_Division
-		$this->Id_Division->AdvancedSearch->SearchValue = @$filter["x_Id_Division"];
-		$this->Id_Division->AdvancedSearch->SearchOperator = @$filter["z_Id_Division"];
-		$this->Id_Division->AdvancedSearch->SearchCondition = @$filter["v_Id_Division"];
-		$this->Id_Division->AdvancedSearch->SearchValue2 = @$filter["y_Id_Division"];
-		$this->Id_Division->AdvancedSearch->SearchOperator2 = @$filter["w_Id_Division"];
-		$this->Id_Division->AdvancedSearch->Save();
-
-		// Field Id_Turno
-		$this->Id_Turno->AdvancedSearch->SearchValue = @$filter["x_Id_Turno"];
-		$this->Id_Turno->AdvancedSearch->SearchOperator = @$filter["z_Id_Turno"];
-		$this->Id_Turno->AdvancedSearch->SearchCondition = @$filter["v_Id_Turno"];
-		$this->Id_Turno->AdvancedSearch->SearchValue2 = @$filter["y_Id_Turno"];
-		$this->Id_Turno->AdvancedSearch->SearchOperator2 = @$filter["w_Id_Turno"];
-		$this->Id_Turno->AdvancedSearch->Save();
-
-		// Field Id_Cargo
-		$this->Id_Cargo->AdvancedSearch->SearchValue = @$filter["x_Id_Cargo"];
-		$this->Id_Cargo->AdvancedSearch->SearchOperator = @$filter["z_Id_Cargo"];
-		$this->Id_Cargo->AdvancedSearch->SearchCondition = @$filter["v_Id_Cargo"];
-		$this->Id_Cargo->AdvancedSearch->SearchValue2 = @$filter["y_Id_Cargo"];
-		$this->Id_Cargo->AdvancedSearch->SearchOperator2 = @$filter["w_Id_Cargo"];
-		$this->Id_Cargo->AdvancedSearch->Save();
-
-		// Field Id_Estado
-		$this->Id_Estado->AdvancedSearch->SearchValue = @$filter["x_Id_Estado"];
-		$this->Id_Estado->AdvancedSearch->SearchOperator = @$filter["z_Id_Estado"];
-		$this->Id_Estado->AdvancedSearch->SearchCondition = @$filter["v_Id_Estado"];
-		$this->Id_Estado->AdvancedSearch->SearchValue2 = @$filter["y_Id_Estado"];
-		$this->Id_Estado->AdvancedSearch->SearchOperator2 = @$filter["w_Id_Estado"];
-		$this->Id_Estado->AdvancedSearch->Save();
-
 		// Field Equipo Asignado
 		$this->Equipo_Asignado->AdvancedSearch->SearchValue = @$filter["x_Equipo_Asignado"];
 		$this->Equipo_Asignado->AdvancedSearch->SearchOperator = @$filter["z_Equipo_Asignado"];
@@ -916,11 +871,6 @@ class ctitulares2Dequipos2Dtutores_list extends ctitulares2Dequipos2Dtutores {
 		$this->BuildSearchSql($sWhere, $this->Apelldio_y_Nombre_Titular, $Default, FALSE); // Apelldio y Nombre Titular
 		$this->BuildSearchSql($sWhere, $this->Dni, $Default, FALSE); // Dni
 		$this->BuildSearchSql($sWhere, $this->Cuil, $Default, FALSE); // Cuil
-		$this->BuildSearchSql($sWhere, $this->Id_Curso, $Default, FALSE); // Id_Curso
-		$this->BuildSearchSql($sWhere, $this->Id_Division, $Default, FALSE); // Id_Division
-		$this->BuildSearchSql($sWhere, $this->Id_Turno, $Default, FALSE); // Id_Turno
-		$this->BuildSearchSql($sWhere, $this->Id_Cargo, $Default, FALSE); // Id_Cargo
-		$this->BuildSearchSql($sWhere, $this->Id_Estado, $Default, FALSE); // Id_Estado
 		$this->BuildSearchSql($sWhere, $this->Equipo_Asignado, $Default, FALSE); // Equipo Asignado
 		$this->BuildSearchSql($sWhere, $this->Apellido_y_Nombre_Tutor, $Default, FALSE); // Apellido y Nombre Tutor
 		$this->BuildSearchSql($sWhere, $this->Dni_Tutor, $Default, FALSE); // Dni Tutor
@@ -934,11 +884,6 @@ class ctitulares2Dequipos2Dtutores_list extends ctitulares2Dequipos2Dtutores {
 			$this->Apelldio_y_Nombre_Titular->AdvancedSearch->Save(); // Apelldio y Nombre Titular
 			$this->Dni->AdvancedSearch->Save(); // Dni
 			$this->Cuil->AdvancedSearch->Save(); // Cuil
-			$this->Id_Curso->AdvancedSearch->Save(); // Id_Curso
-			$this->Id_Division->AdvancedSearch->Save(); // Id_Division
-			$this->Id_Turno->AdvancedSearch->Save(); // Id_Turno
-			$this->Id_Cargo->AdvancedSearch->Save(); // Id_Cargo
-			$this->Id_Estado->AdvancedSearch->Save(); // Id_Estado
 			$this->Equipo_Asignado->AdvancedSearch->Save(); // Equipo Asignado
 			$this->Apellido_y_Nombre_Tutor->AdvancedSearch->Save(); // Apellido y Nombre Tutor
 			$this->Dni_Tutor->AdvancedSearch->Save(); // Dni Tutor
@@ -1002,11 +947,6 @@ class ctitulares2Dequipos2Dtutores_list extends ctitulares2Dequipos2Dtutores {
 		$this->BuildBasicSearchSQL($sWhere, $this->Apelldio_y_Nombre_Titular, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Dni, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Cuil, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->Id_Curso, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->Id_Division, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->Id_Turno, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->Id_Cargo, $arKeywords, $type);
-		$this->BuildBasicSearchSQL($sWhere, $this->Id_Estado, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Equipo_Asignado, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Apellido_y_Nombre_Tutor, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->Dni_Tutor, $arKeywords, $type);
@@ -1142,16 +1082,6 @@ class ctitulares2Dequipos2Dtutores_list extends ctitulares2Dequipos2Dtutores {
 			return TRUE;
 		if ($this->Cuil->AdvancedSearch->IssetSession())
 			return TRUE;
-		if ($this->Id_Curso->AdvancedSearch->IssetSession())
-			return TRUE;
-		if ($this->Id_Division->AdvancedSearch->IssetSession())
-			return TRUE;
-		if ($this->Id_Turno->AdvancedSearch->IssetSession())
-			return TRUE;
-		if ($this->Id_Cargo->AdvancedSearch->IssetSession())
-			return TRUE;
-		if ($this->Id_Estado->AdvancedSearch->IssetSession())
-			return TRUE;
 		if ($this->Equipo_Asignado->AdvancedSearch->IssetSession())
 			return TRUE;
 		if ($this->Apellido_y_Nombre_Tutor->AdvancedSearch->IssetSession())
@@ -1192,11 +1122,6 @@ class ctitulares2Dequipos2Dtutores_list extends ctitulares2Dequipos2Dtutores {
 		$this->Apelldio_y_Nombre_Titular->AdvancedSearch->UnsetSession();
 		$this->Dni->AdvancedSearch->UnsetSession();
 		$this->Cuil->AdvancedSearch->UnsetSession();
-		$this->Id_Curso->AdvancedSearch->UnsetSession();
-		$this->Id_Division->AdvancedSearch->UnsetSession();
-		$this->Id_Turno->AdvancedSearch->UnsetSession();
-		$this->Id_Cargo->AdvancedSearch->UnsetSession();
-		$this->Id_Estado->AdvancedSearch->UnsetSession();
 		$this->Equipo_Asignado->AdvancedSearch->UnsetSession();
 		$this->Apellido_y_Nombre_Tutor->AdvancedSearch->UnsetSession();
 		$this->Dni_Tutor->AdvancedSearch->UnsetSession();
@@ -1214,11 +1139,6 @@ class ctitulares2Dequipos2Dtutores_list extends ctitulares2Dequipos2Dtutores {
 		$this->Apelldio_y_Nombre_Titular->AdvancedSearch->Load();
 		$this->Dni->AdvancedSearch->Load();
 		$this->Cuil->AdvancedSearch->Load();
-		$this->Id_Curso->AdvancedSearch->Load();
-		$this->Id_Division->AdvancedSearch->Load();
-		$this->Id_Turno->AdvancedSearch->Load();
-		$this->Id_Cargo->AdvancedSearch->Load();
-		$this->Id_Estado->AdvancedSearch->Load();
 		$this->Equipo_Asignado->AdvancedSearch->Load();
 		$this->Apellido_y_Nombre_Tutor->AdvancedSearch->Load();
 		$this->Dni_Tutor->AdvancedSearch->Load();
@@ -1650,31 +1570,6 @@ class ctitulares2Dequipos2Dtutores_list extends ctitulares2Dequipos2Dtutores {
 		if ($this->Cuil->AdvancedSearch->SearchValue <> "") $this->Command = "search";
 		$this->Cuil->AdvancedSearch->SearchOperator = @$_GET["z_Cuil"];
 
-		// Id_Curso
-		$this->Id_Curso->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Id_Curso"]);
-		if ($this->Id_Curso->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->Id_Curso->AdvancedSearch->SearchOperator = @$_GET["z_Id_Curso"];
-
-		// Id_Division
-		$this->Id_Division->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Id_Division"]);
-		if ($this->Id_Division->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->Id_Division->AdvancedSearch->SearchOperator = @$_GET["z_Id_Division"];
-
-		// Id_Turno
-		$this->Id_Turno->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Id_Turno"]);
-		if ($this->Id_Turno->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->Id_Turno->AdvancedSearch->SearchOperator = @$_GET["z_Id_Turno"];
-
-		// Id_Cargo
-		$this->Id_Cargo->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Id_Cargo"]);
-		if ($this->Id_Cargo->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->Id_Cargo->AdvancedSearch->SearchOperator = @$_GET["z_Id_Cargo"];
-
-		// Id_Estado
-		$this->Id_Estado->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Id_Estado"]);
-		if ($this->Id_Estado->AdvancedSearch->SearchValue <> "") $this->Command = "search";
-		$this->Id_Estado->AdvancedSearch->SearchOperator = @$_GET["z_Id_Estado"];
-
 		// Equipo Asignado
 		$this->Equipo_Asignado->AdvancedSearch->SearchValue = ew_StripSlashes(@$_GET["x_Equipo_Asignado"]);
 		if ($this->Equipo_Asignado->AdvancedSearch->SearchValue <> "") $this->Command = "search";
@@ -1754,11 +1649,6 @@ class ctitulares2Dequipos2Dtutores_list extends ctitulares2Dequipos2Dtutores {
 		$this->Apelldio_y_Nombre_Titular->setDbValue($rs->fields('Apelldio y Nombre Titular'));
 		$this->Dni->setDbValue($rs->fields('Dni'));
 		$this->Cuil->setDbValue($rs->fields('Cuil'));
-		$this->Id_Curso->setDbValue($rs->fields('Id_Curso'));
-		$this->Id_Division->setDbValue($rs->fields('Id_Division'));
-		$this->Id_Turno->setDbValue($rs->fields('Id_Turno'));
-		$this->Id_Cargo->setDbValue($rs->fields('Id_Cargo'));
-		$this->Id_Estado->setDbValue($rs->fields('Id_Estado'));
 		$this->Equipo_Asignado->setDbValue($rs->fields('Equipo Asignado'));
 		$this->Apellido_y_Nombre_Tutor->setDbValue($rs->fields('Apellido y Nombre Tutor'));
 		$this->Dni_Tutor->setDbValue($rs->fields('Dni Tutor'));
@@ -1772,11 +1662,6 @@ class ctitulares2Dequipos2Dtutores_list extends ctitulares2Dequipos2Dtutores {
 		$this->Apelldio_y_Nombre_Titular->DbValue = $row['Apelldio y Nombre Titular'];
 		$this->Dni->DbValue = $row['Dni'];
 		$this->Cuil->DbValue = $row['Cuil'];
-		$this->Id_Curso->DbValue = $row['Id_Curso'];
-		$this->Id_Division->DbValue = $row['Id_Division'];
-		$this->Id_Turno->DbValue = $row['Id_Turno'];
-		$this->Id_Cargo->DbValue = $row['Id_Cargo'];
-		$this->Id_Estado->DbValue = $row['Id_Estado'];
 		$this->Equipo_Asignado->DbValue = $row['Equipo Asignado'];
 		$this->Apellido_y_Nombre_Tutor->DbValue = $row['Apellido y Nombre Tutor'];
 		$this->Dni_Tutor->DbValue = $row['Dni Tutor'];
@@ -1829,11 +1714,6 @@ class ctitulares2Dequipos2Dtutores_list extends ctitulares2Dequipos2Dtutores {
 		// Apelldio y Nombre Titular
 		// Dni
 		// Cuil
-		// Id_Curso
-		// Id_Division
-		// Id_Turno
-		// Id_Cargo
-		// Id_Estado
 		// Equipo Asignado
 		// Apellido y Nombre Tutor
 		// Dni Tutor
@@ -1852,121 +1732,6 @@ class ctitulares2Dequipos2Dtutores_list extends ctitulares2Dequipos2Dtutores {
 		// Cuil
 		$this->Cuil->ViewValue = $this->Cuil->CurrentValue;
 		$this->Cuil->ViewCustomAttributes = "";
-
-		// Id_Curso
-		if (strval($this->Id_Curso->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Curso`" . ew_SearchString("=", $this->Id_Curso->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Curso`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cursos`";
-		$sWhereWrk = "";
-		$this->Id_Curso->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Curso, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Curso->ViewValue = $this->Id_Curso->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Curso->ViewValue = $this->Id_Curso->CurrentValue;
-			}
-		} else {
-			$this->Id_Curso->ViewValue = NULL;
-		}
-		$this->Id_Curso->ViewCustomAttributes = "";
-
-		// Id_Division
-		if (strval($this->Id_Division->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Division`" . ew_SearchString("=", $this->Id_Division->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Division`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `division`";
-		$sWhereWrk = "";
-		$this->Id_Division->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Division, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Division->ViewValue = $this->Id_Division->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Division->ViewValue = $this->Id_Division->CurrentValue;
-			}
-		} else {
-			$this->Id_Division->ViewValue = NULL;
-		}
-		$this->Id_Division->ViewCustomAttributes = "";
-
-		// Id_Turno
-		if (strval($this->Id_Turno->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Turno`" . ew_SearchString("=", $this->Id_Turno->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Turno`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `turno`";
-		$sWhereWrk = "";
-		$this->Id_Turno->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Turno, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Turno->ViewValue = $this->Id_Turno->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Turno->ViewValue = $this->Id_Turno->CurrentValue;
-			}
-		} else {
-			$this->Id_Turno->ViewValue = NULL;
-		}
-		$this->Id_Turno->ViewCustomAttributes = "";
-
-		// Id_Cargo
-		if (strval($this->Id_Cargo->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Cargo`" . ew_SearchString("=", $this->Id_Cargo->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Cargo`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cargo_persona`";
-		$sWhereWrk = "";
-		$this->Id_Cargo->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Cargo->ViewValue = $this->Id_Cargo->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
-			}
-		} else {
-			$this->Id_Cargo->ViewValue = NULL;
-		}
-		$this->Id_Cargo->ViewCustomAttributes = "";
-
-		// Id_Estado
-		if (strval($this->Id_Estado->CurrentValue) <> "") {
-			$sFilterWrk = "`Id_Estado`" . ew_SearchString("=", $this->Id_Estado->CurrentValue, EW_DATATYPE_NUMBER, "");
-		$sSqlWrk = "SELECT `Id_Estado`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `estado_persona`";
-		$sWhereWrk = "";
-		$this->Id_Estado->LookupFilters = array();
-		ew_AddFilter($sWhereWrk, $sFilterWrk);
-		$this->Lookup_Selecting($this->Id_Estado, $sWhereWrk); // Call Lookup selecting
-		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
-			$rswrk = Conn()->Execute($sSqlWrk);
-			if ($rswrk && !$rswrk->EOF) { // Lookup values found
-				$arwrk = array();
-				$arwrk[1] = $rswrk->fields('DispFld');
-				$this->Id_Estado->ViewValue = $this->Id_Estado->DisplayValue($arwrk);
-				$rswrk->Close();
-			} else {
-				$this->Id_Estado->ViewValue = $this->Id_Estado->CurrentValue;
-			}
-		} else {
-			$this->Id_Estado->ViewValue = NULL;
-		}
-		$this->Id_Estado->ViewCustomAttributes = "";
 
 		// Equipo Asignado
 		$this->Equipo_Asignado->ViewValue = $this->Equipo_Asignado->CurrentValue;
@@ -2073,11 +1838,6 @@ class ctitulares2Dequipos2Dtutores_list extends ctitulares2Dequipos2Dtutores {
 		$this->Apelldio_y_Nombre_Titular->AdvancedSearch->Load();
 		$this->Dni->AdvancedSearch->Load();
 		$this->Cuil->AdvancedSearch->Load();
-		$this->Id_Curso->AdvancedSearch->Load();
-		$this->Id_Division->AdvancedSearch->Load();
-		$this->Id_Turno->AdvancedSearch->Load();
-		$this->Id_Cargo->AdvancedSearch->Load();
-		$this->Id_Estado->AdvancedSearch->Load();
 		$this->Equipo_Asignado->AdvancedSearch->Load();
 		$this->Apellido_y_Nombre_Tutor->AdvancedSearch->Load();
 		$this->Dni_Tutor->AdvancedSearch->Load();

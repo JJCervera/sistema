@@ -294,7 +294,6 @@ class cusuarios_edit extends cusuarios {
 		$this->NombreTitular->SetVisibility();
 		$this->Dni->SetVisibility();
 		$this->Nombre->SetVisibility();
-		$this->Password->SetVisibility();
 		$this->Nivel_Usuario->SetVisibility();
 		$this->Curso->SetVisibility();
 		$this->Turno->SetVisibility();
@@ -515,9 +514,6 @@ class cusuarios_edit extends cusuarios {
 		if (!$this->Nombre->FldIsDetailKey) {
 			$this->Nombre->setFormValue($objForm->GetValue("x_Nombre"));
 		}
-		if (!$this->Password->FldIsDetailKey) {
-			$this->Password->setFormValue($objForm->GetValue("x_Password"));
-		}
 		if (!$this->Nivel_Usuario->FldIsDetailKey) {
 			$this->Nivel_Usuario->setFormValue($objForm->GetValue("x_Nivel_Usuario"));
 		}
@@ -539,7 +535,6 @@ class cusuarios_edit extends cusuarios {
 		$this->NombreTitular->CurrentValue = $this->NombreTitular->FormValue;
 		$this->Dni->CurrentValue = $this->Dni->FormValue;
 		$this->Nombre->CurrentValue = $this->Nombre->FormValue;
-		$this->Password->CurrentValue = $this->Password->FormValue;
 		$this->Nivel_Usuario->CurrentValue = $this->Nivel_Usuario->FormValue;
 		$this->Curso->CurrentValue = $this->Curso->FormValue;
 		$this->Turno->CurrentValue = $this->Turno->FormValue;
@@ -776,11 +771,6 @@ class cusuarios_edit extends cusuarios {
 			$this->Nombre->HrefValue = "";
 			$this->Nombre->TooltipValue = "";
 
-			// Password
-			$this->Password->LinkCustomAttributes = "";
-			$this->Password->HrefValue = "";
-			$this->Password->TooltipValue = "";
-
 			// Nivel_Usuario
 			$this->Nivel_Usuario->LinkCustomAttributes = "";
 			$this->Nivel_Usuario->HrefValue = "";
@@ -839,12 +829,6 @@ class cusuarios_edit extends cusuarios {
 			$this->Nombre->EditCustomAttributes = "";
 			$this->Nombre->EditValue = $this->Nombre->CurrentValue;
 			$this->Nombre->ViewCustomAttributes = "";
-
-			// Password
-			$this->Password->EditAttrs["class"] = "form-control ewPasswordStrength";
-			$this->Password->EditCustomAttributes = "";
-			$this->Password->EditValue = ew_HtmlEncode($this->Password->CurrentValue);
-			$this->Password->PlaceHolder = ew_RemoveHtml($this->Password->FldCaption());
 
 			// Nivel_Usuario
 			$this->Nivel_Usuario->EditAttrs["class"] = "form-control";
@@ -940,10 +924,6 @@ class cusuarios_edit extends cusuarios {
 			$this->Nombre->LinkCustomAttributes = "";
 			$this->Nombre->HrefValue = "";
 
-			// Password
-			$this->Password->LinkCustomAttributes = "";
-			$this->Password->HrefValue = "";
-
 			// Nivel_Usuario
 			$this->Nivel_Usuario->LinkCustomAttributes = "";
 			$this->Nivel_Usuario->HrefValue = "";
@@ -1030,11 +1010,8 @@ class cusuarios_edit extends cusuarios {
 			$this->Dni->SetDbValueDef($rsnew, $this->Dni->CurrentValue, NULL, $this->Dni->ReadOnly);
 
 			// Nombre
-			// Password
-
-			$this->Password->SetDbValueDef($rsnew, $this->Password->CurrentValue, NULL, $this->Password->ReadOnly || (EW_ENCRYPTED_PASSWORD && $rs->fields('Password') == $this->Password->CurrentValue));
-
 			// Nivel_Usuario
+
 			if ($Security->CanAdmin()) { // System admin
 			$this->Nivel_Usuario->SetDbValueDef($rsnew, $this->Nivel_Usuario->CurrentValue, NULL, $this->Nivel_Usuario->ReadOnly);
 			}
@@ -1362,9 +1339,6 @@ fusuariosedit.Validate = function() {
 			elm = this.GetElements("x" + infix + "_Nombre");
 			if (elm && !ew_IsHidden(elm) && !ew_HasValue(elm))
 				return this.OnError(elm, "<?php echo ew_JsEncode2(str_replace("%s", $usuarios->Nombre->FldCaption(), $usuarios->Nombre->ReqErrMsg)) ?>");
-			elm = this.GetElements("x" + infix + "_Password");
-			if (elm && $(elm).hasClass("ewPasswordStrength") && !$(elm).data("validated"))
-				return this.OnError(elm, ewLanguage.Phrase("PasswordTooSimple"));
 
 			// Fire Form_CustomValidate event
 			if (!this.Form_CustomValidate(fobj))
@@ -1430,9 +1404,6 @@ $usuarios_edit->ShowMessage();
 <?php if ($usuarios_edit->IsModal) { ?>
 <input type="hidden" name="modal" value="1">
 <?php } ?>
-<!-- Fields to prevent google autofill -->
-<input class="hidden" type="text" name="<?php echo ew_Encrypt(ew_Random()) ?>">
-<input class="hidden" type="password" name="<?php echo ew_Encrypt(ew_Random()) ?>">
 <div>
 <?php if ($usuarios->NombreTitular->Visible) { // NombreTitular ?>
 	<div id="r_NombreTitular" class="form-group">
@@ -1471,25 +1442,6 @@ $usuarios_edit->ShowMessage();
 </span>
 <input type="hidden" data-table="usuarios" data-field="x_Nombre" name="x_Nombre" id="x_Nombre" value="<?php echo ew_HtmlEncode($usuarios->Nombre->CurrentValue) ?>">
 <?php echo $usuarios->Nombre->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($usuarios->Password->Visible) { // Password ?>
-	<div id="r_Password" class="form-group">
-		<label id="elh_usuarios_Password" for="x_Password" class="col-sm-2 control-label ewLabel"><?php echo $usuarios->Password->FldCaption() ?></label>
-		<div class="col-sm-10"><div<?php echo $usuarios->Password->CellAttributes() ?>>
-<span id="el_usuarios_Password">
-<div class="input-group" id="ig_Password">
-<input type="text" data-password-strength="pst_Password" data-password-generated="pgt_Password" data-table="usuarios" data-field="x_Password" name="x_Password" id="x_Password" value="<?php echo $usuarios->Password->EditValue ?>" size="30" maxlength="100" placeholder="<?php echo ew_HtmlEncode($usuarios->Password->getPlaceHolder()) ?>"<?php echo $usuarios->Password->EditAttributes() ?>>
-<span class="input-group-btn">
-	<button type="button" class="btn btn-default ewPasswordGenerator" title="<?php echo ew_HtmlTitle($Language->Phrase("GeneratePassword")) ?>" data-password-field="x_Password" data-password-confirm="c_Password" data-password-strength="pst_Password" data-password-generated="pgt_Password"><?php echo $Language->Phrase("GeneratePassword") ?></button>
-</span>
-</div>
-<span class="help-block" id="pgt_Password" style="display: none;"></span>
-<div class="progress ewPasswordStrengthBar" id="pst_Password" style="display: none;">
-	<div class="progress-bar" role="progressbar"></div>
-</div>
-</span>
-<?php echo $usuarios->Password->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 <?php if ($usuarios->Nivel_Usuario->Visible) { // Nivel_Usuario ?>

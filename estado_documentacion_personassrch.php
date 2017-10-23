@@ -680,7 +680,26 @@ class cestado_documentacion_personas_search extends cestado_documentacion_person
 		$this->Id_Estado->ViewCustomAttributes = "";
 
 		// Id_Cargo
-		$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
+		if (strval($this->Id_Cargo->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Cargo`" . ew_SearchString("=", $this->Id_Cargo->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Cargo`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cargo_persona`";
+		$sWhereWrk = "";
+		$this->Id_Cargo->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Cargo->ViewValue = $this->Id_Cargo->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Cargo->ViewValue = $this->Id_Cargo->CurrentValue;
+			}
+		} else {
+			$this->Id_Cargo->ViewValue = NULL;
+		}
 		$this->Id_Cargo->ViewCustomAttributes = "";
 
 		// Matricula
@@ -888,8 +907,21 @@ class cestado_documentacion_personas_search extends cestado_documentacion_person
 			// Id_Cargo
 			$this->Id_Cargo->EditAttrs["class"] = "form-control";
 			$this->Id_Cargo->EditCustomAttributes = "";
-			$this->Id_Cargo->EditValue = ew_HtmlEncode($this->Id_Cargo->AdvancedSearch->SearchValue);
-			$this->Id_Cargo->PlaceHolder = ew_RemoveHtml($this->Id_Cargo->FldCaption());
+			if (trim(strval($this->Id_Cargo->AdvancedSearch->SearchValue)) == "") {
+				$sFilterWrk = "0=1";
+			} else {
+				$sFilterWrk = "`Id_Cargo`" . ew_SearchString("=", $this->Id_Cargo->AdvancedSearch->SearchValue, EW_DATATYPE_NUMBER, "");
+			}
+			$sSqlWrk = "SELECT `Id_Cargo`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld`, '' AS `SelectFilterFld`, '' AS `SelectFilterFld2`, '' AS `SelectFilterFld3`, '' AS `SelectFilterFld4` FROM `cargo_persona`";
+			$sWhereWrk = "";
+			$this->Id_Cargo->LookupFilters = array();
+			ew_AddFilter($sWhereWrk, $sFilterWrk);
+			$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
+			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			$arwrk = ($rswrk) ? $rswrk->GetRows() : array();
+			if ($rswrk) $rswrk->Close();
+			$this->Id_Cargo->EditValue = $arwrk;
 
 			// Matricula
 			$this->Matricula->EditCustomAttributes = "";
@@ -938,9 +970,6 @@ class cestado_documentacion_personas_search extends cestado_documentacion_person
 			return TRUE;
 		if (!ew_CheckInteger($this->Dni->AdvancedSearch->SearchValue)) {
 			ew_AddMessage($gsSearchError, $this->Dni->FldErrMsg());
-		}
-		if (!ew_CheckInteger($this->Id_Cargo->AdvancedSearch->SearchValue)) {
-			ew_AddMessage($gsSearchError, $this->Id_Cargo->FldErrMsg());
 		}
 
 		// Return validate result
@@ -1031,6 +1060,18 @@ class cestado_documentacion_personas_search extends cestado_documentacion_person
 			$fld->LookupFilters += array("s" => $sSqlWrk, "d" => "", "f0" => "`Id_Estado` = {filter_value}", "t0" => "3", "fn0" => "");
 			$sSqlWrk = "";
 			$this->Lookup_Selecting($this->Id_Estado, $sWhereWrk); // Call Lookup selecting
+			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			if ($sSqlWrk <> "")
+				$fld->LookupFilters["s"] .= $sSqlWrk;
+			break;
+		case "x_Id_Cargo":
+			$sSqlWrk = "";
+			$sSqlWrk = "SELECT `Id_Cargo` AS `LinkFld`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `cargo_persona`";
+			$sWhereWrk = "";
+			$this->Id_Cargo->LookupFilters = array();
+			$fld->LookupFilters += array("s" => $sSqlWrk, "d" => "", "f0" => "`Id_Cargo` = {filter_value}", "t0" => "3", "fn0" => "");
+			$sSqlWrk = "";
+			$this->Lookup_Selecting($this->Id_Cargo, $sWhereWrk); // Call Lookup selecting
 			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
 			if ($sSqlWrk <> "")
 				$fld->LookupFilters["s"] .= $sSqlWrk;
@@ -1163,6 +1204,7 @@ festado_documentacion_personassearch.Lists["x_Id_Curso"] = {"LinkField":"x_Id_Cu
 festado_documentacion_personassearch.Lists["x_Id_Division"] = {"LinkField":"x_Id_Division","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"division"};
 festado_documentacion_personassearch.Lists["x_Id_Turno"] = {"LinkField":"x_Id_Turno","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"turno"};
 festado_documentacion_personassearch.Lists["x_Id_Estado"] = {"LinkField":"x_Id_Estado","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"estado_persona"};
+festado_documentacion_personassearch.Lists["x_Id_Cargo"] = {"LinkField":"x_Id_Cargo","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nombre","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"cargo_persona"};
 festado_documentacion_personassearch.Lists["x_Matricula"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
 festado_documentacion_personassearch.Lists["x_Matricula"].Options = <?php echo json_encode($estado_documentacion_personas->Matricula->Options()) ?>;
 festado_documentacion_personassearch.Lists["x_Certificado_Pase"] = {"LinkField":"","Ajax":null,"AutoFill":false,"DisplayFields":["","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":""};
@@ -1187,9 +1229,6 @@ festado_documentacion_personassearch.Validate = function(fobj) {
 	elm = this.GetElements("x" + infix + "_Dni");
 	if (elm && !ew_CheckInteger(elm.value))
 		return this.OnError(elm, "<?php echo ew_JsEncode2($estado_documentacion_personas->Dni->FldErrMsg()) ?>");
-	elm = this.GetElements("x" + infix + "_Id_Cargo");
-	if (elm && !ew_CheckInteger(elm.value))
-		return this.OnError(elm, "<?php echo ew_JsEncode2($estado_documentacion_personas->Id_Cargo->FldErrMsg()) ?>");
 
 	// Fire Form_CustomValidate event
 	if (!this.Form_CustomValidate(fobj))
@@ -1313,7 +1352,10 @@ $estado_documentacion_personas_search->ShowMessage();
 		</label>
 		<div class="<?php echo $estado_documentacion_personas_search->SearchRightColumnClass ?>"><div<?php echo $estado_documentacion_personas->Id_Cargo->CellAttributes() ?>>
 			<span id="el_estado_documentacion_personas_Id_Cargo">
-<input type="text" data-table="estado_documentacion_personas" data-field="x_Id_Cargo" name="x_Id_Cargo" id="x_Id_Cargo" size="30" placeholder="<?php echo ew_HtmlEncode($estado_documentacion_personas->Id_Cargo->getPlaceHolder()) ?>" value="<?php echo $estado_documentacion_personas->Id_Cargo->EditValue ?>"<?php echo $estado_documentacion_personas->Id_Cargo->EditAttributes() ?>>
+<select data-table="estado_documentacion_personas" data-field="x_Id_Cargo" data-value-separator="<?php echo $estado_documentacion_personas->Id_Cargo->DisplayValueSeparatorAttribute() ?>" id="x_Id_Cargo" name="x_Id_Cargo"<?php echo $estado_documentacion_personas->Id_Cargo->EditAttributes() ?>>
+<?php echo $estado_documentacion_personas->Id_Cargo->SelectOptionListHtml("x_Id_Cargo") ?>
+</select>
+<input type="hidden" name="s_x_Id_Cargo" id="s_x_Id_Cargo" value="<?php echo $estado_documentacion_personas->Id_Cargo->LookupFilterQuery() ?>">
 </span>
 		</div></div>
 	</div>

@@ -286,8 +286,8 @@ class cpedido_st_search extends cpedido_st {
 		$objForm = new cFormObj();
 		$this->CurrentAction = (@$_GET["a"] <> "") ? $_GET["a"] : @$_POST["a_list"]; // Set up current action
 		$this->CUE->SetVisibility();
-		$this->SIGLA->SetVisibility();
-		$this->ZONA_DE_PERTENENCIA->SetVisibility();
+		$this->Sigla->SetVisibility();
+		$this->Id_Zona->SetVisibility();
 		$this->DEPARTAMENTO->SetVisibility();
 		$this->LOCALIDAD->SetVisibility();
 		$this->SERIE_NETBOOK->SetVisibility();
@@ -418,8 +418,8 @@ class cpedido_st_search extends cpedido_st {
 	function BuildAdvancedSearch() {
 		$sSrchUrl = "";
 		$this->BuildSearchUrl($sSrchUrl, $this->CUE); // CUE
-		$this->BuildSearchUrl($sSrchUrl, $this->SIGLA); // SIGLA
-		$this->BuildSearchUrl($sSrchUrl, $this->ZONA_DE_PERTENENCIA); // ZONA DE PERTENENCIA
+		$this->BuildSearchUrl($sSrchUrl, $this->Sigla); // Sigla
+		$this->BuildSearchUrl($sSrchUrl, $this->Id_Zona); // Id_Zona
 		$this->BuildSearchUrl($sSrchUrl, $this->DEPARTAMENTO); // DEPARTAMENTO
 		$this->BuildSearchUrl($sSrchUrl, $this->LOCALIDAD); // LOCALIDAD
 		$this->BuildSearchUrl($sSrchUrl, $this->SERIE_NETBOOK); // SERIE NETBOOK
@@ -496,13 +496,13 @@ class cpedido_st_search extends cpedido_st {
 		$this->CUE->AdvancedSearch->SearchValue = ew_StripSlashes($objForm->GetValue("x_CUE"));
 		$this->CUE->AdvancedSearch->SearchOperator = $objForm->GetValue("z_CUE");
 
-		// SIGLA
-		$this->SIGLA->AdvancedSearch->SearchValue = ew_StripSlashes($objForm->GetValue("x_SIGLA"));
-		$this->SIGLA->AdvancedSearch->SearchOperator = $objForm->GetValue("z_SIGLA");
+		// Sigla
+		$this->Sigla->AdvancedSearch->SearchValue = ew_StripSlashes($objForm->GetValue("x_Sigla"));
+		$this->Sigla->AdvancedSearch->SearchOperator = $objForm->GetValue("z_Sigla");
 
-		// ZONA DE PERTENENCIA
-		$this->ZONA_DE_PERTENENCIA->AdvancedSearch->SearchValue = ew_StripSlashes($objForm->GetValue("x_ZONA_DE_PERTENENCIA"));
-		$this->ZONA_DE_PERTENENCIA->AdvancedSearch->SearchOperator = $objForm->GetValue("z_ZONA_DE_PERTENENCIA");
+		// Id_Zona
+		$this->Id_Zona->AdvancedSearch->SearchValue = ew_StripSlashes($objForm->GetValue("x_Id_Zona"));
+		$this->Id_Zona->AdvancedSearch->SearchOperator = $objForm->GetValue("z_Id_Zona");
 
 		// DEPARTAMENTO
 		$this->DEPARTAMENTO->AdvancedSearch->SearchValue = ew_StripSlashes($objForm->GetValue("x_DEPARTAMENTO"));
@@ -540,8 +540,8 @@ class cpedido_st_search extends cpedido_st {
 
 		// Common render codes for all row types
 		// CUE
-		// SIGLA
-		// ZONA DE PERTENENCIA
+		// Sigla
+		// Id_Zona
 		// DEPARTAMENTO
 		// LOCALIDAD
 		// SERIE NETBOOK
@@ -555,13 +555,32 @@ class cpedido_st_search extends cpedido_st {
 		$this->CUE->ViewValue = $this->CUE->CurrentValue;
 		$this->CUE->ViewCustomAttributes = "";
 
-		// SIGLA
-		$this->SIGLA->ViewValue = $this->SIGLA->CurrentValue;
-		$this->SIGLA->ViewCustomAttributes = "";
+		// Sigla
+		$this->Sigla->ViewValue = $this->Sigla->CurrentValue;
+		$this->Sigla->ViewCustomAttributes = "";
 
-		// ZONA DE PERTENENCIA
-		$this->ZONA_DE_PERTENENCIA->ViewValue = $this->ZONA_DE_PERTENENCIA->CurrentValue;
-		$this->ZONA_DE_PERTENENCIA->ViewCustomAttributes = "";
+		// Id_Zona
+		if (strval($this->Id_Zona->CurrentValue) <> "") {
+			$sFilterWrk = "`Id_Zona`" . ew_SearchString("=", $this->Id_Zona->CurrentValue, EW_DATATYPE_NUMBER, "");
+		$sSqlWrk = "SELECT `Id_Zona`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `zonas`";
+		$sWhereWrk = "";
+		$this->Id_Zona->LookupFilters = array();
+		ew_AddFilter($sWhereWrk, $sFilterWrk);
+		$this->Lookup_Selecting($this->Id_Zona, $sWhereWrk); // Call Lookup selecting
+		if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			if ($rswrk && !$rswrk->EOF) { // Lookup values found
+				$arwrk = array();
+				$arwrk[1] = $rswrk->fields('DispFld');
+				$this->Id_Zona->ViewValue = $this->Id_Zona->DisplayValue($arwrk);
+				$rswrk->Close();
+			} else {
+				$this->Id_Zona->ViewValue = $this->Id_Zona->CurrentValue;
+			}
+		} else {
+			$this->Id_Zona->ViewValue = NULL;
+		}
+		$this->Id_Zona->ViewCustomAttributes = "";
 
 		// DEPARTAMENTO
 		if (strval($this->DEPARTAMENTO->CurrentValue) <> "") {
@@ -672,15 +691,15 @@ class cpedido_st_search extends cpedido_st {
 			$this->CUE->HrefValue = "";
 			$this->CUE->TooltipValue = "";
 
-			// SIGLA
-			$this->SIGLA->LinkCustomAttributes = "";
-			$this->SIGLA->HrefValue = "";
-			$this->SIGLA->TooltipValue = "";
+			// Sigla
+			$this->Sigla->LinkCustomAttributes = "";
+			$this->Sigla->HrefValue = "";
+			$this->Sigla->TooltipValue = "";
 
-			// ZONA DE PERTENENCIA
-			$this->ZONA_DE_PERTENENCIA->LinkCustomAttributes = "";
-			$this->ZONA_DE_PERTENENCIA->HrefValue = "";
-			$this->ZONA_DE_PERTENENCIA->TooltipValue = "";
+			// Id_Zona
+			$this->Id_Zona->LinkCustomAttributes = "";
+			$this->Id_Zona->HrefValue = "";
+			$this->Id_Zona->TooltipValue = "";
 
 			// DEPARTAMENTO
 			$this->DEPARTAMENTO->LinkCustomAttributes = "";
@@ -719,17 +738,30 @@ class cpedido_st_search extends cpedido_st {
 			$this->CUE->EditValue = ew_HtmlEncode($this->CUE->AdvancedSearch->SearchValue);
 			$this->CUE->PlaceHolder = ew_RemoveHtml($this->CUE->FldCaption());
 
-			// SIGLA
-			$this->SIGLA->EditAttrs["class"] = "form-control";
-			$this->SIGLA->EditCustomAttributes = "";
-			$this->SIGLA->EditValue = ew_HtmlEncode($this->SIGLA->AdvancedSearch->SearchValue);
-			$this->SIGLA->PlaceHolder = ew_RemoveHtml($this->SIGLA->FldCaption());
+			// Sigla
+			$this->Sigla->EditAttrs["class"] = "form-control";
+			$this->Sigla->EditCustomAttributes = "";
+			$this->Sigla->EditValue = ew_HtmlEncode($this->Sigla->AdvancedSearch->SearchValue);
+			$this->Sigla->PlaceHolder = ew_RemoveHtml($this->Sigla->FldCaption());
 
-			// ZONA DE PERTENENCIA
-			$this->ZONA_DE_PERTENENCIA->EditAttrs["class"] = "form-control";
-			$this->ZONA_DE_PERTENENCIA->EditCustomAttributes = "";
-			$this->ZONA_DE_PERTENENCIA->EditValue = ew_HtmlEncode($this->ZONA_DE_PERTENENCIA->AdvancedSearch->SearchValue);
-			$this->ZONA_DE_PERTENENCIA->PlaceHolder = ew_RemoveHtml($this->ZONA_DE_PERTENENCIA->FldCaption());
+			// Id_Zona
+			$this->Id_Zona->EditAttrs["class"] = "form-control";
+			$this->Id_Zona->EditCustomAttributes = "";
+			if (trim(strval($this->Id_Zona->AdvancedSearch->SearchValue)) == "") {
+				$sFilterWrk = "0=1";
+			} else {
+				$sFilterWrk = "`Id_Zona`" . ew_SearchString("=", $this->Id_Zona->AdvancedSearch->SearchValue, EW_DATATYPE_NUMBER, "");
+			}
+			$sSqlWrk = "SELECT `Id_Zona`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld`, '' AS `SelectFilterFld`, '' AS `SelectFilterFld2`, '' AS `SelectFilterFld3`, '' AS `SelectFilterFld4` FROM `zonas`";
+			$sWhereWrk = "";
+			$this->Id_Zona->LookupFilters = array();
+			ew_AddFilter($sWhereWrk, $sFilterWrk);
+			$this->Lookup_Selecting($this->Id_Zona, $sWhereWrk); // Call Lookup selecting
+			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			$rswrk = Conn()->Execute($sSqlWrk);
+			$arwrk = ($rswrk) ? $rswrk->GetRows() : array();
+			if ($rswrk) $rswrk->Close();
+			$this->Id_Zona->EditValue = $arwrk;
 
 			// DEPARTAMENTO
 			$this->DEPARTAMENTO->EditAttrs["class"] = "form-control";
@@ -854,9 +886,6 @@ class cpedido_st_search extends cpedido_st {
 		// Check if validation required
 		if (!EW_SERVER_VALIDATE)
 			return TRUE;
-		if (!ew_CheckInteger($this->ZONA_DE_PERTENENCIA->AdvancedSearch->SearchValue)) {
-			ew_AddMessage($gsSearchError, $this->ZONA_DE_PERTENENCIA->FldErrMsg());
-		}
 
 		// Return validate result
 		$ValidateSearch = ($gsSearchError == "");
@@ -873,8 +902,8 @@ class cpedido_st_search extends cpedido_st {
 	// Load advanced search
 	function LoadAdvancedSearch() {
 		$this->CUE->AdvancedSearch->Load();
-		$this->SIGLA->AdvancedSearch->Load();
-		$this->ZONA_DE_PERTENENCIA->AdvancedSearch->Load();
+		$this->Sigla->AdvancedSearch->Load();
+		$this->Id_Zona->AdvancedSearch->Load();
 		$this->DEPARTAMENTO->AdvancedSearch->Load();
 		$this->LOCALIDAD->AdvancedSearch->Load();
 		$this->SERIE_NETBOOK->AdvancedSearch->Load();
@@ -898,6 +927,18 @@ class cpedido_st_search extends cpedido_st {
 		global $gsLanguage;
 		$pageId = $pageId ?: $this->PageID;
 		switch ($fld->FldVar) {
+		case "x_Id_Zona":
+			$sSqlWrk = "";
+			$sSqlWrk = "SELECT `Id_Zona` AS `LinkFld`, `Descripcion` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `zonas`";
+			$sWhereWrk = "";
+			$this->Id_Zona->LookupFilters = array();
+			$fld->LookupFilters += array("s" => $sSqlWrk, "d" => "", "f0" => "`Id_Zona` = {filter_value}", "t0" => "3", "fn0" => "");
+			$sSqlWrk = "";
+			$this->Lookup_Selecting($this->Id_Zona, $sWhereWrk); // Call Lookup selecting
+			if ($sWhereWrk <> "") $sSqlWrk .= " WHERE " . $sWhereWrk;
+			if ($sSqlWrk <> "")
+				$fld->LookupFilters["s"] .= $sSqlWrk;
+			break;
 		case "x_DEPARTAMENTO":
 			$sSqlWrk = "";
 			$sSqlWrk = "SELECT `Nombre` AS `LinkFld`, `Nombre` AS `DispFld`, '' AS `Disp2Fld`, '' AS `Disp3Fld`, '' AS `Disp4Fld` FROM `departamento`";
@@ -1096,6 +1137,7 @@ fpedido_stsearch.ValidateRequired = false;
 <?php } ?>
 
 // Dynamic selection lists
+fpedido_stsearch.Lists["x_Id_Zona"] = {"LinkField":"x_Id_Zona","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"zonas"};
 fpedido_stsearch.Lists["x_DEPARTAMENTO"] = {"LinkField":"x_Nombre","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nombre","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"departamento"};
 fpedido_stsearch.Lists["x_LOCALIDAD"] = {"LinkField":"x_Nombre","Ajax":true,"AutoFill":false,"DisplayFields":["x_Nombre","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"localidades"};
 fpedido_stsearch.Lists["x_PROBLEMA"] = {"LinkField":"x_Descripcion","Ajax":true,"AutoFill":false,"DisplayFields":["x_Descripcion","","",""],"ParentFields":[],"ChildFields":[],"FilterFields":[],"Options":[],"Template":"","LinkTable":"problema"};
@@ -1109,9 +1151,6 @@ fpedido_stsearch.Validate = function(fobj) {
 		return true; // Ignore validation
 	fobj = fobj || this.Form;
 	var infix = "";
-	elm = this.GetElements("x" + infix + "_ZONA_DE_PERTENENCIA");
-	if (elm && !ew_CheckInteger(elm.value))
-		return this.OnError(elm, "<?php echo ew_JsEncode2($pedido_st->ZONA_DE_PERTENENCIA->FldErrMsg()) ?>");
 
 	// Fire Form_CustomValidate event
 	if (!this.Form_CustomValidate(fobj))
@@ -1156,26 +1195,29 @@ $pedido_st_search->ShowMessage();
 		</div></div>
 	</div>
 <?php } ?>
-<?php if ($pedido_st->SIGLA->Visible) { // SIGLA ?>
-	<div id="r_SIGLA" class="form-group">
-		<label for="x_SIGLA" class="<?php echo $pedido_st_search->SearchLabelClass ?>"><span id="elh_pedido_st_SIGLA"><?php echo $pedido_st->SIGLA->FldCaption() ?></span>	
-		<p class="form-control-static ewSearchOperator"><?php echo $Language->Phrase("LIKE") ?><input type="hidden" name="z_SIGLA" id="z_SIGLA" value="LIKE"></p>
+<?php if ($pedido_st->Sigla->Visible) { // Sigla ?>
+	<div id="r_Sigla" class="form-group">
+		<label for="x_Sigla" class="<?php echo $pedido_st_search->SearchLabelClass ?>"><span id="elh_pedido_st_Sigla"><?php echo $pedido_st->Sigla->FldCaption() ?></span>	
+		<p class="form-control-static ewSearchOperator"><?php echo $Language->Phrase("LIKE") ?><input type="hidden" name="z_Sigla" id="z_Sigla" value="LIKE"></p>
 		</label>
-		<div class="<?php echo $pedido_st_search->SearchRightColumnClass ?>"><div<?php echo $pedido_st->SIGLA->CellAttributes() ?>>
-			<span id="el_pedido_st_SIGLA">
-<input type="text" data-table="pedido_st" data-field="x_SIGLA" name="x_SIGLA" id="x_SIGLA" size="30" maxlength="10" placeholder="<?php echo ew_HtmlEncode($pedido_st->SIGLA->getPlaceHolder()) ?>" value="<?php echo $pedido_st->SIGLA->EditValue ?>"<?php echo $pedido_st->SIGLA->EditAttributes() ?>>
+		<div class="<?php echo $pedido_st_search->SearchRightColumnClass ?>"><div<?php echo $pedido_st->Sigla->CellAttributes() ?>>
+			<span id="el_pedido_st_Sigla">
+<input type="text" data-table="pedido_st" data-field="x_Sigla" name="x_Sigla" id="x_Sigla" size="30" maxlength="10" placeholder="<?php echo ew_HtmlEncode($pedido_st->Sigla->getPlaceHolder()) ?>" value="<?php echo $pedido_st->Sigla->EditValue ?>"<?php echo $pedido_st->Sigla->EditAttributes() ?>>
 </span>
 		</div></div>
 	</div>
 <?php } ?>
-<?php if ($pedido_st->ZONA_DE_PERTENENCIA->Visible) { // ZONA DE PERTENENCIA ?>
-	<div id="r_ZONA_DE_PERTENENCIA" class="form-group">
-		<label for="x_ZONA_DE_PERTENENCIA" class="<?php echo $pedido_st_search->SearchLabelClass ?>"><span id="elh_pedido_st_ZONA_DE_PERTENENCIA"><?php echo $pedido_st->ZONA_DE_PERTENENCIA->FldCaption() ?></span>	
-		<p class="form-control-static ewSearchOperator"><?php echo $Language->Phrase("=") ?><input type="hidden" name="z_ZONA_DE_PERTENENCIA" id="z_ZONA_DE_PERTENENCIA" value="="></p>
+<?php if ($pedido_st->Id_Zona->Visible) { // Id_Zona ?>
+	<div id="r_Id_Zona" class="form-group">
+		<label for="x_Id_Zona" class="<?php echo $pedido_st_search->SearchLabelClass ?>"><span id="elh_pedido_st_Id_Zona"><?php echo $pedido_st->Id_Zona->FldCaption() ?></span>	
+		<p class="form-control-static ewSearchOperator"><?php echo $Language->Phrase("=") ?><input type="hidden" name="z_Id_Zona" id="z_Id_Zona" value="="></p>
 		</label>
-		<div class="<?php echo $pedido_st_search->SearchRightColumnClass ?>"><div<?php echo $pedido_st->ZONA_DE_PERTENENCIA->CellAttributes() ?>>
-			<span id="el_pedido_st_ZONA_DE_PERTENENCIA">
-<input type="text" data-table="pedido_st" data-field="x_ZONA_DE_PERTENENCIA" name="x_ZONA_DE_PERTENENCIA" id="x_ZONA_DE_PERTENENCIA" size="30" placeholder="<?php echo ew_HtmlEncode($pedido_st->ZONA_DE_PERTENENCIA->getPlaceHolder()) ?>" value="<?php echo $pedido_st->ZONA_DE_PERTENENCIA->EditValue ?>"<?php echo $pedido_st->ZONA_DE_PERTENENCIA->EditAttributes() ?>>
+		<div class="<?php echo $pedido_st_search->SearchRightColumnClass ?>"><div<?php echo $pedido_st->Id_Zona->CellAttributes() ?>>
+			<span id="el_pedido_st_Id_Zona">
+<select data-table="pedido_st" data-field="x_Id_Zona" data-value-separator="<?php echo $pedido_st->Id_Zona->DisplayValueSeparatorAttribute() ?>" id="x_Id_Zona" name="x_Id_Zona"<?php echo $pedido_st->Id_Zona->EditAttributes() ?>>
+<?php echo $pedido_st->Id_Zona->SelectOptionListHtml("x_Id_Zona") ?>
+</select>
+<input type="hidden" name="s_x_Id_Zona" id="s_x_Id_Zona" value="<?php echo $pedido_st->Id_Zona->LookupFilterQuery() ?>">
 </span>
 		</div></div>
 	</div>
