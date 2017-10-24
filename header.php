@@ -118,7 +118,6 @@ var EW_SEARCH_FILTER_OPTION = "<?php echo EW_SEARCH_FILTER_OPTION ?>";
 var ewVar = <?php echo json_encode($EW_CLIENT_VAR); ?>;
 <?php echo $Language->ToJSON() ?>
 </script>
-<script type="text/javascript" src="http<?php echo ew_IsHttps() ? "s" : ""; ?>://maps.googleapis.com/maps/api/js?key=AIzaSyD3OIpUon9I3J0m5SFGh7ACe5MPkpYwHuk"></script>
 <script type="text/javascript" src="<?php echo $EW_RELATIVE_PATH ?>phpjs/ewgooglemaps.js"></script>
 <script type="text/javascript" src="<?php echo $EW_RELATIVE_PATH ?>phpjs/userfn13.js"></script>
 <script type="text/javascript">
