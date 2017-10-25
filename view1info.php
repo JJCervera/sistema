@@ -1002,11 +1002,11 @@ class cview1 extends cTable {
 	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando Paquete de Provisión', '$Fecha' ,'$Serie')");
 	$CargaPaquete = ew_Execute("INSERT INTO Paquetes_Provision (Fecha_Actualizacion, Usuario, SN, Id_Hardware, Marca_Arranque,Id_Tipo_Extraccion,Id_Estado_Paquete,Id_Motivo, NroSerie) VALUES ('$Fecha' ,'$usuario','$SN','$Id_Hardware', '$Marca_Arranque',1,1,2,'$Serie')");
 	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=1, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=1, Fecha_Actualizacion='$Fecha', User_Actualiz='$usuario' WHERE Dni=$Dni");
+	$MyResult = ew_Execute("UPDATE personas SET Id_Estado=1, Fecha_Actualizacion='$Fecha', User_Actualiz='$usuario' WHERE Dni=$Dni");
 	return TRUE;
 	}else{
 	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=2, Id_Estado=2, Id_Sit_Estado=8, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=1, Fecha_Actualizacion='$Fecha', User_Actualiz='$usuario' WHERE Dni=$Dni");
+	$MyResult = ew_Execute("UPDATE personas SET Id_Estado=1, Fecha_Actualizacion='$Fecha', User_Actualiz='$usuario' WHERE Dni=$Dni");
 	return TRUE;
 	}
 	}else{
@@ -1016,11 +1016,11 @@ class cview1 extends cTable {
 
 	if ($EstadoPase==3){
 	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=2, Id_Estado=1, Id_Sit_Estado=9, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=9, Fecha_Actualizacion='$Fecha', User_Actualiz='$usuario' WHERE Dni=$Dni");
+	$MyResult = ew_Execute("UPDATE personas SET Id_Estado=9, Fecha_Actualizacion='$Fecha', User_Actualiz='$usuario' WHERE Dni=$Dni");
 	return TRUE;
 	}else
 	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=8, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
-	$MyResult = ew_Execute("UPDATE Personas SET Id_Estado=10, Fecha_Actualizacion='$Fecha', User_Actualiz='$usuario' WHERE Dni=$Dni");
+	$MyResult = ew_Execute("UPDATE personas SET Id_Estado=10, Fecha_Actualizacion='$Fecha', User_Actualiz='$usuario' WHERE Dni=$Dni");
 	return TRUE;
 	}
 	}
