@@ -755,7 +755,7 @@ class cuserlevels extends cTable {
 	$Serie=$rsnew["NroSerie"];
 
 	//$MyResult = ew_Execute("UPDATE personas SET Id_Estado=4, Fecha_Actualizacion='$Fecha', User_Actualiz='$usuario' WHERE Dni=$Dni");
-	//$consulta = ew_ExecuteRow("SELECT * FROM Prestamo_Equipo WHERE Dni=$Dni");
+	//$consulta = ew_ExecuteRow("SELECT * FROM prestamo_equipo WHERE Dni=$Dni");
 	//$Estado=$consulta["Id_Estado_Prestamo"];
 	//if ($Estado==1){
 	//echo '<script language="javascript">alert(',$Dni,');</script>';

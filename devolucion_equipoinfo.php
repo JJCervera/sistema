@@ -1188,7 +1188,7 @@ class cdevolucion_equipo extends cTable {
 	$Estado=$rsnew["Id_Estado_Devol"];
 	$Devuelve_Cargador=$rsnew["Devuelve_Cargador"];
 	$Usuario=CurrentUserName();
-	$consulta = ew_ExecuteRow("SELECT * FROM Prestamo_Equipo WHERE Dni=$Dni");
+	$consulta = ew_ExecuteRow("SELECT * FROM prestamo_equipo WHERE Dni=$Dni");
 	$Prestamo=$consulta["Id_Estado_Prestamo"];
 	if ($Prestamo==1){
 	echo '<script language="javascript">alert("EL ALUMNO ACTUAL POSEE UN PRESTAMO EN CURSO, VERIFIQUE LOS PRESTAMOS ACTIVOS ANTES DE CONTINUAR");</script>';

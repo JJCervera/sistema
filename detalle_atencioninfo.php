@@ -1160,7 +1160,7 @@ class cdetalle_atencion extends cTable {
 	$mail=$consultaRte["Mail"];
 	$DniRte=$consultaRte["DniRte"];
 	$Apellido_Nombre=$consultaRte["Apellido_Nombre"];
-	$CargaPaquete = ew_Execute("INSERT INTO Paquetes_Provision (Fecha_Actualizacion, Usuario, SN, Id_Hardware, Marca_Arranque, Id_Tipo_Extraccion, Email_Solicitante, Id_Estado_Paquete, Id_Motivo, Serie_Netbook, Dni, Apellido_Nombre_Solicitante, Id_Tipo_Paquete, Serie_Server) VALUES ('$Fecha' ,'$usuario','$SN','$Id_Hardware', '$Marca_Arranque',1,'$mail',1,1,'$Serie',$DniRte, '$Apellido_Nombre', $Tipo_Paquete, '$Nro_Serie')");
+	$CargaPaquete = ew_Execute("INSERT INTO paquetes_provision (Fecha_Actualizacion, Usuario, SN, Id_Hardware, Marca_Arranque, Id_Tipo_Extraccion, Email_Solicitante, Id_Estado_Paquete, Id_Motivo, Serie_Netbook, Dni, Apellido_Nombre_Solicitante, Id_Tipo_Paquete, Serie_Server) VALUES ('$Fecha' ,'$usuario','$SN','$Id_Hardware', '$Marca_Arranque',1,'$mail',1,1,'$Serie',$DniRte, '$Apellido_Nombre', $Tipo_Paquete, '$Nro_Serie')");
 	$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=12, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando Paquete de Provisión', '$Fecha' ,'$Serie')");
 	$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando Paquete de Provisión', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
@@ -1171,9 +1171,9 @@ class cdetalle_atencion extends cTable {
 	$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando Cargador/Batería', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 	return TRUE;
 	}elseif ($Estado==7){
-	$sql = ew_ExecuteRow("SELECT Dni FROM Personas WHERE NroSerie='$Serie'");
+	$sql = ew_ExecuteRow("SELECT Dni FROM personas WHERE NroSerie='$Serie'");
 	$Dni=$sql["Dni"];
-	$Sql2 = ew_ExecuteRow("SELECT * FROM Prestamo_Equipo WHERE Dni=$Dni");
+	$Sql2 = ew_ExecuteRow("SELECT * FROM prestamo_equipo WHERE Dni=$Dni");
 	$Prestamo=$Sql2["Id_Estado_Prestamo"];
 	if ($Prestamo==1){
 	echo '<script language="javascript">alert("EL ALUMNO ACTUAL POSEE UN PRESTAMO EN CURSO, VERIFIQUE LOS PRESTAMOS ACTIVOS ANTES DE CONTINUAR");</script>';
@@ -1251,7 +1251,7 @@ class cdetalle_atencion extends cTable {
 	$mail=$consultaRte["Mail"];
 	$DniRte=$consultaRte["DniRte"];
 	$Apellido_Nombre=$consultaRte["Apellido_Nombre"];
-	$CargaPaquete = ew_Execute("INSERT INTO Paquetes_Provision (Fecha_Actualizacion, Usuario, SN, Id_Hardware, Marca_Arranque, Id_Tipo_Extraccion, Email_Solicitante, Id_Estado_Paquete, Id_Motivo, Serie_Netbook, Dni, Apellido_Nombre_Solicitante, Id_Tipo_Paquete, Serie_Server) VALUES ('$Fecha' ,'$usuario','$SN','$Id_Hardware', '$Marca_Arranque',1,'$mail',1,1,'$Serie',$DniRte, '$Apellido_Nombre', $Tipo_Paquete, '$Nro_Serie')");
+	$CargaPaquete = ew_Execute("INSERT INTO paquetes_provision (Fecha_Actualizacion, Usuario, SN, Id_Hardware, Marca_Arranque, Id_Tipo_Extraccion, Email_Solicitante, Id_Estado_Paquete, Id_Motivo, Serie_Netbook, Dni, Apellido_Nombre_Solicitante, Id_Tipo_Paquete, Serie_Server) VALUES ('$Fecha' ,'$usuario','$SN','$Id_Hardware', '$Marca_Arranque',1,'$mail',1,1,'$Serie',$DniRte, '$Apellido_Nombre', $Tipo_Paquete, '$Nro_Serie')");
 	$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=12, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando Paquete de Provisión', '$Fecha' ,'$Serie')");
 	$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando Paquete de Provisión', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
@@ -1266,9 +1266,9 @@ class cdetalle_atencion extends cTable {
 	}
 	return TRUE;
 	}elseif ($Estado==7){
-	$sql = ew_ExecuteRow("SELECT Dni FROM Personas WHERE NroSerie='$Serie'");
+	$sql = ew_ExecuteRow("SELECT Dni FROM personas WHERE NroSerie='$Serie'");
 	$Dni=$sql["Dni"];
-	$Sql2 = ew_ExecuteRow("SELECT * FROM Prestamo_Equipo WHERE Dni=$Dni");
+	$Sql2 = ew_ExecuteRow("SELECT * FROM prestamo_equipo WHERE Dni=$Dni");
 	$Prestamo=$Sql2["Id_Estado_Prestamo"];
 	if ($Prestamo==1){
 	echo '<script language="javascript">alert("EL ALUMNO ACTUAL POSEE UN PRESTAMO EN CURSO, VERIFIQUE LOS PRESTAMOS ACTIVOS ANTES DE CONTINUAR");</script>';

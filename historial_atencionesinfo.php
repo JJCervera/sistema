@@ -862,17 +862,17 @@ class chistorial_atenciones extends cTable {
 	if ($Retiro==1){
 	$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
 	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
-	$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=1, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
+	$Consulta1 = ew_Execute("UPDATE detalle_atencion SET Id_Estado_Atenc=1, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
 	$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 	return TRUE;
 	}else{
 	if ($Fecha_Devol!=""){
 	$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Volvio de Servicio Tecnico Externo', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
-	$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=3, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
+	$Consulta1 = ew_Execute("UPDATE detalle_atencion SET Id_Estado_Atenc=3, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
 	$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=1, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
 	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El Equipo regreso de Servicio Tecnico', '$Fecha' ,'$Serie')");
 	}else{
-	$Consulta1 = ew_Execute("UPDATE Detalle_Atencion SET Id_Estado_Atenc=2, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
+	$Consulta1 = ew_Execute("UPDATE detalle_atencion SET Id_Estado_Atenc=2, Fecha_Actualizacion='$Fecha' WHERE Id_Atencion=$Id_Atencion");
 	$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('En Servicio Tecnico Externo', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 	$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Ultima_Actualiz='$Fecha',User_Actualiz='$usuario' WHERE NroSerie='$Serie'");
 	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El Equipo fue retirado del establecimiento P/Servicio Tecnico', '$Fecha' ,'$Serie')");

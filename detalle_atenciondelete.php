@@ -1,3 +1,4 @@
+
 <?php
 if (session_id() == "") session_start(); // Init session data
 ob_start(); // Turn on output buffering

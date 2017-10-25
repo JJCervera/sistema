@@ -1191,7 +1191,7 @@ class cliberacion_equipo extends cTable {
 	$Fecha=ew_CurrentDate();
 	$Serie=$rsnew["NroSerie"];
 	$usuario=CurrentUserName();
-	$consulta = ew_ExecuteRow("SELECT * FROM Prestamo_Equipo WHERE Dni=$Dni");
+	$consulta = ew_ExecuteRow("SELECT * FROM prestamo_equipo WHERE Dni=$Dni");
 	$Estado=$consulta["Id_Estado_Prestamo"];
 	if ($Estado==1){
 	echo '<script language="javascript">alert("EL ALUMNO ACTUAL POSEE UN PRESTAMO EN CURSO, VERIFIQUE LOS PRESTAMOS ACTIVOS ANTES DE CONTINUAR");</script>';

@@ -1178,7 +1178,7 @@ class cprestamo_equipo extends cTable {
 	// Get a record as associative array
 	// NOTE: Modify your SQL here, replace the table name, field name and the condition
 
-	$consulta = ew_ExecuteRow("SELECT Id_Estado_Prestamo FROM Prestamo_Equipo WHERE Dni=$Dni and Id_Estado_Prestamo='1' order by Id_Prestamo Desc");
+	$consulta = ew_ExecuteRow("SELECT Id_Estado_Prestamo FROM prestamo_equipo WHERE Dni=$Dni and Id_Estado_Prestamo='1' order by Id_Prestamo Desc");
 	$Estado=$consulta["Id_Estado_Prestamo"];
 
 	//echo '<script language="javascript">alert(',$Estado,');</script>';
@@ -1208,7 +1208,7 @@ class cprestamo_equipo extends cTable {
 	$Fecha=ew_CurrentDate();
 	$Usuario=CurrentUserName();
 	$IdPrestamo=$rsold["Id_Prestamo"];
-	$consulta = ew_ExecuteRow("SELECT * FROM Prestamo_Equipo WHERE Id_Prestamo=$IdPrestamo");
+	$consulta = ew_ExecuteRow("SELECT * FROM prestamo_equipo WHERE Id_Prestamo=$IdPrestamo");
 	$Dni=$consulta["Dni"];
 	$Serie=$consulta["NroSerie"];
 	$Estado=$rsnew["Id_Estado_Prestamo"];

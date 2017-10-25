@@ -2137,7 +2137,7 @@ class cpase_establecimiento extends cTable {
 	$CueBaja=$rsnew["Cue_Establecimiento_Baja"];
 	$consultaEscuela = ew_ExecuteRow("SELECT Cue FROM Dato_Establecimiento");
 	$MiCue=$consultaEscuela["Cue"];
-	$consulta = ew_ExecuteRow("SELECT * FROM Prestamo_Equipo WHERE Dni=$Dni");
+	$consulta = ew_ExecuteRow("SELECT * FROM prestamo_equipo WHERE Dni=$Dni");
 	$Estado=$consulta["Id_Estado_Prestamo"];
 	$EstadoPase=$rsnew["Id_Estado_Pase"];
 	if ($CueAlta==$CueBaja){
@@ -2160,7 +2160,7 @@ class cpase_establecimiento extends cTable {
 	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando Paquete de Provisión', '$Fecha' ,'$Serie')");
 	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=1, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	$MyResult = ew_Execute("UPDATE personas SET Id_Estado=1, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE Dni=$Dni");
-	$CargaPaquete = ew_Execute("INSERT INTO Paquetes_Provision (Fecha_Actualizacion, Usuario, SN, Id_Hardware, Marca_Arranque, Id_Tipo_Extraccion, Email_Solicitante, Id_Estado_Paquete, Id_Motivo, Serie_Netbook, Dni, Apellido_Nombre_Solicitante, Id_Tipo_Paquete, Serie_Server) VALUES ('$Fecha' ,'$usuario','$SN','$Id_Hardware', '$Marca_Arranque',1,'$mail',1,2,'$Serie',$DniRte, '$Apellido_Nombre', $Tipo_Paquete, '$Nro_Serie')");
+	$CargaPaquete = ew_Execute("INSERT INTO paquetes_provision (Fecha_Actualizacion, Usuario, SN, Id_Hardware, Marca_Arranque, Id_Tipo_Extraccion, Email_Solicitante, Id_Estado_Paquete, Id_Motivo, Serie_Netbook, Dni, Apellido_Nombre_Solicitante, Id_Tipo_Paquete, Serie_Server) VALUES ('$Fecha' ,'$usuario','$SN','$Id_Hardware', '$Marca_Arranque',1,'$mail',1,2,'$Serie',$DniRte, '$Apellido_Nombre', $Tipo_Paquete, '$Nro_Serie')");
 	return TRUE;
 	}else{
 	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=2, Id_Estado=2, Id_Sit_Estado=8, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
@@ -2207,7 +2207,7 @@ class cpase_establecimiento extends cTable {
 	$CueBaja=$rsnew["Cue_Establecimiento_Baja"];
 	$consultaEscuela = ew_ExecuteRow("SELECT Cue FROM Dato_Establecimiento");
 	$MiCue=$consultaEscuela["Cue"];
-	$consulta = ew_ExecuteRow("SELECT * FROM Prestamo_Equipo WHERE Dni=$Dni");
+	$consulta = ew_ExecuteRow("SELECT * FROM prestamo_equipo WHERE Dni=$Dni");
 	$Estado=$consulta["Id_Estado_Prestamo"];
 	$EstadoPase=$rsnew["Id_Estado_Pase"];
 	if ($CueAlta==$CueBaja){
@@ -2230,7 +2230,7 @@ class cpase_establecimiento extends cTable {
 	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando Paquete de Provisión', '$Fecha' ,'$Serie')");
 	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=1, Id_Sit_Estado=1, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	$MyResult = ew_Execute("UPDATE personas SET Id_Estado=1, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE Dni=$Dni");
-	$CargaPaquete = ew_Execute("INSERT INTO Paquetes_Provision (Fecha_Actualizacion, Usuario, SN, Id_Hardware, Marca_Arranque, Id_Tipo_Extraccion, Email_Solicitante, Id_Estado_Paquete, Id_Motivo, Serie_Netbook, Dni, Apellido_Nombre_Solicitante, Id_Tipo_Paquete, Serie_Server) VALUES ('$Fecha' ,'$usuario','$SN','$Id_Hardware', '$Marca_Arranque',1,'$mail',1,2,'$Serie',$DniRte, '$Apellido_Nombre', $Tipo_Paquete, '$Nro_Serie')");
+	$CargaPaquete = ew_Execute("INSERT INTO paquetes_provision (Fecha_Actualizacion, Usuario, SN, Id_Hardware, Marca_Arranque, Id_Tipo_Extraccion, Email_Solicitante, Id_Estado_Paquete, Id_Motivo, Serie_Netbook, Dni, Apellido_Nombre_Solicitante, Id_Tipo_Paquete, Serie_Server) VALUES ('$Fecha' ,'$usuario','$SN','$Id_Hardware', '$Marca_Arranque',1,'$mail',1,2,'$Serie',$DniRte, '$Apellido_Nombre', $Tipo_Paquete, '$Nro_Serie')");
 	return TRUE;
 	}else{
 	$MyResult2 = ew_Execute("UPDATE equipos SET Id_Ubicacion=2, Id_Estado=2, Id_Sit_Estado=8, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");

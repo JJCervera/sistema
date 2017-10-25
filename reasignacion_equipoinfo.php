@@ -1107,7 +1107,7 @@ class creasignacion_equipo extends cTable {
 	$Fecha=ew_CurrentDate();
 	$Serie=$rsnew["NroSerie"];
 	$usuario=CurrentUserName();
-	$consulta = ew_ExecuteRow("SELECT * FROM Prestamo_Equipo WHERE Dni=$DniNuevoTit");
+	$consulta = ew_ExecuteRow("SELECT * FROM prestamo_equipo WHERE Dni=$DniNuevoTit");
 	$Estado=$consulta["Id_Estado_Prestamo"];
 	if ($Estado==1){
 	echo '<script language="javascript">alert("EL ALUMNO ACTUAL POSEE UN PRESTAMO EN CURSO, VERIFIQUE LOS PRESTAMOS ACTIVOS ANTES DE CONTINUAR");</script>';
@@ -1116,7 +1116,7 @@ class creasignacion_equipo extends cTable {
 		$consultaReasig = ew_ExecuteRow("SELECT * FROM Reasignacion_Equipo WHERE Dni_Nuevo_Tit=$DniNuevoTit and NroSerie='$Serie'");
 		$ExisteReasig=$consultaReasig["Id_Reasignacion"];
 		if ($ExisteReasig==""){
-			$consultaEquipo = ew_ExecuteRow("SELECT NroSerie FROM Personas WHERE Dni=$DniNuevoTit");
+			$consultaEquipo = ew_ExecuteRow("SELECT NroSerie FROM personas WHERE Dni=$DniNuevoTit");
 			$TieneEquipo=$consultaEquipo["NroSerie"];
 			if ($TieneEquipo=="" or $TieneEquipo=="0"){
 			$titular=$rsnew["Titular_Original"];
