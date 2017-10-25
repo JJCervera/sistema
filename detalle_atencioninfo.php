@@ -1127,7 +1127,7 @@ class cdetalle_atencion extends cTable {
 	if ($Estado==1){
 	$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
-	$Consulta3 = ew_Execute("INSERT INTO Atencion_Para_St (Id_Atencion, NroSerie, Id_Tipo_Retiro, Nro_Tiket) VALUES ($Id_Atencion,'$Serie', 1 ,'PENDIENTE')");
+	$Consulta3 = ew_Execute("INSERT INTO atencion_para_st (Id_Atencion, NroSerie, Id_Tipo_Retiro, Nro_Tiket) VALUES ($Id_Atencion,'$Serie', 1 ,'PENDIENTE')");
 	$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 	return TRUE;
 	}elseif ($Estado==2){
@@ -1154,9 +1154,9 @@ class cdetalle_atencion extends cTable {
 	$Id_Hardware="PENDIENTE";
 	}
 	$Marca_Arranque="PENDIENTE";
-	$consultaServer = ew_ExecuteRow("SELECT Nro_Serie FROM Servidor_Escolar Limit 1");
+	$consultaServer = ew_ExecuteRow("SELECT Nro_Serie FROM servidor_escolar Limit 1");
 	$Nro_Serie=$consultaServer["Nro_Serie"];
-	$consultaRte = ew_ExecuteRow("SELECT Mail, DniRte, Apellido_Nombre FROM Referente_Tecnico Limit 1");
+	$consultaRte = ew_ExecuteRow("SELECT Mail, DniRte, Apellido_Nombre FROM referente_tecnico Limit 1");
 	$mail=$consultaRte["Mail"];
 	$DniRte=$consultaRte["DniRte"];
 	$Apellido_Nombre=$consultaRte["Apellido_Nombre"];
@@ -1218,7 +1218,7 @@ class cdetalle_atencion extends cTable {
 	if ($Estado==1){
 	$Consulta1 = ew_Execute("UPDATE equipos SET Id_Ubicacion=1, Id_Estado=2, Id_Sit_Estado=2, Fecha_Actualizacion='$Fecha',Usuario='$usuario' WHERE NroSerie='$Serie'");
 	$Consulta2 = ew_Execute("INSERT INTO observacion_equipo (Detalle, Fecha_Actualizacion, NroSerie) VALUES ('El equipo se encuentra Esperando retiro para Servicio Técnico', '$Fecha' ,'$Serie')");
-	$Consulta3 = ew_Execute("INSERT INTO Atencion_Para_St (Id_Atencion, NroSerie, Id_Tipo_Retiro, Nro_Tiket) VALUES ($Id_Atencion,'$Serie', 1 ,'PENDIENTE')");
+	$Consulta3 = ew_Execute("INSERT INTO atencion_para_st (Id_Atencion, NroSerie, Id_Tipo_Retiro, Nro_Tiket) VALUES ($Id_Atencion,'$Serie', 1 ,'PENDIENTE')");
 	$Consulta4 = ew_Execute("INSERT INTO historial_atencion (Detalle, Fecha_Actualizacion, NroSerie, Usuario, Id_Atencion) VALUES ('Esperando retiro P/Servicio Tecnico', '$Fecha' ,'$Serie','$usuario',$Id_Atencion)");
 	return TRUE;
 	}elseif ($Estado==2){
@@ -1245,9 +1245,9 @@ class cdetalle_atencion extends cTable {
 	$Id_Hardware="PENDIENTE";
 	}
 	$Marca_Arranque="PENDIENTE";
-	$consultaServer = ew_ExecuteRow("SELECT Nro_Serie FROM Servidor_Escolar Limit 1");
+	$consultaServer = ew_ExecuteRow("SELECT Nro_Serie FROM servidor_escolar Limit 1");
 	$Nro_Serie=$consultaServer["Nro_Serie"];
-	$consultaRte = ew_ExecuteRow("SELECT Mail, DniRte, Apellido_Nombre FROM Referente_Tecnico Limit 1");
+	$consultaRte = ew_ExecuteRow("SELECT Mail, DniRte, Apellido_Nombre FROM referente_tecnico Limit 1");
 	$mail=$consultaRte["Mail"];
 	$DniRte=$consultaRte["DniRte"];
 	$Apellido_Nombre=$consultaRte["Apellido_Nombre"];

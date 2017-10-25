@@ -2150,9 +2150,9 @@ class cpase_establecimiento extends cTable {
 	}else{
 	if ($CueAlta==$MiCue){
 	if ($EstadoPase==3){
-	$consultaServer = ew_ExecuteRow("SELECT Nro_Serie FROM Servidor_Escolar Limit 1");
+	$consultaServer = ew_ExecuteRow("SELECT Nro_Serie FROM servidor_escolar Limit 1");
 	$Nro_Serie=$consultaServer["Nro_Serie"];
-	$consultaRte = ew_ExecuteRow("SELECT Mail, DniRte, Apellido_Nombre FROM Referente_Tecnico Limit 1");
+	$consultaRte = ew_ExecuteRow("SELECT Mail, DniRte, Apellido_Nombre FROM referente_tecnico Limit 1");
 	$mail=$consultaRte["Mail"];
 	$DniRte=$consultaRte["DniRte"];
 	$Apellido_Nombre=$consultaRte["Apellido_Nombre"];
@@ -2220,9 +2220,9 @@ class cpase_establecimiento extends cTable {
 	}else{
 	if ($CueAlta==$MiCue){
 	if ($EstadoPase==3){
-	$consultaServer = ew_ExecuteRow("SELECT Nro_Serie FROM Servidor_Escolar Limit 1");
+	$consultaServer = ew_ExecuteRow("SELECT Nro_Serie FROM servidor_escolar Limit 1");
 	$Nro_Serie=$consultaServer["Nro_Serie"];
-	$consultaRte = ew_ExecuteRow("SELECT Mail, DniRte, Apellido_Nombre FROM Referente_Tecnico Limit 1");
+	$consultaRte = ew_ExecuteRow("SELECT Mail, DniRte, Apellido_Nombre FROM referente_tecnico Limit 1");
 	$mail=$consultaRte["Mail"];
 	$DniRte=$consultaRte["DniRte"];
 	$Apellido_Nombre=$consultaRte["Apellido_Nombre"];
