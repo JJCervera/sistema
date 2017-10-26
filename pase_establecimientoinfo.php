@@ -2135,7 +2135,7 @@ class cpase_establecimiento extends cTable {
 	$usuario=CurrentUserName();
 	$CueAlta=$rsnew["Cue_Establecimiento_Alta"];
 	$CueBaja=$rsnew["Cue_Establecimiento_Baja"];
-	$consultaEscuela = ew_ExecuteRow("SELECT Cue FROM Dato_Establecimiento");
+	$consultaEscuela = ew_ExecuteRow("SELECT Cue FROM dato_establecimiento");
 	$MiCue=$consultaEscuela["Cue"];
 	$consulta = ew_ExecuteRow("SELECT * FROM prestamo_equipo WHERE Dni=$Dni");
 	$Estado=$consulta["Id_Estado_Prestamo"];
