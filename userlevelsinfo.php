@@ -749,7 +749,7 @@ class cuserlevels extends cTable {
 	$usuario=CurrentUserName();
 	$Fecha=ew_CurrentDate();
 
-	//$consulta = ew_ExecuteRow("SELECT * FROM Atencion_Equipos WHERE Id_Atencion= $IdAtencion");
+	//$consulta = ew_ExecuteRow("SELECT * FROM atencion_equipos WHERE Id_Atencion= $IdAtencion");
 	//$Dni=$consulta["Dni"];
 
 	$Serie=$rsnew["NroSerie"];
