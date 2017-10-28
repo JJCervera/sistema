@@ -1,4 +1,5 @@
 <?php
+// archivo único de configuración de conexión a la base de datos mysql
 $hostname="localhost";  
 $username="sistema";  
 $password="sistemabop22";  

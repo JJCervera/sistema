@@ -6,6 +6,10 @@
 // Relative path
 if (!isset($EW_RELATIVE_PATH)) $EW_RELATIVE_PATH = "";
 
+// incluyo archivo configuracion conexion.php para reutilizar sus variables de configuración JJC
+include ('conexion.php');
+
+
 // Show SQL for debug
 define("EW_DEBUG_ENABLED", FALSE, TRUE); // TRUE to debug
 if (EW_DEBUG_ENABLED) {
@@ -48,7 +52,7 @@ if (!defined("EW_ADODB_TZ_OFFSET"))
 	define("EW_ADODB_TZ_OFFSET", FALSE, TRUE); // Use ADOdb time zone offset
 if (!defined("EW_USE_MYSQLI"))
 	define('EW_USE_MYSQLI', extension_loaded("mysqli"), TRUE); // Use MySQLi
-$EW_CONN["DB"] = array("conn" => NULL, "id" => "DB", "type" => "MYSQL", "host" => "localhost", "port" => 3306, "user" => "sistema", "pass" => "sistemabop22", "db" => "sistemadecontrol", "qs" => "`", "qe" => "`");
+$EW_CONN["DB"] = array("conn" => NULL, "id" => "DB", "type" => "MYSQL", "host" => $hostname, "port" => 3306, "user" => $username, "pass" => $password, "db" => $db, "qs" => "`", "qe" => "`");
 $EW_CONN[0] = &$EW_CONN["DB"];
 
 // Set up database error function
@@ -218,8 +222,8 @@ define("EW_AUDIT_TRAIL_FIELD_NAME_OLDVALUE", "oldvalue", TRUE); // Audit trail O
 define("EW_AUDIT_TRAIL_FIELD_NAME_NEWVALUE", "newvalue", TRUE); // Audit trail New Value field name
 
 // Security
-define("EW_ADMIN_USER_NAME", "admin", TRUE); // Administrator user name
-define("EW_ADMIN_PASSWORD", "sistema123", TRUE); // Administrator password
+define("EW_ADMIN_USER_NAME", "admin", TRUE); // Administrator user name 
+define("EW_ADMIN_PASSWORD", "sistema123", TRUE); // Administrator password                                  --RECORDAR CAMBIAR POR SEGURIDAD!!!!! JJC
 define("EW_USE_CUSTOM_LOGIN", TRUE, TRUE); // Use custom login
 define("EW_ALLOW_LOGIN_BY_URL", FALSE, TRUE); // Allow login by URL
 define("EW_ALLOW_LOGIN_BY_SESSION", FALSE, TRUE); // Allow login by session variables

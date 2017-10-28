@@ -11,8 +11,8 @@ ob_start(); // Turn on output buffering
 <?php include_once "phpfn13.php";
 include ("conexion.php");
 $serie= $_POST['Serie'];
-$link = mysqli_connect("localhost", "sistema", "sistemabop22");
-mysqli_select_db($link, "sistemadecontrol");
+$link = mysqli_connect($hostname, $username, $password); //modifico para utilizar las variables de conexion.php
+mysqli_select_db($link, $db);
 $tildes = $link->query("SET NAMES 'utf8'"); //Para que se muestren las tildes
 $consulta = mysqli_query($link, "select * from atencion_para_st where NroSerie='$serie' and Id_Tipo_Retiro=1 order by Id_Atencion DESC limit 1");
 $resultado= mysqli_fetch_array($consulta);

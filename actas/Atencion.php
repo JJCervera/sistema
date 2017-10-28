@@ -14,8 +14,11 @@ switch ($action)
 }
 ?>
 <?php
-$link = mysqli_connect("localhost", "sistema", "sistemabop22");
-mysqli_select_db($link, "sistemadecontrol");
+// incluyo archivo configuracion conexion.php para reutilizar sus variables de configuración JJC
+include ('conexion.php');
+
+$link = mysqli_connect($hostname, $username, $password);
+mysqli_select_db($link, $db);
 $tildes = $link->query("SET NAMES 'utf8'"); //Para que se muestren las tildes
 $consulta = mysqli_query($link, "SELECT atencion_equipos.Id_Atencion AS Id_Atencion,
   atencion_equipos.Dni AS Dni,

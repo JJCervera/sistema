@@ -18,14 +18,17 @@ if (!function_exists('DbHelper')) {
 	}
 }
 
+// incluyo archivo configuracion conexion.php para reutilizar sus variables de configuración JJC
+include ('conexion.php');
+
 class csistemadecontrol_db extends cDbHelper {
 
 	// Database connection info
-	var $Host = 'localhost';
+	var $Host = $hostname;
 	var $Port = 3306;
-	var $Username = 'root';
-	var $Password = 'sistema';
-	var $DbName = 'sistemadecontrol';
+	var $Username = $username;
+	var $Password = $password;
+	var $DbName = $db;
 
 	// ADODB (Access/SQL Server)
 	var $CodePage = 65001; // Code page

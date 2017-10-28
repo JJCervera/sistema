@@ -143,9 +143,11 @@ var ewVar = <?php echo json_encode($EW_CLIENT_VAR); ?>;
 <div id="wowslider-container1">
 <div class="ws_images"><ul>
 <?php
+// incluyo archivo configuracion conexion.php para reutilizar sus variables de configuración JJC
+include ('conexion.php');
 
-$link = mysqli_connect("localhost", "sistema", "sistemabop22");
-mysqli_select_db($link, "sistemadecontrol");
+$link = mysqli_connect($hostname, $username, $password);
+mysqli_select_db($link, $db);
 $tildes = $link->query("SET NAMES 'utf8'"); //Para que se muestren las tildes correctamente
 $result = mysqli_query($link, "SELECT * FROM novedades");
 $extraido1= mysqli_fetch_array($result);

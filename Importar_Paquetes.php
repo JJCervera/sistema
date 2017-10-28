@@ -17,6 +17,9 @@
 </form>
 </body>
 <?php
+
+// incluyo archivo configuracion conexion.php para reutilizar sus variables de configuración JJC
+include ('conexion.php');
  
 error_reporting(0);//apagamos todas la notificaciones
  
@@ -32,12 +35,12 @@ $chk_ext = explode(".",$fname);
 if(strtolower(end($chk_ext)) == "csv")
 {
 //Establecemos la conexión con nuestro servidor de mysql local
-$cone = mysql_connect('localhost', 'root', 'sistema');
+$cone = mysql_connect($hostname, $username, $password);
 if(!$cone)//en caso de no lograr establecer la conexión se quiebra el proceso...
 die('Conexion no establecida');
  
 //Verificamos si nuestra base de datos existe.
-if (!mysql_select_db("sistemadecontrol"))//en caso de no existir quiebra el proceso...
+if (!mysql_select_db($db"))//en caso de no existir quiebra el proceso...
 die("base de datos no existe");
  
 //si es correcto, entonces damos permisos de lectura para subir
