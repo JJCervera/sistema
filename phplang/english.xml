@@ -15,7 +15,7 @@
     <phrase id="actionupdatedgridedit" value="Editar (Editar-Grilla)" />
     <phrase id="actionupdatedmultiupdate" value="Editar (Multiple-Edición)" />
     <phrase id="activateaccount" value="Su cuenta se activará" />
-    <phrase id="activatefailed" value="Activacion Fallida" />
+    <phrase id="activatefailed" value="Activación Fallida" />
     <phrase id="add" value="Agregar" />
     <phrase id="addblankrow" value="Añadir fila en blanco" class="glyphicon glyphicon-plus ewIcon" />
     <!-- v11 -->
@@ -25,24 +25,24 @@
     <phrase id="addmasterdetaillink" value="Agregar Maestro/Detalle" class="icon-md-add ewIcon" />
     <!-- v11 -->
     <phrase id="addsuccess" value="Agregado correctamente" />
-    <phrase id="advancedsearch" value="Busqueda Avanzada" />
+    <phrase id="advancedsearch" value="Búsqueda Avanzada" />
     <!-- v11 -->
-    <phrase id="advancedsearchbtn" value="Busqueda Avanzada" class="icon-advanced-search ewIcon" />
+    <phrase id="advancedsearchbtn" value="Búsqueda Avanzada" class="icon-advanced-search ewIcon" />
     <!-- v11 -->
     <phrase id="allrecords" value="Todos" />
     <phrase id="allword" value="All words" />
-    <phrase id="alwaysask" value="Always ask for my user name and password" />
+    <phrase id="alwaysask" value="Siempre preguntarme mi usuario y contraseña" />
     <phrase id="anyword" value="Any word" />
     <phrase id="audittrailautologin" value="autologin" />
-    <phrase id="audittrailfailedattempt" value="failed attempt: %n" />
-    <phrase id="audittrailuserloggedin" value="user already logged in" />
-    <phrase id="audittrailpasswordexpired" value="password expired" />
+    <phrase id="audittrailfailedattempt" value="intentos fallidos: %n" />
+    <phrase id="audittrailuserloggedin" value="usuario ya logueado" />
+    <phrase id="audittrailpasswordexpired" value="la contraseña ha caducado" />
     <phrase id="audittraillogin" value="login" />
     <phrase id="audittraillogout" value="logout" />
     <phrase id="autologin" value="Auto login until I logout explicitly" />
-    <phrase id="average" value="Average" />
-    <phrase id="backtolist" value="Back to List" />
-    <phrase id="backtologin" value="Back to login page" />
+    <phrase id="average" value="Promedio" />
+    <phrase id="backtolist" value="Regresar a la lista" />
+    <phrase id="backtologin" value="Regresar a la página de ingreso" />
     <phrase id="backtomasterrecordpage" value="Back to master table" />
     <phrase id="batchdeletebegin" value="*** Batch delete begin ***" />
     <phrase id="batchdeleterollback" value="*** Batch delete rollback ***" />
@@ -74,9 +74,9 @@
     <phrase id="changepwdbtn" value="Cambiar" />
     <phrase id="choosefilebtn" value="Seleccione..." />
     <!-- v11 -->
-    <phrase id="choosefile" value="Seleccione Archivo" />
+    <phrase id="choosefile" value="Seleccione archivo" />
     <!-- v11 -->
-    <phrase id="choosefiles" value="Seleccione Archivo" />
+    <phrase id="choosefiles" value="Seleccione varios archivos" />
     <!-- v11 -->
     <phrase id="clickrecaptcha" value="Haga Click en reCAPTCHA" client="1" />
     <!-- v12 -->
@@ -274,7 +274,7 @@
     <phrase id="invalidrecord" value="Invalid Record! Key is null" client="1" />
     <phrase id="invalidpostrequest" value="Invalid post request" />
     <!-- v11 -->
-    <phrase id="invalidparameter" value="Parametro inavlido" />
+    <phrase id="invalidparameter" value="Parametro invalido" />
     <phrase id="invalidpassword" value="Contraseña incorrecta" />
     <phrase id="invalidnewpassword" value="Nueva contraseña incorrecta" />
     <phrase id="invaliduidpwd" value="Usuario o contraseña incorrecto" />
@@ -292,7 +292,7 @@
     <phrase id="lookuplink" value="Buscar - %s" class="glyphicon glyphicon-search ewIcon" />
     <!-- v2017 -->
     <phrase id="masterrecord" value="Master registros: " />
-    <phrase id="maxfilesize" value="Max. file size (%s bytes) exceeded." client="1" />
+    <phrase id="maxfilesize" value="Tamaño máximo de archivo (%s bytes) excedido." client="1" />
     <phrase id="messageok" value="OK" client="1" />
     <phrase id="midnight" value="midnight" />
     <!-- v2017 -->
