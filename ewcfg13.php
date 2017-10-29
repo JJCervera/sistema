@@ -39,7 +39,7 @@ define("EW_HIGHLIGHT_COMPARE", TRUE, TRUE); // Highlight compare mode, TRUE(case
 if (!function_exists('xml_parser_create') && !class_exists("DOMDocument")) die("This script requires PHP XML Parser or DOM.");
 define('EW_USE_DOM_XML', ((!function_exists('xml_parser_create') && class_exists("DOMDocument")) || FALSE), TRUE);
 if (!isset($ADODB_OUTP)) $ADODB_OUTP = 'ew_SetDebugMsg';
-define("EW_FONT_SIZE", 11, TRUE);
+define("EW_FONT_SIZE", 20, TRUE); // tamaño cambiado de 11 a 14 JJC
 define("EW_TMP_IMAGE_FONT", "DejaVuSans", TRUE); // Font for temp files
 
 // Set up font path
